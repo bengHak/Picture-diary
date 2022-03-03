@@ -1,0 +1,33 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '13.0'
+
+target 'PictureDiary' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for PictureDiary
+  
+  # Rx
+  pod 'RxSwift', '~> 6.0'
+  pod 'RxCocoa', '~> 6.0'
+  pod 'RxGesture', '~> 4.0'
+
+  # 🦴 RIBs
+  pod 'RIBs', :git => 'https://github.com/bengHak/RIBs.git'
+
+  # 📸 Images
+  pod 'Kingfisher', '~> 7.0'
+
+  # ⚡️ Moya
+  pod 'Moya', '~> 15.0'
+  pod 'Moya/RxSwift', '~> 15.0'
+
+  # 🎨 UI
+  pod 'SnapKit', '~> 5.0.0'
+  pod 'IQKeyboardManagerSwift'
+
+  # 🛠 Utils
+  pod 'Then'
+  pod 'SwiftKeychainWrapper'
+
+end

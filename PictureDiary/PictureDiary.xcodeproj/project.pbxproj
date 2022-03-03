@@ -1,0 +1,576 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6057084DA4CBF41D54F57468 /* Pods_PictureDiary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8662C61FC7779CDCA018991 /* Pods_PictureDiary.framework */; };
+		EAFE862927D0CD8C00519243 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE862827D0CD8C00519243 /* AppDelegate.swift */; };
+		EAFE862B27D0CD8C00519243 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE862A27D0CD8C00519243 /* SceneDelegate.swift */; };
+		EAFE862D27D0CD8C00519243 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE862C27D0CD8C00519243 /* ViewController.swift */; };
+		EAFE863027D0CD8C00519243 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAFE862E27D0CD8C00519243 /* Main.storyboard */; };
+		EAFE863327D0CD8C00519243 /* PictureDiary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EAFE863127D0CD8C00519243 /* PictureDiary.xcdatamodeld */; };
+		EAFE863527D0CD8D00519243 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAFE863427D0CD8D00519243 /* Assets.xcassets */; };
+		EAFE863827D0CD8D00519243 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAFE863627D0CD8D00519243 /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		296A642EF55E0FC635CB0813 /* Pods-PictureDiary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PictureDiary.debug.xcconfig"; path = "Target Support Files/Pods-PictureDiary/Pods-PictureDiary.debug.xcconfig"; sourceTree = "<group>"; };
+		A91B972A8A61B0AFFF9F0CDE /* Pods-PictureDiary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PictureDiary.release.xcconfig"; path = "Target Support Files/Pods-PictureDiary/Pods-PictureDiary.release.xcconfig"; sourceTree = "<group>"; };
+		E8662C61FC7779CDCA018991 /* Pods_PictureDiary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PictureDiary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAFE862527D0CD8C00519243 /* PictureDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PictureDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAFE862827D0CD8C00519243 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EAFE862A27D0CD8C00519243 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		EAFE862C27D0CD8C00519243 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EAFE862F27D0CD8C00519243 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EAFE863227D0CD8C00519243 /* PictureDiary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PictureDiary.xcdatamodel; sourceTree = "<group>"; };
+		EAFE863427D0CD8D00519243 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EAFE863727D0CD8D00519243 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EAFE863927D0CD8D00519243 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = PictureDiary/Resources/SupportingFiles/Info.plist; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EAFE862227D0CD8C00519243 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6057084DA4CBF41D54F57468 /* Pods_PictureDiary.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1E477AD5EFA9BCB9F49AC1FD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				296A642EF55E0FC635CB0813 /* Pods-PictureDiary.debug.xcconfig */,
+				A91B972A8A61B0AFFF9F0CDE /* Pods-PictureDiary.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		B6E28A536CC253CEFBED6FD1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E8662C61FC7779CDCA018991 /* Pods_PictureDiary.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EAFE861C27D0CD8C00519243 = {
+			isa = PBXGroup;
+			children = (
+				EAFE862727D0CD8C00519243 /* PictureDiary */,
+				EAFE862627D0CD8C00519243 /* Products */,
+				1E477AD5EFA9BCB9F49AC1FD /* Pods */,
+				B6E28A536CC253CEFBED6FD1 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		EAFE862627D0CD8C00519243 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EAFE862527D0CD8C00519243 /* PictureDiary.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EAFE862727D0CD8C00519243 /* PictureDiary */ = {
+			isa = PBXGroup;
+			children = (
+				EAFE864227D0DE8100519243 /* Resources */,
+				EAFE863F27D0DDEE00519243 /* Sources */,
+			);
+			path = PictureDiary;
+			sourceTree = "<group>";
+		};
+		EAFE863F27D0DDEE00519243 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				EAFE864727D0E1DF00519243 /* RIBs */,
+				EAFE864D27D0E25600519243 /* Common */,
+				EAFE865327D0E28C00519243 /* CoreData */,
+				EAFE865227D0E28200519243 /* Helpers */,
+				EAFE864927D0E21100519243 /* Models */,
+				EAFE864B27D0E21F00519243 /* Repository */,
+				EAFE864F27D0E26300519243 /* Networking */,
+				EAFE864E27D0E25E00519243 /* Enums */,
+				EAFE864C27D0E24800519243 /* Extensions */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		EAFE864127D0DE6900519243 /* AppStart */ = {
+			isa = PBXGroup;
+			children = (
+				EAFE862827D0CD8C00519243 /* AppDelegate.swift */,
+				EAFE862A27D0CD8C00519243 /* SceneDelegate.swift */,
+				EAFE862C27D0CD8C00519243 /* ViewController.swift */,
+			);
+			path = AppStart;
+			sourceTree = "<group>";
+		};
+		EAFE864227D0DE8100519243 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EAFE862E27D0CD8C00519243 /* Main.storyboard */,
+				EAFE863627D0CD8D00519243 /* LaunchScreen.storyboard */,
+				EAFE863427D0CD8D00519243 /* Assets.xcassets */,
+				EAFE864627D0DFC600519243 /* Fonts */,
+				EAFE864427D0DF9000519243 /* SupportingFiles */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		EAFE864427D0DF9000519243 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				EAFE863927D0CD8D00519243 /* Info.plist */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		EAFE864627D0DFC600519243 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		EAFE864727D0E1DF00519243 /* RIBs */ = {
+			isa = PBXGroup;
+			children = (
+				EAFE864127D0DE6900519243 /* AppStart */,
+			);
+			path = RIBs;
+			sourceTree = "<group>";
+		};
+		EAFE864927D0E21100519243 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		EAFE864B27D0E21F00519243 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		EAFE864C27D0E24800519243 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		EAFE864D27D0E25600519243 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		EAFE864E27D0E25E00519243 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		EAFE864F27D0E26300519243 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				EAFE865127D0E26F00519243 /* APIs */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		EAFE865127D0E26F00519243 /* APIs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = APIs;
+			sourceTree = "<group>";
+		};
+		EAFE865227D0E28200519243 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		EAFE865327D0E28C00519243 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				EAFE863127D0CD8C00519243 /* PictureDiary.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EAFE862427D0CD8C00519243 /* PictureDiary */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EAFE863C27D0CD8D00519243 /* Build configuration list for PBXNativeTarget "PictureDiary" */;
+			buildPhases = (
+				36C128E3612DCAE37A97A16C /* [CP] Check Pods Manifest.lock */,
+				EAFE862127D0CD8C00519243 /* Sources */,
+				EAFE862227D0CD8C00519243 /* Frameworks */,
+				EAFE862327D0CD8C00519243 /* Resources */,
+				99AD301C64915FE8463B6808 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PictureDiary;
+			productName = PictureDiary;
+			productReference = EAFE862527D0CD8C00519243 /* PictureDiary.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EAFE861D27D0CD8C00519243 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					EAFE862427D0CD8C00519243 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+				};
+			};
+			buildConfigurationList = EAFE862027D0CD8C00519243 /* Build configuration list for PBXProject "PictureDiary" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EAFE861C27D0CD8C00519243;
+			productRefGroup = EAFE862627D0CD8C00519243 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EAFE862427D0CD8C00519243 /* PictureDiary */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EAFE862327D0CD8C00519243 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EAFE863827D0CD8D00519243 /* LaunchScreen.storyboard in Resources */,
+				EAFE863527D0CD8D00519243 /* Assets.xcassets in Resources */,
+				EAFE863027D0CD8C00519243 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		36C128E3612DCAE37A97A16C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PictureDiary-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		99AD301C64915FE8463B6808 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PictureDiary/Pods-PictureDiary-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PictureDiary/Pods-PictureDiary-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PictureDiary/Pods-PictureDiary-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EAFE862127D0CD8C00519243 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EAFE862D27D0CD8C00519243 /* ViewController.swift in Sources */,
+				EAFE862927D0CD8C00519243 /* AppDelegate.swift in Sources */,
+				EAFE863327D0CD8C00519243 /* PictureDiary.xcdatamodeld in Sources */,
+				EAFE862B27D0CD8C00519243 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		EAFE862E27D0CD8C00519243 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EAFE862F27D0CD8C00519243 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EAFE863627D0CD8D00519243 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EAFE863727D0CD8D00519243 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EAFE863A27D0CD8D00519243 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EAFE863B27D0CD8D00519243 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EAFE863D27D0CD8D00519243 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 296A642EF55E0FC635CB0813 /* Pods-PictureDiary.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 92NGUT4BRA;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PictureDiary/Resources/SupportingFiles/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.co.byunghak.PictureDiary;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EAFE863E27D0CD8D00519243 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A91B972A8A61B0AFFF9F0CDE /* Pods-PictureDiary.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 92NGUT4BRA;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PictureDiary/Resources/SupportingFiles/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.co.byunghak.PictureDiary;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EAFE862027D0CD8C00519243 /* Build configuration list for PBXProject "PictureDiary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EAFE863A27D0CD8D00519243 /* Debug */,
+				EAFE863B27D0CD8D00519243 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EAFE863C27D0CD8D00519243 /* Build configuration list for PBXNativeTarget "PictureDiary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EAFE863D27D0CD8D00519243 /* Debug */,
+				EAFE863E27D0CD8D00519243 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		EAFE863127D0CD8C00519243 /* PictureDiary.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				EAFE863227D0CD8C00519243 /* PictureDiary.xcdatamodel */,
+			);
+			currentVersion = EAFE863227D0CD8C00519243 /* PictureDiary.xcdatamodel */;
+			path = PictureDiary.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = EAFE861D27D0CD8C00519243 /* Project object */;
+}
