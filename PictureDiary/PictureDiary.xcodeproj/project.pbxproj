@@ -10,11 +10,41 @@
 		6057084DA4CBF41D54F57468 /* Pods_PictureDiary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8662C61FC7779CDCA018991 /* Pods_PictureDiary.framework */; };
 		EAFE862927D0CD8C00519243 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE862827D0CD8C00519243 /* AppDelegate.swift */; };
 		EAFE862B27D0CD8C00519243 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE862A27D0CD8C00519243 /* SceneDelegate.swift */; };
-		EAFE862D27D0CD8C00519243 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE862C27D0CD8C00519243 /* ViewController.swift */; };
-		EAFE863027D0CD8C00519243 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAFE862E27D0CD8C00519243 /* Main.storyboard */; };
 		EAFE863327D0CD8C00519243 /* PictureDiary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EAFE863127D0CD8C00519243 /* PictureDiary.xcdatamodeld */; };
 		EAFE863527D0CD8D00519243 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAFE863427D0CD8D00519243 /* Assets.xcassets */; };
 		EAFE863827D0CD8D00519243 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAFE863627D0CD8D00519243 /* LaunchScreen.storyboard */; };
+		EAFE865527D22EAE00519243 /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE865427D22EAE00519243 /* AppComponent.swift */; };
+		EAFE867527D23BF700519243 /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE867127D23BF700519243 /* RootRouter.swift */; };
+		EAFE867627D23BF700519243 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE867227D23BF700519243 /* RootViewController.swift */; };
+		EAFE867727D23BF700519243 /* RootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE867327D23BF700519243 /* RootBuilder.swift */; };
+		EAFE867827D23BF700519243 /* RootInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE867427D23BF700519243 /* RootInteractor.swift */; };
+		EAFE867A27D3507100519243 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE867927D3507100519243 /* BaseViewController.swift */; };
+		EAFE868027D3540A00519243 /* SNSLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE867F27D3540A00519243 /* SNSLoginButton.swift */; };
+		EAFE868227D3563100519243 /* SNSType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE868127D3563100519243 /* SNSType.swift */; };
+		EAFE868427D362EB00519243 /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE868327D362EB00519243 /* UILabel+Ext.swift */; };
+		EAFE868B27D372EB00519243 /* LoggedOutRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE868827D372EB00519243 /* LoggedOutRouter.swift */; };
+		EAFE868C27D372EB00519243 /* LoggedOutBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE868927D372EB00519243 /* LoggedOutBuilder.swift */; };
+		EAFE868D27D372EB00519243 /* LoggedOutInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE868A27D372EB00519243 /* LoggedOutInteractor.swift */; };
+		EAFE869127D372FA00519243 /* LoggedInRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE868E27D372FA00519243 /* LoggedInRouter.swift */; };
+		EAFE869227D372FA00519243 /* LoggedInBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE868F27D372FA00519243 /* LoggedInBuilder.swift */; };
+		EAFE869327D372FA00519243 /* LoggedInInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE869027D372FA00519243 /* LoggedInInteractor.swift */; };
+		EAFE869927D47FD100519243 /* SNSLoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE869527D47FD100519243 /* SNSLoginRouter.swift */; };
+		EAFE869A27D47FD100519243 /* SNSLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE869627D47FD100519243 /* SNSLoginViewController.swift */; };
+		EAFE869B27D47FD100519243 /* SNSLoginBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE869727D47FD100519243 /* SNSLoginBuilder.swift */; };
+		EAFE869C27D47FD100519243 /* SNSLoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE869827D47FD100519243 /* SNSLoginInteractor.swift */; };
+		EAFE86A627D489E100519243 /* SplashRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86A227D489E100519243 /* SplashRouter.swift */; };
+		EAFE86A727D489E100519243 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86A327D489E100519243 /* SplashViewController.swift */; };
+		EAFE86A827D489E100519243 /* SplashBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86A427D489E100519243 /* SplashBuilder.swift */; };
+		EAFE86A927D489E100519243 /* SplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86A527D489E100519243 /* SplashInteractor.swift */; };
+		EAFE86B127D499C300519243 /* SignUpCompletedRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86AD27D499C300519243 /* SignUpCompletedRouter.swift */; };
+		EAFE86B227D499C300519243 /* SignUpCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86AE27D499C300519243 /* SignUpCompletedViewController.swift */; };
+		EAFE86B327D499C300519243 /* SignUpCompletedBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86AF27D499C300519243 /* SignUpCompletedBuilder.swift */; };
+		EAFE86B427D499C300519243 /* SignUpCompletedInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86B027D499C300519243 /* SignUpCompletedInteractor.swift */; };
+		EAFE86B627D49B1400519243 /* ViewControllable+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86B527D49B1400519243 /* ViewControllable+Ext.swift */; };
+		EAFE86BB27D4A27B00519243 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86B727D4A27B00519243 /* HomeRouter.swift */; };
+		EAFE86BC27D4A27B00519243 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86B827D4A27B00519243 /* HomeViewController.swift */; };
+		EAFE86BD27D4A27B00519243 /* HomeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86B927D4A27B00519243 /* HomeBuilder.swift */; };
+		EAFE86BE27D4A27B00519243 /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86BA27D4A27B00519243 /* HomeInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,12 +54,42 @@
 		EAFE862527D0CD8C00519243 /* PictureDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PictureDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAFE862827D0CD8C00519243 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAFE862A27D0CD8C00519243 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EAFE862C27D0CD8C00519243 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		EAFE862F27D0CD8C00519243 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EAFE863227D0CD8C00519243 /* PictureDiary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PictureDiary.xcdatamodel; sourceTree = "<group>"; };
 		EAFE863427D0CD8D00519243 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EAFE863727D0CD8D00519243 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EAFE863927D0CD8D00519243 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = PictureDiary/Resources/SupportingFiles/Info.plist; sourceTree = SOURCE_ROOT; };
+		EAFE865427D22EAE00519243 /* AppComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
+		EAFE867127D23BF700519243 /* RootRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
+		EAFE867227D23BF700519243 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		EAFE867327D23BF700519243 /* RootBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootBuilder.swift; sourceTree = "<group>"; };
+		EAFE867427D23BF700519243 /* RootInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootInteractor.swift; sourceTree = "<group>"; };
+		EAFE867927D3507100519243 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		EAFE867F27D3540A00519243 /* SNSLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSLoginButton.swift; sourceTree = "<group>"; };
+		EAFE868127D3563100519243 /* SNSType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSType.swift; sourceTree = "<group>"; };
+		EAFE868327D362EB00519243 /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
+		EAFE868827D372EB00519243 /* LoggedOutRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedOutRouter.swift; sourceTree = "<group>"; };
+		EAFE868927D372EB00519243 /* LoggedOutBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedOutBuilder.swift; sourceTree = "<group>"; };
+		EAFE868A27D372EB00519243 /* LoggedOutInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedOutInteractor.swift; sourceTree = "<group>"; };
+		EAFE868E27D372FA00519243 /* LoggedInRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInRouter.swift; sourceTree = "<group>"; };
+		EAFE868F27D372FA00519243 /* LoggedInBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInBuilder.swift; sourceTree = "<group>"; };
+		EAFE869027D372FA00519243 /* LoggedInInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInInteractor.swift; sourceTree = "<group>"; };
+		EAFE869527D47FD100519243 /* SNSLoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSLoginRouter.swift; sourceTree = "<group>"; };
+		EAFE869627D47FD100519243 /* SNSLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSLoginViewController.swift; sourceTree = "<group>"; };
+		EAFE869727D47FD100519243 /* SNSLoginBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSLoginBuilder.swift; sourceTree = "<group>"; };
+		EAFE869827D47FD100519243 /* SNSLoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSLoginInteractor.swift; sourceTree = "<group>"; };
+		EAFE86A227D489E100519243 /* SplashRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashRouter.swift; sourceTree = "<group>"; };
+		EAFE86A327D489E100519243 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		EAFE86A427D489E100519243 /* SplashBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashBuilder.swift; sourceTree = "<group>"; };
+		EAFE86A527D489E100519243 /* SplashInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashInteractor.swift; sourceTree = "<group>"; };
+		EAFE86AD27D499C300519243 /* SignUpCompletedRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompletedRouter.swift; sourceTree = "<group>"; };
+		EAFE86AE27D499C300519243 /* SignUpCompletedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompletedViewController.swift; sourceTree = "<group>"; };
+		EAFE86AF27D499C300519243 /* SignUpCompletedBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompletedBuilder.swift; sourceTree = "<group>"; };
+		EAFE86B027D499C300519243 /* SignUpCompletedInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompletedInteractor.swift; sourceTree = "<group>"; };
+		EAFE86B527D49B1400519243 /* ViewControllable+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewControllable+Ext.swift"; sourceTree = "<group>"; };
+		EAFE86B727D4A27B00519243 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
+		EAFE86B827D4A27B00519243 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		EAFE86B927D4A27B00519243 /* HomeBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBuilder.swift; sourceTree = "<group>"; };
+		EAFE86BA27D4A27B00519243 /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,9 +167,9 @@
 		EAFE864127D0DE6900519243 /* AppStart */ = {
 			isa = PBXGroup;
 			children = (
+				EAFE865427D22EAE00519243 /* AppComponent.swift */,
 				EAFE862827D0CD8C00519243 /* AppDelegate.swift */,
 				EAFE862A27D0CD8C00519243 /* SceneDelegate.swift */,
-				EAFE862C27D0CD8C00519243 /* ViewController.swift */,
 			);
 			path = AppStart;
 			sourceTree = "<group>";
@@ -117,7 +177,6 @@
 		EAFE864227D0DE8100519243 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				EAFE862E27D0CD8C00519243 /* Main.storyboard */,
 				EAFE863627D0CD8D00519243 /* LaunchScreen.storyboard */,
 				EAFE863427D0CD8D00519243 /* Assets.xcassets */,
 				EAFE864627D0DFC600519243 /* Fonts */,
@@ -145,6 +204,13 @@
 			isa = PBXGroup;
 			children = (
 				EAFE864127D0DE6900519243 /* AppStart */,
+				EAFE865627D22EED00519243 /* Root */,
+				EAFE868627D368DF00519243 /* LoggedIn */,
+				EAFE868527D368D700519243 /* LoggedOut */,
+				EAFE869427D47F9900519243 /* SNSLogin */,
+				EAFE86AC27D4999C00519243 /* SignUpCompleted */,
+				EAFE86A127D489D200519243 /* Splash */,
+				EAFE868727D368F900519243 /* Home */,
 			);
 			path = RIBs;
 			sourceTree = "<group>";
@@ -166,6 +232,8 @@
 		EAFE864C27D0E24800519243 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				EAFE868327D362EB00519243 /* UILabel+Ext.swift */,
+				EAFE86B527D49B1400519243 /* ViewControllable+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -173,6 +241,8 @@
 		EAFE864D27D0E25600519243 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				EAFE867D27D352EC00519243 /* protocols */,
+				EAFE867E27D353FC00519243 /* SNSLoginButton */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -180,6 +250,7 @@
 		EAFE864E27D0E25E00519243 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
+				EAFE868127D3563100519243 /* SNSType.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -212,6 +283,97 @@
 				EAFE863127D0CD8C00519243 /* PictureDiary.xcdatamodeld */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		EAFE865627D22EED00519243 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				EAFE867127D23BF700519243 /* RootRouter.swift */,
+				EAFE867227D23BF700519243 /* RootViewController.swift */,
+				EAFE867327D23BF700519243 /* RootBuilder.swift */,
+				EAFE867427D23BF700519243 /* RootInteractor.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		EAFE867D27D352EC00519243 /* protocols */ = {
+			isa = PBXGroup;
+			children = (
+				EAFE867927D3507100519243 /* BaseViewController.swift */,
+			);
+			path = protocols;
+			sourceTree = "<group>";
+		};
+		EAFE867E27D353FC00519243 /* SNSLoginButton */ = {
+			isa = PBXGroup;
+			children = (
+				EAFE867F27D3540A00519243 /* SNSLoginButton.swift */,
+			);
+			path = SNSLoginButton;
+			sourceTree = "<group>";
+		};
+		EAFE868527D368D700519243 /* LoggedOut */ = {
+			isa = PBXGroup;
+			children = (
+				EAFE868827D372EB00519243 /* LoggedOutRouter.swift */,
+				EAFE868927D372EB00519243 /* LoggedOutBuilder.swift */,
+				EAFE868A27D372EB00519243 /* LoggedOutInteractor.swift */,
+			);
+			path = LoggedOut;
+			sourceTree = "<group>";
+		};
+		EAFE868627D368DF00519243 /* LoggedIn */ = {
+			isa = PBXGroup;
+			children = (
+				EAFE868E27D372FA00519243 /* LoggedInRouter.swift */,
+				EAFE868F27D372FA00519243 /* LoggedInBuilder.swift */,
+				EAFE869027D372FA00519243 /* LoggedInInteractor.swift */,
+			);
+			path = LoggedIn;
+			sourceTree = "<group>";
+		};
+		EAFE868727D368F900519243 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				EAFE86B727D4A27B00519243 /* HomeRouter.swift */,
+				EAFE86B827D4A27B00519243 /* HomeViewController.swift */,
+				EAFE86B927D4A27B00519243 /* HomeBuilder.swift */,
+				EAFE86BA27D4A27B00519243 /* HomeInteractor.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		EAFE869427D47F9900519243 /* SNSLogin */ = {
+			isa = PBXGroup;
+			children = (
+				EAFE869527D47FD100519243 /* SNSLoginRouter.swift */,
+				EAFE869627D47FD100519243 /* SNSLoginViewController.swift */,
+				EAFE869727D47FD100519243 /* SNSLoginBuilder.swift */,
+				EAFE869827D47FD100519243 /* SNSLoginInteractor.swift */,
+			);
+			path = SNSLogin;
+			sourceTree = "<group>";
+		};
+		EAFE86A127D489D200519243 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				EAFE86A227D489E100519243 /* SplashRouter.swift */,
+				EAFE86A327D489E100519243 /* SplashViewController.swift */,
+				EAFE86A427D489E100519243 /* SplashBuilder.swift */,
+				EAFE86A527D489E100519243 /* SplashInteractor.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		EAFE86AC27D4999C00519243 /* SignUpCompleted */ = {
+			isa = PBXGroup;
+			children = (
+				EAFE86AD27D499C300519243 /* SignUpCompletedRouter.swift */,
+				EAFE86AE27D499C300519243 /* SignUpCompletedViewController.swift */,
+				EAFE86AF27D499C300519243 /* SignUpCompletedBuilder.swift */,
+				EAFE86B027D499C300519243 /* SignUpCompletedInteractor.swift */,
+			);
+			path = SignUpCompleted;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,7 +438,6 @@
 			files = (
 				EAFE863827D0CD8D00519243 /* LaunchScreen.storyboard in Resources */,
 				EAFE863527D0CD8D00519243 /* Assets.xcassets in Resources */,
-				EAFE863027D0CD8C00519243 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,24 +490,47 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAFE862D27D0CD8C00519243 /* ViewController.swift in Sources */,
+				EAFE869227D372FA00519243 /* LoggedInBuilder.swift in Sources */,
+				EAFE868B27D372EB00519243 /* LoggedOutRouter.swift in Sources */,
+				EAFE865527D22EAE00519243 /* AppComponent.swift in Sources */,
+				EAFE868D27D372EB00519243 /* LoggedOutInteractor.swift in Sources */,
+				EAFE86B427D499C300519243 /* SignUpCompletedInteractor.swift in Sources */,
+				EAFE868227D3563100519243 /* SNSType.swift in Sources */,
 				EAFE862927D0CD8C00519243 /* AppDelegate.swift in Sources */,
+				EAFE867627D23BF700519243 /* RootViewController.swift in Sources */,
+				EAFE869B27D47FD100519243 /* SNSLoginBuilder.swift in Sources */,
+				EAFE869327D372FA00519243 /* LoggedInInteractor.swift in Sources */,
 				EAFE863327D0CD8C00519243 /* PictureDiary.xcdatamodeld in Sources */,
+				EAFE868027D3540A00519243 /* SNSLoginButton.swift in Sources */,
+				EAFE869C27D47FD100519243 /* SNSLoginInteractor.swift in Sources */,
+				EAFE86BE27D4A27B00519243 /* HomeInteractor.swift in Sources */,
+				EAFE867527D23BF700519243 /* RootRouter.swift in Sources */,
+				EAFE86B627D49B1400519243 /* ViewControllable+Ext.swift in Sources */,
+				EAFE869127D372FA00519243 /* LoggedInRouter.swift in Sources */,
+				EAFE86A927D489E100519243 /* SplashInteractor.swift in Sources */,
+				EAFE86A627D489E100519243 /* SplashRouter.swift in Sources */,
+				EAFE869927D47FD100519243 /* SNSLoginRouter.swift in Sources */,
+				EAFE867A27D3507100519243 /* BaseViewController.swift in Sources */,
+				EAFE86A727D489E100519243 /* SplashViewController.swift in Sources */,
+				EAFE86BB27D4A27B00519243 /* HomeRouter.swift in Sources */,
+				EAFE86B127D499C300519243 /* SignUpCompletedRouter.swift in Sources */,
+				EAFE86B227D499C300519243 /* SignUpCompletedViewController.swift in Sources */,
+				EAFE86A827D489E100519243 /* SplashBuilder.swift in Sources */,
+				EAFE86B327D499C300519243 /* SignUpCompletedBuilder.swift in Sources */,
+				EAFE867827D23BF700519243 /* RootInteractor.swift in Sources */,
+				EAFE869A27D47FD100519243 /* SNSLoginViewController.swift in Sources */,
+				EAFE868C27D372EB00519243 /* LoggedOutBuilder.swift in Sources */,
+				EAFE86BC27D4A27B00519243 /* HomeViewController.swift in Sources */,
 				EAFE862B27D0CD8C00519243 /* SceneDelegate.swift in Sources */,
+				EAFE868427D362EB00519243 /* UILabel+Ext.swift in Sources */,
+				EAFE86BD27D4A27B00519243 /* HomeBuilder.swift in Sources */,
+				EAFE867727D23BF700519243 /* RootBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		EAFE862E27D0CD8C00519243 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EAFE862F27D0CD8C00519243 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		EAFE863627D0CD8D00519243 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -487,7 +671,6 @@
 				INFOPLIST_FILE = PictureDiary/Resources/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -518,7 +701,6 @@
 				INFOPLIST_FILE = PictureDiary/Resources/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
