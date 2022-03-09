@@ -14,14 +14,13 @@ protocol RootPresentableListener: AnyObject { }
 final class RootViewController: UIViewController,
                                 RootPresentable,
                                 RootViewControllable,
-                                LoggedInViewControllable,
                                 LoggedOutViewControllable,
-                                SplashViewControllable{
+                                SplashViewControllable {
     
     weak var listener: RootPresentableListener?
     
     override func viewDidLoad() {
-        view.backgroundColor = .white
+        view.backgroundColor = .gray
     }
     
     func present(viewController: ViewControllable) {

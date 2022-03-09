@@ -8,13 +8,18 @@
 import RIBs
 
 protocol LoggedInDependency: Dependency {
-    var loggedInViewController: LoggedInViewControllable { get }
+    var primaryViewController: LoggedInPrimaryViewControllable { get }
+    var secondaryViewController: LoggedInSecondaryViewControllable { get }
 }
 
 final class LoggedInComponent: Component<LoggedInDependency>,
                                HomeDependency {
-    fileprivate var loggedInViewController: LoggedInViewControllable {
-        return dependency.loggedInViewController
+    fileprivate var primaryVieController: LoggedInPrimaryViewControllable {
+        return dependency.primaryViewController
+    }
+    
+    fileprivate var secondaryViewController: LoggedInSecondaryViewControllable {
+        return dependency.secondaryViewController
     }
 }
 
@@ -37,7 +42,8 @@ final class LoggedInBuilder: Builder<LoggedInDependency>, LoggedInBuildable {
         
         let home = HomeBuilder(dependency: component)
         return LoggedInRouter(interactor: interactor,
-                              viewController: component.loggedInViewController,
+                              primaryViewController: component.primaryVieController,
+                              secondaryViewController: component.secondaryViewController,
                               homeBuilder: home)
     }
 }

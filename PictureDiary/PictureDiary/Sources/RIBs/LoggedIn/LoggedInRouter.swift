@@ -13,18 +13,17 @@ protocol LoggedInInteractable: Interactable,
     var listener: LoggedInListener? { get set }
 }
 
-protocol LoggedInViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy. Since
-    // this RIB does not own its own view, this protocol is conformed to by one of this
-    // RIB's ancestor RIBs' view.
-}
+protocol LoggedInPrimaryViewControllable: ViewControllable { }
+protocol LoggedInSecondaryViewControllable: ViewControllable { }
 
 final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
 
     init(interactor: LoggedInInteractable,
-         viewController: LoggedInViewControllable,
+         primaryViewController: LoggedInPrimaryViewControllable,
+         secondaryViewController: LoggedInSecondaryViewControllable,
          homeBuilder: HomeBuildable) {
-        self.viewController = viewController
+        self.primaryViewController = primaryViewController
+        self.secondaryViewController = secondaryViewController
         self.homeBuilder = homeBuilder
         super.init(interactor: interactor)
         interactor.router = self
@@ -36,23 +35,31 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
     }
 
     func cleanupViews() {
-        // TODO: Since this router does not own its view, it needs to cleanup the views
-        // it may have added to the view hierarchy, when its interactor is deactivated.
+        detachHome()
     }
     
     func routeToHome() {
         let router = homeBuilder.build(withListener: interactor)
         homeRouter = router
         attachChild(router)
-        
-        let vc = router.viewControllable.getFullScreenModalVC()
-        viewController.uiviewController.present(vc, animated: true)
+        let vc = HomeViewController()
+        vc.navigationItem.hidesBackButton = true
+        primaryViewController.uiviewController.navigationController?.pushViewController(vc, animated: false)
+    }
+    
+    private func detachHome() {
+        if let router = homeRouter {
+            detachChild(router)
+            primaryViewController.uiviewController.navigationController?.popToRootViewController(animated: false)
+            secondaryViewController.uiviewController.navigationController?.popToRootViewController(animated: false)
+        }
     }
 
     // MARK: - Private
-
-    private let viewController: LoggedInViewControllable
     
     private let homeBuilder: HomeBuildable
     private var homeRouter: HomeRouting?
+    
+    private let primaryViewController: LoggedInPrimaryViewControllable
+    private let secondaryViewController: LoggedInSecondaryViewControllable
 }
