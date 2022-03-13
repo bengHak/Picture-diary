@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "ic_whang.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -2,6 +2,20 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Pretendard-Bold.otf</string>
+		<string>Pretendard-SemiBold.otf</string>
+		<string>Pretendard-Regular.otf</string>
+		<string>KyoboHandwriting2020pdy.otf</string>
+		<string>dovemayo.otf</string>
+		<string>UhBee-QUEEN-J.ttf</string>
+		<string>UhBee-Seulvely-2.ttf</string>
+		<string>UhBee-namsoyoung.ttf</string>
+		<string>UhBee-DongKyung.ttf</string>
+		<string>UhBee-Ham-Bold.ttf</string>
+		<string>UhBee-puding.ttf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
