@@ -29,7 +29,7 @@ final class SNSLoginButton: UIView {
     
     /// 라벨
     public let lbl = UILabel().then {
-        $0.font = .systemFont(ofSize: 14, weight: .bold)
+        $0.font = .Pretendard(type: .bold, size: 14)
         $0.baselineAdjustment = .alignCenters
     }
     

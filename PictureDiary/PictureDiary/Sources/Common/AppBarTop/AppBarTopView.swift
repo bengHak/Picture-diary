@@ -9,12 +9,12 @@ import UIKit
 import SnapKit
 import Then
 
-final class AppBarTop: UIView {
+final class AppBarTopView: UIView {
 
     // MARK: - UI Properties
     /// 타이틀
     private lazy var lblTitle = UILabel().then {
-        $0.font = .systemFont(ofSize: 16, weight: .semibold)
+        $0.font = .Pretendard(type: .semiBold, size: 16)
     }
     
     /// 그림일기 그리기 버튼
@@ -35,7 +35,7 @@ final class AppBarTop: UIView {
     /// 완료 버튼
     lazy var btnCompleted = UIButton().then {
         $0.setTitle("완료", for: .normal)
-        $0.titleLabel?.font = .systemFont(ofSize: 14)
+        $0.titleLabel?.font = .Pretendard(type: .regular, size: 14)
     }
     
     /// 공유 버튼
@@ -55,6 +55,7 @@ final class AppBarTop: UIView {
     init(appBarTopType: AppBarTopType) {
         self.appBarTopType = appBarTopType
         super.init(frame: .zero)
+        configureView()
     }
     
     required init?(coder: NSCoder) {
@@ -85,19 +86,19 @@ final class AppBarTop: UIView {
         btnSetting.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview().inset(26)
-            $0.width.height.equalTo(19)
+            $0.width.height.equalTo(31)
         }
         
         btnPeople.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.trailing.equalTo(btnSetting.snp.leading).inset(14)
+            $0.trailing.equalTo(btnSetting.snp.leading).offset(-14)
             $0.width.height.equalTo(32)
         }
         
         btnCreate.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.trailing.equalTo(btnPeople.snp.leading).inset(14)
-            $0.width.height.equalTo(20.4)
+            $0.trailing.equalTo(btnPeople.snp.leading).offset(-14)
+            $0.width.height.equalTo(32)
         }
     }
     
