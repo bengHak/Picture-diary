@@ -8,6 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		6057084DA4CBF41D54F57468 /* Pods_PictureDiary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8662C61FC7779CDCA018991 /* Pods_PictureDiary.framework */; };
+		EABF17F127DB5786002740C0 /* EmptyDiaryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABF17F027DB5786002740C0 /* EmptyDiaryListView.swift */; };
+		EABF17F427DBB86F002740C0 /* DiaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABF17F327DBB86F002740C0 /* DiaryCollectionViewCell.swift */; };
+		EABF17FE27DBBABF002740C0 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = EABF17F527DBBABF002740C0 /* Pretendard-Medium.otf */; };
+		EABF17FF27DBBABF002740C0 /* Pretendard-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = EABF17F627DBBABF002740C0 /* Pretendard-ExtraBold.otf */; };
+		EABF180027DBBABF002740C0 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = EABF17F727DBBABF002740C0 /* Pretendard-Bold.otf */; };
+		EABF180127DBBABF002740C0 /* Pretendard-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = EABF17F827DBBABF002740C0 /* Pretendard-ExtraLight.otf */; };
+		EABF180227DBBABF002740C0 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = EABF17F927DBBABF002740C0 /* Pretendard-Light.otf */; };
+		EABF180327DBBABF002740C0 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = EABF17FA27DBBABF002740C0 /* Pretendard-Regular.otf */; };
+		EABF180427DBBABF002740C0 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = EABF17FB27DBBABF002740C0 /* Pretendard-SemiBold.otf */; };
+		EABF180527DBBABF002740C0 /* Pretendard-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = EABF17FC27DBBABF002740C0 /* Pretendard-Thin.otf */; };
+		EABF180627DBBABF002740C0 /* Pretendard-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = EABF17FD27DBBABF002740C0 /* Pretendard-Black.otf */; };
+		EABF180827DBBB5F002740C0 /* UIFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABF180727DBBB5F002740C0 /* UIFont+Ext.swift */; };
+		EABF181427DC500A002740C0 /* UhBee-Seulvely-2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EABF180B27DC5009002740C0 /* UhBee-Seulvely-2.ttf */; };
+		EABF181527DC500A002740C0 /* dovemayo.otf in Resources */ = {isa = PBXBuildFile; fileRef = EABF180C27DC5009002740C0 /* dovemayo.otf */; };
+		EABF181627DC500A002740C0 /* UhBee-namsoyoung.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EABF180D27DC5009002740C0 /* UhBee-namsoyoung.ttf */; };
+		EABF181727DC500A002740C0 /* UhBee-Ham-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EABF180E27DC500A002740C0 /* UhBee-Ham-Bold.ttf */; };
+		EABF181827DC500A002740C0 /* UhBee-DongKyung.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EABF180F27DC500A002740C0 /* UhBee-DongKyung.ttf */; };
+		EABF181927DC500A002740C0 /* BMYEONSUNG.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EABF181027DC500A002740C0 /* BMYEONSUNG.ttf */; };
+		EABF181A27DC500A002740C0 /* UhBee-puding.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EABF181127DC500A002740C0 /* UhBee-puding.ttf */; };
+		EABF181B27DC500A002740C0 /* KyoboHandwriting2020pdy.otf in Resources */ = {isa = PBXBuildFile; fileRef = EABF181227DC500A002740C0 /* KyoboHandwriting2020pdy.otf */; };
+		EABF181C27DC500A002740C0 /* UhBee-QUEEN-J.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EABF181327DC500A002740C0 /* UhBee-QUEEN-J.ttf */; };
 		EAFE862927D0CD8C00519243 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE862827D0CD8C00519243 /* AppDelegate.swift */; };
 		EAFE862B27D0CD8C00519243 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE862A27D0CD8C00519243 /* SceneDelegate.swift */; };
 		EAFE863327D0CD8C00519243 /* PictureDiary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EAFE863127D0CD8C00519243 /* PictureDiary.xcdatamodeld */; };
@@ -41,26 +62,42 @@
 		EAFE86B327D499C300519243 /* SignUpCompletedBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86AF27D499C300519243 /* SignUpCompletedBuilder.swift */; };
 		EAFE86B427D499C300519243 /* SignUpCompletedInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86B027D499C300519243 /* SignUpCompletedInteractor.swift */; };
 		EAFE86B627D49B1400519243 /* ViewControllable+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86B527D49B1400519243 /* ViewControllable+Ext.swift */; };
-		EAFE86BB27D4A27B00519243 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86B727D4A27B00519243 /* HomeRouter.swift */; };
-		EAFE86BC27D4A27B00519243 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86B827D4A27B00519243 /* HomeViewController.swift */; };
-		EAFE86BD27D4A27B00519243 /* HomeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86B927D4A27B00519243 /* HomeBuilder.swift */; };
-		EAFE86BE27D4A27B00519243 /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86BA27D4A27B00519243 /* HomeInteractor.swift */; };
 		EAFE86C627D5C8F500519243 /* DiaryListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86C227D5C8F500519243 /* DiaryListRouter.swift */; };
 		EAFE86C727D5C8F500519243 /* DiaryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86C327D5C8F500519243 /* DiaryListViewController.swift */; };
 		EAFE86C827D5C8F500519243 /* DiaryListBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86C427D5C8F500519243 /* DiaryListBuilder.swift */; };
 		EAFE86C927D5C8F500519243 /* DiaryListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86C527D5C8F500519243 /* DiaryListInteractor.swift */; };
-		EAFE86CE27D5C90600519243 /* EmptyDiaryListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86CA27D5C90600519243 /* EmptyDiaryListRouter.swift */; };
-		EAFE86CF27D5C90600519243 /* EmptyDiaryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86CB27D5C90600519243 /* EmptyDiaryListViewController.swift */; };
-		EAFE86D027D5C90600519243 /* EmptyDiaryListBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86CC27D5C90600519243 /* EmptyDiaryListBuilder.swift */; };
-		EAFE86D127D5C90600519243 /* EmptyDiaryListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86CD27D5C90600519243 /* EmptyDiaryListInteractor.swift */; };
-		EAFE86D427D5CC4000519243 /* AppBarTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86D327D5CC4000519243 /* AppBarTop.swift */; };
+		EAFE86D427D5CC4000519243 /* AppBarTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86D327D5CC4000519243 /* AppBarTopView.swift */; };
 		EAFE86D627D5D23A00519243 /* AppBarTopType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86D527D5D23A00519243 /* AppBarTopType.swift */; };
+		EAFE86D827D5F14800519243 /* RootSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86D727D5F14700519243 /* RootSplitViewController.swift */; };
+		EAFE86FD27D8657D00519243 /* RootPrimaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86FC27D8657C00519243 /* RootPrimaryViewController.swift */; };
+		EAFE86FF27D8658D00519243 /* RootSecondaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86FE27D8658D00519243 /* RootSecondaryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		296A642EF55E0FC635CB0813 /* Pods-PictureDiary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PictureDiary.debug.xcconfig"; path = "Target Support Files/Pods-PictureDiary/Pods-PictureDiary.debug.xcconfig"; sourceTree = "<group>"; };
 		A91B972A8A61B0AFFF9F0CDE /* Pods-PictureDiary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PictureDiary.release.xcconfig"; path = "Target Support Files/Pods-PictureDiary/Pods-PictureDiary.release.xcconfig"; sourceTree = "<group>"; };
 		E8662C61FC7779CDCA018991 /* Pods_PictureDiary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PictureDiary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EABF17F027DB5786002740C0 /* EmptyDiaryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyDiaryListView.swift; sourceTree = "<group>"; };
+		EABF17F327DBB86F002740C0 /* DiaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCollectionViewCell.swift; sourceTree = "<group>"; };
+		EABF17F527DBBABF002740C0 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
+		EABF17F627DBBABF002740C0 /* Pretendard-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraBold.otf"; sourceTree = "<group>"; };
+		EABF17F727DBBABF002740C0 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
+		EABF17F827DBBABF002740C0 /* Pretendard-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraLight.otf"; sourceTree = "<group>"; };
+		EABF17F927DBBABF002740C0 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
+		EABF17FA27DBBABF002740C0 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		EABF17FB27DBBABF002740C0 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
+		EABF17FC27DBBABF002740C0 /* Pretendard-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Thin.otf"; sourceTree = "<group>"; };
+		EABF17FD27DBBABF002740C0 /* Pretendard-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Black.otf"; sourceTree = "<group>"; };
+		EABF180727DBBB5F002740C0 /* UIFont+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Ext.swift"; sourceTree = "<group>"; };
+		EABF180B27DC5009002740C0 /* UhBee-Seulvely-2.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee-Seulvely-2.ttf"; sourceTree = "<group>"; };
+		EABF180C27DC5009002740C0 /* dovemayo.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = dovemayo.otf; sourceTree = "<group>"; };
+		EABF180D27DC5009002740C0 /* UhBee-namsoyoung.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee-namsoyoung.ttf"; sourceTree = "<group>"; };
+		EABF180E27DC500A002740C0 /* UhBee-Ham-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee-Ham-Bold.ttf"; sourceTree = "<group>"; };
+		EABF180F27DC500A002740C0 /* UhBee-DongKyung.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee-DongKyung.ttf"; sourceTree = "<group>"; };
+		EABF181027DC500A002740C0 /* BMYEONSUNG.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMYEONSUNG.ttf; sourceTree = "<group>"; };
+		EABF181127DC500A002740C0 /* UhBee-puding.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee-puding.ttf"; sourceTree = "<group>"; };
+		EABF181227DC500A002740C0 /* KyoboHandwriting2020pdy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KyoboHandwriting2020pdy.otf; sourceTree = "<group>"; };
+		EABF181327DC500A002740C0 /* UhBee-QUEEN-J.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee-QUEEN-J.ttf"; sourceTree = "<group>"; };
 		EAFE862527D0CD8C00519243 /* PictureDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PictureDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAFE862827D0CD8C00519243 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAFE862A27D0CD8C00519243 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,20 +133,15 @@
 		EAFE86AF27D499C300519243 /* SignUpCompletedBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompletedBuilder.swift; sourceTree = "<group>"; };
 		EAFE86B027D499C300519243 /* SignUpCompletedInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompletedInteractor.swift; sourceTree = "<group>"; };
 		EAFE86B527D49B1400519243 /* ViewControllable+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewControllable+Ext.swift"; sourceTree = "<group>"; };
-		EAFE86B727D4A27B00519243 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
-		EAFE86B827D4A27B00519243 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		EAFE86B927D4A27B00519243 /* HomeBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBuilder.swift; sourceTree = "<group>"; };
-		EAFE86BA27D4A27B00519243 /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
 		EAFE86C227D5C8F500519243 /* DiaryListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryListRouter.swift; sourceTree = "<group>"; };
 		EAFE86C327D5C8F500519243 /* DiaryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryListViewController.swift; sourceTree = "<group>"; };
 		EAFE86C427D5C8F500519243 /* DiaryListBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryListBuilder.swift; sourceTree = "<group>"; };
 		EAFE86C527D5C8F500519243 /* DiaryListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryListInteractor.swift; sourceTree = "<group>"; };
-		EAFE86CA27D5C90600519243 /* EmptyDiaryListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyDiaryListRouter.swift; sourceTree = "<group>"; };
-		EAFE86CB27D5C90600519243 /* EmptyDiaryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyDiaryListViewController.swift; sourceTree = "<group>"; };
-		EAFE86CC27D5C90600519243 /* EmptyDiaryListBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyDiaryListBuilder.swift; sourceTree = "<group>"; };
-		EAFE86CD27D5C90600519243 /* EmptyDiaryListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyDiaryListInteractor.swift; sourceTree = "<group>"; };
-		EAFE86D327D5CC4000519243 /* AppBarTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBarTop.swift; sourceTree = "<group>"; };
+		EAFE86D327D5CC4000519243 /* AppBarTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBarTopView.swift; sourceTree = "<group>"; };
 		EAFE86D527D5D23A00519243 /* AppBarTopType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBarTopType.swift; sourceTree = "<group>"; };
+		EAFE86D727D5F14700519243 /* RootSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootSplitViewController.swift; sourceTree = "<group>"; };
+		EAFE86FC27D8657C00519243 /* RootPrimaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootPrimaryViewController.swift; sourceTree = "<group>"; };
+		EAFE86FE27D8658D00519243 /* RootSecondaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootSecondaryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +171,54 @@
 				E8662C61FC7779CDCA018991 /* Pods_PictureDiary.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EABF17EF27DB576A002740C0 /* EmptyDiaryList */ = {
+			isa = PBXGroup;
+			children = (
+				EABF17F027DB5786002740C0 /* EmptyDiaryListView.swift */,
+			);
+			path = EmptyDiaryList;
+			sourceTree = "<group>";
+		};
+		EABF17F227DBB829002740C0 /* DiaryListCell */ = {
+			isa = PBXGroup;
+			children = (
+				EABF17F327DBB86F002740C0 /* DiaryCollectionViewCell.swift */,
+			);
+			path = DiaryListCell;
+			sourceTree = "<group>";
+		};
+		EABF180927DC4FF5002740C0 /* Pretendard */ = {
+			isa = PBXGroup;
+			children = (
+				EABF17FD27DBBABF002740C0 /* Pretendard-Black.otf */,
+				EABF17F727DBBABF002740C0 /* Pretendard-Bold.otf */,
+				EABF17F627DBBABF002740C0 /* Pretendard-ExtraBold.otf */,
+				EABF17F827DBBABF002740C0 /* Pretendard-ExtraLight.otf */,
+				EABF17F927DBBABF002740C0 /* Pretendard-Light.otf */,
+				EABF17F527DBBABF002740C0 /* Pretendard-Medium.otf */,
+				EABF17FA27DBBABF002740C0 /* Pretendard-Regular.otf */,
+				EABF17FB27DBBABF002740C0 /* Pretendard-SemiBold.otf */,
+				EABF17FC27DBBABF002740C0 /* Pretendard-Thin.otf */,
+			);
+			path = Pretendard;
+			sourceTree = "<group>";
+		};
+		EABF180A27DC5001002740C0 /* Default */ = {
+			isa = PBXGroup;
+			children = (
+				EABF181027DC500A002740C0 /* BMYEONSUNG.ttf */,
+				EABF180C27DC5009002740C0 /* dovemayo.otf */,
+				EABF181227DC500A002740C0 /* KyoboHandwriting2020pdy.otf */,
+				EABF180F27DC500A002740C0 /* UhBee-DongKyung.ttf */,
+				EABF180E27DC500A002740C0 /* UhBee-Ham-Bold.ttf */,
+				EABF180D27DC5009002740C0 /* UhBee-namsoyoung.ttf */,
+				EABF181127DC500A002740C0 /* UhBee-puding.ttf */,
+				EABF181327DC500A002740C0 /* UhBee-QUEEN-J.ttf */,
+				EABF180B27DC5009002740C0 /* UhBee-Seulvely-2.ttf */,
+			);
+			path = Default;
 			sourceTree = "<group>";
 		};
 		EAFE861C27D0CD8C00519243 = {
@@ -216,6 +296,8 @@
 		EAFE864627D0DFC600519243 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				EABF180A27DC5001002740C0 /* Default */,
+				EABF180927DC4FF5002740C0 /* Pretendard */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -230,9 +312,7 @@
 				EAFE869427D47F9900519243 /* SNSLogin */,
 				EAFE86AC27D4999C00519243 /* SignUpCompleted */,
 				EAFE86A127D489D200519243 /* Splash */,
-				EAFE868727D368F900519243 /* Home */,
 				EAFE86C127D5A1DD00519243 /* DiaryList */,
-				EAFE86C027D5A1CD00519243 /* EmptyDiaryList */,
 			);
 			path = RIBs;
 			sourceTree = "<group>";
@@ -256,6 +336,7 @@
 			children = (
 				EAFE868327D362EB00519243 /* UILabel+Ext.swift */,
 				EAFE86B527D49B1400519243 /* ViewControllable+Ext.swift */,
+				EABF180727DBBB5F002740C0 /* UIFont+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -266,6 +347,8 @@
 				EAFE867D27D352EC00519243 /* Protocols */,
 				EAFE86D227D5CC2F00519243 /* AppBarTop */,
 				EAFE867E27D353FC00519243 /* SNSLoginButton */,
+				EABF17F227DBB829002740C0 /* DiaryListCell */,
+				EABF17EF27DB576A002740C0 /* EmptyDiaryList */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -316,6 +399,9 @@
 				EAFE867227D23BF700519243 /* RootViewController.swift */,
 				EAFE867327D23BF700519243 /* RootBuilder.swift */,
 				EAFE867427D23BF700519243 /* RootInteractor.swift */,
+				EAFE86D727D5F14700519243 /* RootSplitViewController.swift */,
+				EAFE86FC27D8657C00519243 /* RootPrimaryViewController.swift */,
+				EAFE86FE27D8658D00519243 /* RootSecondaryViewController.swift */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -356,17 +442,6 @@
 			path = LoggedIn;
 			sourceTree = "<group>";
 		};
-		EAFE868727D368F900519243 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				EAFE86B727D4A27B00519243 /* HomeRouter.swift */,
-				EAFE86B827D4A27B00519243 /* HomeViewController.swift */,
-				EAFE86B927D4A27B00519243 /* HomeBuilder.swift */,
-				EAFE86BA27D4A27B00519243 /* HomeInteractor.swift */,
-			);
-			path = Home;
-			sourceTree = "<group>";
-		};
 		EAFE869427D47F9900519243 /* SNSLogin */ = {
 			isa = PBXGroup;
 			children = (
@@ -400,17 +475,6 @@
 			path = SignUpCompleted;
 			sourceTree = "<group>";
 		};
-		EAFE86C027D5A1CD00519243 /* EmptyDiaryList */ = {
-			isa = PBXGroup;
-			children = (
-				EAFE86CA27D5C90600519243 /* EmptyDiaryListRouter.swift */,
-				EAFE86CB27D5C90600519243 /* EmptyDiaryListViewController.swift */,
-				EAFE86CC27D5C90600519243 /* EmptyDiaryListBuilder.swift */,
-				EAFE86CD27D5C90600519243 /* EmptyDiaryListInteractor.swift */,
-			);
-			path = EmptyDiaryList;
-			sourceTree = "<group>";
-		};
 		EAFE86C127D5A1DD00519243 /* DiaryList */ = {
 			isa = PBXGroup;
 			children = (
@@ -425,7 +489,7 @@
 		EAFE86D227D5CC2F00519243 /* AppBarTop */ = {
 			isa = PBXGroup;
 			children = (
-				EAFE86D327D5CC4000519243 /* AppBarTop.swift */,
+				EAFE86D327D5CC4000519243 /* AppBarTopView.swift */,
 			);
 			path = AppBarTop;
 			sourceTree = "<group>";
@@ -490,8 +554,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EABF180127DBBABF002740C0 /* Pretendard-ExtraLight.otf in Resources */,
+				EABF180527DBBABF002740C0 /* Pretendard-Thin.otf in Resources */,
 				EAFE863827D0CD8D00519243 /* LaunchScreen.storyboard in Resources */,
+				EABF181A27DC500A002740C0 /* UhBee-puding.ttf in Resources */,
+				EABF181927DC500A002740C0 /* BMYEONSUNG.ttf in Resources */,
+				EABF180027DBBABF002740C0 /* Pretendard-Bold.otf in Resources */,
+				EABF181B27DC500A002740C0 /* KyoboHandwriting2020pdy.otf in Resources */,
 				EAFE863527D0CD8D00519243 /* Assets.xcassets in Resources */,
+				EABF180227DBBABF002740C0 /* Pretendard-Light.otf in Resources */,
+				EABF180627DBBABF002740C0 /* Pretendard-Black.otf in Resources */,
+				EABF180327DBBABF002740C0 /* Pretendard-Regular.otf in Resources */,
+				EABF181727DC500A002740C0 /* UhBee-Ham-Bold.ttf in Resources */,
+				EABF180427DBBABF002740C0 /* Pretendard-SemiBold.otf in Resources */,
+				EABF17FF27DBBABF002740C0 /* Pretendard-ExtraBold.otf in Resources */,
+				EABF181827DC500A002740C0 /* UhBee-DongKyung.ttf in Resources */,
+				EABF181427DC500A002740C0 /* UhBee-Seulvely-2.ttf in Resources */,
+				EABF181C27DC500A002740C0 /* UhBee-QUEEN-J.ttf in Resources */,
+				EABF181527DC500A002740C0 /* dovemayo.otf in Resources */,
+				EABF181627DC500A002740C0 /* UhBee-namsoyoung.ttf in Resources */,
+				EABF17FE27DBBABF002740C0 /* Pretendard-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,9 +626,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EABF17F127DB5786002740C0 /* EmptyDiaryListView.swift in Sources */,
 				EAFE869227D372FA00519243 /* LoggedInBuilder.swift in Sources */,
 				EAFE868B27D372EB00519243 /* LoggedOutRouter.swift in Sources */,
-				EAFE86CE27D5C90600519243 /* EmptyDiaryListRouter.swift in Sources */,
 				EAFE865527D22EAE00519243 /* AppComponent.swift in Sources */,
 				EAFE868D27D372EB00519243 /* LoggedOutInteractor.swift in Sources */,
 				EAFE86B427D499C300519243 /* SignUpCompletedInteractor.swift in Sources */,
@@ -555,40 +637,38 @@
 				EAFE867627D23BF700519243 /* RootViewController.swift in Sources */,
 				EAFE869B27D47FD100519243 /* SNSLoginBuilder.swift in Sources */,
 				EAFE869327D372FA00519243 /* LoggedInInteractor.swift in Sources */,
-				EAFE86CF27D5C90600519243 /* EmptyDiaryListViewController.swift in Sources */,
 				EAFE863327D0CD8C00519243 /* PictureDiary.xcdatamodeld in Sources */,
 				EAFE868027D3540A00519243 /* SNSLoginButton.swift in Sources */,
 				EAFE869C27D47FD100519243 /* SNSLoginInteractor.swift in Sources */,
-				EAFE86BE27D4A27B00519243 /* HomeInteractor.swift in Sources */,
 				EAFE867527D23BF700519243 /* RootRouter.swift in Sources */,
 				EAFE86B627D49B1400519243 /* ViewControllable+Ext.swift in Sources */,
 				EAFE86D627D5D23A00519243 /* AppBarTopType.swift in Sources */,
-				EAFE86D127D5C90600519243 /* EmptyDiaryListInteractor.swift in Sources */,
+				EAFE86FD27D8657D00519243 /* RootPrimaryViewController.swift in Sources */,
 				EAFE869127D372FA00519243 /* LoggedInRouter.swift in Sources */,
 				EAFE86A927D489E100519243 /* SplashInteractor.swift in Sources */,
 				EAFE86A627D489E100519243 /* SplashRouter.swift in Sources */,
-				EAFE86D027D5C90600519243 /* EmptyDiaryListBuilder.swift in Sources */,
 				EAFE869927D47FD100519243 /* SNSLoginRouter.swift in Sources */,
 				EAFE867A27D3507100519243 /* BaseViewController.swift in Sources */,
+				EABF180827DBBB5F002740C0 /* UIFont+Ext.swift in Sources */,
 				EAFE86C827D5C8F500519243 /* DiaryListBuilder.swift in Sources */,
 				EAFE86A727D489E100519243 /* SplashViewController.swift in Sources */,
 				EAFE86C727D5C8F500519243 /* DiaryListViewController.swift in Sources */,
-				EAFE86BB27D4A27B00519243 /* HomeRouter.swift in Sources */,
 				EAFE86B127D499C300519243 /* SignUpCompletedRouter.swift in Sources */,
 				EAFE86B227D499C300519243 /* SignUpCompletedViewController.swift in Sources */,
 				EAFE86A827D489E100519243 /* SplashBuilder.swift in Sources */,
 				EAFE86C627D5C8F500519243 /* DiaryListRouter.swift in Sources */,
 				EAFE86B327D499C300519243 /* SignUpCompletedBuilder.swift in Sources */,
 				EAFE867827D23BF700519243 /* RootInteractor.swift in Sources */,
+				EAFE86FF27D8658D00519243 /* RootSecondaryViewController.swift in Sources */,
 				EAFE869A27D47FD100519243 /* SNSLoginViewController.swift in Sources */,
 				EAFE868C27D372EB00519243 /* LoggedOutBuilder.swift in Sources */,
-				EAFE86BC27D4A27B00519243 /* HomeViewController.swift in Sources */,
 				EAFE862B27D0CD8C00519243 /* SceneDelegate.swift in Sources */,
 				EAFE868427D362EB00519243 /* UILabel+Ext.swift in Sources */,
-				EAFE86BD27D4A27B00519243 /* HomeBuilder.swift in Sources */,
+				EAFE86D827D5F14800519243 /* RootSplitViewController.swift in Sources */,
+				EABF17F427DBB86F002740C0 /* DiaryCollectionViewCell.swift in Sources */,
 				EAFE86C927D5C8F500519243 /* DiaryListInteractor.swift in Sources */,
 				EAFE867727D23BF700519243 /* RootBuilder.swift in Sources */,
-				EAFE86D427D5CC4000519243 /* AppBarTop.swift in Sources */,
+				EAFE86D427D5CC4000519243 /* AppBarTopView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

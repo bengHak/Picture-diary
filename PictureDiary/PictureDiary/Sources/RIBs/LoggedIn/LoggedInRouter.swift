@@ -8,7 +8,7 @@
 import RIBs
 
 protocol LoggedInInteractable: Interactable,
-                               HomeListener {
+                               DiaryListListener {
     var router: LoggedInRouting? { get set }
     var listener: LoggedInListener? { get set }
 }
@@ -21,44 +21,42 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
     init(interactor: LoggedInInteractable,
          primaryViewController: LoggedInPrimaryViewControllable,
          secondaryViewController: LoggedInSecondaryViewControllable,
-         homeBuilder: HomeBuildable) {
+         diaryListBuilder: DiaryListBuildable) {
         self.primaryViewController = primaryViewController
         self.secondaryViewController = secondaryViewController
-        self.homeBuilder = homeBuilder
+        self.diaryListBuilder = diaryListBuilder
         super.init(interactor: interactor)
         interactor.router = self
     }
     
     override func didLoad() {
         super.didLoad()
-        routeToHome()
+        routePrimaryToDiaryList()
     }
 
     func cleanupViews() {
-        detachHome()
+        detachDiaryList()
     }
     
-    func routeToHome() {
-        let router = homeBuilder.build(withListener: interactor)
-        homeRouter = router
+    func routePrimaryToDiaryList() {
+        let router = diaryListBuilder.build(withListener: interactor)
+        diaryListRouter = router
         attachChild(router)
-        let vc = HomeViewController()
+        let vc = DiaryListViewController()
         vc.navigationItem.hidesBackButton = true
         primaryViewController.uiviewController.navigationController?.pushViewController(vc, animated: false)
     }
     
-    private func detachHome() {
-        if let router = homeRouter {
+    private func detachDiaryList() {
+        if let router = diaryListRouter {
+            router.viewControllable.uiviewController.navigationController?.popViewController(animated: false)
             detachChild(router)
-            primaryViewController.uiviewController.navigationController?.popToRootViewController(animated: false)
-            secondaryViewController.uiviewController.navigationController?.popToRootViewController(animated: false)
         }
     }
 
     // MARK: - Private
-    
-    private let homeBuilder: HomeBuildable
-    private var homeRouter: HomeRouting?
+    private let diaryListBuilder: DiaryListBuildable
+    private var diaryListRouter: DiaryListRouting?
     
     private let primaryViewController: LoggedInPrimaryViewControllable
     private let secondaryViewController: LoggedInSecondaryViewControllable

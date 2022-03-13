@@ -81,6 +81,7 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
     
     private func switchToLoggedOutVC() {
         splitVC.uiviewController.view.window?.rootViewController = viewController.uiviewController
+        
         splitVC.uiviewController.view.window?.makeKeyAndVisible()
     }
     

@@ -15,10 +15,12 @@ final class RootSplitViewController: UISplitViewController,
     var listener: RootPresentableListener?
     
     override func viewDidLoad() {
-        view.backgroundColor = .green
-        
         presentsWithGesture = false
         preferredDisplayMode = .oneBesideSecondary
+        maximumPrimaryColumnWidth = 360
+        minimumPrimaryColumnWidth = 360
+        splitViewController?.maximumPrimaryColumnWidth = maximumPrimaryColumnWidth
+        splitViewController?.minimumPrimaryColumnWidth = minimumPrimaryColumnWidth
         delegate = self
     }
     

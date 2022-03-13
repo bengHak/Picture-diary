@@ -12,6 +12,8 @@ import Then
 import RxSwift
 import RIBs
 
+/// RootPrimaryViewController
+/// - 일기장 목록
 class RootPrimaryViewController: UIViewController, LoggedInPrimaryViewControllable {
     
     // MARK: - UI Properties
@@ -21,26 +23,7 @@ class RootPrimaryViewController: UIViewController, LoggedInPrimaryViewControllab
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .brown
-        
-        configureView()
-        configureSubviews()
-        bind()
     }
     
     // MARK: - Helper
-}
-
-// MARK: - BaseViewController
-extension RootPrimaryViewController {
-    func configureView() {
-    }
-    
-    func configureSubviews() {
-    }
-}
-
-// MARK: - Bindable
-extension RootPrimaryViewController {
-    func bind() {}
 }

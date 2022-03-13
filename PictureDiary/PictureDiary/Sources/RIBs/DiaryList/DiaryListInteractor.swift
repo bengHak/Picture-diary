@@ -1,34 +1,34 @@
 //
-//  HomeInteractor.swift
+//  DiaryListInteractor.swift
 //  PictureDiary
 //
-//  Created by byunghak on 2022/03/06.
+//  Created by byunghak on 2022/03/07.
 //
 
 import RIBs
 import RxSwift
 
-protocol HomeRouting: ViewableRouting {
+protocol DiaryListRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
-protocol HomePresentable: Presentable {
-    var listener: HomePresentableListener? { get set }
+protocol DiaryListPresentable: Presentable {
+    var listener: DiaryListPresentableListener? { get set }
     // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
-protocol HomeListener: AnyObject {
+protocol DiaryListListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
-final class HomeInteractor: PresentableInteractor<HomePresentable>, HomeInteractable, HomePresentableListener {
+final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>, DiaryListInteractable, DiaryListPresentableListener {
 
-    weak var router: HomeRouting?
-    weak var listener: HomeListener?
+    weak var router: DiaryListRouting?
+    weak var listener: DiaryListListener?
 
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
-    override init(presenter: HomePresentable) {
+    override init(presenter: DiaryListPresentable) {
         super.init(presenter: presenter)
         presenter.listener = self
     }

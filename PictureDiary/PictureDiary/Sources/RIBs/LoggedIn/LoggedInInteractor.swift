@@ -10,7 +10,6 @@ import RxSwift
 
 protocol LoggedInRouting: Routing {
     func cleanupViews()
-    func routeToHome()
 }
 
 protocol LoggedInListener: AnyObject {
