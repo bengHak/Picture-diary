@@ -11,7 +11,8 @@ import UIKit
 
 final class RootSplitViewController: UISplitViewController,
                                      RootPresentable,
-                                     RootViewControllable {
+                                     RootViewControllable,
+                                     LoggedInSplitViewControllable {
     var listener: RootPresentableListener?
     
     override func viewDidLoad() {

@@ -14,16 +14,19 @@ protocol LoggedInInteractable: Interactable,
     var listener: LoggedInListener? { get set }
 }
 
+protocol LoggedInSplitViewControllable: ViewControllable { }
 protocol LoggedInPrimaryViewControllable: ViewControllable { }
 protocol LoggedInSecondaryViewControllable: ViewControllable { }
 
 final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
     
     init(interactor: LoggedInInteractable,
+         splitViewController: LoggedInSplitViewControllable,
          primaryViewController: LoggedInPrimaryViewControllable,
          secondaryViewController: LoggedInSecondaryViewControllable,
          diaryListBuilder: DiaryListBuildable,
          createDiaryBuilder: CreateDiaryBuildable) {
+        self.splitViewController = splitViewController
         self.primaryViewController = primaryViewController
         self.secondaryViewController = secondaryViewController
         self.diaryListBuilder = diaryListBuilder
@@ -39,6 +42,7 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
     
     func cleanupViews() {
         detachDiaryList()
+        detachCreateDiary()
     }
     
     func routePrimaryToDiaryList() {
@@ -47,7 +51,6 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
         attachChild(router)
         let vc = router.viewControllable.uiviewController
         vc.navigationItem.hidesBackButton = true
-        vc.navigationController?.setNavigationBarHidden(true, animated: false)
         primaryViewController.uiviewController.navigationController?.pushViewController(vc, animated: false)
     }
     
@@ -63,12 +66,14 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
         createDiaryRouter = router
         attachChild(router)
         let vc = router.viewControllable.uiviewController
-        secondaryViewController.uiviewController.navigationController?.pushViewController(vc, animated: true)
+        splitViewController.uiviewController.showDetailViewController(vc, sender: nil)
     }
     
     func detachCreateDiary() {
         if let router = createDiaryRouter {
-            router.viewControllable.uiviewController.navigationController?.popViewController(animated: true)
+            let navC = router.viewControllable.uiviewController.navigationController
+            navC?.popToRootViewController(animated: false)
+            navC?.navigationController?.popViewController(animated: false)
             detachChild(router)
         }
     }
@@ -80,6 +85,7 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
     private let createDiaryBuilder: CreateDiaryBuildable
     private var createDiaryRouter: CreateDiaryRouting?
     
+    private let splitViewController: LoggedInSplitViewControllable
     private let primaryViewController: LoggedInPrimaryViewControllable
     private let secondaryViewController: LoggedInSecondaryViewControllable
 }

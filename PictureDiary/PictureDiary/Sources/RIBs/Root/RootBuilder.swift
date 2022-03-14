@@ -15,18 +15,22 @@ final class RootComponent: Component<RootDependency>,
                            SplashDependency {
     var splashViewController: SplashViewControllable { rootViewController }
     var loggedOutViewController: LoggedOutViewControllable { rootViewController }
+    var splitViewController: LoggedInSplitViewControllable { rootSplitViewController }
     var primaryViewController: LoggedInPrimaryViewControllable { rootPrimaryViewController }
     var secondaryViewController: LoggedInSecondaryViewControllable { rootSecondaryViewController }
     
     var rootViewController: RootViewController
+    let rootSplitViewController: LoggedInSplitViewControllable
     let rootPrimaryViewController: LoggedInPrimaryViewControllable
     let rootSecondaryViewController: LoggedInSecondaryViewControllable
     
     init(dependency: RootDependency,
          rootViewController: RootViewController,
+         rootSplitViewController: LoggedInSplitViewControllable,
          rootPrimaryViewController: RootPrimaryViewController,
          rootSecondaryViewController: RootSecondaryViewController) {
         self.rootViewController = rootViewController
+        self.rootSplitViewController = rootSplitViewController
         self.rootPrimaryViewController = rootPrimaryViewController
         self.rootSecondaryViewController = rootSecondaryViewController
         super.init(dependency: dependency)
@@ -47,10 +51,17 @@ final class RootBuilder: Builder<RootDependency>, RootBuildable {
     
     func build() -> LaunchRouting {
         let viewController = RootViewController()
+        let splitVC: RootSplitViewController
+        if #available(iOS 14.0, *) {
+            splitVC = RootSplitViewController(style: .doubleColumn)
+        } else {
+            splitVC = RootSplitViewController()
+        }
         let primaryVC = RootPrimaryViewController()
         let secondaryVC = RootSecondaryViewController()
         let component = RootComponent(dependency: dependency,
                                       rootViewController: viewController,
+                                      rootSplitViewController: splitVC,
                                       rootPrimaryViewController: primaryVC,
                                       rootSecondaryViewController: secondaryVC)
         let interactor = RootInteractor(presenter: viewController)
@@ -60,6 +71,7 @@ final class RootBuilder: Builder<RootDependency>, RootBuildable {
         let splashBuilder = SplashBuilder(dependency: component)
         return RootRouter(interactor: interactor,
                           viewController: viewController,
+                          splitVC: splitVC,
                           primaryVC: primaryVC,
                           secondaryVC: secondaryVC,
                           loggedInBuilder: loggedInBuilder,

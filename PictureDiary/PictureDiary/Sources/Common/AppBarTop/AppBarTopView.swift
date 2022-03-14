@@ -34,18 +34,20 @@ final class AppBarTopView: UIView {
     
     /// 완료 버튼
     lazy var btnCompleted = UIButton().then {
+        let color = UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1)
+        $0.setTitleColor(color, for: .normal)
         $0.setTitle("완료", for: .normal)
         $0.titleLabel?.font = .Pretendard(type: .regular, size: 14)
     }
     
     /// 공유 버튼
     lazy var btnShare = UIButton().then {
-        $0.setImage(UIImage(named: "ic_share_upload"), for: .normal)
+        $0.setImage(UIImage(named: "ic_share_insta"), for: .normal)
     }
     
     /// 뒤로가기 버튼
     lazy var btnBack = UIButton().then {
-        $0.setImage(UIImage(named: ""), for: .normal)
+        $0.setImage(UIImage(named: "ic_appbar_back"), for: .normal)
     }
     
     // MARK: - Properties

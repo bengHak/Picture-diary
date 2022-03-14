@@ -8,6 +8,7 @@
 import RIBs
 
 protocol LoggedInDependency: Dependency {
+    var rootSplitViewController: LoggedInSplitViewControllable { get }
     var primaryViewController: LoggedInPrimaryViewControllable { get }
     var secondaryViewController: LoggedInSecondaryViewControllable { get }
 }
@@ -15,6 +16,10 @@ protocol LoggedInDependency: Dependency {
 final class LoggedInComponent: Component<LoggedInDependency>,
                                DiaryListDependency,
                                CreateDiaryDependency {
+    fileprivate var rootSplitViewController: LoggedInSplitViewControllable {
+        return dependency.rootSplitViewController
+    }
+    
     fileprivate var primaryVieController: LoggedInPrimaryViewControllable {
         return dependency.primaryViewController
     }
@@ -44,6 +49,7 @@ final class LoggedInBuilder: Builder<LoggedInDependency>, LoggedInBuildable {
         let diaryList = DiaryListBuilder(dependency: component)
         let createDiary = CreateDiaryBuilder(dependency: component)
         return LoggedInRouter(interactor: interactor,
+                              splitViewController: component.rootSplitViewController,
                               primaryViewController: component.primaryVieController,
                               secondaryViewController: component.secondaryViewController,
                               diaryListBuilder: diaryList,

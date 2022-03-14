@@ -23,11 +23,13 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
     
     init(interactor: RootInteractable,
          viewController: RootViewControllable,
+         splitVC: RootSplitViewController,
          primaryVC: RootPrimaryViewController,
          secondaryVC: RootSecondaryViewController,
          loggedInBuilder: LoggedInBuildable,
          loggedOutBuilder: LoggedOutBuildable,
          splashBuilder: SplashBuildable) {
+        self.splitVC = splitVC
         self.primaryViewController = primaryVC
         self.secondaryViewController = secondaryVC
         self.loggedOutBuilder = loggedOutBuilder
@@ -38,11 +40,9 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
         let primaryNavVC = UINavigationController(rootViewController: primaryViewController)
         let secondaryNavVC = UINavigationController(rootViewController: secondaryViewController)
         if #available(iOS 14.0, *) {
-            splitVC = RootSplitViewController(style: .doubleColumn)
             splitVC.setViewController(primaryNavVC, for: .primary)
             splitVC.setViewController(secondaryNavVC, for: .secondary)
         } else {
-            splitVC = RootSplitViewController()
             splitVC.viewControllers = [primaryNavVC, secondaryNavVC]
         }
         
