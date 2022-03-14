@@ -13,7 +13,8 @@ protocol LoggedInDependency: Dependency {
 }
 
 final class LoggedInComponent: Component<LoggedInDependency>,
-                               DiaryListDependency {
+                               DiaryListDependency,
+                               CreateDiaryDependency {
     fileprivate var primaryVieController: LoggedInPrimaryViewControllable {
         return dependency.primaryViewController
     }
@@ -41,9 +42,11 @@ final class LoggedInBuilder: Builder<LoggedInDependency>, LoggedInBuildable {
         interactor.listener = listener
         
         let diaryList = DiaryListBuilder(dependency: component)
+        let createDiary = CreateDiaryBuilder(dependency: component)
         return LoggedInRouter(interactor: interactor,
                               primaryViewController: component.primaryVieController,
                               secondaryViewController: component.secondaryViewController,
-                              diaryListBuilder: diaryList)
+                              diaryListBuilder: diaryList,
+                              createDiaryBuilder: createDiary)
     }
 }

@@ -76,4 +76,7 @@ final class DiaryCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    func setDate() {
+        
+    }
 }

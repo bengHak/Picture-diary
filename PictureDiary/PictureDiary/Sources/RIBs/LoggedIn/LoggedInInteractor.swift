@@ -10,6 +10,8 @@ import RxSwift
 
 protocol LoggedInRouting: Routing {
     func cleanupViews()
+    func routeToCreateDiary()
+    func detachCreateDiary()
 }
 
 protocol LoggedInListener: AnyObject {
@@ -35,5 +37,13 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
 
         router?.cleanupViews()
         // TODO: Pause any business logic.
+    }
+    
+    func attachCreateDiary() {
+        router?.routeToCreateDiary()
+    }
+    
+    func detachCreateDiary() {
+        router?.detachCreateDiary()
     }
 }

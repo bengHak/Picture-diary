@@ -8,6 +8,8 @@
 import UIKit
 import SnapKit
 import Then
+import RxSwift
+import RxCocoa
 
 final class EmptyDiaryListView: UIView {
     
@@ -31,8 +33,10 @@ final class EmptyDiaryListView: UIView {
     }
     
     // MARK: - Properties
+    let bag = DisposeBag()
     
     // MARK: - Lifecycles
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         configureView()

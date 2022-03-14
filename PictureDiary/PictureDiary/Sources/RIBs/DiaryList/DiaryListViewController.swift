@@ -7,14 +7,14 @@
 
 import RIBs
 import RxSwift
+import RxCocoa
+import RxGesture
 import UIKit
 import SnapKit
 import Then
 
 protocol DiaryListPresentableListener: AnyObject {
-    // TODO: Declare properties and methods that the view controller can invoke to perform
-    // business logic, such as signIn(). This protocol is implemented by the corresponding
-    // interactor class.
+    func attachCreateDiary()
 }
 
 final class DiaryListViewController: UIViewController, DiaryListPresentable, DiaryListViewControllable {
@@ -29,6 +29,7 @@ final class DiaryListViewController: UIViewController, DiaryListPresentable, Dia
     private let lblTitle = UILabel().then {
         $0.text = "내 일기장"
         $0.font = .Pretendard(type: .semiBold, size: 24)
+        $0.textColor = UIColor(red: 17/255, green: 17/255, blue: 17/255, alpha: 1)
     }
     
     /// 일기장 리스트
@@ -38,14 +39,15 @@ final class DiaryListViewController: UIViewController, DiaryListPresentable, Dia
     private let emptyDiaryView = EmptyDiaryListView()
     
     // MARK: - Properties
+    private let bag = DisposeBag()
     
     // MARK: - Lifecycles
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         configureView()
         configureSubviews()
+        bind()
     }
     
     // MARK: - Helpers
@@ -58,31 +60,33 @@ extension DiaryListViewController: BaseViewController {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(DiaryCollectionViewCell.self, forCellWithReuseIdentifier: DiaryCollectionViewCell.identifier)
         
-        [appBarTopView, lblTitle, emptyDiaryView, collectionView].forEach {
+        [appBarTopView, lblTitle, emptyDiaryView].forEach {
             view.addSubview($0)
         }
     }
     
     func configureSubviews() {
         appBarTopView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide)
-            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(44)
         }
         
         lblTitle.snp.makeConstraints {
             $0.top.equalTo(appBarTopView.snp.bottom).offset(20)
             $0.leading.equalTo(view.safeAreaLayoutGuide).offset(22)
+            $0.height.equalTo(28)
         }
         
         emptyDiaryView.snp.makeConstraints {
-            $0.center.equalTo(view.safeAreaLayoutGuide)
+            $0.center.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(200)
         }
-        emptyDiaryView.isHidden = true
+        // emptyDiaryView.isHidden = true
         
-        collectionView.snp.makeConstraints {
-            $0.center.equalTo(view.safeAreaLayoutGuide)
-        }
+//        collectionView.snp.makeConstraints {
+//            $0.center.equalTo(view.safeAreaLayoutGuide)
+//        }
+//        collectionView.isHidden = true
     }
 }
 
@@ -94,7 +98,11 @@ extension DiaryListViewController {
     }
     
     func bindButtons() {
-        
+        emptyDiaryView.btnCreateDiary.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.listener?.attachCreateDiary()
+            }).disposed(by: emptyDiaryView.bag)
     }
     
     func bindCollectionView() {
