@@ -49,7 +49,9 @@ final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable,
     private let ivSnow = UIImageView(image: UIImage(named: "ic_weather_snow"))
     
     /// 그림 프레임 이미지
-    private let ivPictureFrame = UIImageView(image: UIImage(named: "img_picture_frame"))
+    private let ivPictureFrame = UIImageView(image: UIImage(named: "img_picture_frame")).then {
+        $0.contentMode = .scaleAspectFit
+    }
     
     /// 그림 이미지
     private let ivPicture = UIImageView()
@@ -130,7 +132,20 @@ extension CreateDiaryViewController: BaseViewController {
             $0.top.equalTo(lblDate.snp.bottom).offset(24)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
             let ratio = ivPictureFrame.image?.getImageRatio()
-            let w = view.bounds.width - 40 - 360
+            let w: CGFloat
+            // 아이폰
+            if view.bounds.width < 500 {
+                w = view.bounds.width - 40
+            } else {
+                // 아이패드
+                if view.bounds.width < view.bounds.height {
+                    // 세로
+                    w = view.bounds.width - 40 - 360
+                } else {
+                    // 가로
+                    w = 340
+                }
+            }
             let h = Float(w) * Float(ratio!)
             $0.height.equalTo(h)
         }
@@ -159,7 +174,7 @@ extension CreateDiaryViewController {
                 guard let self = self else { return }
                 
                 let style = NSMutableParagraphStyle()
-                style.lineSpacing = 19 // 20 + 16
+                style.lineSpacing = 18
                 let attributes = [NSAttributedString.Key.paragraphStyle : style,
                                   .font: UIFont.defaultFont(type: .dulGiMayo, size: 16)]
                 self.textview.attributedText = NSAttributedString(string: text,
