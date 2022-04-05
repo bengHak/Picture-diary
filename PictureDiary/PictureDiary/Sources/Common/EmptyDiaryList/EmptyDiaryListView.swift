@@ -26,7 +26,7 @@ final class EmptyDiaryListView: UIView {
     /// 그림일기 쓰러가기 버튼
     let btnCreateDiary = UIButton().then {
         $0.setTitle("그림일기 쓰러가기", for: .normal)
-        $0.titleLabel?.font = .Pretendard(type: .semiBold, size: 14)
+        $0.titleLabel?.font = .PretendardFont.button.font()
         $0.setTitleColor(UIColor(red: 17/255, green: 17/255, blue: 17/255, alpha: 1), for: .normal)
         $0.backgroundColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
         $0.layer.cornerRadius = 8

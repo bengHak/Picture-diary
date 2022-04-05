@@ -28,7 +28,7 @@ final class DiaryListViewController: UIViewController, DiaryListPresentable, Dia
     /// 내 일기장 라벨
     private let lblTitle = UILabel().then {
         $0.text = "내 일기장"
-        $0.font = .Pretendard(type: .semiBold, size: 24)
+        $0.font = .PretendardFont.h1.font()
         $0.textColor = UIColor(red: 17/255, green: 17/255, blue: 17/255, alpha: 1)
     }
     
