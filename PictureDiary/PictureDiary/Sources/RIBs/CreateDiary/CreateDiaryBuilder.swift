@@ -12,9 +12,9 @@ protocol CreateDiaryDependency: Dependency {
     // created by this RIB.
 }
 
-final class CreateDiaryComponent: Component<CreateDiaryDependency> {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+final class CreateDiaryComponent: Component<CreateDiaryDependency>,
+                                  DiaryTextFieldDependency {
+    
 }
 
 // MARK: - Builder
@@ -34,6 +34,10 @@ final class CreateDiaryBuilder: Builder<CreateDiaryDependency>, CreateDiaryBuild
         let viewController = CreateDiaryViewController()
         let interactor = CreateDiaryInteractor(presenter: viewController)
         interactor.listener = listener
-        return CreateDiaryRouter(interactor: interactor, viewController: viewController)
+        
+        let diaryTextFieldBuilder = DiaryTextFieldBuilder(dependency: component)
+        return CreateDiaryRouter(interactor: interactor,
+                                 viewController: viewController,
+                                 diaryTextFieldBuilder: diaryTextFieldBuilder)
     }
 }

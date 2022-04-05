@@ -16,7 +16,7 @@ final class DiaryCollectionViewCell: UICollectionViewCell {
     
     /// 날짜
     private let lblDate = UILabel().then {
-        $0.font = .defaultFont(type: .kyobo, size: 14)
+        $0.font = .DefaultFont.body2.font()
     }
     
     /// 날씨

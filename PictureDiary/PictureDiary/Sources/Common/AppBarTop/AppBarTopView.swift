@@ -14,7 +14,7 @@ final class AppBarTopView: UIView {
     // MARK: - UI Properties
     /// 타이틀
     private lazy var lblTitle = UILabel().then {
-        $0.font = .Pretendard(type: .semiBold, size: 16)
+        $0.font = .PretendardFont.h2.font()
     }
     
     /// 그림일기 그리기 버튼
@@ -37,7 +37,7 @@ final class AppBarTopView: UIView {
         let color = UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1)
         $0.setTitleColor(color, for: .normal)
         $0.setTitle("완료", for: .normal)
-        $0.titleLabel?.font = .Pretendard(type: .regular, size: 14)
+        $0.titleLabel?.font = .PretendardFont.button.font()
     }
     
     /// 공유 버튼
