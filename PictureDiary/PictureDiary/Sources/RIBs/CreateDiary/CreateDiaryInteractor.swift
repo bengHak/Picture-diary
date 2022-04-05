@@ -7,9 +7,11 @@
 
 import RIBs
 import RxSwift
+import RxRelay
 
 protocol CreateDiaryRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
+    func routeToDiaryTextField()
+    func detachDiaryTextField()
 }
 
 protocol CreateDiaryPresentable: Presentable {
@@ -27,10 +29,10 @@ final class CreateDiaryInteractor: PresentableInteractor<CreateDiaryPresentable>
     
     weak var router: CreateDiaryRouting?
     weak var listener: CreateDiaryListener?
+    var diaryText: BehaviorRelay<String>
     
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
-    // in constructor.
     override init(presenter: CreateDiaryPresentable) {
+        diaryText = BehaviorRelay<String>(value: "")
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -47,5 +49,13 @@ final class CreateDiaryInteractor: PresentableInteractor<CreateDiaryPresentable>
     
     func detachCreateDiary() {
         listener?.detachCreateDiary()
+    }
+    
+    func attachDiaryTextField() {
+        router?.routeToDiaryTextField()
+    }
+    
+    func detachDiaryTextField() {
+        router?.detachDiaryTextField()
     }
 }

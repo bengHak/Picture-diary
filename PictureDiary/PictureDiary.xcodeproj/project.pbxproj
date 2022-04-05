@@ -14,6 +14,11 @@
 		EA98C4B827DEBF4B0045055D /* CreateDiaryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA98C4B427DEBF4B0045055D /* CreateDiaryInteractor.swift */; };
 		EA98C4BA27DF04310045055D /* UITextView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA98C4B927DF04310045055D /* UITextView+Ext.swift */; };
 		EA98C4BE27DF137E0045055D /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA98C4BD27DF137E0045055D /* UIImage+Ext.swift */; };
+		EAB1E21527FADB0000EEDFDF /* DiaryTextFieldRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB1E21127FADB0000EEDFDF /* DiaryTextFieldRouter.swift */; };
+		EAB1E21627FADB0000EEDFDF /* DiaryTextFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB1E21227FADB0000EEDFDF /* DiaryTextFieldViewController.swift */; };
+		EAB1E21727FADB0000EEDFDF /* DiaryTextFieldBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB1E21327FADB0000EEDFDF /* DiaryTextFieldBuilder.swift */; };
+		EAB1E21827FADB0000EEDFDF /* DiaryTextFieldInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB1E21427FADB0000EEDFDF /* DiaryTextFieldInteractor.swift */; };
+		EAB1E22027FC120600EEDFDF /* UserDefaults+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB1E21F27FC120600EEDFDF /* UserDefaults+Ext.swift */; };
 		EABF17F127DB5786002740C0 /* EmptyDiaryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABF17F027DB5786002740C0 /* EmptyDiaryListView.swift */; };
 		EABF17F427DBB86F002740C0 /* DiaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABF17F327DBB86F002740C0 /* DiaryCollectionViewCell.swift */; };
 		EABF17FE27DBBABF002740C0 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = EABF17F527DBBABF002740C0 /* Pretendard-Medium.otf */; };
@@ -89,6 +94,11 @@
 		EA98C4B427DEBF4B0045055D /* CreateDiaryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDiaryInteractor.swift; sourceTree = "<group>"; };
 		EA98C4B927DF04310045055D /* UITextView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Ext.swift"; sourceTree = "<group>"; };
 		EA98C4BD27DF137E0045055D /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
+		EAB1E21127FADB0000EEDFDF /* DiaryTextFieldRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryTextFieldRouter.swift; sourceTree = "<group>"; };
+		EAB1E21227FADB0000EEDFDF /* DiaryTextFieldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryTextFieldViewController.swift; sourceTree = "<group>"; };
+		EAB1E21327FADB0000EEDFDF /* DiaryTextFieldBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryTextFieldBuilder.swift; sourceTree = "<group>"; };
+		EAB1E21427FADB0000EEDFDF /* DiaryTextFieldInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryTextFieldInteractor.swift; sourceTree = "<group>"; };
+		EAB1E21F27FC120600EEDFDF /* UserDefaults+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Ext.swift"; sourceTree = "<group>"; };
 		EABF17F027DB5786002740C0 /* EmptyDiaryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyDiaryListView.swift; sourceTree = "<group>"; };
 		EABF17F327DBB86F002740C0 /* DiaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCollectionViewCell.swift; sourceTree = "<group>"; };
 		EABF17F527DBBABF002740C0 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
@@ -194,6 +204,17 @@
 				EA98C4B427DEBF4B0045055D /* CreateDiaryInteractor.swift */,
 			);
 			path = CreateDiary;
+			sourceTree = "<group>";
+		};
+		EAB1E21027FADA9E00EEDFDF /* DiaryTextField */ = {
+			isa = PBXGroup;
+			children = (
+				EAB1E21127FADB0000EEDFDF /* DiaryTextFieldRouter.swift */,
+				EAB1E21227FADB0000EEDFDF /* DiaryTextFieldViewController.swift */,
+				EAB1E21327FADB0000EEDFDF /* DiaryTextFieldBuilder.swift */,
+				EAB1E21427FADB0000EEDFDF /* DiaryTextFieldInteractor.swift */,
+			);
+			path = DiaryTextField;
 			sourceTree = "<group>";
 		};
 		EABF17EF27DB576A002740C0 /* EmptyDiaryList */ = {
@@ -328,6 +349,7 @@
 		EAFE864727D0E1DF00519243 /* RIBs */ = {
 			isa = PBXGroup;
 			children = (
+				EAB1E21027FADA9E00EEDFDF /* DiaryTextField */,
 				EAFE864127D0DE6900519243 /* AppStart */,
 				EAFE865627D22EED00519243 /* Root */,
 				EAFE868627D368DF00519243 /* LoggedIn */,
@@ -363,6 +385,7 @@
 				EABF180727DBBB5F002740C0 /* UIFont+Ext.swift */,
 				EA98C4B927DF04310045055D /* UITextView+Ext.swift */,
 				EA98C4BD27DF137E0045055D /* UIImage+Ext.swift */,
+				EAB1E21F27FC120600EEDFDF /* UserDefaults+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -661,11 +684,14 @@
 				EAFE868D27D372EB00519243 /* LoggedOutInteractor.swift in Sources */,
 				EAFE86B427D499C300519243 /* SignUpCompletedInteractor.swift in Sources */,
 				EAFE868227D3563100519243 /* SNSType.swift in Sources */,
+				EAB1E21627FADB0000EEDFDF /* DiaryTextFieldViewController.swift in Sources */,
+				EAB1E21827FADB0000EEDFDF /* DiaryTextFieldInteractor.swift in Sources */,
 				EAFE862927D0CD8C00519243 /* AppDelegate.swift in Sources */,
 				EAFE867627D23BF700519243 /* RootViewController.swift in Sources */,
 				EAFE869B27D47FD100519243 /* SNSLoginBuilder.swift in Sources */,
 				EAFE869327D372FA00519243 /* LoggedInInteractor.swift in Sources */,
 				EAFE863327D0CD8C00519243 /* PictureDiary.xcdatamodeld in Sources */,
+				EAB1E21727FADB0000EEDFDF /* DiaryTextFieldBuilder.swift in Sources */,
 				EAFE868027D3540A00519243 /* SNSLoginButton.swift in Sources */,
 				EAFE869C27D47FD100519243 /* SNSLoginInteractor.swift in Sources */,
 				EAFE867527D23BF700519243 /* RootRouter.swift in Sources */,
@@ -680,6 +706,7 @@
 				EA98C4BA27DF04310045055D /* UITextView+Ext.swift in Sources */,
 				EABF180827DBBB5F002740C0 /* UIFont+Ext.swift in Sources */,
 				EAFE86C827D5C8F500519243 /* DiaryListBuilder.swift in Sources */,
+				EAB1E21527FADB0000EEDFDF /* DiaryTextFieldRouter.swift in Sources */,
 				EAFE86A727D489E100519243 /* SplashViewController.swift in Sources */,
 				EAFE86C727D5C8F500519243 /* DiaryListViewController.swift in Sources */,
 				EA98C4B727DEBF4B0045055D /* CreateDiaryBuilder.swift in Sources */,
@@ -700,6 +727,7 @@
 				EABF17F427DBB86F002740C0 /* DiaryCollectionViewCell.swift in Sources */,
 				EAFE86C927D5C8F500519243 /* DiaryListInteractor.swift in Sources */,
 				EAFE867727D23BF700519243 /* RootBuilder.swift in Sources */,
+				EAB1E22027FC120600EEDFDF /* UserDefaults+Ext.swift in Sources */,
 				EAFE86D427D5CC4000519243 /* AppBarTopView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

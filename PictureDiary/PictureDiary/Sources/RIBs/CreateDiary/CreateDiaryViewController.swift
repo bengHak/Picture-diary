@@ -8,16 +8,19 @@
 import RIBs
 import RxSwift
 import RxCocoa
+import RxGesture
 import UIKit
 import SnapKit
 import Then
 
 protocol CreateDiaryPresentableListener: AnyObject {
     func detachCreateDiary()
+    func attachDiaryTextField()
+    var diaryText: BehaviorRelay<String> { get }
 }
 
 final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable, CreateDiaryViewControllable {
-
+    
     weak var listener: CreateDiaryPresentableListener?
     
     // MARK: - UI Properties
@@ -27,7 +30,7 @@ final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable,
     /// 날짜 라벨
     private let lblDate = UILabel().then {
         $0.text = "2022년 3월 18일"
-        $0.font = .defaultFont(type: .dulGiMayo, size: 14)
+        $0.font = .DefaultFont.body2.font()
     }
     
     /// 날씨 스택
@@ -57,16 +60,25 @@ final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable,
     private let ivPicture = UIImageView()
     
     /// 밑줄 uiview 스택
-    private let stackUnderline = UIStackView().then {
-        $0.axis = .vertical
-        $0.spacing = 34.05
-    }
+//    private let stackUnderline = UIStackView().then {
+//        $0.axis = .vertical
+//        $0.spacing = 34.05
+//    }
     
     /// 텍스트 일기장
     private let textview = UITextView().then {
+        $0.font = .DefaultFont.body1.font()
         $0.backgroundColor = .clear
-        $0.isScrollEnabled = false
-        $0.font = .defaultFont(type: .dulGiMayo, size: 16)
+        $0.isUserInteractionEnabled = false
+        $0.tintColor = .clear
+    }
+    
+    /// 텍스트 뷰 placeholder
+    private let lblPlaceholder = UILabel().then {
+        $0.text = "여기에 일기를 입력해주세요."
+        $0.font = .DefaultFont.body1.font()
+        $0.textColor = .secondaryLabel
+        $0.isUserInteractionEnabled = false
     }
     
     // MARK: - Properties
@@ -85,31 +97,32 @@ final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable,
     }
     
     // MARK: - Helpers
-    func addNewUnderline() {
-        let ivUnderline = UIImageView(image: UIImage(named: "img_underline")).then {
-            $0.contentMode = .scaleAspectFill
-        }
-        stackUnderline.addArrangedSubview(ivUnderline)
-        ivUnderline.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(1.95)
-        }
-    }
+//    func addNewUnderline() {
+//        let ivUnderline = UIImageView(image: UIImage(named: "img_underline")).then {
+//            $0.contentMode = .scaleAspectFill
+//        }
+//        stackUnderline.addArrangedSubview(ivUnderline)
+//        ivUnderline.snp.makeConstraints {
+//            $0.leading.trailing.equalToSuperview()
+//            $0.height.equalTo(1.95)
+//        }
+//    }
     
-    func setTextViewHeight() {
-        textview.snp.remakeConstraints {
-            $0.top.equalTo(ivPictureFrame.snp.bottom).offset(12)
-            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
-            $0.height.equalTo(stackUnderline).offset(30)
-        }
-    }
+//    func setTextViewHeight() {
+//        textview.snp.remakeConstraints {
+//            $0.top.equalTo(ivPictureFrame.snp.bottom).offset(12)
+//            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
+//            $0.height.equalTo(stackUnderline).offset(30)
+//        }
+//    }
 }
 
 // MARK: BaseViewController
 extension CreateDiaryViewController: BaseViewController {
     func configureView() {
         [ivSunny, ivCloudy, ivRain, ivSnow].forEach { stackWeather.addArrangedSubview($0) }
-        [appBarTop, lblDate, stackWeather, ivPictureFrame, ivPicture, stackUnderline, textview].forEach { view.addSubview($0) }
+        // stackUnderline
+        [appBarTop, lblDate, stackWeather, ivPictureFrame, ivPicture, textview, lblPlaceholder].forEach { view.addSubview($0) }
     }
     
     func configureSubviews() {
@@ -121,6 +134,7 @@ extension CreateDiaryViewController: BaseViewController {
         lblDate.snp.makeConstraints {
             $0.top.equalTo(appBarTop.snp.bottom).offset(16)
             $0.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
+            $0.height.equalTo(20)
         }
         
         stackWeather.snp.makeConstraints {
@@ -149,14 +163,23 @@ extension CreateDiaryViewController: BaseViewController {
             let h = Float(w) * Float(ratio!)
             $0.height.equalTo(h)
         }
-                
-        stackUnderline.snp.makeConstraints {
-            $0.top.equalTo(ivPictureFrame.snp.bottom).offset(37)
-            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
-        }
-        for _ in 0..<5 { addNewUnderline() }
         
-        setTextViewHeight()
+//        stackUnderline.snp.makeConstraints {
+//            $0.top.equalTo(ivPictureFrame.snp.bottom).offset(37)
+//            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
+//        }
+//        for _ in 0..<5 { addNewUnderline() }
+        
+//        setTextViewHeight()
+        textview.snp.remakeConstraints {
+            $0.top.equalTo(ivPictureFrame.snp.bottom).offset(12)
+            $0.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
+        }
+        
+        lblPlaceholder.snp.makeConstraints {
+            $0.top.leading.equalTo(textview).offset(10)
+        }
+        lblPlaceholder.isHidden = !(textview.text?.isEmpty ?? true)
     }
 }
 
@@ -165,48 +188,59 @@ extension CreateDiaryViewController {
     func bind() {
         bindTextView()
         bindButtons()
+        bindText()
     }
     
     func bindTextView() {
-        textview.rx.text
-            .orEmpty
-            .subscribe(onNext: { [weak self] text in
+        textview.rx.tapGesture()
+            .when(.recognized)
+            .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                
-                let style = NSMutableParagraphStyle()
-                style.lineSpacing = 18
-                let attributes = [NSAttributedString.Key.paragraphStyle : style,
-                                  .font: UIFont.defaultFont(type: .dulGiMayo, size: 16)]
-                self.textview.attributedText = NSAttributedString(string: text,
-                                                                  attributes: attributes as [NSAttributedString.Key : Any])
-                
-                let newNumberOfLines = self.textview.numberOfLine()
-                if newNumberOfLines > 4, self.currentNumberOfLines != newNumberOfLines {
-                    print(newNumberOfLines)
-                    if self.currentNumberOfLines < newNumberOfLines {
-                        self.addNewUnderline()
-                    } else if self.currentNumberOfLines > newNumberOfLines {
-                        self.stackUnderline.arrangedSubviews[newNumberOfLines-1].removeFromSuperview()
-                    }
-                    self.currentNumberOfLines = newNumberOfLines
-                    self.setTextViewHeight()
-                    self.textview.setNeedsLayout()
-                }
+                self.listener?.attachDiaryTextField()
             }).disposed(by: bag)
+        
+//        textview.rx.text
+//            .orEmpty
+//            .subscribe(onNext: { [weak self] text in
+//                guard let self = self else { return }
+//                self.lblPlaceholder.isHidden = !text.isEmpty
+//                self.textview.setAttributedText(text)
+//
+//                let newNumberOfLines = self.textview.numberOfLine()
+//                if newNumberOfLines > 4, self.currentNumberOfLines != newNumberOfLines {
+//                    if self.currentNumberOfLines < newNumberOfLines {
+//                        self.addNewUnderline()
+//                    } else if self.currentNumberOfLines > newNumberOfLines {
+//                        self.stackUnderline.arrangedSubviews[newNumberOfLines-1].removeFromSuperview()
+//                    }
+//                    self.currentNumberOfLines = newNumberOfLines
+//                    self.setTextViewHeight()
+//                    self.textview.setNeedsLayout()
+//                }
+//            }).disposed(by: bag)
     }
     
     func bindButtons() {
         appBarTop.btnBack.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                #warning("저장하지 않고 뒤로가시겠습니까? 알려줘야되지 않을까")
+#warning("저장하지 않고 뒤로가시겠습니까? 알려줘야되지 않을까")
                 self.listener?.detachCreateDiary()
             }).disposed(by: bag)
         
         appBarTop.btnCompleted.rx.tap
             .subscribe(onNext: { [weak self] _ in
-                #warning("완료 로직")
+#warning("완료 로직")
                 self?.listener?.detachCreateDiary()
+            }).disposed(by: bag)
+    }
+    
+    func bindText() {
+        listener?.diaryText
+            .subscribe(onNext: { [weak self] text in
+                guard let self = self else { return }
+                self.textview.setAttributedText(text)
+                self.lblPlaceholder.isHidden = !text.isEmpty
             }).disposed(by: bag)
     }
 }
