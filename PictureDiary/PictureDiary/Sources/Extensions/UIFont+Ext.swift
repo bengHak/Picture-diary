@@ -10,42 +10,52 @@ import UIKit
 extension UIFont {
     // MARK: - Default Font
     class func defaultFont(size: CGFloat) -> UIFont! {
-        let fontType = UserDefaults.getDefaultFont()
-        guard let font = UIFont(name: fontType.rawValue, size: size) else {
-            return nil
+        let type = UserDefaults.getDefaultFont()
+        guard let font = UIFont(name: type.rawValue, size: size) else {
+            fatalError(
+                    """
+                    Failed to load the "\(type.rawValue)" font.
+                    Make sure the font file is included in the project and the font name is spelled correctly.
+                    """
+            )
         }
         return font
     }
     
-    public enum Default {
+    public enum DefaultFont {
         case body1
         case body2
         
         func font() -> UIFont {
             switch self {
             case .body1:
-                return UIFont.defaultFont(size: 16)
+                return defaultFont(size: 16)
             case .body2:
-                return UIFont.defaultFont(size: 14)
+                return defaultFont(size: 14)
             }
         }
     }
     
     public enum DefaultFontType: String {
-        case kyobo = "KyoboHandwriting2020pdy"
-        case dulGiMayo = "dovemayo"
-        case ubiQueen = "UhBee-QUEEN-J"
-        case ubiSulGi = "UhBee-Seulvely-2"
-        case ubiNamSo = "UhBee-namsoyoung"
-        case ubiTokyo = "UhBee-DongKyung"
-        case ubiHam = "UhBee-Ham-Bold"
-        case ubiPudding = "UhBee-puding"
+        case kyobo      = "KyoboHandwriting2020"
+        case dulGiMayo  = "Dovemayo-Medium"
+        case ubiQueen   = "UhBeeQUEENJ"
+        case ubiSulGi   = "UhBeeSeulvely"
+        case ubiNamSo   = "UhBeeNamsoyoung"
+        case ubiTokyo   = "UhBeeDongKyung"
+        case ubiHam     = "UhBeeHamBold"
+        case ubiPudding = "UhBeepuding"
     }
     
     // MARK: - Pretendard Font
     class func Pretendard(type: PretendardType, size: CGFloat) -> UIFont! {
         guard let font = UIFont(name: type.rawValue, size: size) else {
-            return nil
+            fatalError(
+                    """
+                    Failed to load the "\(type.rawValue)" font.
+                    Make sure the font file is included in the project and the font name is spelled correctly.
+                    """
+            )
         }
         return font
     }
@@ -80,9 +90,9 @@ extension UIFont {
     }
     
     public enum PretendardType: String {
-        case bold = "Pretendard-Bold"
+        case bold     = "Pretendard-Bold"
         case semiBold = "Pretendard-SemiBold"
-        case regular = "Pretendard-Regular"
-        case medium = "Pretendard-Medium"
+        case regular  = "Pretendard-Regular"
+        case medium   = "Pretendard-Medium"
     }
 }
