@@ -8,6 +8,7 @@
 import UIKit
 
 extension UIFont {
+    // MARK: - Default Font
     class func defaultFont(type: DefaultFontType, size: CGFloat) -> UIFont! {
         guard let font = UIFont(name: type.rawValue, size: size) else {
             return nil
@@ -24,10 +25,9 @@ extension UIFont {
         case ubiTokyo = "UhBee-DongKyung"
         case ubiHam = "UhBee-Ham-Bold"
         case ubiPudding = "UhBee-puding"
-        // case onGulLip = ""
-        // case imagineRabbit = ""
     }
     
+    // MARK: - Pretendard Font
     class func Pretendard(type: PretendardType, size: CGFloat) -> UIFont! {
         guard let font = UIFont(name: type.rawValue, size: size) else {
             return nil
@@ -39,5 +39,6 @@ extension UIFont {
         case bold = "Pretendard-Bold"
         case semiBold = "Pretendard-SemiBold"
         case regular = "Pretendard-Regular"
+        case medium = "Pretendard-Medium"
     }
 }
