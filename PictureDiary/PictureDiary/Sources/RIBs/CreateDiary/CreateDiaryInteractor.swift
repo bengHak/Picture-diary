@@ -12,6 +12,8 @@ import RxRelay
 protocol CreateDiaryRouting: ViewableRouting {
     func routeToDiaryTextField()
     func detachDiaryTextField()
+    func routeToDiaryDrawing()
+    func detachDiaryDrawing()
 }
 
 protocol CreateDiaryPresentable: Presentable {
@@ -37,25 +39,17 @@ final class CreateDiaryInteractor: PresentableInteractor<CreateDiaryPresentable>
         presenter.listener = self
     }
     
-    override func didBecomeActive() {
-        super.didBecomeActive()
-        // TODO: Implement business logic here.
-    }
+    override func didBecomeActive() { super.didBecomeActive() }
     
-    override func willResignActive() {
-        super.willResignActive()
-        // TODO: Pause any business logic.
-    }
+    override func willResignActive() { super.willResignActive() }
     
-    func detachCreateDiary() {
-        listener?.detachCreateDiary()
-    }
+    func detachCreateDiary() { listener?.detachCreateDiary() }
     
-    func attachDiaryTextField() {
-        router?.routeToDiaryTextField()
-    }
+    func attachDiaryTextField() { router?.routeToDiaryTextField() }
     
-    func detachDiaryTextField() {
-        router?.detachDiaryTextField()
-    }
+    func detachDiaryTextField() { router?.detachDiaryTextField() }
+    
+    func attachDiaryDrawing() { router?.routeToDiaryDrawing() }
+    
+    func detachDiaryDrawing() { router?.detachDiaryDrawing() }
 }

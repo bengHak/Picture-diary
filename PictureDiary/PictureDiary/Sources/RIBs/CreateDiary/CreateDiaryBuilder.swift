@@ -13,7 +13,8 @@ protocol CreateDiaryDependency: Dependency {
 }
 
 final class CreateDiaryComponent: Component<CreateDiaryDependency>,
-                                  DiaryTextFieldDependency {
+                                  DiaryTextFieldDependency,
+                                  DiaryDrawingDependency {
     
 }
 
@@ -36,8 +37,10 @@ final class CreateDiaryBuilder: Builder<CreateDiaryDependency>, CreateDiaryBuild
         interactor.listener = listener
         
         let diaryTextFieldBuilder = DiaryTextFieldBuilder(dependency: component)
+        let diaryDrawingBuilder = DiaryDrawingBuilder(dependency: component)
         return CreateDiaryRouter(interactor: interactor,
                                  viewController: viewController,
-                                 diaryTextFieldBuilder: diaryTextFieldBuilder)
+                                 diaryTextFieldBuilder: diaryTextFieldBuilder,
+                                 diaryDrawingBuilder: diaryDrawingBuilder)
     }
 }

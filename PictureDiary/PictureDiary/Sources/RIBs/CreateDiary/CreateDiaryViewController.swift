@@ -16,6 +16,7 @@ import Then
 protocol CreateDiaryPresentableListener: AnyObject {
     func detachCreateDiary()
     func attachDiaryTextField()
+    func attachDiaryDrawing()
     var diaryText: BehaviorRelay<String> { get }
 }
 
@@ -59,12 +60,6 @@ final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable,
     /// 그림 이미지
     private let ivPicture = UIImageView()
     
-    /// 밑줄 uiview 스택
-//    private let stackUnderline = UIStackView().then {
-//        $0.axis = .vertical
-//        $0.spacing = 34.05
-//    }
-    
     /// 텍스트 일기장
     private let textview = UITextView().then {
         $0.font = .DefaultFont.body1.font()
@@ -97,31 +92,12 @@ final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable,
     }
     
     // MARK: - Helpers
-//    func addNewUnderline() {
-//        let ivUnderline = UIImageView(image: UIImage(named: "img_underline")).then {
-//            $0.contentMode = .scaleAspectFill
-//        }
-//        stackUnderline.addArrangedSubview(ivUnderline)
-//        ivUnderline.snp.makeConstraints {
-//            $0.leading.trailing.equalToSuperview()
-//            $0.height.equalTo(1.95)
-//        }
-//    }
-    
-//    func setTextViewHeight() {
-//        textview.snp.remakeConstraints {
-//            $0.top.equalTo(ivPictureFrame.snp.bottom).offset(12)
-//            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
-//            $0.height.equalTo(stackUnderline).offset(30)
-//        }
-//    }
 }
 
 // MARK: BaseViewController
 extension CreateDiaryViewController: BaseViewController {
     func configureView() {
         [ivSunny, ivCloudy, ivRain, ivSnow].forEach { stackWeather.addArrangedSubview($0) }
-        // stackUnderline
         [appBarTop, lblDate, stackWeather, ivPictureFrame, ivPicture, textview, lblPlaceholder].forEach { view.addSubview($0) }
     }
     
@@ -164,13 +140,10 @@ extension CreateDiaryViewController: BaseViewController {
             $0.height.equalTo(h)
         }
         
-//        stackUnderline.snp.makeConstraints {
-//            $0.top.equalTo(ivPictureFrame.snp.bottom).offset(37)
-//            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
-//        }
-//        for _ in 0..<5 { addNewUnderline() }
+        ivPicture.snp.makeConstraints {
+            $0.edges.equalTo(ivPictureFrame)
+        }
         
-//        setTextViewHeight()
         textview.snp.remakeConstraints {
             $0.top.equalTo(ivPictureFrame.snp.bottom).offset(12)
             $0.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
@@ -186,9 +159,19 @@ extension CreateDiaryViewController: BaseViewController {
 // MARK: Bindable
 extension CreateDiaryViewController {
     func bind() {
+        bindPicture()
         bindTextView()
         bindButtons()
         bindText()
+    }
+    
+    func bindPicture() {
+        ivPicture.rx.tapGesture()
+            .when(.recognized)
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.listener?.attachDiaryDrawing()
+            }).disposed(by: bag)
     }
     
     func bindTextView() {
@@ -198,26 +181,6 @@ extension CreateDiaryViewController {
                 guard let self = self else { return }
                 self.listener?.attachDiaryTextField()
             }).disposed(by: bag)
-        
-//        textview.rx.text
-//            .orEmpty
-//            .subscribe(onNext: { [weak self] text in
-//                guard let self = self else { return }
-//                self.lblPlaceholder.isHidden = !text.isEmpty
-//                self.textview.setAttributedText(text)
-//
-//                let newNumberOfLines = self.textview.numberOfLine()
-//                if newNumberOfLines > 4, self.currentNumberOfLines != newNumberOfLines {
-//                    if self.currentNumberOfLines < newNumberOfLines {
-//                        self.addNewUnderline()
-//                    } else if self.currentNumberOfLines > newNumberOfLines {
-//                        self.stackUnderline.arrangedSubviews[newNumberOfLines-1].removeFromSuperview()
-//                    }
-//                    self.currentNumberOfLines = newNumberOfLines
-//                    self.setTextViewHeight()
-//                    self.textview.setNeedsLayout()
-//                }
-//            }).disposed(by: bag)
     }
     
     func bindButtons() {
