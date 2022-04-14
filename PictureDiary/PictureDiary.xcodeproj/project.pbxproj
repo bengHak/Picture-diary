@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		6057084DA4CBF41D54F57468 /* Pods_PictureDiary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8662C61FC7779CDCA018991 /* Pods_PictureDiary.framework */; };
+		92EAA4EB9351DECAA3FD6804 /* PaletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EAA71955F25FB0FBCEFCAE /* PaletteView.swift */; };
+		EA2840252806CB6D00D8DCB1 /* PaletteColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2840242806CB6D00D8DCB1 /* PaletteColorCell.swift */; };
+		EA2840272807E7B300D8DCB1 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2840262807E7B300D8DCB1 /* UIColor+Ext.swift */; };
+		EA2840292807EAC000D8DCB1 /* PaletteColorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2840282807EAC000D8DCB1 /* PaletteColorType.swift */; };
+		EA28402B2807F01900D8DCB1 /* AppColorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA28402A2807F01900D8DCB1 /* AppColorType.swift */; };
 		EA98C4B527DEBF4B0045055D /* CreateDiaryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA98C4B127DEBF4B0045055D /* CreateDiaryRouter.swift */; };
 		EA98C4B627DEBF4B0045055D /* CreateDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA98C4B227DEBF4B0045055D /* CreateDiaryViewController.swift */; };
 		EA98C4B727DEBF4B0045055D /* CreateDiaryBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA98C4B327DEBF4B0045055D /* CreateDiaryBuilder.swift */; };
@@ -19,6 +24,10 @@
 		EAB1E21727FADB0000EEDFDF /* DiaryTextFieldBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB1E21327FADB0000EEDFDF /* DiaryTextFieldBuilder.swift */; };
 		EAB1E21827FADB0000EEDFDF /* DiaryTextFieldInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB1E21427FADB0000EEDFDF /* DiaryTextFieldInteractor.swift */; };
 		EAB1E22027FC120600EEDFDF /* UserDefaults+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB1E21F27FC120600EEDFDF /* UserDefaults+Ext.swift */; };
+		EAB4543327FC3DFC0002A3B1 /* DiaryDrawingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB4542F27FC3DFC0002A3B1 /* DiaryDrawingRouter.swift */; };
+		EAB4543427FC3DFC0002A3B1 /* DiaryDrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB4543027FC3DFC0002A3B1 /* DiaryDrawingViewController.swift */; };
+		EAB4543527FC3DFC0002A3B1 /* DiaryDrawingBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB4543127FC3DFC0002A3B1 /* DiaryDrawingBuilder.swift */; };
+		EAB4543627FC3DFC0002A3B1 /* DiaryDrawingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB4543227FC3DFC0002A3B1 /* DiaryDrawingInteractor.swift */; };
 		EABF17F127DB5786002740C0 /* EmptyDiaryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABF17F027DB5786002740C0 /* EmptyDiaryListView.swift */; };
 		EABF17F427DBB86F002740C0 /* DiaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABF17F327DBB86F002740C0 /* DiaryCollectionViewCell.swift */; };
 		EABF17FE27DBBABF002740C0 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = EABF17F527DBBABF002740C0 /* Pretendard-Medium.otf */; };
@@ -86,8 +95,13 @@
 
 /* Begin PBXFileReference section */
 		296A642EF55E0FC635CB0813 /* Pods-PictureDiary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PictureDiary.debug.xcconfig"; path = "Target Support Files/Pods-PictureDiary/Pods-PictureDiary.debug.xcconfig"; sourceTree = "<group>"; };
+		92EAA71955F25FB0FBCEFCAE /* PaletteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteView.swift; sourceTree = "<group>"; };
 		A91B972A8A61B0AFFF9F0CDE /* Pods-PictureDiary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PictureDiary.release.xcconfig"; path = "Target Support Files/Pods-PictureDiary/Pods-PictureDiary.release.xcconfig"; sourceTree = "<group>"; };
 		E8662C61FC7779CDCA018991 /* Pods_PictureDiary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PictureDiary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA2840242806CB6D00D8DCB1 /* PaletteColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteColorCell.swift; sourceTree = "<group>"; };
+		EA2840262807E7B300D8DCB1 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
+		EA2840282807EAC000D8DCB1 /* PaletteColorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteColorType.swift; sourceTree = "<group>"; };
+		EA28402A2807F01900D8DCB1 /* AppColorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColorType.swift; sourceTree = "<group>"; };
 		EA98C4B127DEBF4B0045055D /* CreateDiaryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDiaryRouter.swift; sourceTree = "<group>"; };
 		EA98C4B227DEBF4B0045055D /* CreateDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDiaryViewController.swift; sourceTree = "<group>"; };
 		EA98C4B327DEBF4B0045055D /* CreateDiaryBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDiaryBuilder.swift; sourceTree = "<group>"; };
@@ -99,6 +113,10 @@
 		EAB1E21327FADB0000EEDFDF /* DiaryTextFieldBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryTextFieldBuilder.swift; sourceTree = "<group>"; };
 		EAB1E21427FADB0000EEDFDF /* DiaryTextFieldInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryTextFieldInteractor.swift; sourceTree = "<group>"; };
 		EAB1E21F27FC120600EEDFDF /* UserDefaults+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Ext.swift"; sourceTree = "<group>"; };
+		EAB4542F27FC3DFC0002A3B1 /* DiaryDrawingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDrawingRouter.swift; sourceTree = "<group>"; };
+		EAB4543027FC3DFC0002A3B1 /* DiaryDrawingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDrawingViewController.swift; sourceTree = "<group>"; };
+		EAB4543127FC3DFC0002A3B1 /* DiaryDrawingBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDrawingBuilder.swift; sourceTree = "<group>"; };
+		EAB4543227FC3DFC0002A3B1 /* DiaryDrawingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDrawingInteractor.swift; sourceTree = "<group>"; };
 		EABF17F027DB5786002740C0 /* EmptyDiaryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyDiaryListView.swift; sourceTree = "<group>"; };
 		EABF17F327DBB86F002740C0 /* DiaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCollectionViewCell.swift; sourceTree = "<group>"; };
 		EABF17F527DBBABF002740C0 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
@@ -187,6 +205,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		92EAAA92A22244A144185FF5 /* Palette */ = {
+			isa = PBXGroup;
+			children = (
+				92EAA71955F25FB0FBCEFCAE /* PaletteView.swift */,
+				EA2840242806CB6D00D8DCB1 /* PaletteColorCell.swift */,
+			);
+			path = Palette;
+			sourceTree = "<group>";
+		};
 		B6E28A536CC253CEFBED6FD1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,6 +242,17 @@
 				EAB1E21427FADB0000EEDFDF /* DiaryTextFieldInteractor.swift */,
 			);
 			path = DiaryTextField;
+			sourceTree = "<group>";
+		};
+		EAB4542E27FC3DD00002A3B1 /* DiaryDrawing */ = {
+			isa = PBXGroup;
+			children = (
+				EAB4542F27FC3DFC0002A3B1 /* DiaryDrawingRouter.swift */,
+				EAB4543027FC3DFC0002A3B1 /* DiaryDrawingViewController.swift */,
+				EAB4543127FC3DFC0002A3B1 /* DiaryDrawingBuilder.swift */,
+				EAB4543227FC3DFC0002A3B1 /* DiaryDrawingInteractor.swift */,
+			);
+			path = DiaryDrawing;
 			sourceTree = "<group>";
 		};
 		EABF17EF27DB576A002740C0 /* EmptyDiaryList */ = {
@@ -349,6 +387,7 @@
 		EAFE864727D0E1DF00519243 /* RIBs */ = {
 			isa = PBXGroup;
 			children = (
+				EAB4542E27FC3DD00002A3B1 /* DiaryDrawing */,
 				EAB1E21027FADA9E00EEDFDF /* DiaryTextField */,
 				EAFE864127D0DE6900519243 /* AppStart */,
 				EAFE865627D22EED00519243 /* Root */,
@@ -386,6 +425,7 @@
 				EA98C4B927DF04310045055D /* UITextView+Ext.swift */,
 				EA98C4BD27DF137E0045055D /* UIImage+Ext.swift */,
 				EAB1E21F27FC120600EEDFDF /* UserDefaults+Ext.swift */,
+				EA2840262807E7B300D8DCB1 /* UIColor+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -398,6 +438,7 @@
 				EAFE867E27D353FC00519243 /* SNSLoginButton */,
 				EABF17F227DBB829002740C0 /* DiaryListCell */,
 				EABF17EF27DB576A002740C0 /* EmptyDiaryList */,
+				92EAAA92A22244A144185FF5 /* Palette */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -407,6 +448,8 @@
 			children = (
 				EAFE868127D3563100519243 /* SNSType.swift */,
 				EAFE86D527D5D23A00519243 /* AppBarTopType.swift */,
+				EA2840282807EAC000D8DCB1 /* PaletteColorType.swift */,
+				EA28402A2807F01900D8DCB1 /* AppColorType.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -678,6 +721,7 @@
 				EABF17F127DB5786002740C0 /* EmptyDiaryListView.swift in Sources */,
 				EAFE869227D372FA00519243 /* LoggedInBuilder.swift in Sources */,
 				EAFE868B27D372EB00519243 /* LoggedOutRouter.swift in Sources */,
+				EA2840252806CB6D00D8DCB1 /* PaletteColorCell.swift in Sources */,
 				EA98C4B627DEBF4B0045055D /* CreateDiaryViewController.swift in Sources */,
 				EAFE865527D22EAE00519243 /* AppComponent.swift in Sources */,
 				EA98C4B527DEBF4B0045055D /* CreateDiaryRouter.swift in Sources */,
@@ -689,15 +733,18 @@
 				EAFE862927D0CD8C00519243 /* AppDelegate.swift in Sources */,
 				EAFE867627D23BF700519243 /* RootViewController.swift in Sources */,
 				EAFE869B27D47FD100519243 /* SNSLoginBuilder.swift in Sources */,
+				EA2840272807E7B300D8DCB1 /* UIColor+Ext.swift in Sources */,
 				EAFE869327D372FA00519243 /* LoggedInInteractor.swift in Sources */,
 				EAFE863327D0CD8C00519243 /* PictureDiary.xcdatamodeld in Sources */,
 				EAB1E21727FADB0000EEDFDF /* DiaryTextFieldBuilder.swift in Sources */,
+				EAB4543627FC3DFC0002A3B1 /* DiaryDrawingInteractor.swift in Sources */,
 				EAFE868027D3540A00519243 /* SNSLoginButton.swift in Sources */,
 				EAFE869C27D47FD100519243 /* SNSLoginInteractor.swift in Sources */,
 				EAFE867527D23BF700519243 /* RootRouter.swift in Sources */,
 				EAFE86B627D49B1400519243 /* ViewControllable+Ext.swift in Sources */,
 				EAFE86D627D5D23A00519243 /* AppBarTopType.swift in Sources */,
 				EAFE86FD27D8657D00519243 /* RootPrimaryViewController.swift in Sources */,
+				EAB4543527FC3DFC0002A3B1 /* DiaryDrawingBuilder.swift in Sources */,
 				EAFE869127D372FA00519243 /* LoggedInRouter.swift in Sources */,
 				EAFE86A927D489E100519243 /* SplashInteractor.swift in Sources */,
 				EAFE86A627D489E100519243 /* SplashRouter.swift in Sources */,
@@ -713,6 +760,8 @@
 				EAFE86B127D499C300519243 /* SignUpCompletedRouter.swift in Sources */,
 				EAFE86B227D499C300519243 /* SignUpCompletedViewController.swift in Sources */,
 				EAFE86A827D489E100519243 /* SplashBuilder.swift in Sources */,
+				EA2840292807EAC000D8DCB1 /* PaletteColorType.swift in Sources */,
+				EAB4543427FC3DFC0002A3B1 /* DiaryDrawingViewController.swift in Sources */,
 				EA98C4BE27DF137E0045055D /* UIImage+Ext.swift in Sources */,
 				EAFE86C627D5C8F500519243 /* DiaryListRouter.swift in Sources */,
 				EA98C4B827DEBF4B0045055D /* CreateDiaryInteractor.swift in Sources */,
@@ -721,14 +770,17 @@
 				EAFE86FF27D8658D00519243 /* RootSecondaryViewController.swift in Sources */,
 				EAFE869A27D47FD100519243 /* SNSLoginViewController.swift in Sources */,
 				EAFE868C27D372EB00519243 /* LoggedOutBuilder.swift in Sources */,
+				EAB4543327FC3DFC0002A3B1 /* DiaryDrawingRouter.swift in Sources */,
 				EAFE862B27D0CD8C00519243 /* SceneDelegate.swift in Sources */,
 				EAFE868427D362EB00519243 /* UILabel+Ext.swift in Sources */,
+				EA28402B2807F01900D8DCB1 /* AppColorType.swift in Sources */,
 				EAFE86D827D5F14800519243 /* RootSplitViewController.swift in Sources */,
 				EABF17F427DBB86F002740C0 /* DiaryCollectionViewCell.swift in Sources */,
 				EAFE86C927D5C8F500519243 /* DiaryListInteractor.swift in Sources */,
 				EAFE867727D23BF700519243 /* RootBuilder.swift in Sources */,
 				EAB1E22027FC120600EEDFDF /* UserDefaults+Ext.swift in Sources */,
 				EAFE86D427D5CC4000519243 /* AppBarTopView.swift in Sources */,
+				92EAA4EB9351DECAA3FD6804 /* PaletteView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
