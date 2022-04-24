@@ -30,7 +30,10 @@ final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable,
     
     /// 날짜 라벨
     private let lblDate = UILabel().then {
-        $0.text = "2022년 3월 18일"
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY년 M월 dd일"
+        $0.text = dateFormatter.string(from: date)
         $0.font = .DefaultFont.body2.font()
     }
     
