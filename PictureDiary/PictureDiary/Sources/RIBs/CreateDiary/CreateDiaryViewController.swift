@@ -82,6 +82,7 @@ final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable,
     // MARK: - Properties
     private let bag = DisposeBag()
     private var currentNumberOfLines = 0
+    private var currentWeather = WeatherType.sunny
     
     // MARK: - Lifecycles
     override func viewDidLoad() {
@@ -95,6 +96,31 @@ final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable,
     }
     
     // MARK: - Helpers
+    private func handleWeather(weather: WeatherType) {
+        switch currentWeather {
+        case .sunny:
+            ivSunny.image = UIImage(named: "ic_weather_sunny")
+        case .cloudy:
+            ivCloudy.image = UIImage(named: "ic_weather_cloudy")
+        case .rainy:
+            ivRain.image = UIImage(named: "ic_weather_rain")
+        case .snow:
+            ivSnow.image = UIImage(named: "ic_weather_snow")
+        }
+        
+        currentWeather = weather
+        switch weather {
+        case .sunny:
+            ivSunny.image = UIImage(named: "ic_weather_sunny_selected")
+        case .cloudy:
+            ivCloudy.image = UIImage(named: "ic_weather_cloudy_selected")
+        case .rainy:
+            ivRain.image = UIImage(named: "ic_weather_rain_selected")
+        case .snow:
+            ivSnow.image = UIImage(named: "ic_weather_snow_selected")
+        }
+        
+    }
 }
 
 // MARK: BaseViewController
@@ -162,10 +188,41 @@ extension CreateDiaryViewController: BaseViewController {
 // MARK: Bindable
 extension CreateDiaryViewController {
     func bind() {
+        bindWeather()
         bindPicture()
         bindTextView()
         bindButtons()
         bindText()
+    }
+    
+    func bindWeather() {
+        ivSunny.rx.tapGesture()
+            .when(.recognized)
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.handleWeather(weather: .sunny)
+            }).disposed(by: bag)
+        
+        ivRain.rx.tapGesture()
+            .when(.recognized)
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.handleWeather(weather: .rainy)
+            }).disposed(by: bag)
+        
+        ivCloudy.rx.tapGesture()
+            .when(.recognized)
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.handleWeather(weather: .cloudy)
+            }).disposed(by: bag)
+        
+        ivSnow.rx.tapGesture()
+            .when(.recognized)
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.handleWeather(weather: .snow)
+            }).disposed(by: bag)
     }
     
     func bindPicture() {
