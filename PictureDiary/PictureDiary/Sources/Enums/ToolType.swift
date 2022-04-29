@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+enum ToolType {
+    case pen
+    case eraser
+}

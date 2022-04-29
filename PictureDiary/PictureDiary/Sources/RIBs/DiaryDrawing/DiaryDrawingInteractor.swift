@@ -8,17 +8,14 @@
 import RIBs
 import RxSwift
 
-protocol DiaryDrawingRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
-}
+protocol DiaryDrawingRouting: ViewableRouting { }
 
 protocol DiaryDrawingPresentable: Presentable {
     var listener: DiaryDrawingPresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
 protocol DiaryDrawingListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+    func detachDiaryDrawing()
 }
 
 final class DiaryDrawingInteractor: PresentableInteractor<DiaryDrawingPresentable>, DiaryDrawingInteractable, DiaryDrawingPresentableListener {
@@ -41,5 +38,9 @@ final class DiaryDrawingInteractor: PresentableInteractor<DiaryDrawingPresentabl
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
+    }
+    
+    func detachDiaryDrawing() {
+        listener?.detachDiaryDrawing()
     }
 }

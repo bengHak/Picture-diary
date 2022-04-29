@@ -6,6 +6,7 @@
 //
 
 import RIBs
+import PencilKit
 
 protocol CreateDiaryInteractable: Interactable,
                                   DiaryTextFieldListener,
@@ -36,15 +37,13 @@ final class CreateDiaryRouter: ViewableRouter<CreateDiaryInteractable, CreateDia
         diaryTextFieldRouter = router
         attachChild(router)
         let vc = router.viewControllable.uiviewController
-        let nav = self.viewControllable.uiviewController.navigationController
-        nav?.pushViewController(vc, animated: true)
+        self.viewControllable.uiviewController.present(vc, animated: true)
     }
     
     func detachDiaryTextField() {
         if let router = diaryTextFieldRouter {
             detachChild(router)
-            let nav = router.viewControllable.uiviewController.navigationController
-            nav?.popViewController(animated: true)
+            self.viewControllable.uiviewController.dismiss(animated: true)
         }
     }
     
@@ -54,15 +53,14 @@ final class CreateDiaryRouter: ViewableRouter<CreateDiaryInteractable, CreateDia
         diaryDrawingRouter = router
         attachChild(router)
         let vc = router.viewControllable.uiviewController
-        let nav = self.viewControllable.uiviewController.navigationController
-        nav?.pushViewController(vc, animated: true)
+        vc.modalPresentationStyle = .overFullScreen
+        self.viewControllable.uiviewController.present(vc, animated: true)
     }
     
     func detachDiaryDrawing() {
         if let router = diaryDrawingRouter {
             detachChild(router)
-            let nav = router.viewControllable.uiviewController.navigationController
-            nav?.popViewController(animated: true)
+            self.viewControllable.uiviewController.dismiss(animated: true)
         }
     }
     

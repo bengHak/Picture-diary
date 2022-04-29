@@ -6,15 +6,16 @@
 //
 
 import RIBs
+import RxRelay
 
 protocol DiaryDrawingDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var drawingImage: BehaviorRelay<UIImage?> { get }
+    var drawingData: BehaviorRelay<Data?> { get }
 }
 
 final class DiaryDrawingComponent: Component<DiaryDrawingDependency> {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+    fileprivate var drawingImage: BehaviorRelay<UIImage?> { dependency.drawingImage }
+    fileprivate var drawingData: BehaviorRelay<Data?> { dependency.drawingData }
 }
 
 // MARK: - Builder
@@ -31,7 +32,10 @@ final class DiaryDrawingBuilder: Builder<DiaryDrawingDependency>, DiaryDrawingBu
 
     func build(withListener listener: DiaryDrawingListener) -> DiaryDrawingRouting {
         let component = DiaryDrawingComponent(dependency: dependency)
-        let viewController = DiaryDrawingViewController()
+        let viewController = DiaryDrawingViewController(
+            image: component.drawingImage,
+            data: component.drawingData
+        )
         let interactor = DiaryDrawingInteractor(presenter: viewController)
         interactor.listener = listener
         return DiaryDrawingRouter(interactor: interactor, viewController: viewController)

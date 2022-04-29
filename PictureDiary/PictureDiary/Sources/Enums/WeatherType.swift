@@ -10,6 +10,6 @@ import Foundation
 enum WeatherType {
     case sunny
     case cloudy
-    case rainy
+    case rain
     case snow
 }

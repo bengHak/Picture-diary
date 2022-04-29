@@ -12,6 +12,7 @@ import RxGesture
 import UIKit
 import SnapKit
 import Then
+import PencilKit
 
 protocol CreateDiaryPresentableListener: AnyObject {
     func detachCreateDiary()
@@ -61,14 +62,17 @@ final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable,
     }
     
     /// 그림 이미지
-    private let ivPicture = UIImageView()
+    private let ivPicture = UIImageView().then {
+        $0.contentMode = .scaleAspectFill
+        $0.clipsToBounds = true
+    }
     
     /// 텍스트 일기장
     private let textview = UITextView().then {
         $0.font = .DefaultFont.body1.font()
         $0.backgroundColor = .clear
-        $0.isUserInteractionEnabled = false
         $0.tintColor = .clear
+        $0.isEditable = false
     }
     
     /// 텍스트 뷰 placeholder
@@ -83,8 +87,23 @@ final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable,
     private let bag = DisposeBag()
     private var currentNumberOfLines = 0
     private var currentWeather = WeatherType.sunny
+    private var drawingData: BehaviorRelay<Data?>
+    private var drawingImage: BehaviorRelay<UIImage?>
     
     // MARK: - Lifecycles
+    init(
+        drawingImage: BehaviorRelay<UIImage?>,
+        drawingData: BehaviorRelay<Data?>
+    ) {
+        self.drawingImage = drawingImage
+        self.drawingData = drawingData
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -102,7 +121,7 @@ final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable,
             ivSunny.image = UIImage(named: "ic_weather_sunny")
         case .cloudy:
             ivCloudy.image = UIImage(named: "ic_weather_cloudy")
-        case .rainy:
+        case .rain:
             ivRain.image = UIImage(named: "ic_weather_rain")
         case .snow:
             ivSnow.image = UIImage(named: "ic_weather_snow")
@@ -114,7 +133,7 @@ final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable,
             ivSunny.image = UIImage(named: "ic_weather_sunny_selected")
         case .cloudy:
             ivCloudy.image = UIImage(named: "ic_weather_cloudy_selected")
-        case .rainy:
+        case .rain:
             ivRain.image = UIImage(named: "ic_weather_rain_selected")
         case .snow:
             ivSnow.image = UIImage(named: "ic_weather_snow_selected")
@@ -148,29 +167,22 @@ extension CreateDiaryViewController: BaseViewController {
         }
         
         ivPictureFrame.snp.makeConstraints {
-            $0.top.equalTo(lblDate.snp.bottom).offset(24)
-            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
-            let ratio = ivPictureFrame.image?.getImageRatio()
             let w: CGFloat
-            // 아이폰
-            if view.bounds.width < 500 {
+            let ratio = ivPictureFrame.image?.getImageRatio()
+            if UITraitCollection.current.horizontalSizeClass == .compact {
                 w = view.bounds.width - 40
             } else {
-                // 아이패드
-                if view.bounds.width < view.bounds.height {
-                    // 세로
-                    w = view.bounds.width - 40 - 360
-                } else {
-                    // 가로
-                    w = 340
-                }
+                w = 340
             }
             let h = Float(w) * Float(ratio!)
+            $0.width.equalTo(w)
             $0.height.equalTo(h)
+            $0.top.equalTo(lblDate.snp.bottom).offset(24)
+            $0.centerX.equalTo(view.safeAreaLayoutGuide)
         }
         
         ivPicture.snp.makeConstraints {
-            $0.edges.equalTo(ivPictureFrame)
+            $0.edges.equalTo(ivPictureFrame).inset(10)
         }
         
         textview.snp.remakeConstraints {
@@ -193,6 +205,7 @@ extension CreateDiaryViewController {
         bindTextView()
         bindButtons()
         bindText()
+        bindDrawingData()
     }
     
     func bindWeather() {
@@ -207,7 +220,7 @@ extension CreateDiaryViewController {
             .when(.recognized)
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                self.handleWeather(weather: .rainy)
+                self.handleWeather(weather: .rain)
             }).disposed(by: bag)
         
         ivCloudy.rx.tapGesture()
@@ -264,6 +277,17 @@ extension CreateDiaryViewController {
                 guard let self = self else { return }
                 self.textview.setAttributedText(text)
                 self.lblPlaceholder.isHidden = !text.isEmpty
+            }).disposed(by: bag)
+    }
+    
+    func bindDrawingData() {
+        drawingImage
+            .subscribe(onNext: { [weak self] image in
+                guard let self = self,
+                      let image = image else {
+                    return
+                }
+                self.ivPicture.image = image
             }).disposed(by: bag)
     }
 }
