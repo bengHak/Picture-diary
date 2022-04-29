@@ -6,6 +6,7 @@
 //
 
 import RIBs
+import RxRelay
 
 protocol CreateDiaryDependency: Dependency {
     // TODO: Declare the set of dependencies required by this RIB, but cannot be
@@ -13,7 +14,20 @@ protocol CreateDiaryDependency: Dependency {
 }
 
 final class CreateDiaryComponent: Component<CreateDiaryDependency>,
-                                  DiaryTextFieldDependency {
+                                  DiaryTextFieldDependency,
+                                  DiaryDrawingDependency {
+    var drawingImage: BehaviorRelay<UIImage?>
+    var drawingData: BehaviorRelay<Data?>
+    
+    init(
+        dependency: CreateDiaryDependency,
+        drawingImage: BehaviorRelay<UIImage?>,
+        drawingData: BehaviorRelay<Data?>
+    ) {
+        self.drawingImage = drawingImage
+        self.drawingData = drawingData
+        super.init(dependency: dependency)
+    }
     
 }
 
@@ -30,14 +44,28 @@ final class CreateDiaryBuilder: Builder<CreateDiaryDependency>, CreateDiaryBuild
     }
 
     func build(withListener listener: CreateDiaryListener) -> CreateDiaryRouting {
-        let component = CreateDiaryComponent(dependency: dependency)
-        let viewController = CreateDiaryViewController()
+        let drawingImage = BehaviorRelay<UIImage?>(value: nil)
+        let drawingData = BehaviorRelay<Data?>(value: nil)
+        
+        let component = CreateDiaryComponent(
+            dependency: dependency,
+            drawingImage: drawingImage,
+            drawingData: drawingData
+        )
+        
+        let viewController = CreateDiaryViewController(
+            drawingImage: drawingImage,
+            drawingData: drawingData
+        )
+        
         let interactor = CreateDiaryInteractor(presenter: viewController)
         interactor.listener = listener
         
         let diaryTextFieldBuilder = DiaryTextFieldBuilder(dependency: component)
+        let diaryDrawingBuilder = DiaryDrawingBuilder(dependency: component)
         return CreateDiaryRouter(interactor: interactor,
                                  viewController: viewController,
-                                 diaryTextFieldBuilder: diaryTextFieldBuilder)
+                                 diaryTextFieldBuilder: diaryTextFieldBuilder,
+                                 diaryDrawingBuilder: diaryDrawingBuilder)
     }
 }
