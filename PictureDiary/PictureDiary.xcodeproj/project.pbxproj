@@ -13,6 +13,7 @@
 		EA2840272807E7B300D8DCB1 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2840262807E7B300D8DCB1 /* UIColor+Ext.swift */; };
 		EA2840292807EAC000D8DCB1 /* PaletteColorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2840282807EAC000D8DCB1 /* PaletteColorType.swift */; };
 		EA28402B2807F01900D8DCB1 /* AppColorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA28402A2807F01900D8DCB1 /* AppColorType.swift */; };
+		EA2CDCB228153D0700E6C18F /* WeatherType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2CDCB128153D0700E6C18F /* WeatherType.swift */; };
 		EA98C4B527DEBF4B0045055D /* CreateDiaryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA98C4B127DEBF4B0045055D /* CreateDiaryRouter.swift */; };
 		EA98C4B627DEBF4B0045055D /* CreateDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA98C4B227DEBF4B0045055D /* CreateDiaryViewController.swift */; };
 		EA98C4B727DEBF4B0045055D /* CreateDiaryBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA98C4B327DEBF4B0045055D /* CreateDiaryBuilder.swift */; };
@@ -49,6 +50,9 @@
 		EABF181A27DC500A002740C0 /* UhBee-puding.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EABF181127DC500A002740C0 /* UhBee-puding.ttf */; };
 		EABF181B27DC500A002740C0 /* KyoboHandwriting2020pdy.otf in Resources */ = {isa = PBXBuildFile; fileRef = EABF181227DC500A002740C0 /* KyoboHandwriting2020pdy.otf */; };
 		EABF181C27DC500A002740C0 /* UhBee-QUEEN-J.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EABF181327DC500A002740C0 /* UhBee-QUEEN-J.ttf */; };
+		EAF0C59528082F9800E0640B /* ToolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF0C59428082F9800E0640B /* ToolType.swift */; };
+		EAF0C5982808339500E0640B /* ModalDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF0C5972808339500E0640B /* ModalDialog.swift */; };
+		EAF530332819C921001CE8FE /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF530322819C921001CE8FE /* CoreDataHelper.swift */; };
 		EAFE862927D0CD8C00519243 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE862827D0CD8C00519243 /* AppDelegate.swift */; };
 		EAFE862B27D0CD8C00519243 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE862A27D0CD8C00519243 /* SceneDelegate.swift */; };
 		EAFE863327D0CD8C00519243 /* PictureDiary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EAFE863127D0CD8C00519243 /* PictureDiary.xcdatamodeld */; };
@@ -102,6 +106,7 @@
 		EA2840262807E7B300D8DCB1 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		EA2840282807EAC000D8DCB1 /* PaletteColorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteColorType.swift; sourceTree = "<group>"; };
 		EA28402A2807F01900D8DCB1 /* AppColorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColorType.swift; sourceTree = "<group>"; };
+		EA2CDCB128153D0700E6C18F /* WeatherType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherType.swift; sourceTree = "<group>"; };
 		EA98C4B127DEBF4B0045055D /* CreateDiaryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDiaryRouter.swift; sourceTree = "<group>"; };
 		EA98C4B227DEBF4B0045055D /* CreateDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDiaryViewController.swift; sourceTree = "<group>"; };
 		EA98C4B327DEBF4B0045055D /* CreateDiaryBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDiaryBuilder.swift; sourceTree = "<group>"; };
@@ -138,6 +143,9 @@
 		EABF181127DC500A002740C0 /* UhBee-puding.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee-puding.ttf"; sourceTree = "<group>"; };
 		EABF181227DC500A002740C0 /* KyoboHandwriting2020pdy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KyoboHandwriting2020pdy.otf; sourceTree = "<group>"; };
 		EABF181327DC500A002740C0 /* UhBee-QUEEN-J.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee-QUEEN-J.ttf"; sourceTree = "<group>"; };
+		EAF0C59428082F9800E0640B /* ToolType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolType.swift; sourceTree = "<group>"; };
+		EAF0C5972808339500E0640B /* ModalDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalDialog.swift; sourceTree = "<group>"; };
+		EAF530322819C921001CE8FE /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		EAFE862527D0CD8C00519243 /* PictureDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PictureDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAFE862827D0CD8C00519243 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAFE862A27D0CD8C00519243 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -303,6 +311,14 @@
 			path = Default;
 			sourceTree = "<group>";
 		};
+		EAF0C5962808336900E0640B /* ModalDialog */ = {
+			isa = PBXGroup;
+			children = (
+				EAF0C5972808339500E0640B /* ModalDialog.swift */,
+			);
+			path = ModalDialog;
+			sourceTree = "<group>";
+		};
 		EAFE861C27D0CD8C00519243 = {
 			isa = PBXGroup;
 			children = (
@@ -433,6 +449,7 @@
 		EAFE864D27D0E25600519243 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				EAF0C5962808336900E0640B /* ModalDialog */,
 				EAFE867D27D352EC00519243 /* Protocols */,
 				EAFE86D227D5CC2F00519243 /* AppBarTop */,
 				EAFE867E27D353FC00519243 /* SNSLoginButton */,
@@ -450,6 +467,8 @@
 				EAFE86D527D5D23A00519243 /* AppBarTopType.swift */,
 				EA2840282807EAC000D8DCB1 /* PaletteColorType.swift */,
 				EA28402A2807F01900D8DCB1 /* AppColorType.swift */,
+				EAF0C59428082F9800E0640B /* ToolType.swift */,
+				EA2CDCB128153D0700E6C18F /* WeatherType.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -472,6 +491,7 @@
 		EAFE865227D0E28200519243 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				EAF530322819C921001CE8FE /* CoreDataHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -734,6 +754,7 @@
 				EAFE867627D23BF700519243 /* RootViewController.swift in Sources */,
 				EAFE869B27D47FD100519243 /* SNSLoginBuilder.swift in Sources */,
 				EA2840272807E7B300D8DCB1 /* UIColor+Ext.swift in Sources */,
+				EAF0C5982808339500E0640B /* ModalDialog.swift in Sources */,
 				EAFE869327D372FA00519243 /* LoggedInInteractor.swift in Sources */,
 				EAFE863327D0CD8C00519243 /* PictureDiary.xcdatamodeld in Sources */,
 				EAB1E21727FADB0000EEDFDF /* DiaryTextFieldBuilder.swift in Sources */,
@@ -745,6 +766,7 @@
 				EAFE86D627D5D23A00519243 /* AppBarTopType.swift in Sources */,
 				EAFE86FD27D8657D00519243 /* RootPrimaryViewController.swift in Sources */,
 				EAB4543527FC3DFC0002A3B1 /* DiaryDrawingBuilder.swift in Sources */,
+				EA2CDCB228153D0700E6C18F /* WeatherType.swift in Sources */,
 				EAFE869127D372FA00519243 /* LoggedInRouter.swift in Sources */,
 				EAFE86A927D489E100519243 /* SplashInteractor.swift in Sources */,
 				EAFE86A627D489E100519243 /* SplashRouter.swift in Sources */,
@@ -759,9 +781,11 @@
 				EA98C4B727DEBF4B0045055D /* CreateDiaryBuilder.swift in Sources */,
 				EAFE86B127D499C300519243 /* SignUpCompletedRouter.swift in Sources */,
 				EAFE86B227D499C300519243 /* SignUpCompletedViewController.swift in Sources */,
+				EAF0C59528082F9800E0640B /* ToolType.swift in Sources */,
 				EAFE86A827D489E100519243 /* SplashBuilder.swift in Sources */,
 				EA2840292807EAC000D8DCB1 /* PaletteColorType.swift in Sources */,
 				EAB4543427FC3DFC0002A3B1 /* DiaryDrawingViewController.swift in Sources */,
+				EAF530332819C921001CE8FE /* CoreDataHelper.swift in Sources */,
 				EA98C4BE27DF137E0045055D /* UIImage+Ext.swift in Sources */,
 				EAFE86C627D5C8F500519243 /* DiaryListRouter.swift in Sources */,
 				EA98C4B827DEBF4B0045055D /* CreateDiaryInteractor.swift in Sources */,
