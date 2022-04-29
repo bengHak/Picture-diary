@@ -137,6 +137,7 @@ final class AppBarTopView: UIView {
         btnBack.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().offset(28)
+            $0.width.height.equalTo(24)
         }
     }
 }
