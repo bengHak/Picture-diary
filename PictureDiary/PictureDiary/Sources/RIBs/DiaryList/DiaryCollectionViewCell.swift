@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Then
+import PencilKit
 
 final class DiaryCollectionViewCell: UICollectionViewCell {
     
@@ -27,7 +28,8 @@ final class DiaryCollectionViewCell: UICollectionViewCell {
     
     /// 그림 일기 썸네일
     private let ivThumbnail = UIImageView().then {
-        $0.backgroundColor = .lightGray
+        $0.contentMode = .scaleAspectFill
+        $0.clipsToBounds = true
     }
     
     
@@ -72,11 +74,32 @@ final class DiaryCollectionViewCell: UICollectionViewCell {
         
         uiview.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(22)
-            $0.trailing.equalToSuperview().offset(18)
+            $0.trailing.equalToSuperview().inset(18)
+            $0.top.bottom.equalToSuperview()
         }
     }
     
-    func setDate() {
+    func setData(date: Date, weather: WeatherType, drawing: Data?) {
+        lblDate.text = date.formattedString()
+        
+        if let drawing = drawing {
+            ivThumbnail.image = UIImage(data: drawing)
+        }
+        
+        switch weather {
+        case .sunny:
+            ivWeather.image = UIImage(named: "ic_weather_sunny_selected")
+            break
+        case .cloudy:
+            ivWeather.image = UIImage(named: "ic_weather_cloudy_selected")
+            break
+        case .rain:
+            ivWeather.image = UIImage(named: "ic_weather_rain_selected")
+            break
+        case .snow:
+            ivWeather.image = UIImage(named: "ic_weather_snow_selected")
+            break
+        }
         
     }
 }

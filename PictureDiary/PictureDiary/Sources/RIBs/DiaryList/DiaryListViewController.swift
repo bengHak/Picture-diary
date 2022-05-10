@@ -18,7 +18,7 @@ protocol DiaryListPresentableListener: AnyObject {
 }
 
 final class DiaryListViewController: UIViewController, DiaryListPresentable, DiaryListViewControllable {
-
+    
     weak var listener: DiaryListPresentableListener?
     
     // MARK: - UI Properties
@@ -40,6 +40,8 @@ final class DiaryListViewController: UIViewController, DiaryListPresentable, Dia
     
     // MARK: - Properties
     private let bag = DisposeBag()
+    private var diaryList = BehaviorRelay<[PictureDiary]>(value: [])
+    private lazy var dataHelper = CoreDataHelper.shared
     
     // MARK: - Lifecycles
     override func viewDidLoad() {
@@ -50,19 +52,33 @@ final class DiaryListViewController: UIViewController, DiaryListPresentable, Dia
         configureView()
         configureSubviews()
         bind()
+        fetchDiaryList()
     }
     
     // MARK: - Helpers
+    func fetchDiaryList() {
+        print(#function)
+        diaryList.accept(dataHelper.getDiary())
+        collectionView.reloadData()
+    }
 }
 
 // MARK: BaseViewController
 extension DiaryListViewController: BaseViewController {
     func configureView() {
-        let layout = UICollectionViewLayout()
+        let layout = UICollectionViewFlowLayout()
+        let width: CGFloat
+        if UIScreen.main.traitCollection.userInterfaceIdiom == .phone {
+            width = view.frame.width
+        } else {
+            width = 360
+        }
+        layout.itemSize = CGSize(width: width, height: 212)
+        layout.minimumLineSpacing = 4.0
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(DiaryCollectionViewCell.self, forCellWithReuseIdentifier: DiaryCollectionViewCell.identifier)
         
-        [appBarTopView, lblTitle, emptyDiaryView].forEach {
+        [appBarTopView, lblTitle, emptyDiaryView, collectionView].forEach {
             view.addSubview($0)
         }
     }
@@ -83,12 +99,13 @@ extension DiaryListViewController: BaseViewController {
             $0.center.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(200)
         }
-        // emptyDiaryView.isHidden = true
+        emptyDiaryView.isHidden = false
         
-//        collectionView.snp.makeConstraints {
-//            $0.center.equalTo(view.safeAreaLayoutGuide)
-//        }
-//        collectionView.isHidden = true
+        collectionView.snp.makeConstraints {
+            $0.top.equalTo(lblTitle.snp.bottom).offset(20)
+            $0.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+        collectionView.isHidden = true
     }
 }
 
@@ -108,6 +125,27 @@ extension DiaryListViewController {
     }
     
     func bindCollectionView() {
+        diaryList
+            .bind(to: collectionView.rx.items(
+                cellIdentifier: DiaryCollectionViewCell.identifier,
+                cellType: DiaryCollectionViewCell.self
+            )) { index, item, cell in
+                cell.setData(date: item.date ?? Date(),
+                             weather: WeatherType(rawValue: item.weather) ?? .sunny,
+                             drawing: item.drawing)
+            }.disposed(by: bag)
         
+        diaryList
+            .subscribe(onNext: { [weak self] items in
+                guard let self = self else { return }
+                if items.count == 0 {
+                    self.collectionView.isHidden = true
+                    self.emptyDiaryView.isHidden = false
+                } else {
+                    self.collectionView.isHidden = false
+                    self.emptyDiaryView.isHidden = true
+                }
+                self.collectionView.reloadData()
+            }).disposed(by: bag)
     }
 }
