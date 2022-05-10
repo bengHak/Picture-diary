@@ -14,7 +14,7 @@ protocol DiaryListRouting: ViewableRouting {
 
 protocol DiaryListPresentable: Presentable {
     var listener: DiaryListPresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
+    func fetchDiaryList()
 }
 
 protocol DiaryListListener: AnyObject {
@@ -25,8 +25,10 @@ final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>, Di
 
     weak var router: DiaryListRouting?
     weak var listener: DiaryListListener?
+    private let dataHelper: CoreDataHelper
 
     override init(presenter: DiaryListPresentable) {
+        dataHelper = CoreDataHelper.shared
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -43,5 +45,9 @@ final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>, Di
     
     func attachCreateDiary() {
         listener?.attachCreateDiary()
+    }
+    
+    func reloadDiaryList() {
+        presenter.fetchDiaryList()
     }
 }

@@ -44,6 +44,7 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
     }
     
     func detachCreateDiary() {
+        #warning("here")
         router?.detachCreateDiary()
     }
 }

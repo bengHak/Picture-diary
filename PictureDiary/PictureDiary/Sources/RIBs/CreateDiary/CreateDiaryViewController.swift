@@ -31,10 +31,7 @@ final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable,
     
     /// 날짜 라벨
     private let lblDate = UILabel().then {
-        let date = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY년 M월 dd일"
-        $0.text = dateFormatter.string(from: date)
+        $0.text = Date().formattedString()
         $0.font = .DefaultFont.body2.font()
     }
     
@@ -87,6 +84,7 @@ final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable,
     private let bag = DisposeBag()
     private var currentNumberOfLines = 0
     private var currentWeather = WeatherType.sunny
+    private var currentDate = Date()
     private var drawingData: BehaviorRelay<Data?>
     private var drawingImage: BehaviorRelay<UIImage?>
     
@@ -266,8 +264,15 @@ extension CreateDiaryViewController {
         
         appBarTop.btnCompleted.rx.tap
             .subscribe(onNext: { [weak self] _ in
-#warning("완료 로직")
-                self?.listener?.detachCreateDiary()
+                guard let self = self else { return }
+                let dataHelper = CoreDataHelper.shared
+                dataHelper.saveDiary(date: self.currentDate,
+                                     weather: self.currentWeather,
+                                     drawing: self.drawingImage.value!.pngData(),
+                                     content: self.textview.text) { success in
+                    print(success)
+                }
+                self.listener?.detachCreateDiary()
             }).disposed(by: bag)
     }
     
