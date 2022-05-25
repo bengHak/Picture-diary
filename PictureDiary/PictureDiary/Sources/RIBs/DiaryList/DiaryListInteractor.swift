@@ -19,9 +19,12 @@ protocol DiaryListPresentable: Presentable {
 
 protocol DiaryListListener: AnyObject {
     func attachCreateDiary()
+    func attachDiaryDetail(diary: PictureDiary)
 }
 
-final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>, DiaryListInteractable, DiaryListPresentableListener {
+final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>,
+                                 DiaryListInteractable,
+                                 DiaryListPresentableListener {
 
     weak var router: DiaryListRouting?
     weak var listener: DiaryListListener?
@@ -49,5 +52,9 @@ final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>, Di
     
     func reloadDiaryList() {
         presenter.fetchDiaryList()
+    }
+    
+    func attachDiaryDetail(diary: PictureDiary) {
+        listener?.attachDiaryDetail(diary: diary)
     }
 }

@@ -19,7 +19,7 @@ class RootSecondaryViewController: UIViewController, LoggedInSecondaryViewContro
     
     // MARK: - UI Properties
     private let lblSecondary = UILabel().then {
-        $0.text = "Secondary"
+        $0.text = "그림일기 쓱쓱 입니다!"
     }
     
     // MARK: - Properties
@@ -27,7 +27,7 @@ class RootSecondaryViewController: UIViewController, LoggedInSecondaryViewContro
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .white
         
         configureView()
         configureSubviews()
