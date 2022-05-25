@@ -18,7 +18,7 @@ protocol DiaryDetailPresentable: Presentable {
 }
 
 protocol DiaryDetailListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+    func detachDiaryDetail()
 }
 
 final class DiaryDetailInteractor: PresentableInteractor<DiaryDetailPresentable>, DiaryDetailInteractable, DiaryDetailPresentableListener {
@@ -42,4 +42,9 @@ final class DiaryDetailInteractor: PresentableInteractor<DiaryDetailPresentable>
         super.willResignActive()
         // TODO: Pause any business logic.
     }
+    
+    func detachDiaryDetail() {
+        listener?.detachDiaryDetail()
+    }
+    
 }

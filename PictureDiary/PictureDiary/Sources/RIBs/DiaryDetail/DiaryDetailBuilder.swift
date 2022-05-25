@@ -8,13 +8,12 @@
 import RIBs
 
 protocol DiaryDetailDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var pictureDiary: PictureDiary { get }
 }
 
 final class DiaryDetailComponent: Component<DiaryDetailDependency> {
 
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+    fileprivate var pictureDiary: PictureDiary { dependency.pictureDiary }
 }
 
 // MARK: - Builder
@@ -31,7 +30,7 @@ final class DiaryDetailBuilder: Builder<DiaryDetailDependency>, DiaryDetailBuild
 
     func build(withListener listener: DiaryDetailListener) -> DiaryDetailRouting {
         let component = DiaryDetailComponent(dependency: dependency)
-        let viewController = DiaryDetailViewController()
+        let viewController = DiaryDetailViewController(diary: component.pictureDiary)
         let interactor = DiaryDetailInteractor(presenter: viewController)
         interactor.listener = listener
         return DiaryDetailRouter(interactor: interactor, viewController: viewController)
