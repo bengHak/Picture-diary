@@ -17,6 +17,10 @@
 		EA2840292807EAC000D8DCB1 /* PaletteColorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2840282807EAC000D8DCB1 /* PaletteColorType.swift */; };
 		EA28402B2807F01900D8DCB1 /* AppColorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA28402A2807F01900D8DCB1 /* AppColorType.swift */; };
 		EA2CDCB228153D0700E6C18F /* WeatherType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2CDCB128153D0700E6C18F /* WeatherType.swift */; };
+		EA625C41282B2B23002BCABD /* DiaryDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA625C3D282B2B23002BCABD /* DiaryDetailRouter.swift */; };
+		EA625C42282B2B23002BCABD /* DiaryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA625C3E282B2B23002BCABD /* DiaryDetailViewController.swift */; };
+		EA625C43282B2B23002BCABD /* DiaryDetailBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA625C3F282B2B23002BCABD /* DiaryDetailBuilder.swift */; };
+		EA625C44282B2B23002BCABD /* DiaryDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA625C40282B2B23002BCABD /* DiaryDetailInteractor.swift */; };
 		EA98C4B527DEBF4B0045055D /* CreateDiaryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA98C4B127DEBF4B0045055D /* CreateDiaryRouter.swift */; };
 		EA98C4B627DEBF4B0045055D /* CreateDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA98C4B227DEBF4B0045055D /* CreateDiaryViewController.swift */; };
 		EA98C4B727DEBF4B0045055D /* CreateDiaryBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA98C4B327DEBF4B0045055D /* CreateDiaryBuilder.swift */; };
@@ -113,6 +117,10 @@
 		EA2840282807EAC000D8DCB1 /* PaletteColorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteColorType.swift; sourceTree = "<group>"; };
 		EA28402A2807F01900D8DCB1 /* AppColorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColorType.swift; sourceTree = "<group>"; };
 		EA2CDCB128153D0700E6C18F /* WeatherType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherType.swift; sourceTree = "<group>"; };
+		EA625C3D282B2B23002BCABD /* DiaryDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDetailRouter.swift; sourceTree = "<group>"; };
+		EA625C3E282B2B23002BCABD /* DiaryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDetailViewController.swift; sourceTree = "<group>"; };
+		EA625C3F282B2B23002BCABD /* DiaryDetailBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDetailBuilder.swift; sourceTree = "<group>"; };
+		EA625C40282B2B23002BCABD /* DiaryDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDetailInteractor.swift; sourceTree = "<group>"; };
 		EA98C4B127DEBF4B0045055D /* CreateDiaryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDiaryRouter.swift; sourceTree = "<group>"; };
 		EA98C4B227DEBF4B0045055D /* CreateDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDiaryViewController.swift; sourceTree = "<group>"; };
 		EA98C4B327DEBF4B0045055D /* CreateDiaryBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDiaryBuilder.swift; sourceTree = "<group>"; };
@@ -234,6 +242,17 @@
 				E8662C61FC7779CDCA018991 /* Pods_PictureDiary.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA625C3C282B2B04002BCABD /* DiaryDetail */ = {
+			isa = PBXGroup;
+			children = (
+				EA625C3D282B2B23002BCABD /* DiaryDetailRouter.swift */,
+				EA625C3E282B2B23002BCABD /* DiaryDetailViewController.swift */,
+				EA625C3F282B2B23002BCABD /* DiaryDetailBuilder.swift */,
+				EA625C40282B2B23002BCABD /* DiaryDetailInteractor.swift */,
+			);
+			path = DiaryDetail;
 			sourceTree = "<group>";
 		};
 		EA98C4B027DEBF360045055D /* CreateDiary */ = {
@@ -400,6 +419,7 @@
 		EAFE864727D0E1DF00519243 /* RIBs */ = {
 			isa = PBXGroup;
 			children = (
+				EA625C3C282B2B04002BCABD /* DiaryDetail */,
 				EAB4542E27FC3DD00002A3B1 /* DiaryDrawing */,
 				EAB1E21027FADA9E00EEDFDF /* DiaryTextField */,
 				EAFE864127D0DE6900519243 /* AppStart */,
@@ -768,6 +788,7 @@
 				EAFE869927D47FD100519243 /* SNSLoginRouter.swift in Sources */,
 				EAFE867A27D3507100519243 /* BaseViewController.swift in Sources */,
 				EA98C4BA27DF04310045055D /* UITextView+Ext.swift in Sources */,
+				EA625C42282B2B23002BCABD /* DiaryDetailViewController.swift in Sources */,
 				EABF180827DBBB5F002740C0 /* UIFont+Ext.swift in Sources */,
 				EAFE86C827D5C8F500519243 /* DiaryListBuilder.swift in Sources */,
 				EAB1E21527FADB0000EEDFDF /* DiaryTextFieldRouter.swift in Sources */,
@@ -775,10 +796,12 @@
 				EAFE86C727D5C8F500519243 /* DiaryListViewController.swift in Sources */,
 				EA98C4B727DEBF4B0045055D /* CreateDiaryBuilder.swift in Sources */,
 				EAFE86B127D499C300519243 /* SignUpCompletedRouter.swift in Sources */,
+				EA625C44282B2B23002BCABD /* DiaryDetailInteractor.swift in Sources */,
 				EAFE86B227D499C300519243 /* SignUpCompletedViewController.swift in Sources */,
 				EAF0C59528082F9800E0640B /* ToolType.swift in Sources */,
 				EAFE86A827D489E100519243 /* SplashBuilder.swift in Sources */,
 				EA2840292807EAC000D8DCB1 /* PaletteColorType.swift in Sources */,
+				EA625C43282B2B23002BCABD /* DiaryDetailBuilder.swift in Sources */,
 				EAB4543427FC3DFC0002A3B1 /* DiaryDrawingViewController.swift in Sources */,
 				EAF530332819C921001CE8FE /* CoreDataHelper.swift in Sources */,
 				EA98C4BE27DF137E0045055D /* UIImage+Ext.swift in Sources */,
@@ -799,6 +822,7 @@
 				EAFE86C927D5C8F500519243 /* DiaryListInteractor.swift in Sources */,
 				EAFE867727D23BF700519243 /* RootBuilder.swift in Sources */,
 				EAB1E22027FC120600EEDFDF /* UserDefaults+Ext.swift in Sources */,
+				EA625C41282B2B23002BCABD /* DiaryDetailRouter.swift in Sources */,
 				EAFE86D427D5CC4000519243 /* AppBarTopView.swift in Sources */,
 				92EAA4EB9351DECAA3FD6804 /* PaletteView.swift in Sources */,
 			);

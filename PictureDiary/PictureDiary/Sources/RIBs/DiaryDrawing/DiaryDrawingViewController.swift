@@ -59,7 +59,7 @@ final class DiaryDrawingViewController: UIViewController, DiaryDrawingPresentabl
     private let uiviewPalette = PaletteView()
     
     /// 모달 뷰
-    private let modalView = ModalDialog()
+    private lazy var modalView = ModalDialog()
     
     // MARK: - Properties
     private let bag = DisposeBag()
@@ -129,7 +129,10 @@ final class DiaryDrawingViewController: UIViewController, DiaryDrawingPresentabl
     }
     
     private func showModal() {
-        modalView.isHidden = false
+        view.addSubview(modalView)
+        modalView.snp.makeConstraints { $0.edges.equalToSuperview() }
+        modalView.setButton(message: "변경사항을 저장하지 않으시겠어요?", leftMessage: "취소", rightMessage: "네")
+        bindModalButtons()
     }
 }
 
@@ -138,7 +141,7 @@ extension DiaryDrawingViewController: BaseViewController {
         canvasView.delegate = self
         canvasView.tool = pen
         
-        [appBarTop, upperBorder, canvasView, btnUndo, btnRedo, uiviewPalette, btnPen, btnEraser, modalView]
+        [appBarTop, upperBorder, canvasView, btnUndo, btnRedo, uiviewPalette, btnPen, btnEraser]
             .forEach { view.addSubview($0) }
     }
     
@@ -187,12 +190,6 @@ extension DiaryDrawingViewController: BaseViewController {
             $0.bottom.equalTo(btnEraser.snp.top).offset(-20)
             $0.width.height.equalTo(40)
         }
-        
-        modalView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        modalView.setButton(message: "변경사항을 저장하지 않으시겠어요?", leftMessage: "취소", rightMessage: "네")
-        modalView.isHidden = true
     }
 }
 
@@ -203,7 +200,6 @@ extension DiaryDrawingViewController {
         bindStrokeWidth()
         bindButtons()
         bindAppBarButtons()
-        bindModalButtons()
     }
     
     func bindStrokeColor() {
@@ -298,7 +294,7 @@ extension DiaryDrawingViewController {
             .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                self.modalView.isHidden = true
+                self.modalView.removeFromSuperview()
             }).disposed(by: bag)
         
         modalView.btnRight.rx.tap

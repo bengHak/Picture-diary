@@ -9,6 +9,7 @@ import RIBs
 
 protocol LoggedInInteractable: Interactable,
                                DiaryListListener,
+                               DiaryDetailListener,
                                CreateDiaryListener {
     var router: LoggedInRouting? { get set }
     var listener: LoggedInListener? { get set }
@@ -25,11 +26,13 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
          primaryViewController: LoggedInPrimaryViewControllable,
          secondaryViewController: LoggedInSecondaryViewControllable,
          diaryListBuilder: DiaryListBuildable,
+         diaryDetailBuilder: DiaryDetailBuildable,
          createDiaryBuilder: CreateDiaryBuildable) {
         self.splitViewController = splitViewController
         self.primaryViewController = primaryViewController
         self.secondaryViewController = secondaryViewController
         self.diaryListBuilder = diaryListBuilder
+        self.diaryDetailBuilder = diaryDetailBuilder
         self.createDiaryBuilder = createDiaryBuilder
         super.init(interactor: interactor)
         interactor.router = self
@@ -61,6 +64,23 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
         }
     }
     
+    func routeToDiaryDetail() {
+        let router = diaryDetailBuilder.build(withListener: interactor)
+        diaryDetailRouter = router
+        attachChild(router)
+        let vc = router.viewControllable.uiviewController
+        splitViewController.uiviewController.showDetailViewController(vc, sender: nil)
+    }
+    
+    func detachDiaryDetail() {
+        if let router = diaryDetailRouter {
+            let navC = router.viewControllable.uiviewController.navigationController
+            navC?.popToRootViewController(animated: false)
+            navC?.navigationController?.popViewController(animated: false)
+            detachChild(router)
+        }
+    }
+    
     func routeToCreateDiary() {
         let router = createDiaryBuilder.build(withListener: interactor)
         createDiaryRouter = router
@@ -75,12 +95,19 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
             navC?.popToRootViewController(animated: false)
             navC?.navigationController?.popViewController(animated: false)
             detachChild(router)
+            
+            if let vc = diaryListRouter?.viewControllable.uiviewController as? DiaryListViewController {
+                vc.fetchDiaryList()
+            }
         }
     }
     
     // MARK: - Private
     private let diaryListBuilder: DiaryListBuildable
     private var diaryListRouter: DiaryListRouting?
+    
+    private let diaryDetailBuilder: DiaryDetailBuildable
+    private var diaryDetailRouter: DiaryDetailRouting?
     
     private let createDiaryBuilder: CreateDiaryBuildable
     private var createDiaryRouter: CreateDiaryRouting?

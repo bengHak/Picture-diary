@@ -15,6 +15,7 @@ import Then
 
 protocol DiaryListPresentableListener: AnyObject {
     func attachCreateDiary()
+    func attachDiaryDetail(diary: PictureDiary)
 }
 
 final class DiaryListViewController: UIViewController, DiaryListPresentable, DiaryListViewControllable {
@@ -57,7 +58,6 @@ final class DiaryListViewController: UIViewController, DiaryListPresentable, Dia
     
     // MARK: - Helpers
     func fetchDiaryList() {
-        print(#function)
         diaryList.accept(dataHelper.getDiary())
         collectionView.reloadData()
     }
@@ -122,6 +122,12 @@ extension DiaryListViewController {
                 guard let self = self else { return }
                 self.listener?.attachCreateDiary()
             }).disposed(by: emptyDiaryView.bag)
+        
+        appBarTopView.btnCreate.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.listener?.attachCreateDiary()
+            }).disposed(by: bag)
     }
     
     func bindCollectionView() {
@@ -146,6 +152,12 @@ extension DiaryListViewController {
                     self.emptyDiaryView.isHidden = true
                 }
                 self.collectionView.reloadData()
+            }).disposed(by: bag)
+        
+        collectionView.rx.modelSelected(PictureDiary.self)
+            .subscribe(onNext: { [weak self] diary in
+                guard let self = self else { return }
+                self.listener?.attachDiaryDetail(diary: diary)
             }).disposed(by: bag)
     }
 }

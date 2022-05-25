@@ -113,6 +113,7 @@ final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable,
     }
     
     // MARK: - Helpers
+    #warning("날씨 관련 기능 extension으로 추출하기")
     private func handleWeather(weather: WeatherType) {
         switch currentWeather {
         case .sunny:
@@ -265,6 +266,13 @@ extension CreateDiaryViewController {
         appBarTop.btnCompleted.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
+                
+                if self.textview.text.isEmpty {
+                    #warning("텍스트 없는 일기는 저장하지 않게하는 로직 추가하기")
+                    print("🔴 일기가 입력되지 않았습니다.")
+                    return
+                }
+                
                 let dataHelper = CoreDataHelper.shared
                 dataHelper.saveDiary(date: self.currentDate,
                                      weather: self.currentWeather,

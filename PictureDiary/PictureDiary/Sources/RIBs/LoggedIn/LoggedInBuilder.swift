@@ -6,6 +6,7 @@
 //
 
 import RIBs
+import RxRelay
 
 protocol LoggedInDependency: Dependency {
     var rootSplitViewController: LoggedInSplitViewControllable { get }
@@ -15,7 +16,9 @@ protocol LoggedInDependency: Dependency {
 
 final class LoggedInComponent: Component<LoggedInDependency>,
                                DiaryListDependency,
-                               CreateDiaryDependency {
+                               DiaryDetailDependency,
+                               CreateDiaryDependency,
+                               LoggedInInteractorDependency {
     fileprivate var rootSplitViewController: LoggedInSplitViewControllable {
         return dependency.rootSplitViewController
     }
@@ -27,6 +30,10 @@ final class LoggedInComponent: Component<LoggedInDependency>,
     fileprivate var secondaryViewController: LoggedInSecondaryViewControllable {
         return dependency.secondaryViewController
     }
+    
+    var pictureDiaryBehaviorRelay = BehaviorRelay<PictureDiary?>(value: nil)
+
+    var pictureDiary: PictureDiary { pictureDiaryBehaviorRelay.value! }
 }
 
 // MARK: - Builder
@@ -43,16 +50,18 @@ final class LoggedInBuilder: Builder<LoggedInDependency>, LoggedInBuildable {
 
     func build(withListener listener: LoggedInListener) -> LoggedInRouting {
         let component = LoggedInComponent(dependency: dependency)
-        let interactor = LoggedInInteractor()
+        let interactor = LoggedInInteractor(dependency: component)
         interactor.listener = listener
         
         let diaryList = DiaryListBuilder(dependency: component)
+        let diaryDetail = DiaryDetailBuilder(dependency: component)
         let createDiary = CreateDiaryBuilder(dependency: component)
         return LoggedInRouter(interactor: interactor,
                               splitViewController: component.rootSplitViewController,
                               primaryViewController: component.primaryVieController,
                               secondaryViewController: component.secondaryViewController,
                               diaryListBuilder: diaryList,
+                              diaryDetailBuilder: diaryDetail,
                               createDiaryBuilder: createDiary)
     }
 }

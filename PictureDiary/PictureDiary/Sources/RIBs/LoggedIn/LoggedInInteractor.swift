@@ -7,25 +7,34 @@
 
 import RIBs
 import RxSwift
+import RxRelay
 
 protocol LoggedInRouting: Routing {
     func cleanupViews()
     func routeToCreateDiary()
     func detachCreateDiary()
+    func routeToDiaryDetail()
+    func detachDiaryDetail()
 }
 
 protocol LoggedInListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
+protocol LoggedInInteractorDependency {
+    var pictureDiaryBehaviorRelay: BehaviorRelay<PictureDiary?> { get }
+}
+
 final class LoggedInInteractor: Interactor, LoggedInInteractable {
 
     weak var router: LoggedInRouting?
     weak var listener: LoggedInListener?
+    private let pictureDiaryBehaviorRelay: BehaviorRelay<PictureDiary?>
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
-    // in constructor.
-    override init() {}
+    init(dependency: LoggedInInteractorDependency) {
+        self.pictureDiaryBehaviorRelay = dependency.pictureDiaryBehaviorRelay
+        super.init()
+    }
 
     override func didBecomeActive() {
         super.didBecomeActive()
@@ -39,12 +48,14 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
         // TODO: Pause any business logic.
     }
     
-    func attachCreateDiary() {
-        router?.routeToCreateDiary()
+    func attachCreateDiary() { router?.routeToCreateDiary() }
+    
+    func detachCreateDiary() { router?.detachCreateDiary() }
+    
+    func attachDiaryDetail(diary: PictureDiary) {
+        pictureDiaryBehaviorRelay.accept(diary)
+        router?.routeToDiaryDetail()
     }
     
-    func detachCreateDiary() {
-        #warning("here")
-        router?.detachCreateDiary()
-    }
+    func detachDiaryDetail() { router?.detachDiaryDetail() }
 }
