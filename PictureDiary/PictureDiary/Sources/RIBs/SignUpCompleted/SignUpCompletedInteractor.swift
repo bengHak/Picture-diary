@@ -18,7 +18,7 @@ protocol SignUpCompletedPresentable: Presentable {
 }
 
 protocol SignUpCompletedListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+    func routeToLoggedIn()
 }
 
 final class SignUpCompletedInteractor: PresentableInteractor<SignUpCompletedPresentable>, SignUpCompletedInteractable, SignUpCompletedPresentableListener {
@@ -41,5 +41,9 @@ final class SignUpCompletedInteractor: PresentableInteractor<SignUpCompletedPres
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
+    }
+    
+    func successToLogin() {
+        listener?.routeToLoggedIn()
     }
 }

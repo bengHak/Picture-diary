@@ -33,7 +33,6 @@ final class LoggedOutInteractor: Interactor, LoggedOutInteractable {
 
     override func willResignActive() {
         super.willResignActive()
-
         router?.cleanupViews()
         // TODO: Pause any business logic.
     }
@@ -45,5 +44,9 @@ final class LoggedOutInteractor: Interactor, LoggedOutInteractable {
     
     func didSignUp() {
         router?.routeToSignUpCompleted()
+    }
+    
+    func routeToLoggedIn() {
+        listener?.routeToLoggedIn()
     }
 }

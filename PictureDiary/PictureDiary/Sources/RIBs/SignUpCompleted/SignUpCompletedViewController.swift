@@ -12,9 +12,7 @@ import SnapKit
 import Then
 
 protocol SignUpCompletedPresentableListener: AnyObject {
-    // TODO: Declare properties and methods that the view controller can invoke to perform
-    // business logic, such as signIn(). This protocol is implemented by the corresponding
-    // interactor class.
+    func successToLogin()
 }
 
 final class SignUpCompletedViewController: UIViewController,
@@ -24,11 +22,25 @@ final class SignUpCompletedViewController: UIViewController,
     weak var listener: SignUpCompletedPresentableListener?
     
     // MARK: - UI Properties
+    /// 스택
+    private let stackView = UIStackView().then {
+        $0.axis = .vertical
+        $0.alignment = .center
+        $0.spacing = 16
+    }
+    
+    /// 체크 이미지
+    private let ivComplete = UIImageView().then {
+        $0.image = UIImage(named: "ic_complete")
+        $0.contentMode = .scaleAspectFit
+    }
+    
     private let lbl = UILabel().then {
         $0.text = "회원가입이 완료되었어요!"
     }
     
     // MARK: - Properties
+    private var timer: Timer?
     
     // MARK: - Lifecycles
     override func viewDidLoad() {
@@ -39,17 +51,40 @@ final class SignUpCompletedViewController: UIViewController,
         configureSubviews()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        initializeTimer()
+    }
+    
     // MARK: - Helpers
+    private func initializeTimer() {
+        timer = Timer.scheduledTimer(
+            timeInterval: 2,
+            target: self,
+            selector: #selector(endTimer),
+            userInfo: nil,
+            repeats: false
+        )
+    }
+    
+    @objc
+    private func endTimer() {
+        guard let timer = timer else { return }
+        timer.invalidate()
+        listener?.successToLogin()
+    }
 }
 
 // MARK: BaseViewController
 extension SignUpCompletedViewController: BaseViewController {
     func configureView() {
-        view.addSubview(lbl)
+        stackView.addArrangedSubview(ivComplete)
+        stackView.addArrangedSubview(lbl)
+        view.addSubview(stackView)
     }
     
     func configureSubviews() {
-        lbl.snp.makeConstraints {
+        stackView.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
     }

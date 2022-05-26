@@ -20,6 +20,7 @@ class RootSecondaryViewController: UIViewController, LoggedInSecondaryViewContro
     // MARK: - UI Properties
     private let lblSecondary = UILabel().then {
         $0.text = "그림일기 쓱쓱 입니다!"
+        $0.textColor = .secondaryLabel
     }
     
     // MARK: - Properties

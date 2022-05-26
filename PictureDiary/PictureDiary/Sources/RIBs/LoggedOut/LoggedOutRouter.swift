@@ -35,8 +35,8 @@ final class LoggedOutRouter: Router<LoggedOutInteractable>, LoggedOutRouting {
     }
 
     func cleanupViews() {
-        detachSNSLogin()
         detachSignUpCompleted()
+        detachSNSLogin()
     }
     
     func routeToSNSLogin() {

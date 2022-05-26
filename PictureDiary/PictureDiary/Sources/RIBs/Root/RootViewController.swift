@@ -20,7 +20,7 @@ final class RootViewController: UIViewController,
     weak var listener: RootPresentableListener?
     
     override func viewDidLoad() {
-        view.backgroundColor = .gray
+        view.backgroundColor = .white
     }
     
     func present(viewController: ViewControllable) {
