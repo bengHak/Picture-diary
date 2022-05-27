@@ -88,10 +88,10 @@
 		EAFE86A727D489E100519243 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86A327D489E100519243 /* SplashViewController.swift */; };
 		EAFE86A827D489E100519243 /* SplashBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86A427D489E100519243 /* SplashBuilder.swift */; };
 		EAFE86A927D489E100519243 /* SplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86A527D489E100519243 /* SplashInteractor.swift */; };
-		EAFE86B127D499C300519243 /* SignUpCompletedRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86AD27D499C300519243 /* SignUpCompletedRouter.swift */; };
-		EAFE86B227D499C300519243 /* SignUpCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86AE27D499C300519243 /* SignUpCompletedViewController.swift */; };
-		EAFE86B327D499C300519243 /* SignUpCompletedBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86AF27D499C300519243 /* SignUpCompletedBuilder.swift */; };
-		EAFE86B427D499C300519243 /* SignUpCompletedInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86B027D499C300519243 /* SignUpCompletedInteractor.swift */; };
+		EAFE86B127D499C300519243 /* VanishingCompletiondRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86AD27D499C300519243 /* VanishingCompletiondRouter.swift */; };
+		EAFE86B227D499C300519243 /* VanishingCompletionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86AE27D499C300519243 /* VanishingCompletionViewController.swift */; };
+		EAFE86B327D499C300519243 /* VanishingCompletionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86AF27D499C300519243 /* VanishingCompletionBuilder.swift */; };
+		EAFE86B427D499C300519243 /* VanishingCompletionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86B027D499C300519243 /* VanishingCompletionInteractor.swift */; };
 		EAFE86B627D49B1400519243 /* ViewControllable+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86B527D49B1400519243 /* ViewControllable+Ext.swift */; };
 		EAFE86C627D5C8F500519243 /* DiaryListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86C227D5C8F500519243 /* DiaryListRouter.swift */; };
 		EAFE86C727D5C8F500519243 /* DiaryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86C327D5C8F500519243 /* DiaryListViewController.swift */; };
@@ -190,10 +190,10 @@
 		EAFE86A327D489E100519243 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		EAFE86A427D489E100519243 /* SplashBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashBuilder.swift; sourceTree = "<group>"; };
 		EAFE86A527D489E100519243 /* SplashInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashInteractor.swift; sourceTree = "<group>"; };
-		EAFE86AD27D499C300519243 /* SignUpCompletedRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompletedRouter.swift; sourceTree = "<group>"; };
-		EAFE86AE27D499C300519243 /* SignUpCompletedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompletedViewController.swift; sourceTree = "<group>"; };
-		EAFE86AF27D499C300519243 /* SignUpCompletedBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompletedBuilder.swift; sourceTree = "<group>"; };
-		EAFE86B027D499C300519243 /* SignUpCompletedInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompletedInteractor.swift; sourceTree = "<group>"; };
+		EAFE86AD27D499C300519243 /* VanishingCompletiondRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VanishingCompletiondRouter.swift; sourceTree = "<group>"; };
+		EAFE86AE27D499C300519243 /* VanishingCompletionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VanishingCompletionViewController.swift; sourceTree = "<group>"; };
+		EAFE86AF27D499C300519243 /* VanishingCompletionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VanishingCompletionBuilder.swift; sourceTree = "<group>"; };
+		EAFE86B027D499C300519243 /* VanishingCompletionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VanishingCompletionInteractor.swift; sourceTree = "<group>"; };
 		EAFE86B527D49B1400519243 /* ViewControllable+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewControllable+Ext.swift"; sourceTree = "<group>"; };
 		EAFE86C227D5C8F500519243 /* DiaryListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryListRouter.swift; sourceTree = "<group>"; };
 		EAFE86C327D5C8F500519243 /* DiaryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryListViewController.swift; sourceTree = "<group>"; };
@@ -419,18 +419,18 @@
 		EAFE864727D0E1DF00519243 /* RIBs */ = {
 			isa = PBXGroup;
 			children = (
+				EAFE864127D0DE6900519243 /* AppStart */,
+				EA98C4B027DEBF360045055D /* CreateDiary */,
 				EA625C3C282B2B04002BCABD /* DiaryDetail */,
 				EAB4542E27FC3DD00002A3B1 /* DiaryDrawing */,
+				EAFE86C127D5A1DD00519243 /* DiaryList */,
 				EAB1E21027FADA9E00EEDFDF /* DiaryTextField */,
-				EAFE864127D0DE6900519243 /* AppStart */,
-				EAFE865627D22EED00519243 /* Root */,
 				EAFE868627D368DF00519243 /* LoggedIn */,
 				EAFE868527D368D700519243 /* LoggedOut */,
+				EAFE865627D22EED00519243 /* Root */,
 				EAFE869427D47F9900519243 /* SNSLogin */,
-				EAFE86AC27D4999C00519243 /* SignUpCompleted */,
 				EAFE86A127D489D200519243 /* Splash */,
-				EAFE86C127D5A1DD00519243 /* DiaryList */,
-				EA98C4B027DEBF360045055D /* CreateDiary */,
+				EAFE86AC27D4999C00519243 /* VanishingCompletion */,
 			);
 			path = RIBs;
 			sourceTree = "<group>";
@@ -588,15 +588,15 @@
 			path = Splash;
 			sourceTree = "<group>";
 		};
-		EAFE86AC27D4999C00519243 /* SignUpCompleted */ = {
+		EAFE86AC27D4999C00519243 /* VanishingCompletion */ = {
 			isa = PBXGroup;
 			children = (
-				EAFE86AD27D499C300519243 /* SignUpCompletedRouter.swift */,
-				EAFE86AE27D499C300519243 /* SignUpCompletedViewController.swift */,
-				EAFE86AF27D499C300519243 /* SignUpCompletedBuilder.swift */,
-				EAFE86B027D499C300519243 /* SignUpCompletedInteractor.swift */,
+				EAFE86AD27D499C300519243 /* VanishingCompletiondRouter.swift */,
+				EAFE86AE27D499C300519243 /* VanishingCompletionViewController.swift */,
+				EAFE86AF27D499C300519243 /* VanishingCompletionBuilder.swift */,
+				EAFE86B027D499C300519243 /* VanishingCompletionInteractor.swift */,
 			);
-			path = SignUpCompleted;
+			path = VanishingCompletion;
 			sourceTree = "<group>";
 		};
 		EAFE86C127D5A1DD00519243 /* DiaryList */ = {
@@ -760,7 +760,7 @@
 				EA01F9DF282A680900A6E450 /* PictureDiary+CoreDataClass.swift in Sources */,
 				EA98C4B527DEBF4B0045055D /* CreateDiaryRouter.swift in Sources */,
 				EAFE868D27D372EB00519243 /* LoggedOutInteractor.swift in Sources */,
-				EAFE86B427D499C300519243 /* SignUpCompletedInteractor.swift in Sources */,
+				EAFE86B427D499C300519243 /* VanishingCompletionInteractor.swift in Sources */,
 				EAFE868227D3563100519243 /* SNSType.swift in Sources */,
 				EAB1E21627FADB0000EEDFDF /* DiaryTextFieldViewController.swift in Sources */,
 				EAB1E21827FADB0000EEDFDF /* DiaryTextFieldInteractor.swift in Sources */,
@@ -795,9 +795,9 @@
 				EAFE86A727D489E100519243 /* SplashViewController.swift in Sources */,
 				EAFE86C727D5C8F500519243 /* DiaryListViewController.swift in Sources */,
 				EA98C4B727DEBF4B0045055D /* CreateDiaryBuilder.swift in Sources */,
-				EAFE86B127D499C300519243 /* SignUpCompletedRouter.swift in Sources */,
+				EAFE86B127D499C300519243 /* VanishingCompletiondRouter.swift in Sources */,
 				EA625C44282B2B23002BCABD /* DiaryDetailInteractor.swift in Sources */,
-				EAFE86B227D499C300519243 /* SignUpCompletedViewController.swift in Sources */,
+				EAFE86B227D499C300519243 /* VanishingCompletionViewController.swift in Sources */,
 				EAF0C59528082F9800E0640B /* ToolType.swift in Sources */,
 				EAFE86A827D489E100519243 /* SplashBuilder.swift in Sources */,
 				EA2840292807EAC000D8DCB1 /* PaletteColorType.swift in Sources */,
@@ -807,7 +807,7 @@
 				EA98C4BE27DF137E0045055D /* UIImage+Ext.swift in Sources */,
 				EAFE86C627D5C8F500519243 /* DiaryListRouter.swift in Sources */,
 				EA98C4B827DEBF4B0045055D /* CreateDiaryInteractor.swift in Sources */,
-				EAFE86B327D499C300519243 /* SignUpCompletedBuilder.swift in Sources */,
+				EAFE86B327D499C300519243 /* VanishingCompletionBuilder.swift in Sources */,
 				EAFE867827D23BF700519243 /* RootInteractor.swift in Sources */,
 				EAFE86FF27D8658D00519243 /* RootSecondaryViewController.swift in Sources */,
 				EAFE869A27D47FD100519243 /* SNSLoginViewController.swift in Sources */,

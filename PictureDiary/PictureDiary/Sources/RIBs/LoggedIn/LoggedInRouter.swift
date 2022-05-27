@@ -10,95 +10,108 @@ import RIBs
 protocol LoggedInInteractable: Interactable,
                                DiaryListListener,
                                DiaryDetailListener,
-                               CreateDiaryListener {
+                               CreateDiaryListener,
+                               VanishingCompletionListener {
     var router: LoggedInRouting? { get set }
     var listener: LoggedInListener? { get set }
 }
 
-protocol LoggedInSplitViewControllable: ViewControllable { }
-protocol LoggedInPrimaryViewControllable: ViewControllable { }
-protocol LoggedInSecondaryViewControllable: ViewControllable { }
-
 final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
     
     init(interactor: LoggedInInteractable,
-         splitViewController: LoggedInSplitViewControllable,
-         primaryViewController: LoggedInPrimaryViewControllable,
-         secondaryViewController: LoggedInSecondaryViewControllable,
+         splitViewController: UISplitViewController,
+         primaryViewController: UINavigationController,
+         secondaryViewController: UINavigationController,
          diaryListBuilder: DiaryListBuildable,
          diaryDetailBuilder: DiaryDetailBuildable,
-         createDiaryBuilder: CreateDiaryBuildable) {
+         createDiaryBuilder: CreateDiaryBuildable,
+         vanishingCompletionBuilder: VanishingCompletionBuildable) {
         self.splitViewController = splitViewController
         self.primaryViewController = primaryViewController
         self.secondaryViewController = secondaryViewController
         self.diaryListBuilder = diaryListBuilder
         self.diaryDetailBuilder = diaryDetailBuilder
         self.createDiaryBuilder = createDiaryBuilder
+        self.vanishingCompletionBuilder = vanishingCompletionBuilder
         super.init(interactor: interactor)
         interactor.router = self
     }
     
     override func didLoad() {
         super.didLoad()
-        routePrimaryToDiaryList()
+        attachDirayListAtPrimary()
     }
     
     func cleanupViews() {
-        detachDiaryList()
-        detachCreateDiary()
+        cleanupPrimaryViews()
+        cleanupSecondaryViews()
     }
     
-    func routePrimaryToDiaryList() {
+    // MARK: - DiaryList
+    func attachDirayListAtPrimary() {
         let router = diaryListBuilder.build(withListener: interactor)
         diaryListRouter = router
         attachChild(router)
         let vc = router.viewControllable.uiviewController
         vc.navigationItem.hidesBackButton = true
-        primaryViewController.uiviewController.navigationController?.pushViewController(vc, animated: false)
+        primaryViewController.pushViewController(vc, animated: false)
     }
     
     private func detachDiaryList() {
         if let router = diaryListRouter {
-            router.viewControllable.uiviewController.navigationController?.popViewController(animated: false)
+            primaryViewController.popViewController(animated: false)
             detachChild(router)
         }
     }
     
-    func routeToDiaryDetail() {
+    // MARK: - DiaryDetail
+    func attachDiaryDetail() {
         let router = diaryDetailBuilder.build(withListener: interactor)
         diaryDetailRouter = router
         attachChild(router)
         let vc = router.viewControllable.uiviewController
-        splitViewController.uiviewController.showDetailViewController(vc, sender: nil)
+        pushViewController(vc)
     }
     
     func detachDiaryDetail() {
         if let router = diaryDetailRouter {
-            let navC = router.viewControllable.uiviewController.navigationController
-            navC?.popToRootViewController(animated: false)
-            navC?.navigationController?.popViewController(animated: false)
+            popViewController()
             detachChild(router)
         }
     }
     
-    func routeToCreateDiary() {
+    // MARK: - CreateDiary
+    func attachCreateDiary() {
         let router = createDiaryBuilder.build(withListener: interactor)
         createDiaryRouter = router
         attachChild(router)
         let vc = router.viewControllable.uiviewController
-        splitViewController.uiviewController.showDetailViewController(vc, sender: nil)
+        pushViewController(vc)
     }
     
     func detachCreateDiary() {
         if let router = createDiaryRouter {
-            let navC = router.viewControllable.uiviewController.navigationController
-            navC?.popToRootViewController(animated: false)
-            navC?.navigationController?.popViewController(animated: false)
+            popViewController()
             detachChild(router)
-            
             if let vc = diaryListRouter?.viewControllable.uiviewController as? DiaryListViewController {
                 vc.fetchDiaryList()
             }
+        }
+    }
+    
+    // MARK: - VanishingCompletion
+    func attachVanishingCompletion() {
+        let router = vanishingCompletionBuilder.build(withListener: interactor)
+        vanishingCompletionRouter = router
+        attachChild(router)
+        let vc = router.viewControllable.uiviewController
+        pushViewController(vc)
+    }
+    
+    func detachVanishingCompletion() {
+        if let router = vanishingCompletionRouter {
+            popViewController()
+            detachChild(router)
         }
     }
     
@@ -112,7 +125,37 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
     private let createDiaryBuilder: CreateDiaryBuildable
     private var createDiaryRouter: CreateDiaryRouting?
     
-    private let splitViewController: LoggedInSplitViewControllable
-    private let primaryViewController: LoggedInPrimaryViewControllable
-    private let secondaryViewController: LoggedInSecondaryViewControllable
+    private let vanishingCompletionBuilder: VanishingCompletionBuildable
+    private var vanishingCompletionRouter: VanishingCompletionRouting?
+    
+    private let splitViewController: UISplitViewController
+    private let primaryViewController: UINavigationController
+    private let secondaryViewController: UINavigationController
+    
+    // MARK: - Helpers
+    private func cleanupPrimaryViews() {
+        detachDiaryList()
+    }
+    
+    private func cleanupSecondaryViews() {
+        detachDiaryDetail()
+        detachCreateDiary()
+        detachVanishingCompletion()
+    }
+    
+    private func pushViewController(_ vc: UIViewController) {
+        if splitViewController.isCollapsed {
+            primaryViewController.pushViewController(vc, animated: false)
+        } else {
+            secondaryViewController.pushViewController(vc, animated: false)
+        }
+    }
+    
+    private func popViewController() {
+        if splitViewController.isCollapsed {
+            primaryViewController.popViewController(animated: false)
+        } else {
+            secondaryViewController.popViewController(animated: false)
+        }
+    }
 }

@@ -13,10 +13,12 @@ protocol LoggedOutDependency: Dependency {
 
 final class LoggedOutComponent: Component<LoggedOutDependency>,
                                 SNSLoginDependency,
-                                SignUpCompletedDependency {
+                                VanishingCompletionDependency {
     fileprivate var loggedOutViewController: LoggedOutViewControllable {
         return dependency.loggedOutViewController
     }
+    
+    var labelText: String { "회원가입이 완료되었어요!" }
 }
 
 // MARK: - Builder
@@ -37,10 +39,10 @@ final class LoggedOutBuilder: Builder<LoggedOutDependency>, LoggedOutBuildable {
         interactor.listener = listener
         
         let snsLogin = SNSLoginBuilder(dependency: component)
-        let signupCompleted = SignUpCompletedBuilder(dependency: component)
+        let vanishingCompletion = VanishingCompletionBuilder(dependency: component)
         return LoggedOutRouter(interactor: interactor,
                                viewController: component.loggedOutViewController,
                                snsLoginBuilder: snsLogin,
-                               signupCompletedBuilder: signupCompleted)
+                               vanishingCompletionBuilder: vanishingCompletion)
     }
 }

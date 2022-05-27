@@ -10,7 +10,7 @@ import RxSwift
 
 protocol LoggedOutRouting: Routing {
     func cleanupViews()
-    func routeToSignUpCompleted()
+    func routeToVanishingCompletion()
 }
 
 protocol LoggedOutListener: AnyObject {
@@ -43,10 +43,10 @@ final class LoggedOutInteractor: Interactor, LoggedOutInteractable {
     }
     
     func didSignUp() {
-        router?.routeToSignUpCompleted()
+        router?.routeToVanishingCompletion()
     }
     
-    func routeToLoggedIn() {
+    func detachCompletionView() {
         listener?.routeToLoggedIn()
     }
 }

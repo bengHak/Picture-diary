@@ -15,9 +15,10 @@ import Then
 import PencilKit
 
 protocol CreateDiaryPresentableListener: AnyObject {
-    func detachCreateDiary()
-    func attachDiaryTextField()
-    func attachDiaryDrawing()
+    func tapDrawingCompleteButton()
+    func tapCancleButton()
+    func routeToDiaryTextField()
+    func routeToDiaryDrawing()
     var diaryText: BehaviorRelay<String> { get }
 }
 
@@ -94,6 +95,7 @@ final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable,
         drawingImage: BehaviorRelay<UIImage?>,
         drawingData: BehaviorRelay<Data?>
     ) {
+        print(#function)
         self.drawingImage = drawingImage
         self.drawingData = drawingData
         super.init(nibName: nil, bundle: nil)
@@ -111,6 +113,10 @@ final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable,
         configureView()
         configureSubviews()
         bind()
+    }
+    
+    deinit {
+        print(#function)
     }
     
     // MARK: - Helpers
@@ -243,7 +249,7 @@ extension CreateDiaryViewController {
             .when(.recognized)
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                self.listener?.attachDiaryDrawing()
+                self.listener?.routeToDiaryDrawing()
             }).disposed(by: bag)
     }
     
@@ -252,7 +258,7 @@ extension CreateDiaryViewController {
             .when(.recognized)
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                self.listener?.attachDiaryTextField()
+                self.listener?.routeToDiaryTextField()
             }).disposed(by: bag)
     }
     
@@ -261,7 +267,7 @@ extension CreateDiaryViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
 #warning("저장하지 않고 뒤로가시겠습니까? 알려줘야되지 않을까")
-                self.listener?.detachCreateDiary()
+                self.listener?.tapCancleButton()
             }).disposed(by: bag)
         
         appBarTop.btnCompleted.rx.tap
@@ -281,7 +287,7 @@ extension CreateDiaryViewController {
                                      content: self.textview.text) { success in
                     print(success)
                 }
-                self.listener?.detachCreateDiary()
+                self.listener?.tapDrawingCompleteButton()
             }).disposed(by: bag)
     }
     

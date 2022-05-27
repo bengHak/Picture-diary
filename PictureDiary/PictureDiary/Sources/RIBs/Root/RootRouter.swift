@@ -24,8 +24,8 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
     init(interactor: RootInteractable,
          viewController: RootViewControllable,
          splitVC: RootSplitViewController,
-         primaryVC: RootPrimaryViewController,
-         secondaryVC: RootSecondaryViewController,
+         primaryVC: UINavigationController,
+         secondaryVC: UINavigationController,
          loggedInBuilder: LoggedInBuildable,
          loggedOutBuilder: LoggedOutBuildable,
          splashBuilder: SplashBuildable) {
@@ -37,13 +37,11 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
         self.splashBuilder = splashBuilder
         
         // initialize splitVC
-        let primaryNavVC = UINavigationController(rootViewController: primaryViewController)
-        let secondaryNavVC = UINavigationController(rootViewController: secondaryViewController)
         if #available(iOS 14.0, *) {
-            splitVC.setViewController(primaryNavVC, for: .primary)
-            splitVC.setViewController(secondaryNavVC, for: .secondary)
+            splitVC.setViewController(primaryVC, for: .primary)
+            splitVC.setViewController(secondaryVC, for: .secondary)
         } else {
-            splitVC.viewControllers = [primaryNavVC, secondaryNavVC]
+            splitVC.viewControllers = [primaryVC, secondaryVC]
         }
         
         super.init(interactor: interactor, viewController: viewController)
@@ -52,26 +50,31 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
     
     override func didLoad() {
         super.didLoad()
-        
         routeToLoggedOut()
     }
     
     func routeToLoggedIn() {
         if let loggedOutRouter = loggedOutRouter {
+            loggedOutRouter.cleanupViews()
             detachChild(loggedOutRouter)
+            self.loggedOutRouter = nil
         }
         switchToSplitVC()
-        let loggedIn = loggedInBuilder.build(withListener: interactor)
-        attachChild(loggedIn)
+        let router = loggedInBuilder.build(withListener: interactor)
+        self.loggedInRouter = router
+        attachChild(router)
     }
     
     func routeToLoggedOut() {
         if let loggedInRouter = loggedInRouter {
+            loggedInRouter.cleanupViews()
             detachChild(loggedInRouter)
+            self.loggedInRouter = nil
         }
         switchToLoggedOutVC()
-        let loggedOut = loggedOutBuilder.build(withListener: interactor)
-        attachChild(loggedOut)
+        let router = loggedOutBuilder.build(withListener: interactor)
+        self.loggedOutRouter = router
+        attachChild(router)
     }
     
     private func switchToSplitVC() {
@@ -81,15 +84,14 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
     
     private func switchToLoggedOutVC() {
         splitVC.uiviewController.view.window?.rootViewController = viewController.uiviewController
-        
         splitVC.uiviewController.view.window?.makeKeyAndVisible()
     }
     
     // MARK: - Private
     private let splitVC: RootSplitViewController
     
-    private let primaryViewController: RootPrimaryViewController
-    private let secondaryViewController: RootSecondaryViewController
+    private let primaryViewController: UINavigationController
+    private let secondaryViewController: UINavigationController
     
     private let loggedOutBuilder: LoggedOutBuildable
     private var loggedOutRouter: LoggedOutRouting?

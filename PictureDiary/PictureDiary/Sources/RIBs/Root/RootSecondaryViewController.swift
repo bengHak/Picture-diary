@@ -15,7 +15,7 @@ import RxSwift
 /// - 그림일기 보기
 /// - 그림일기 그리기
 /// - 설정 메뉴
-class RootSecondaryViewController: UIViewController, LoggedInSecondaryViewControllable {
+class RootSecondaryViewController: UIViewController {
     
     // MARK: - UI Properties
     private let lblSecondary = UILabel().then {

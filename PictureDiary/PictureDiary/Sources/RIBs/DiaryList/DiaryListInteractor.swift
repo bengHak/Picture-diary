@@ -18,8 +18,8 @@ protocol DiaryListPresentable: Presentable {
 }
 
 protocol DiaryListListener: AnyObject {
-    func attachCreateDiary()
-    func attachDiaryDetail(diary: PictureDiary)
+    func routeToCreateDiary()
+    func routeToDiaryDetail(diary: PictureDiary)
 }
 
 final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>,
@@ -47,7 +47,7 @@ final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>,
     }
     
     func attachCreateDiary() {
-        listener?.attachCreateDiary()
+        listener?.routeToCreateDiary()
     }
     
     func reloadDiaryList() {
@@ -55,6 +55,6 @@ final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>,
     }
     
     func attachDiaryDetail(diary: PictureDiary) {
-        listener?.attachDiaryDetail(diary: diary)
+        listener?.routeToDiaryDetail(diary: diary)
     }
 }

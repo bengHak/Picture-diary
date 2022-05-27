@@ -1,5 +1,5 @@
 //
-//  SignUpCompletedViewController.swift
+//  VanishingCompletionViewController.swift
 //  PictureDiary
 //
 //  Created by byunghak on 2022/03/06.
@@ -11,15 +11,15 @@ import UIKit
 import SnapKit
 import Then
 
-protocol SignUpCompletedPresentableListener: AnyObject {
-    func successToLogin()
+protocol VanishingCompletionPresentableListener: AnyObject {
+    func disappearAtExpiration()
 }
 
-final class SignUpCompletedViewController: UIViewController,
-                                           SignUpCompletedPresentable,
-                                           SignUpCompletedViewControllable {
-
-    weak var listener: SignUpCompletedPresentableListener?
+final class VanishingCompletionViewController: UIViewController,
+                                               VanishingCompletionPresentable,
+                                               VanishingCompletionViewControllable {
+    
+    weak var listener: VanishingCompletionPresentableListener?
     
     // MARK: - UI Properties
     /// 스택
@@ -35,17 +35,26 @@ final class SignUpCompletedViewController: UIViewController,
         $0.contentMode = .scaleAspectFit
     }
     
-    private let lbl = UILabel().then {
-        $0.text = "회원가입이 완료되었어요!"
+    private lazy var lbl = UILabel().then {
+        $0.text = self.labelText
     }
     
     // MARK: - Properties
+    private let labelText: String
     private var timer: Timer?
     
     // MARK: - Lifecycles
+    init(_ labelText: String) {
+        self.labelText = labelText
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .white
         configureView()
         configureSubviews()
@@ -58,7 +67,7 @@ final class SignUpCompletedViewController: UIViewController,
     
     // MARK: - Helpers
     private func initializeTimer() {
-        timer = Timer.scheduledTimer(
+        self.timer = Timer.scheduledTimer(
             timeInterval: 2,
             target: self,
             selector: #selector(endTimer),
@@ -71,12 +80,12 @@ final class SignUpCompletedViewController: UIViewController,
     private func endTimer() {
         guard let timer = timer else { return }
         timer.invalidate()
-        listener?.successToLogin()
+        listener?.disappearAtExpiration()
     }
 }
 
 // MARK: BaseViewController
-extension SignUpCompletedViewController: BaseViewController {
+extension VanishingCompletionViewController: BaseViewController {
     func configureView() {
         stackView.addArrangedSubview(ivComplete)
         stackView.addArrangedSubview(lbl)

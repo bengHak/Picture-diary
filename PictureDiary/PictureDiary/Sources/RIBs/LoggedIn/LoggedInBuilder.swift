@@ -9,31 +9,34 @@ import RIBs
 import RxRelay
 
 protocol LoggedInDependency: Dependency {
-    var rootSplitViewController: LoggedInSplitViewControllable { get }
-    var primaryViewController: LoggedInPrimaryViewControllable { get }
-    var secondaryViewController: LoggedInSecondaryViewControllable { get }
+    var splitViewController: UISplitViewController { get }
+    var primaryViewController: UINavigationController { get }
+    var secondaryViewController: UINavigationController { get }
 }
 
 final class LoggedInComponent: Component<LoggedInDependency>,
                                DiaryListDependency,
                                DiaryDetailDependency,
                                CreateDiaryDependency,
-                               LoggedInInteractorDependency {
-    fileprivate var rootSplitViewController: LoggedInSplitViewControllable {
-        return dependency.rootSplitViewController
+                               LoggedInInteractorDependency,
+                               VanishingCompletionDependency {
+    fileprivate var splitViewController: UISplitViewController {
+        return dependency.splitViewController
     }
     
-    fileprivate var primaryVieController: LoggedInPrimaryViewControllable {
+    fileprivate var primaryVieController: UINavigationController {
         return dependency.primaryViewController
     }
     
-    fileprivate var secondaryViewController: LoggedInSecondaryViewControllable {
+    fileprivate var secondaryViewController: UINavigationController {
         return dependency.secondaryViewController
     }
     
     var pictureDiaryBehaviorRelay = BehaviorRelay<PictureDiary?>(value: nil)
 
     var pictureDiary: PictureDiary { pictureDiaryBehaviorRelay.value! }
+    
+    var labelText: String { "오늘의 일기가 저장되었어요!" }
 }
 
 // MARK: - Builder
@@ -56,12 +59,14 @@ final class LoggedInBuilder: Builder<LoggedInDependency>, LoggedInBuildable {
         let diaryList = DiaryListBuilder(dependency: component)
         let diaryDetail = DiaryDetailBuilder(dependency: component)
         let createDiary = CreateDiaryBuilder(dependency: component)
+        let vanishingCompletion = VanishingCompletionBuilder(dependency: component)
         return LoggedInRouter(interactor: interactor,
-                              splitViewController: component.rootSplitViewController,
+                              splitViewController: component.splitViewController,
                               primaryViewController: component.primaryVieController,
                               secondaryViewController: component.secondaryViewController,
                               diaryListBuilder: diaryList,
                               diaryDetailBuilder: diaryDetail,
-                              createDiaryBuilder: createDiary)
+                              createDiaryBuilder: createDiary,
+                              vanishingCompletionBuilder: vanishingCompletion)
     }
 }

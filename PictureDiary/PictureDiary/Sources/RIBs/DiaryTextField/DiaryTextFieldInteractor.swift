@@ -56,6 +56,7 @@ final class DiaryTextFieldInteractor: PresentableInteractor<DiaryTextFieldPresen
     }
     
     // MARK: - Bind
+    #warning("RIBs에 맞지 않는 로직 구현이어서 수정이 필요함")
     func bindText() {
         diaryText.subscribe(onNext: { [weak self] text in
             guard let self = self else { return }

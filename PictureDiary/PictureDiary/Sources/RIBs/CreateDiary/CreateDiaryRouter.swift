@@ -31,8 +31,13 @@ final class CreateDiaryRouter: ViewableRouter<CreateDiaryInteractable, CreateDia
         interactor.router = self
     }
     
+    func cleanupViews() {
+        detachDiaryDrawing()
+        detachDiaryTextField()
+    }
+    
     // MARK: - DiaryTextField
-    func routeToDiaryTextField() {
+    func attachDiaryTextField() {
         let router = diaryTextFieldBuilder.build(withListener: interactor)
         diaryTextFieldRouter = router
         attachChild(router)
@@ -48,7 +53,7 @@ final class CreateDiaryRouter: ViewableRouter<CreateDiaryInteractable, CreateDia
     }
     
     // MARK: - DiaryDrawing
-    func routeToDiaryDrawing() {
+    func attachDiaryDrawing() {
         let router = diaryDrawingBuilder.build(withListener: interactor)
         diaryDrawingRouter = router
         attachChild(router)
