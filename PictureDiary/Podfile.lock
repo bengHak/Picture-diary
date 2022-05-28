@@ -1,7 +1,7 @@
 PODS:
-  - Alamofire (5.5.0)
-  - IQKeyboardManagerSwift (6.5.9)
-  - Kingfisher (7.2.0)
+  - Alamofire (5.6.1)
+  - IQKeyboardManagerSwift (6.5.10)
+  - Kingfisher (7.2.2)
   - Moya (15.0.0):
     - Moya/Core (= 15.0.0)
   - Moya/Core (15.0.0):
@@ -10,27 +10,27 @@ PODS:
     - Moya/Core
     - RxSwift (~> 6.0)
   - RIBs (0.9.3):
-    - RxRelay (~> 6.0)
-    - RxSwift (~> 6.0)
-  - RxCocoa (6.5.0):
-    - RxRelay (= 6.5.0)
-    - RxSwift (= 6.5.0)
-  - RxGesture (4.0.3):
+    - RxRelay (~> 6.0.0)
+    - RxSwift (~> 6.0.0)
+  - RxCocoa (6.0.0):
+    - RxRelay (= 6.0.0)
+    - RxSwift (= 6.0.0)
+  - RxGesture (4.0.4):
     - RxCocoa (~> 6.0)
     - RxSwift (~> 6.0)
-  - RxRelay (6.5.0):
-    - RxSwift (= 6.5.0)
-  - RxSwift (6.5.0)
+  - RxRelay (6.0.0):
+    - RxSwift (= 6.0.0)
+  - RxSwift (6.0.0)
   - SnapKit (5.0.1)
   - SwiftKeychainWrapper (4.0.1)
-  - Then (2.7.0)
+  - Then (3.0.0)
 
 DEPENDENCIES:
   - IQKeyboardManagerSwift
   - Kingfisher (~> 7.0)
   - Moya (~> 15.0)
   - Moya/RxSwift (~> 15.0)
-  - RIBs (from `https://github.com/bengHak/RIBs.git`)
+  - "RIBs (from `git@github.com:bengHak/RIBs.git`)"
   - RxCocoa (~> 6.0)
   - RxGesture (~> 4.0)
   - RxSwift (~> 6.0)
@@ -54,27 +54,27 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   RIBs:
-    :git: https://github.com/bengHak/RIBs.git
+    :git: "git@github.com:bengHak/RIBs.git"
 
 CHECKOUT OPTIONS:
   RIBs:
-    :commit: 32288939511d7a823fe59136741d840a589b3107
-    :git: https://github.com/bengHak/RIBs.git
+    :commit: 0b0948a68f4836f504a09529176e8da90909f846
+    :git: "git@github.com:bengHak/RIBs.git"
 
 SPEC CHECKSUMS:
-  Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
-  IQKeyboardManagerSwift: 6e839c575c4aa1078d58a596e41244e77abe918f
-  Kingfisher: 3ac0b75b155cabc0e544877d1a4deea29feece92
+  Alamofire: 87bd8c952f9a4454320fce00d9cc3de57bcadaf5
+  IQKeyboardManagerSwift: 52962c76ab33532f15ad9f3ff4e5715eda5335bb
+  Kingfisher: 184d4d1a8c36666e663caf8e08abe87898595c53
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
-  RIBs: e9486b99e81f8c6bfa22eaec9ec568b96f467a48
-  RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
-  RxGesture: abadd243fc36db74df43dfc893829ddde94f1a3d
-  RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
-  RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
+  RIBs: dd8df1129289d51ed4fec6e2127613d9eaba204e
+  RxCocoa: 3f79328fafa3645b34600f37c31e64c73ae3a80e
+  RxGesture: f3efb47ed2d26a8082f7b660d4a59970e275a7f8
+  RxRelay: 8d593be109c06ea850df027351beba614b012ffb
+  RxSwift: c14e798c59b9f6e9a2df8fd235602e85cc044295
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftKeychainWrapper: 807ba1d63c33a7d0613288512399cd1eda1e470c
-  Then: acfe0be7e98221c6204e12f8161459606d5d822d
+  Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
 
-PODFILE CHECKSUM: d12dc25b384670568be2ff8a76e12198cc62e3fe
+PODFILE CHECKSUM: 1ffb94a52a14ef5175a26f7ff491e4e37bfb78b8
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3
