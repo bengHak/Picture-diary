@@ -37,6 +37,8 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
         self.splashBuilder = splashBuilder
         
         // initialize splitVC
+        primaryVC.isNavigationBarHidden = true
+        secondaryVC.isNavigationBarHidden = true
         if #available(iOS 14.0, *) {
             splitVC.setViewController(primaryVC, for: .primary)
             splitVC.setViewController(secondaryVC, for: .secondary)

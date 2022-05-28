@@ -59,13 +59,14 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
     
     private func detachDiaryList() {
         if let router = diaryListRouter {
-            primaryViewController.popViewController(animated: false)
+            popViewController(router.viewControllable.uiviewController)
             detachChild(router)
         }
     }
     
     // MARK: - DiaryDetail
     func attachDiaryDetail() {
+        cleanupSecondaryViews()
         let router = diaryDetailBuilder.build(withListener: interactor)
         diaryDetailRouter = router
         attachChild(router)
@@ -75,13 +76,14 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
     
     func detachDiaryDetail() {
         if let router = diaryDetailRouter {
-            popViewController()
+            popViewController(router.viewControllable.uiviewController)
             detachChild(router)
         }
     }
     
     // MARK: - CreateDiary
     func attachCreateDiary() {
+        cleanupSecondaryViews()
         let router = createDiaryBuilder.build(withListener: interactor)
         createDiaryRouter = router
         attachChild(router)
@@ -91,7 +93,7 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
     
     func detachCreateDiary() {
         if let router = createDiaryRouter {
-            popViewController()
+            popViewController(router.viewControllable.uiviewController)
             detachChild(router)
             if let vc = diaryListRouter?.viewControllable.uiviewController as? DiaryListViewController {
                 vc.fetchDiaryList()
@@ -101,6 +103,7 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
     
     // MARK: - VanishingCompletion
     func attachVanishingCompletion() {
+        cleanupSecondaryViews()
         let router = vanishingCompletionBuilder.build(withListener: interactor)
         vanishingCompletionRouter = router
         attachChild(router)
@@ -110,7 +113,7 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
     
     func detachVanishingCompletion() {
         if let router = vanishingCompletionRouter {
-            popViewController()
+            popViewController(router.viewControllable.uiviewController)
             detachChild(router)
         }
     }
@@ -138,9 +141,20 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
     }
     
     private func cleanupSecondaryViews() {
-        detachDiaryDetail()
-        detachCreateDiary()
-        detachVanishingCompletion()
+        if diaryDetailRouter != nil {
+            detachDiaryDetail()
+            diaryDetailRouter = nil
+        }
+        
+        if createDiaryRouter != nil {
+            detachCreateDiary()
+            createDiaryRouter = nil
+        }
+        
+        if vanishingCompletionRouter != nil {
+            detachVanishingCompletion()
+            vanishingCompletionRouter = nil
+        }
     }
     
     private func pushViewController(_ vc: UIViewController) {
@@ -151,11 +165,10 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
         }
     }
     
-    private func popViewController() {
-        if splitViewController.isCollapsed {
-            primaryViewController.popViewController(animated: false)
-        } else {
-            secondaryViewController.popViewController(animated: false)
+    private func popViewController(_ viewController: UIViewController) {
+        if let vc = viewController.navigationController?.topViewController,
+           vc === viewController {
+            vc.navigationController?.popViewController(animated: false)
         }
     }
 }

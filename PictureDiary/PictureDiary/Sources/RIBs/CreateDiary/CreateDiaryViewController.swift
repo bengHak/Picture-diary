@@ -108,7 +108,6 @@ final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable,
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        navigationController?.isNavigationBarHidden = true
         
         configureView()
         configureSubviews()
