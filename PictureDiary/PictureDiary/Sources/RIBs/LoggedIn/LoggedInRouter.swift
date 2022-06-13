@@ -71,12 +71,12 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
         diaryDetailRouter = router
         attachChild(router)
         let vc = router.viewControllable.uiviewController
-        pushViewController(vc)
+        pushViewController(vc, animated: true)
     }
     
     func detachDiaryDetail() {
         if let router = diaryDetailRouter {
-            popViewController(router.viewControllable.uiviewController)
+            popViewController(router.viewControllable.uiviewController, animated: true)
             detachChild(router)
         }
     }
@@ -88,7 +88,7 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
         createDiaryRouter = router
         attachChild(router)
         let vc = router.viewControllable.uiviewController
-        pushViewController(vc)
+        pushViewController(vc, animated: true)
     }
     
     func detachCreateDiary() {
@@ -113,7 +113,7 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
     
     func detachVanishingCompletion() {
         if let router = vanishingCompletionRouter {
-            popViewController(router.viewControllable.uiviewController)
+            popViewController(router.viewControllable.uiviewController, animated: true)
             detachChild(router)
         }
     }
@@ -157,18 +157,24 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
         }
     }
     
-    private func pushViewController(_ vc: UIViewController) {
+    private func pushViewController(_ vc: UIViewController, animated: Bool = false) {
         if splitViewController.isCollapsed {
-            primaryViewController.pushViewController(vc, animated: false)
+            primaryViewController.pushViewController(vc, animated: animated)
         } else {
             secondaryViewController.pushViewController(vc, animated: false)
         }
     }
     
-    private func popViewController(_ viewController: UIViewController) {
+    #warning("그림일기 추가 완료시 viewcontroller 추가, 삭제 애니메이션 이슈 해결 필요")
+    private func popViewController(_ viewController: UIViewController, animated: Bool = false) {
         if let vc = viewController.navigationController?.topViewController,
            vc === viewController {
-            vc.navigationController?.popViewController(animated: false)
+            if splitViewController.isCollapsed {
+                vc.navigationController?.popViewController(animated: animated)
+            }
+            else {
+                vc.navigationController?.popViewController(animated: false)
+            }
         }
     }
 }
