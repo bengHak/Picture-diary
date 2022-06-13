@@ -11,12 +11,12 @@ extension UITextView {
     func numberOfLine() -> Int {
         let size = CGSize(width: frame.width, height: .infinity)
         let estimatedSize = sizeThatFits(size)
-        return Int(estimatedSize.height / (self.font!.lineHeight+20))
+        return Int(estimatedSize.height / (self.font!.lineHeight))
     }
     
-    func setAttributedText(_ text: String) {
+    func setAttributedText(_ text: String, lineSpacing: CGFloat) {
         let style = NSMutableParagraphStyle()
-        style.lineSpacing = 18
+        style.lineSpacing = lineSpacing
         let attributes = [
             NSAttributedString.Key.paragraphStyle : style,
             .font: UIFont.DefaultFont.body1.font()

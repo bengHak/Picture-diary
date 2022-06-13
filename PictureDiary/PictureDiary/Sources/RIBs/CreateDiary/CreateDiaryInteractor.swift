@@ -19,7 +19,7 @@ protocol CreateDiaryRouting: ViewableRouting {
 
 protocol CreateDiaryPresentable: Presentable {
     var listener: CreateDiaryPresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
+    func configureScrollView()
 }
 
 protocol CreateDiaryListener: AnyObject {
@@ -57,7 +57,10 @@ final class CreateDiaryInteractor: PresentableInteractor<CreateDiaryPresentable>
     
     func routeToDiaryTextField() { router?.attachDiaryTextField() }
     
-    func detachDiaryTextField() { router?.detachDiaryTextField() }
+    func detachDiaryTextField() {
+        router?.detachDiaryTextField()
+        presenter.configureScrollView()
+    }
     
     func routeToDiaryDrawing() { router?.attachDiaryDrawing() }
     

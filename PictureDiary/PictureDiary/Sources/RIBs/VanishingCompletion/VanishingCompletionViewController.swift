@@ -68,7 +68,7 @@ final class VanishingCompletionViewController: UIViewController,
     // MARK: - Helpers
     private func initializeTimer() {
         self.timer = Timer.scheduledTimer(
-            timeInterval: 2,
+            timeInterval: 1.5,
             target: self,
             selector: #selector(endTimer),
             userInfo: nil,

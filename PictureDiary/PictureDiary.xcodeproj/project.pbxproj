@@ -57,6 +57,10 @@
 		EABF181A27DC500A002740C0 /* UhBee-puding.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EABF181127DC500A002740C0 /* UhBee-puding.ttf */; };
 		EABF181B27DC500A002740C0 /* KyoboHandwriting2020pdy.otf in Resources */ = {isa = PBXBuildFile; fileRef = EABF181227DC500A002740C0 /* KyoboHandwriting2020pdy.otf */; };
 		EABF181C27DC500A002740C0 /* UhBee-QUEEN-J.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EABF181327DC500A002740C0 /* UhBee-QUEEN-J.ttf */; };
+		EAEC78BB28441BFD00C86833 /* ShareInstagramRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEC78B728441BFD00C86833 /* ShareInstagramRouter.swift */; };
+		EAEC78BC28441BFD00C86833 /* ShareInstagramViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEC78B828441BFD00C86833 /* ShareInstagramViewController.swift */; };
+		EAEC78BD28441BFD00C86833 /* ShareInstagramBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEC78B928441BFD00C86833 /* ShareInstagramBuilder.swift */; };
+		EAEC78BE28441BFD00C86833 /* ShareInstagramInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEC78BA28441BFD00C86833 /* ShareInstagramInteractor.swift */; };
 		EAF0C59528082F9800E0640B /* ToolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF0C59428082F9800E0640B /* ToolType.swift */; };
 		EAF0C5982808339500E0640B /* ModalDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF0C5972808339500E0640B /* ModalDialog.swift */; };
 		EAF530332819C921001CE8FE /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF530322819C921001CE8FE /* CoreDataHelper.swift */; };
@@ -157,6 +161,11 @@
 		EABF181127DC500A002740C0 /* UhBee-puding.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee-puding.ttf"; sourceTree = "<group>"; };
 		EABF181227DC500A002740C0 /* KyoboHandwriting2020pdy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KyoboHandwriting2020pdy.otf; sourceTree = "<group>"; };
 		EABF181327DC500A002740C0 /* UhBee-QUEEN-J.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee-QUEEN-J.ttf"; sourceTree = "<group>"; };
+		EAEC78B728441BFD00C86833 /* ShareInstagramRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareInstagramRouter.swift; sourceTree = "<group>"; };
+		EAEC78B828441BFD00C86833 /* ShareInstagramViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareInstagramViewController.swift; sourceTree = "<group>"; };
+		EAEC78B928441BFD00C86833 /* ShareInstagramBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareInstagramBuilder.swift; sourceTree = "<group>"; };
+		EAEC78BA28441BFD00C86833 /* ShareInstagramInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareInstagramInteractor.swift; sourceTree = "<group>"; };
+		EAECC9A128544C4400C02191 /* PictureDiary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PictureDiary.entitlements; sourceTree = "<group>"; };
 		EAF0C59428082F9800E0640B /* ToolType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolType.swift; sourceTree = "<group>"; };
 		EAF0C5972808339500E0640B /* ModalDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalDialog.swift; sourceTree = "<group>"; };
 		EAF530322819C921001CE8FE /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
@@ -328,6 +337,17 @@
 			path = Default;
 			sourceTree = "<group>";
 		};
+		EAEC78B628441BE700C86833 /* ShareInstagram */ = {
+			isa = PBXGroup;
+			children = (
+				EAEC78B728441BFD00C86833 /* ShareInstagramRouter.swift */,
+				EAEC78B828441BFD00C86833 /* ShareInstagramViewController.swift */,
+				EAEC78B928441BFD00C86833 /* ShareInstagramBuilder.swift */,
+				EAEC78BA28441BFD00C86833 /* ShareInstagramInteractor.swift */,
+			);
+			path = ShareInstagram;
+			sourceTree = "<group>";
+		};
 		EAF0C5962808336900E0640B /* ModalDialog */ = {
 			isa = PBXGroup;
 			children = (
@@ -357,6 +377,7 @@
 		EAFE862727D0CD8C00519243 /* PictureDiary */ = {
 			isa = PBXGroup;
 			children = (
+				EAECC9A128544C4400C02191 /* PictureDiary.entitlements */,
 				EAFE864227D0DE8100519243 /* Resources */,
 				EAFE863F27D0DDEE00519243 /* Sources */,
 			);
@@ -428,6 +449,7 @@
 				EAFE868627D368DF00519243 /* LoggedIn */,
 				EAFE868527D368D700519243 /* LoggedOut */,
 				EAFE865627D22EED00519243 /* Root */,
+				EAEC78B628441BE700C86833 /* ShareInstagram */,
 				EAFE869427D47F9900519243 /* SNSLogin */,
 				EAFE86A127D489D200519243 /* Splash */,
 				EAFE86AC27D4999C00519243 /* VanishingCompletion */,
@@ -768,6 +790,7 @@
 				EAFE867627D23BF700519243 /* RootViewController.swift in Sources */,
 				EAFE869B27D47FD100519243 /* SNSLoginBuilder.swift in Sources */,
 				EA2840272807E7B300D8DCB1 /* UIColor+Ext.swift in Sources */,
+				EAEC78BE28441BFD00C86833 /* ShareInstagramInteractor.swift in Sources */,
 				EAF0C5982808339500E0640B /* ModalDialog.swift in Sources */,
 				EAFE869327D372FA00519243 /* LoggedInInteractor.swift in Sources */,
 				EAFC1D61281D04B40072B995 /* Date+Ext.swift in Sources */,
@@ -786,6 +809,7 @@
 				EAFE86A927D489E100519243 /* SplashInteractor.swift in Sources */,
 				EAFE86A627D489E100519243 /* SplashRouter.swift in Sources */,
 				EAFE869927D47FD100519243 /* SNSLoginRouter.swift in Sources */,
+				EAEC78BB28441BFD00C86833 /* ShareInstagramRouter.swift in Sources */,
 				EAFE867A27D3507100519243 /* BaseViewController.swift in Sources */,
 				EA98C4BA27DF04310045055D /* UITextView+Ext.swift in Sources */,
 				EA625C42282B2B23002BCABD /* DiaryDetailViewController.swift in Sources */,
@@ -815,6 +839,7 @@
 				EAB4543327FC3DFC0002A3B1 /* DiaryDrawingRouter.swift in Sources */,
 				EAFE862B27D0CD8C00519243 /* SceneDelegate.swift in Sources */,
 				EAFE868427D362EB00519243 /* UILabel+Ext.swift in Sources */,
+				EAEC78BD28441BFD00C86833 /* ShareInstagramBuilder.swift in Sources */,
 				EA28402B2807F01900D8DCB1 /* AppColorType.swift in Sources */,
 				EAFE86D827D5F14800519243 /* RootSplitViewController.swift in Sources */,
 				EABF17F427DBB86F002740C0 /* DiaryCollectionViewCell.swift in Sources */,
@@ -823,6 +848,7 @@
 				EAFE867727D23BF700519243 /* RootBuilder.swift in Sources */,
 				EAB1E22027FC120600EEDFDF /* UserDefaults+Ext.swift in Sources */,
 				EA625C41282B2B23002BCABD /* DiaryDetailRouter.swift in Sources */,
+				EAEC78BC28441BFD00C86833 /* ShareInstagramViewController.swift in Sources */,
 				EAFE86D427D5CC4000519243 /* AppBarTopView.swift in Sources */,
 				92EAA4EB9351DECAA3FD6804 /* PaletteView.swift in Sources */,
 			);
@@ -964,6 +990,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PictureDiary/PictureDiary.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 92NGUT4BRA;
@@ -994,6 +1021,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PictureDiary/PictureDiary.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 92NGUT4BRA;

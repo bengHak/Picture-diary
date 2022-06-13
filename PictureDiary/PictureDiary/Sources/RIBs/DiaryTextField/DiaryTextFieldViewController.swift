@@ -39,7 +39,8 @@ final class DiaryTextFieldViewController: UIViewController, DiaryTextFieldPresen
     }
     
     // MARK: - Properties
-    let bag = DisposeBag()
+    private let bag = DisposeBag()
+    private var diaryTextLineHeight: CGFloat?
     
     // MARK: - Lifecycles
     override func viewDidLoad() {
@@ -52,12 +53,16 @@ final class DiaryTextFieldViewController: UIViewController, DiaryTextFieldPresen
     }
     
     // MARK: - Helpers
-
+    func setLineHeight() {
+        let fontLineHeight = (self.textview.font?.lineHeight ?? 20) + 10
+        diaryTextLineHeight = fontLineHeight
+    }
 }
 
 // MARK: BaseViewController
 extension DiaryTextFieldViewController: BaseViewController {
     func configureView() {
+        setLineHeight()
         view.addSubview(appBarTop)
         view.addSubview(textview)
         view.addSubview(lblPlaceholder)
@@ -68,7 +73,7 @@ extension DiaryTextFieldViewController: BaseViewController {
             $0.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(44)
         }
-        
+
         textview.snp.makeConstraints {
             $0.top.equalTo(appBarTop.snp.bottom)
             $0.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide).inset(40)
@@ -106,8 +111,9 @@ extension DiaryTextFieldViewController {
         textview.rx.text.orEmpty
             .subscribe(onNext: { [weak self] text in
                 guard let self = self else { return }
+                let h = (self.diaryTextLineHeight ?? 26) - 18
+                self.textview.setAttributedText(text, lineSpacing: h)
                 self.lblPlaceholder.isHidden = !text.isEmpty
-                self.textview.setAttributedText(text)
                 self.listener?.diaryText.accept(text)
             }).disposed(by: bag)
     }
