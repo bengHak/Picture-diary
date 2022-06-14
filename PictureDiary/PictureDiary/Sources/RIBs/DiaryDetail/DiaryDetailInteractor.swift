@@ -8,9 +8,7 @@
 import RIBs
 import RxSwift
 
-protocol DiaryDetailRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
-}
+protocol DiaryDetailRouting: ViewableRouting { }
 
 protocol DiaryDetailPresentable: Presentable {
     var listener: DiaryDetailPresentableListener? { get set }
@@ -47,4 +45,22 @@ final class DiaryDetailInteractor: PresentableInteractor<DiaryDetailPresentable>
         listener?.detachDiaryDetail()
     }
     
+    func tapShareButton(_ imageData: Data, _ completionHandler: @escaping (Bool) -> Void) {
+        let urlString = "instagram-stories://share?source_application=kr.co.byunghak.PictureDiary"
+        let pasteboardItems : [String:Any] = [
+           "com.instagram.sharedSticker.stickerImage": imageData,
+           "com.instagram.sharedSticker.backgroundTopColor" : "#EDEDED",
+           "com.instagram.sharedSticker.backgroundBottomColor" : "#EDEDED",
+
+        ]
+        let pasteboardOptions = [UIPasteboard.OptionsKey.expirationDate : Date().addingTimeInterval(300)]
+        UIPasteboard.general.setItems([pasteboardItems], options: pasteboardOptions)
+        if UIApplication.shared.canOpenURL(URL(string: urlString)!) {
+            UIApplication.shared.open(URL(string: urlString)!, options: [:], completionHandler: nil)
+            completionHandler(true)
+        } else {
+            #warning("인스타그램이 설치되지 않았을 경우")
+            completionHandler(false)
+        }
+    }
 }

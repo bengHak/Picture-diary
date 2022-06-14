@@ -238,13 +238,13 @@ extension CreateDiaryViewController: BaseViewController {
         underlineStack.snp.makeConstraints {
             let h = (diaryTextLineHeight ?? 26) + 8
             $0.top.equalTo(ivPictureFrame.snp.bottom).offset(h)
-            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.leading.trailing.equalTo(ivPictureFrame)
         }
         for _ in 0..<20 { addUnderLine() }
         
         textview.snp.remakeConstraints {
             $0.top.equalTo(ivPictureFrame.snp.bottom).offset(12)
-            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.leading.trailing.equalTo(ivPictureFrame)
             $0.height.greaterThanOrEqualTo(150)
         }
         
