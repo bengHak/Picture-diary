@@ -29,5 +29,8 @@ target 'PictureDiary' do
   # 🛠 Utils
   pod 'Then'
   pod 'SwiftKeychainWrapper'
-
+  
+  # OAuth
+  pod 'RxKakaoSDKAuth'  # 카카오 로그인
+  
 end
