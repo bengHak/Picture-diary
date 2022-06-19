@@ -30,8 +30,8 @@ class ModalDialog: UIView {
     /// 스택
     private let stack = UIStackView().then {
         $0.axis = .horizontal
-        $0.spacing = 0
         $0.alignment = .center
+        $0.distribution = .equalCentering
     }
     
     /// Divider
@@ -95,8 +95,8 @@ class ModalDialog: UIView {
         }
         
         btnLeft.snp.makeConstraints {
-            $0.height.equalToSuperview()
             $0.width.equalTo(120)
+            $0.height.equalToSuperview()
         }
         
         btnRight.snp.makeConstraints {
@@ -106,7 +106,6 @@ class ModalDialog: UIView {
         stack.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(lblMessage.snp.bottom).offset(32)
-            $0.leading.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(59)
         }
     }

@@ -7,19 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6057084DA4CBF41D54F57468 /* Pods_PictureDiary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8662C61FC7779CDCA018991 /* Pods_PictureDiary.framework */; };
+		24EB20180727972942353397 /* Pods_PictureDiary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BD7439747D5C95598B0B8C8 /* Pods_PictureDiary.framework */; };
 		92EAA4EB9351DECAA3FD6804 /* PaletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EAA71955F25FB0FBCEFCAE /* PaletteView.swift */; };
+		EA01F9DB282A67C600A6E450 /* PictureDiary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EA01F9D9282A67C600A6E450 /* PictureDiary.xcdatamodeld */; };
+		EA01F9DF282A680900A6E450 /* PictureDiary+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA01F9DC282A680900A6E450 /* PictureDiary+CoreDataClass.swift */; };
+		EA01F9E5282A685E00A6E450 /* PictureDiary+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA01F9E4282A685E00A6E450 /* PictureDiary+CoreDataProperties.swift */; };
+		EA08CF822858553E00A0A029 /* ShareInstagramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA08CF812858553E00A0A029 /* ShareInstagramView.swift */; };
+		EA08CF842858B84E00A0A029 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA08CF832858B84E00A0A029 /* AuthRepository.swift */; };
+		EA08CF882858B98B00A0A029 /* KakaoAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA08CF872858B98B00A0A029 /* KakaoAuth.swift */; };
+		EA08CF8A2858B99500A0A029 /* AppleAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA08CF892858B99500A0A029 /* AppleAuth.swift */; };
+		EA08CF8C2858B99F00A0A029 /* GoogleAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA08CF8B2858B99F00A0A029 /* GoogleAuth.swift */; };
+		EA108F85285B0B4D00F23226 /* OAuthProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA108F84285B0B4D00F23226 /* OAuthProtocol.swift */; };
+		EA108F89285B2E8A00F23226 /* ASAuthorizationControllerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA108F88285B2E8A00F23226 /* ASAuthorizationControllerDelegateProxy.swift */; };
+		EA108F8B285B34D100F23226 /* ModelTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA108F8A285B34D100F23226 /* ModelTokenResponse.swift */; };
+		EA108F8D285B38FF00F23226 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA108F8C285B38FF00F23226 /* AuthAPI.swift */; };
+		EA108F8F285C5C0200F23226 /* ServiceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA108F8E285C5C0200F23226 /* ServiceAPI.swift */; };
+		EA108F91285C673900F23226 /* ModelAuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA108F90285C673900F23226 /* ModelAuthResponse.swift */; };
 		EA2840252806CB6D00D8DCB1 /* PaletteColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2840242806CB6D00D8DCB1 /* PaletteColorCell.swift */; };
 		EA2840272807E7B300D8DCB1 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2840262807E7B300D8DCB1 /* UIColor+Ext.swift */; };
 		EA2840292807EAC000D8DCB1 /* PaletteColorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2840282807EAC000D8DCB1 /* PaletteColorType.swift */; };
 		EA28402B2807F01900D8DCB1 /* AppColorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA28402A2807F01900D8DCB1 /* AppColorType.swift */; };
 		EA2CDCB228153D0700E6C18F /* WeatherType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2CDCB128153D0700E6C18F /* WeatherType.swift */; };
+		EA51AB8B285D836100D9B294 /* ErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA51AB8A285D836100D9B294 /* ErrorType.swift */; };
+		EA625C41282B2B23002BCABD /* DiaryDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA625C3D282B2B23002BCABD /* DiaryDetailRouter.swift */; };
+		EA625C42282B2B23002BCABD /* DiaryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA625C3E282B2B23002BCABD /* DiaryDetailViewController.swift */; };
+		EA625C43282B2B23002BCABD /* DiaryDetailBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA625C3F282B2B23002BCABD /* DiaryDetailBuilder.swift */; };
+		EA625C44282B2B23002BCABD /* DiaryDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA625C40282B2B23002BCABD /* DiaryDetailInteractor.swift */; };
 		EA98C4B527DEBF4B0045055D /* CreateDiaryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA98C4B127DEBF4B0045055D /* CreateDiaryRouter.swift */; };
 		EA98C4B627DEBF4B0045055D /* CreateDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA98C4B227DEBF4B0045055D /* CreateDiaryViewController.swift */; };
 		EA98C4B727DEBF4B0045055D /* CreateDiaryBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA98C4B327DEBF4B0045055D /* CreateDiaryBuilder.swift */; };
 		EA98C4B827DEBF4B0045055D /* CreateDiaryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA98C4B427DEBF4B0045055D /* CreateDiaryInteractor.swift */; };
 		EA98C4BA27DF04310045055D /* UITextView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA98C4B927DF04310045055D /* UITextView+Ext.swift */; };
 		EA98C4BE27DF137E0045055D /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA98C4BD27DF137E0045055D /* UIImage+Ext.swift */; };
+		EA9E04EB285E3DD7005845E4 /* KeychainWrapper+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9E04EA285E3DD7005845E4 /* KeychainWrapper+Ext.swift */; };
 		EAB1E21527FADB0000EEDFDF /* DiaryTextFieldRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB1E21127FADB0000EEDFDF /* DiaryTextFieldRouter.swift */; };
 		EAB1E21627FADB0000EEDFDF /* DiaryTextFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB1E21227FADB0000EEDFDF /* DiaryTextFieldViewController.swift */; };
 		EAB1E21727FADB0000EEDFDF /* DiaryTextFieldBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB1E21327FADB0000EEDFDF /* DiaryTextFieldBuilder.swift */; };
@@ -53,9 +73,9 @@
 		EAF0C59528082F9800E0640B /* ToolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF0C59428082F9800E0640B /* ToolType.swift */; };
 		EAF0C5982808339500E0640B /* ModalDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF0C5972808339500E0640B /* ModalDialog.swift */; };
 		EAF530332819C921001CE8FE /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF530322819C921001CE8FE /* CoreDataHelper.swift */; };
+		EAFC1D61281D04B40072B995 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFC1D60281D04B40072B995 /* Date+Ext.swift */; };
 		EAFE862927D0CD8C00519243 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE862827D0CD8C00519243 /* AppDelegate.swift */; };
 		EAFE862B27D0CD8C00519243 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE862A27D0CD8C00519243 /* SceneDelegate.swift */; };
-		EAFE863327D0CD8C00519243 /* PictureDiary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EAFE863127D0CD8C00519243 /* PictureDiary.xcdatamodeld */; };
 		EAFE863527D0CD8D00519243 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAFE863427D0CD8D00519243 /* Assets.xcassets */; };
 		EAFE863827D0CD8D00519243 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAFE863627D0CD8D00519243 /* LaunchScreen.storyboard */; };
 		EAFE865527D22EAE00519243 /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE865427D22EAE00519243 /* AppComponent.swift */; };
@@ -65,7 +85,7 @@
 		EAFE867827D23BF700519243 /* RootInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE867427D23BF700519243 /* RootInteractor.swift */; };
 		EAFE867A27D3507100519243 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE867927D3507100519243 /* BaseViewController.swift */; };
 		EAFE868027D3540A00519243 /* SNSLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE867F27D3540A00519243 /* SNSLoginButton.swift */; };
-		EAFE868227D3563100519243 /* SNSType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE868127D3563100519243 /* SNSType.swift */; };
+		EAFE868227D3563100519243 /* ProviderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE868127D3563100519243 /* ProviderType.swift */; };
 		EAFE868427D362EB00519243 /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE868327D362EB00519243 /* UILabel+Ext.swift */; };
 		EAFE868B27D372EB00519243 /* LoggedOutRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE868827D372EB00519243 /* LoggedOutRouter.swift */; };
 		EAFE868C27D372EB00519243 /* LoggedOutBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE868927D372EB00519243 /* LoggedOutBuilder.swift */; };
@@ -81,10 +101,10 @@
 		EAFE86A727D489E100519243 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86A327D489E100519243 /* SplashViewController.swift */; };
 		EAFE86A827D489E100519243 /* SplashBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86A427D489E100519243 /* SplashBuilder.swift */; };
 		EAFE86A927D489E100519243 /* SplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86A527D489E100519243 /* SplashInteractor.swift */; };
-		EAFE86B127D499C300519243 /* SignUpCompletedRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86AD27D499C300519243 /* SignUpCompletedRouter.swift */; };
-		EAFE86B227D499C300519243 /* SignUpCompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86AE27D499C300519243 /* SignUpCompletedViewController.swift */; };
-		EAFE86B327D499C300519243 /* SignUpCompletedBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86AF27D499C300519243 /* SignUpCompletedBuilder.swift */; };
-		EAFE86B427D499C300519243 /* SignUpCompletedInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86B027D499C300519243 /* SignUpCompletedInteractor.swift */; };
+		EAFE86B127D499C300519243 /* VanishingCompletiondRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86AD27D499C300519243 /* VanishingCompletiondRouter.swift */; };
+		EAFE86B227D499C300519243 /* VanishingCompletionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86AE27D499C300519243 /* VanishingCompletionViewController.swift */; };
+		EAFE86B327D499C300519243 /* VanishingCompletionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86AF27D499C300519243 /* VanishingCompletionBuilder.swift */; };
+		EAFE86B427D499C300519243 /* VanishingCompletionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86B027D499C300519243 /* VanishingCompletionInteractor.swift */; };
 		EAFE86B627D49B1400519243 /* ViewControllable+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86B527D49B1400519243 /* ViewControllable+Ext.swift */; };
 		EAFE86C627D5C8F500519243 /* DiaryListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86C227D5C8F500519243 /* DiaryListRouter.swift */; };
 		EAFE86C727D5C8F500519243 /* DiaryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE86C327D5C8F500519243 /* DiaryListViewController.swift */; };
@@ -98,21 +118,42 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		296A642EF55E0FC635CB0813 /* Pods-PictureDiary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PictureDiary.debug.xcconfig"; path = "Target Support Files/Pods-PictureDiary/Pods-PictureDiary.debug.xcconfig"; sourceTree = "<group>"; };
+		0E1E6D44D6FF25BF23E8C1BC /* Pods-PictureDiary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PictureDiary.release.xcconfig"; path = "Target Support Files/Pods-PictureDiary/Pods-PictureDiary.release.xcconfig"; sourceTree = "<group>"; };
+		45B77415E2E9170140664D7F /* Pods-PictureDiary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PictureDiary.debug.xcconfig"; path = "Target Support Files/Pods-PictureDiary/Pods-PictureDiary.debug.xcconfig"; sourceTree = "<group>"; };
 		92EAA71955F25FB0FBCEFCAE /* PaletteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteView.swift; sourceTree = "<group>"; };
-		A91B972A8A61B0AFFF9F0CDE /* Pods-PictureDiary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PictureDiary.release.xcconfig"; path = "Target Support Files/Pods-PictureDiary/Pods-PictureDiary.release.xcconfig"; sourceTree = "<group>"; };
-		E8662C61FC7779CDCA018991 /* Pods_PictureDiary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PictureDiary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BD7439747D5C95598B0B8C8 /* Pods_PictureDiary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PictureDiary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA01F9DA282A67C600A6E450 /* PictureDiary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PictureDiary.xcdatamodel; sourceTree = "<group>"; };
+		EA01F9DC282A680900A6E450 /* PictureDiary+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PictureDiary+CoreDataClass.swift"; path = "/Users/byunghak/Documents/xcode_workspace/PictureDiary-iOS/PictureDiary/PictureDiary/Sources/CoreData/PictureDiary+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		EA01F9E4282A685E00A6E450 /* PictureDiary+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PictureDiary+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EA08CF812858553E00A0A029 /* ShareInstagramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareInstagramView.swift; sourceTree = "<group>"; };
+		EA08CF832858B84E00A0A029 /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
+		EA08CF872858B98B00A0A029 /* KakaoAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoAuth.swift; sourceTree = "<group>"; };
+		EA08CF892858B99500A0A029 /* AppleAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuth.swift; sourceTree = "<group>"; };
+		EA08CF8B2858B99F00A0A029 /* GoogleAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAuth.swift; sourceTree = "<group>"; };
+		EA108F84285B0B4D00F23226 /* OAuthProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthProtocol.swift; sourceTree = "<group>"; };
+		EA108F88285B2E8A00F23226 /* ASAuthorizationControllerDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASAuthorizationControllerDelegateProxy.swift; sourceTree = "<group>"; };
+		EA108F8A285B34D100F23226 /* ModelTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTokenResponse.swift; sourceTree = "<group>"; };
+		EA108F8C285B38FF00F23226 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
+		EA108F8E285C5C0200F23226 /* ServiceAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAPI.swift; sourceTree = "<group>"; };
+		EA108F90285C673900F23226 /* ModelAuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelAuthResponse.swift; sourceTree = "<group>"; };
 		EA2840242806CB6D00D8DCB1 /* PaletteColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteColorCell.swift; sourceTree = "<group>"; };
 		EA2840262807E7B300D8DCB1 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		EA2840282807EAC000D8DCB1 /* PaletteColorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteColorType.swift; sourceTree = "<group>"; };
 		EA28402A2807F01900D8DCB1 /* AppColorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColorType.swift; sourceTree = "<group>"; };
 		EA2CDCB128153D0700E6C18F /* WeatherType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherType.swift; sourceTree = "<group>"; };
+		EA51AB8A285D836100D9B294 /* ErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorType.swift; sourceTree = "<group>"; };
+		EA51AB8C285DAF7B00D9B294 /* config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = config.xcconfig; sourceTree = "<group>"; };
+		EA625C3D282B2B23002BCABD /* DiaryDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDetailRouter.swift; sourceTree = "<group>"; };
+		EA625C3E282B2B23002BCABD /* DiaryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDetailViewController.swift; sourceTree = "<group>"; };
+		EA625C3F282B2B23002BCABD /* DiaryDetailBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDetailBuilder.swift; sourceTree = "<group>"; };
+		EA625C40282B2B23002BCABD /* DiaryDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDetailInteractor.swift; sourceTree = "<group>"; };
 		EA98C4B127DEBF4B0045055D /* CreateDiaryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDiaryRouter.swift; sourceTree = "<group>"; };
 		EA98C4B227DEBF4B0045055D /* CreateDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDiaryViewController.swift; sourceTree = "<group>"; };
 		EA98C4B327DEBF4B0045055D /* CreateDiaryBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDiaryBuilder.swift; sourceTree = "<group>"; };
 		EA98C4B427DEBF4B0045055D /* CreateDiaryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDiaryInteractor.swift; sourceTree = "<group>"; };
 		EA98C4B927DF04310045055D /* UITextView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Ext.swift"; sourceTree = "<group>"; };
 		EA98C4BD27DF137E0045055D /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
+		EA9E04EA285E3DD7005845E4 /* KeychainWrapper+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeychainWrapper+Ext.swift"; sourceTree = "<group>"; };
 		EAB1E21127FADB0000EEDFDF /* DiaryTextFieldRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryTextFieldRouter.swift; sourceTree = "<group>"; };
 		EAB1E21227FADB0000EEDFDF /* DiaryTextFieldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryTextFieldViewController.swift; sourceTree = "<group>"; };
 		EAB1E21327FADB0000EEDFDF /* DiaryTextFieldBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryTextFieldBuilder.swift; sourceTree = "<group>"; };
@@ -143,13 +184,14 @@
 		EABF181127DC500A002740C0 /* UhBee-puding.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee-puding.ttf"; sourceTree = "<group>"; };
 		EABF181227DC500A002740C0 /* KyoboHandwriting2020pdy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KyoboHandwriting2020pdy.otf; sourceTree = "<group>"; };
 		EABF181327DC500A002740C0 /* UhBee-QUEEN-J.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee-QUEEN-J.ttf"; sourceTree = "<group>"; };
+		EAECC9A128544C4400C02191 /* PictureDiary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PictureDiary.entitlements; sourceTree = "<group>"; };
 		EAF0C59428082F9800E0640B /* ToolType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolType.swift; sourceTree = "<group>"; };
 		EAF0C5972808339500E0640B /* ModalDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalDialog.swift; sourceTree = "<group>"; };
 		EAF530322819C921001CE8FE /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
+		EAFC1D60281D04B40072B995 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		EAFE862527D0CD8C00519243 /* PictureDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PictureDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAFE862827D0CD8C00519243 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAFE862A27D0CD8C00519243 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EAFE863227D0CD8C00519243 /* PictureDiary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PictureDiary.xcdatamodel; sourceTree = "<group>"; };
 		EAFE863427D0CD8D00519243 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EAFE863727D0CD8D00519243 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EAFE863927D0CD8D00519243 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = PictureDiary/Resources/SupportingFiles/Info.plist; sourceTree = SOURCE_ROOT; };
@@ -160,7 +202,7 @@
 		EAFE867427D23BF700519243 /* RootInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootInteractor.swift; sourceTree = "<group>"; };
 		EAFE867927D3507100519243 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		EAFE867F27D3540A00519243 /* SNSLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSLoginButton.swift; sourceTree = "<group>"; };
-		EAFE868127D3563100519243 /* SNSType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSType.swift; sourceTree = "<group>"; };
+		EAFE868127D3563100519243 /* ProviderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderType.swift; sourceTree = "<group>"; };
 		EAFE868327D362EB00519243 /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
 		EAFE868827D372EB00519243 /* LoggedOutRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedOutRouter.swift; sourceTree = "<group>"; };
 		EAFE868927D372EB00519243 /* LoggedOutBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedOutBuilder.swift; sourceTree = "<group>"; };
@@ -176,10 +218,10 @@
 		EAFE86A327D489E100519243 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		EAFE86A427D489E100519243 /* SplashBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashBuilder.swift; sourceTree = "<group>"; };
 		EAFE86A527D489E100519243 /* SplashInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashInteractor.swift; sourceTree = "<group>"; };
-		EAFE86AD27D499C300519243 /* SignUpCompletedRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompletedRouter.swift; sourceTree = "<group>"; };
-		EAFE86AE27D499C300519243 /* SignUpCompletedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompletedViewController.swift; sourceTree = "<group>"; };
-		EAFE86AF27D499C300519243 /* SignUpCompletedBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompletedBuilder.swift; sourceTree = "<group>"; };
-		EAFE86B027D499C300519243 /* SignUpCompletedInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCompletedInteractor.swift; sourceTree = "<group>"; };
+		EAFE86AD27D499C300519243 /* VanishingCompletiondRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VanishingCompletiondRouter.swift; sourceTree = "<group>"; };
+		EAFE86AE27D499C300519243 /* VanishingCompletionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VanishingCompletionViewController.swift; sourceTree = "<group>"; };
+		EAFE86AF27D499C300519243 /* VanishingCompletionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VanishingCompletionBuilder.swift; sourceTree = "<group>"; };
+		EAFE86B027D499C300519243 /* VanishingCompletionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VanishingCompletionInteractor.swift; sourceTree = "<group>"; };
 		EAFE86B527D49B1400519243 /* ViewControllable+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewControllable+Ext.swift"; sourceTree = "<group>"; };
 		EAFE86C227D5C8F500519243 /* DiaryListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryListRouter.swift; sourceTree = "<group>"; };
 		EAFE86C327D5C8F500519243 /* DiaryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryListViewController.swift; sourceTree = "<group>"; };
@@ -197,7 +239,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6057084DA4CBF41D54F57468 /* Pods_PictureDiary.framework in Frameworks */,
+				24EB20180727972942353397 /* Pods_PictureDiary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,10 +249,18 @@
 		1E477AD5EFA9BCB9F49AC1FD /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				296A642EF55E0FC635CB0813 /* Pods-PictureDiary.debug.xcconfig */,
-				A91B972A8A61B0AFFF9F0CDE /* Pods-PictureDiary.release.xcconfig */,
+				45B77415E2E9170140664D7F /* Pods-PictureDiary.debug.xcconfig */,
+				0E1E6D44D6FF25BF23E8C1BC /* Pods-PictureDiary.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		3972F19F0A8143CC35464BF6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9BD7439747D5C95598B0B8C8 /* Pods_PictureDiary.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		92EAAA92A22244A144185FF5 /* Palette */ = {
@@ -222,12 +272,51 @@
 			path = Palette;
 			sourceTree = "<group>";
 		};
-		B6E28A536CC253CEFBED6FD1 /* Frameworks */ = {
+		EA08CF802858552B00A0A029 /* ShareInstagramView */ = {
 			isa = PBXGroup;
 			children = (
-				E8662C61FC7779CDCA018991 /* Pods_PictureDiary.framework */,
+				EA08CF812858553E00A0A029 /* ShareInstagramView.swift */,
 			);
-			name = Frameworks;
+			path = ShareInstagramView;
+			sourceTree = "<group>";
+		};
+		EA08CF852858B95900A0A029 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				EA08CF8D2859B69500A0A029 /* Diary */,
+				EA08CF862858B97F00A0A029 /* Auth */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		EA08CF862858B97F00A0A029 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				EA08CF872858B98B00A0A029 /* KakaoAuth.swift */,
+				EA08CF892858B99500A0A029 /* AppleAuth.swift */,
+				EA08CF8B2858B99F00A0A029 /* GoogleAuth.swift */,
+				EA108F84285B0B4D00F23226 /* OAuthProtocol.swift */,
+				EA108F88285B2E8A00F23226 /* ASAuthorizationControllerDelegateProxy.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		EA08CF8D2859B69500A0A029 /* Diary */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Diary;
+			sourceTree = "<group>";
+		};
+		EA625C3C282B2B04002BCABD /* DiaryDetail */ = {
+			isa = PBXGroup;
+			children = (
+				EA625C3D282B2B23002BCABD /* DiaryDetailRouter.swift */,
+				EA625C3E282B2B23002BCABD /* DiaryDetailViewController.swift */,
+				EA625C3F282B2B23002BCABD /* DiaryDetailBuilder.swift */,
+				EA625C40282B2B23002BCABD /* DiaryDetailInteractor.swift */,
+			);
+			path = DiaryDetail;
 			sourceTree = "<group>";
 		};
 		EA98C4B027DEBF360045055D /* CreateDiary */ = {
@@ -269,14 +358,6 @@
 				EABF17F027DB5786002740C0 /* EmptyDiaryListView.swift */,
 			);
 			path = EmptyDiaryList;
-			sourceTree = "<group>";
-		};
-		EABF17F227DBB829002740C0 /* DiaryListCell */ = {
-			isa = PBXGroup;
-			children = (
-				EABF17F327DBB86F002740C0 /* DiaryCollectionViewCell.swift */,
-			);
-			path = DiaryListCell;
 			sourceTree = "<group>";
 		};
 		EABF180927DC4FF5002740C0 /* Pretendard */ = {
@@ -325,7 +406,7 @@
 				EAFE862727D0CD8C00519243 /* PictureDiary */,
 				EAFE862627D0CD8C00519243 /* Products */,
 				1E477AD5EFA9BCB9F49AC1FD /* Pods */,
-				B6E28A536CC253CEFBED6FD1 /* Frameworks */,
+				3972F19F0A8143CC35464BF6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -340,6 +421,7 @@
 		EAFE862727D0CD8C00519243 /* PictureDiary */ = {
 			isa = PBXGroup;
 			children = (
+				EAECC9A128544C4400C02191 /* PictureDiary.entitlements */,
 				EAFE864227D0DE8100519243 /* Resources */,
 				EAFE863F27D0DDEE00519243 /* Sources */,
 			);
@@ -349,15 +431,15 @@
 		EAFE863F27D0DDEE00519243 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				EAFE864727D0E1DF00519243 /* RIBs */,
 				EAFE864D27D0E25600519243 /* Common */,
 				EAFE865327D0E28C00519243 /* CoreData */,
-				EAFE865227D0E28200519243 /* Helpers */,
-				EAFE864927D0E21100519243 /* Models */,
-				EAFE864B27D0E21F00519243 /* Repository */,
-				EAFE864F27D0E26300519243 /* Networking */,
 				EAFE864E27D0E25E00519243 /* Enums */,
 				EAFE864C27D0E24800519243 /* Extensions */,
+				EAFE864927D0E21100519243 /* Models */,
+				EAFE864F27D0E26300519243 /* Networking */,
+				EAFE864B27D0E21F00519243 /* Repository */,
+				EAFE864727D0E1DF00519243 /* RIBs */,
+				EA08CF852858B95900A0A029 /* Service */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -387,6 +469,7 @@
 			isa = PBXGroup;
 			children = (
 				EAFE863927D0CD8D00519243 /* Info.plist */,
+				EA51AB8C285DAF7B00D9B294 /* config.xcconfig */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -403,17 +486,18 @@
 		EAFE864727D0E1DF00519243 /* RIBs */ = {
 			isa = PBXGroup;
 			children = (
-				EAB4542E27FC3DD00002A3B1 /* DiaryDrawing */,
-				EAB1E21027FADA9E00EEDFDF /* DiaryTextField */,
 				EAFE864127D0DE6900519243 /* AppStart */,
-				EAFE865627D22EED00519243 /* Root */,
+				EA98C4B027DEBF360045055D /* CreateDiary */,
+				EA625C3C282B2B04002BCABD /* DiaryDetail */,
+				EAB4542E27FC3DD00002A3B1 /* DiaryDrawing */,
+				EAFE86C127D5A1DD00519243 /* DiaryList */,
+				EAB1E21027FADA9E00EEDFDF /* DiaryTextField */,
 				EAFE868627D368DF00519243 /* LoggedIn */,
 				EAFE868527D368D700519243 /* LoggedOut */,
+				EAFE865627D22EED00519243 /* Root */,
 				EAFE869427D47F9900519243 /* SNSLogin */,
-				EAFE86AC27D4999C00519243 /* SignUpCompleted */,
 				EAFE86A127D489D200519243 /* Splash */,
-				EAFE86C127D5A1DD00519243 /* DiaryList */,
-				EA98C4B027DEBF360045055D /* CreateDiary */,
+				EAFE86AC27D4999C00519243 /* VanishingCompletion */,
 			);
 			path = RIBs;
 			sourceTree = "<group>";
@@ -421,6 +505,8 @@
 		EAFE864927D0E21100519243 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EA108F8A285B34D100F23226 /* ModelTokenResponse.swift */,
+				EA108F90285C673900F23226 /* ModelAuthResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -428,6 +514,7 @@
 		EAFE864B27D0E21F00519243 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				EA08CF832858B84E00A0A029 /* AuthRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -442,6 +529,8 @@
 				EA98C4BD27DF137E0045055D /* UIImage+Ext.swift */,
 				EAB1E21F27FC120600EEDFDF /* UserDefaults+Ext.swift */,
 				EA2840262807E7B300D8DCB1 /* UIColor+Ext.swift */,
+				EAFC1D60281D04B40072B995 /* Date+Ext.swift */,
+				EA9E04EA285E3DD7005845E4 /* KeychainWrapper+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -449,11 +538,11 @@
 		EAFE864D27D0E25600519243 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				EA08CF802858552B00A0A029 /* ShareInstagramView */,
 				EAF0C5962808336900E0640B /* ModalDialog */,
 				EAFE867D27D352EC00519243 /* Protocols */,
 				EAFE86D227D5CC2F00519243 /* AppBarTop */,
 				EAFE867E27D353FC00519243 /* SNSLoginButton */,
-				EABF17F227DBB829002740C0 /* DiaryListCell */,
 				EABF17EF27DB576A002740C0 /* EmptyDiaryList */,
 				92EAAA92A22244A144185FF5 /* Palette */,
 			);
@@ -463,12 +552,13 @@
 		EAFE864E27D0E25E00519243 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
-				EAFE868127D3563100519243 /* SNSType.swift */,
+				EAFE868127D3563100519243 /* ProviderType.swift */,
 				EAFE86D527D5D23A00519243 /* AppBarTopType.swift */,
 				EA2840282807EAC000D8DCB1 /* PaletteColorType.swift */,
 				EA28402A2807F01900D8DCB1 /* AppColorType.swift */,
 				EAF0C59428082F9800E0640B /* ToolType.swift */,
 				EA2CDCB128153D0700E6C18F /* WeatherType.swift */,
+				EA51AB8A285D836100D9B294 /* ErrorType.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -477,6 +567,7 @@
 			isa = PBXGroup;
 			children = (
 				EAFE865127D0E26F00519243 /* APIs */,
+				EA108F8E285C5C0200F23226 /* ServiceAPI.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -484,22 +575,18 @@
 		EAFE865127D0E26F00519243 /* APIs */ = {
 			isa = PBXGroup;
 			children = (
+				EA108F8C285B38FF00F23226 /* AuthAPI.swift */,
 			);
 			path = APIs;
-			sourceTree = "<group>";
-		};
-		EAFE865227D0E28200519243 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				EAF530322819C921001CE8FE /* CoreDataHelper.swift */,
-			);
-			path = Helpers;
 			sourceTree = "<group>";
 		};
 		EAFE865327D0E28C00519243 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				EAFE863127D0CD8C00519243 /* PictureDiary.xcdatamodeld */,
+				EA01F9E4282A685E00A6E450 /* PictureDiary+CoreDataProperties.swift */,
+				EA01F9DC282A680900A6E450 /* PictureDiary+CoreDataClass.swift */,
+				EAF530322819C921001CE8FE /* CoreDataHelper.swift */,
+				EA01F9D9282A67C600A6E450 /* PictureDiary.xcdatamodeld */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -576,15 +663,15 @@
 			path = Splash;
 			sourceTree = "<group>";
 		};
-		EAFE86AC27D4999C00519243 /* SignUpCompleted */ = {
+		EAFE86AC27D4999C00519243 /* VanishingCompletion */ = {
 			isa = PBXGroup;
 			children = (
-				EAFE86AD27D499C300519243 /* SignUpCompletedRouter.swift */,
-				EAFE86AE27D499C300519243 /* SignUpCompletedViewController.swift */,
-				EAFE86AF27D499C300519243 /* SignUpCompletedBuilder.swift */,
-				EAFE86B027D499C300519243 /* SignUpCompletedInteractor.swift */,
+				EAFE86AD27D499C300519243 /* VanishingCompletiondRouter.swift */,
+				EAFE86AE27D499C300519243 /* VanishingCompletionViewController.swift */,
+				EAFE86AF27D499C300519243 /* VanishingCompletionBuilder.swift */,
+				EAFE86B027D499C300519243 /* VanishingCompletionInteractor.swift */,
 			);
-			path = SignUpCompleted;
+			path = VanishingCompletion;
 			sourceTree = "<group>";
 		};
 		EAFE86C127D5A1DD00519243 /* DiaryList */ = {
@@ -594,6 +681,7 @@
 				EAFE86C327D5C8F500519243 /* DiaryListViewController.swift */,
 				EAFE86C427D5C8F500519243 /* DiaryListBuilder.swift */,
 				EAFE86C527D5C8F500519243 /* DiaryListInteractor.swift */,
+				EABF17F327DBB86F002740C0 /* DiaryCollectionViewCell.swift */,
 			);
 			path = DiaryList;
 			sourceTree = "<group>";
@@ -613,11 +701,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EAFE863C27D0CD8D00519243 /* Build configuration list for PBXNativeTarget "PictureDiary" */;
 			buildPhases = (
-				36C128E3612DCAE37A97A16C /* [CP] Check Pods Manifest.lock */,
+				E13F41BBBDF4C02D70F2AE8A /* [CP] Check Pods Manifest.lock */,
 				EAFE862127D0CD8C00519243 /* Sources */,
 				EAFE862227D0CD8C00519243 /* Frameworks */,
 				EAFE862327D0CD8C00519243 /* Resources */,
-				99AD301C64915FE8463B6808 /* [CP] Embed Pods Frameworks */,
+				1FDB16C92904BAEE441F27BF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -692,7 +780,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		36C128E3612DCAE37A97A16C /* [CP] Check Pods Manifest.lock */ = {
+		1FDB16C92904BAEE441F27BF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PictureDiary/Pods-PictureDiary-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PictureDiary/Pods-PictureDiary-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PictureDiary/Pods-PictureDiary-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E13F41BBBDF4C02D70F2AE8A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -714,23 +819,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		99AD301C64915FE8463B6808 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PictureDiary/Pods-PictureDiary-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PictureDiary/Pods-PictureDiary-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PictureDiary/Pods-PictureDiary-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -744,10 +832,12 @@
 				EA2840252806CB6D00D8DCB1 /* PaletteColorCell.swift in Sources */,
 				EA98C4B627DEBF4B0045055D /* CreateDiaryViewController.swift in Sources */,
 				EAFE865527D22EAE00519243 /* AppComponent.swift in Sources */,
+				EA01F9DF282A680900A6E450 /* PictureDiary+CoreDataClass.swift in Sources */,
 				EA98C4B527DEBF4B0045055D /* CreateDiaryRouter.swift in Sources */,
 				EAFE868D27D372EB00519243 /* LoggedOutInteractor.swift in Sources */,
-				EAFE86B427D499C300519243 /* SignUpCompletedInteractor.swift in Sources */,
-				EAFE868227D3563100519243 /* SNSType.swift in Sources */,
+				EAFE86B427D499C300519243 /* VanishingCompletionInteractor.swift in Sources */,
+				EAFE868227D3563100519243 /* ProviderType.swift in Sources */,
+				EA08CF882858B98B00A0A029 /* KakaoAuth.swift in Sources */,
 				EAB1E21627FADB0000EEDFDF /* DiaryTextFieldViewController.swift in Sources */,
 				EAB1E21827FADB0000EEDFDF /* DiaryTextFieldInteractor.swift in Sources */,
 				EAFE862927D0CD8C00519243 /* AppDelegate.swift in Sources */,
@@ -756,53 +846,71 @@
 				EA2840272807E7B300D8DCB1 /* UIColor+Ext.swift in Sources */,
 				EAF0C5982808339500E0640B /* ModalDialog.swift in Sources */,
 				EAFE869327D372FA00519243 /* LoggedInInteractor.swift in Sources */,
-				EAFE863327D0CD8C00519243 /* PictureDiary.xcdatamodeld in Sources */,
+				EAFC1D61281D04B40072B995 /* Date+Ext.swift in Sources */,
+				EA08CF8C2858B99F00A0A029 /* GoogleAuth.swift in Sources */,
 				EAB1E21727FADB0000EEDFDF /* DiaryTextFieldBuilder.swift in Sources */,
+				EA08CF842858B84E00A0A029 /* AuthRepository.swift in Sources */,
+				EA108F8B285B34D100F23226 /* ModelTokenResponse.swift in Sources */,
 				EAB4543627FC3DFC0002A3B1 /* DiaryDrawingInteractor.swift in Sources */,
 				EAFE868027D3540A00519243 /* SNSLoginButton.swift in Sources */,
 				EAFE869C27D47FD100519243 /* SNSLoginInteractor.swift in Sources */,
 				EAFE867527D23BF700519243 /* RootRouter.swift in Sources */,
 				EAFE86B627D49B1400519243 /* ViewControllable+Ext.swift in Sources */,
+				EA01F9E5282A685E00A6E450 /* PictureDiary+CoreDataProperties.swift in Sources */,
 				EAFE86D627D5D23A00519243 /* AppBarTopType.swift in Sources */,
 				EAFE86FD27D8657D00519243 /* RootPrimaryViewController.swift in Sources */,
 				EAB4543527FC3DFC0002A3B1 /* DiaryDrawingBuilder.swift in Sources */,
+				EA08CF8A2858B99500A0A029 /* AppleAuth.swift in Sources */,
 				EA2CDCB228153D0700E6C18F /* WeatherType.swift in Sources */,
 				EAFE869127D372FA00519243 /* LoggedInRouter.swift in Sources */,
 				EAFE86A927D489E100519243 /* SplashInteractor.swift in Sources */,
+				EA51AB8B285D836100D9B294 /* ErrorType.swift in Sources */,
 				EAFE86A627D489E100519243 /* SplashRouter.swift in Sources */,
 				EAFE869927D47FD100519243 /* SNSLoginRouter.swift in Sources */,
 				EAFE867A27D3507100519243 /* BaseViewController.swift in Sources */,
 				EA98C4BA27DF04310045055D /* UITextView+Ext.swift in Sources */,
+				EA625C42282B2B23002BCABD /* DiaryDetailViewController.swift in Sources */,
+				EA08CF822858553E00A0A029 /* ShareInstagramView.swift in Sources */,
+				EA108F91285C673900F23226 /* ModelAuthResponse.swift in Sources */,
 				EABF180827DBBB5F002740C0 /* UIFont+Ext.swift in Sources */,
 				EAFE86C827D5C8F500519243 /* DiaryListBuilder.swift in Sources */,
 				EAB1E21527FADB0000EEDFDF /* DiaryTextFieldRouter.swift in Sources */,
 				EAFE86A727D489E100519243 /* SplashViewController.swift in Sources */,
+				EA108F89285B2E8A00F23226 /* ASAuthorizationControllerDelegateProxy.swift in Sources */,
 				EAFE86C727D5C8F500519243 /* DiaryListViewController.swift in Sources */,
 				EA98C4B727DEBF4B0045055D /* CreateDiaryBuilder.swift in Sources */,
-				EAFE86B127D499C300519243 /* SignUpCompletedRouter.swift in Sources */,
-				EAFE86B227D499C300519243 /* SignUpCompletedViewController.swift in Sources */,
+				EA108F85285B0B4D00F23226 /* OAuthProtocol.swift in Sources */,
+				EA108F8D285B38FF00F23226 /* AuthAPI.swift in Sources */,
+				EAFE86B127D499C300519243 /* VanishingCompletiondRouter.swift in Sources */,
+				EA625C44282B2B23002BCABD /* DiaryDetailInteractor.swift in Sources */,
+				EAFE86B227D499C300519243 /* VanishingCompletionViewController.swift in Sources */,
 				EAF0C59528082F9800E0640B /* ToolType.swift in Sources */,
 				EAFE86A827D489E100519243 /* SplashBuilder.swift in Sources */,
 				EA2840292807EAC000D8DCB1 /* PaletteColorType.swift in Sources */,
+				EA625C43282B2B23002BCABD /* DiaryDetailBuilder.swift in Sources */,
 				EAB4543427FC3DFC0002A3B1 /* DiaryDrawingViewController.swift in Sources */,
 				EAF530332819C921001CE8FE /* CoreDataHelper.swift in Sources */,
 				EA98C4BE27DF137E0045055D /* UIImage+Ext.swift in Sources */,
 				EAFE86C627D5C8F500519243 /* DiaryListRouter.swift in Sources */,
 				EA98C4B827DEBF4B0045055D /* CreateDiaryInteractor.swift in Sources */,
-				EAFE86B327D499C300519243 /* SignUpCompletedBuilder.swift in Sources */,
+				EAFE86B327D499C300519243 /* VanishingCompletionBuilder.swift in Sources */,
 				EAFE867827D23BF700519243 /* RootInteractor.swift in Sources */,
 				EAFE86FF27D8658D00519243 /* RootSecondaryViewController.swift in Sources */,
 				EAFE869A27D47FD100519243 /* SNSLoginViewController.swift in Sources */,
 				EAFE868C27D372EB00519243 /* LoggedOutBuilder.swift in Sources */,
+				EA108F8F285C5C0200F23226 /* ServiceAPI.swift in Sources */,
 				EAB4543327FC3DFC0002A3B1 /* DiaryDrawingRouter.swift in Sources */,
 				EAFE862B27D0CD8C00519243 /* SceneDelegate.swift in Sources */,
 				EAFE868427D362EB00519243 /* UILabel+Ext.swift in Sources */,
 				EA28402B2807F01900D8DCB1 /* AppColorType.swift in Sources */,
 				EAFE86D827D5F14800519243 /* RootSplitViewController.swift in Sources */,
 				EABF17F427DBB86F002740C0 /* DiaryCollectionViewCell.swift in Sources */,
+				EA01F9DB282A67C600A6E450 /* PictureDiary.xcdatamodeld in Sources */,
 				EAFE86C927D5C8F500519243 /* DiaryListInteractor.swift in Sources */,
 				EAFE867727D23BF700519243 /* RootBuilder.swift in Sources */,
 				EAB1E22027FC120600EEDFDF /* UserDefaults+Ext.swift in Sources */,
+				EA625C41282B2B23002BCABD /* DiaryDetailRouter.swift in Sources */,
+				EA9E04EB285E3DD7005845E4 /* KeychainWrapper+Ext.swift in Sources */,
 				EAFE86D427D5CC4000519243 /* AppBarTopView.swift in Sources */,
 				92EAA4EB9351DECAA3FD6804 /* PaletteView.swift in Sources */,
 			);
@@ -824,6 +932,7 @@
 /* Begin XCBuildConfiguration section */
 		EAFE863A27D0CD8D00519243 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA51AB8C285DAF7B00D9B294 /* config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -885,6 +994,7 @@
 		};
 		EAFE863B27D0CD8D00519243 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA51AB8C285DAF7B00D9B294 /* config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -931,6 +1041,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -940,10 +1051,11 @@
 		};
 		EAFE863D27D0CD8D00519243 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 296A642EF55E0FC635CB0813 /* Pods-PictureDiary.debug.xcconfig */;
+			baseConfigurationReference = 45B77415E2E9170140664D7F /* Pods-PictureDiary.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PictureDiary/PictureDiary.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 92NGUT4BRA;
@@ -951,9 +1063,10 @@
 				INFOPLIST_FILE = PictureDiary/Resources/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -970,10 +1083,11 @@
 		};
 		EAFE863E27D0CD8D00519243 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A91B972A8A61B0AFFF9F0CDE /* Pods-PictureDiary.release.xcconfig */;
+			baseConfigurationReference = 0E1E6D44D6FF25BF23E8C1BC /* Pods-PictureDiary.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PictureDiary/PictureDiary.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 92NGUT4BRA;
@@ -981,9 +1095,10 @@
 				INFOPLIST_FILE = PictureDiary/Resources/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1022,12 +1137,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		EAFE863127D0CD8C00519243 /* PictureDiary.xcdatamodeld */ = {
+		EA01F9D9282A67C600A6E450 /* PictureDiary.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				EAFE863227D0CD8C00519243 /* PictureDiary.xcdatamodel */,
+				EA01F9DA282A67C600A6E450 /* PictureDiary.xcdatamodel */,
 			);
-			currentVersion = EAFE863227D0CD8C00519243 /* PictureDiary.xcdatamodel */;
+			currentVersion = EA01F9DA282A67C600A6E450 /* PictureDiary.xcdatamodel */;
 			path = PictureDiary.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

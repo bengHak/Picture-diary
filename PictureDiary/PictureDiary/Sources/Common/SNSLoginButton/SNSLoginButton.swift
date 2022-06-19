@@ -34,9 +34,9 @@ final class SNSLoginButton: UIView {
     }
     
     // MARK: - Properties
-    var snsType: SNSType
+    var snsType: ProviderType
     
-    init(snsType: SNSType) {
+    init(snsType: ProviderType) {
         self.snsType = snsType
         
         super.init(frame: .zero)

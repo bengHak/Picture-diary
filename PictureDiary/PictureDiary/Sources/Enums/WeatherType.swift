@@ -7,9 +7,22 @@
 
 import Foundation
 
-enum WeatherType {
-    case sunny
-    case cloudy
-    case rain
-    case snow
+enum WeatherType: Int16 {
+    case sunny = 0
+    case cloudy = 1
+    case rain = 2
+    case snow = 3
+    
+    func getString() -> String {
+        switch self {
+        case .sunny:
+            return "sunny"
+        case .cloudy:
+            return "cloudy"
+        case .rain:
+            return "rain"
+        case .snow:
+            return "snow"
+        }
+    }
 }

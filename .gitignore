@@ -54,3 +54,5 @@ DerivedData/
 
 **/GoogleService-Info.plist
 
+# env
+*.xcconfig

@@ -14,7 +14,7 @@ import RIBs
 
 /// RootPrimaryViewController
 /// - 일기장 목록
-class RootPrimaryViewController: UIViewController, LoggedInPrimaryViewControllable {
+class RootPrimaryViewController: UIViewController {
     
     // MARK: - UI Properties
     

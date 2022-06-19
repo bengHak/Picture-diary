@@ -15,11 +15,12 @@ import RxSwift
 /// - 그림일기 보기
 /// - 그림일기 그리기
 /// - 설정 메뉴
-class RootSecondaryViewController: UIViewController, LoggedInSecondaryViewControllable {
+class RootSecondaryViewController: UIViewController {
     
     // MARK: - UI Properties
     private let lblSecondary = UILabel().then {
-        $0.text = "Secondary"
+        $0.text = "그림일기 쓱쓱 입니다!"
+        $0.textColor = .secondaryLabel
     }
     
     // MARK: - Properties
@@ -27,7 +28,7 @@ class RootSecondaryViewController: UIViewController, LoggedInSecondaryViewContro
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .white
         
         configureView()
         configureSubviews()

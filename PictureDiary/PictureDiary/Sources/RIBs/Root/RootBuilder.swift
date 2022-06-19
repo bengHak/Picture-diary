@@ -15,20 +15,20 @@ final class RootComponent: Component<RootDependency>,
                            SplashDependency {
     var splashViewController: SplashViewControllable { rootViewController }
     var loggedOutViewController: LoggedOutViewControllable { rootViewController }
-    var splitViewController: LoggedInSplitViewControllable { rootSplitViewController }
-    var primaryViewController: LoggedInPrimaryViewControllable { rootPrimaryViewController }
-    var secondaryViewController: LoggedInSecondaryViewControllable { rootSecondaryViewController }
+    var splitViewController: UISplitViewController { rootSplitViewController }
+    var primaryViewController: UINavigationController { rootPrimaryViewController }
+    var secondaryViewController: UINavigationController { rootSecondaryViewController }
     
-    var rootViewController: RootViewController
-    let rootSplitViewController: LoggedInSplitViewControllable
-    let rootPrimaryViewController: LoggedInPrimaryViewControllable
-    let rootSecondaryViewController: LoggedInSecondaryViewControllable
+    private let rootViewController: RootViewController
+    private let rootSplitViewController: UISplitViewController
+    private let rootPrimaryViewController: UINavigationController
+    private let rootSecondaryViewController: UINavigationController
     
     init(dependency: RootDependency,
          rootViewController: RootViewController,
-         rootSplitViewController: LoggedInSplitViewControllable,
-         rootPrimaryViewController: RootPrimaryViewController,
-         rootSecondaryViewController: RootSecondaryViewController) {
+         rootSplitViewController: UISplitViewController,
+         rootPrimaryViewController: UINavigationController,
+         rootSecondaryViewController: UINavigationController) {
         self.rootViewController = rootViewController
         self.rootSplitViewController = rootSplitViewController
         self.rootPrimaryViewController = rootPrimaryViewController
@@ -57,8 +57,8 @@ final class RootBuilder: Builder<RootDependency>, RootBuildable {
         } else {
             splitVC = RootSplitViewController()
         }
-        let primaryVC = RootPrimaryViewController()
-        let secondaryVC = RootSecondaryViewController()
+        let primaryVC = UINavigationController(rootViewController: RootPrimaryViewController())
+        let secondaryVC = UINavigationController(rootViewController: RootSecondaryViewController())
         let component = RootComponent(dependency: dependency,
                                       rootViewController: viewController,
                                       rootSplitViewController: splitVC,

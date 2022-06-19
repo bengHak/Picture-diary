@@ -15,10 +15,11 @@ import Then
 
 protocol DiaryListPresentableListener: AnyObject {
     func attachCreateDiary()
+    func attachDiaryDetail(diary: PictureDiary)
 }
 
 final class DiaryListViewController: UIViewController, DiaryListPresentable, DiaryListViewControllable {
-
+    
     weak var listener: DiaryListPresentableListener?
     
     // MARK: - UI Properties
@@ -40,29 +41,44 @@ final class DiaryListViewController: UIViewController, DiaryListPresentable, Dia
     
     // MARK: - Properties
     private let bag = DisposeBag()
+    private var diaryList = BehaviorRelay<[PictureDiary]>(value: [])
+    #warning("interactor로")
+    private lazy var dataHelper = CoreDataHelper.shared
     
     // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        navigationController?.isNavigationBarHidden = true
         
         configureView()
         configureSubviews()
         bind()
+        fetchDiaryList()
     }
     
     // MARK: - Helpers
+    func fetchDiaryList() {
+        diaryList.accept(dataHelper.getDiary())
+        collectionView.reloadData()
+    }
 }
 
 // MARK: BaseViewController
 extension DiaryListViewController: BaseViewController {
     func configureView() {
-        let layout = UICollectionViewLayout()
+        let layout = UICollectionViewFlowLayout()
+        let width: CGFloat
+        if UIScreen.main.traitCollection.userInterfaceIdiom == .phone {
+            width = view.frame.width
+        } else {
+            width = 360
+        }
+        layout.itemSize = CGSize(width: width, height: 212)
+        layout.minimumLineSpacing = 4.0
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(DiaryCollectionViewCell.self, forCellWithReuseIdentifier: DiaryCollectionViewCell.identifier)
         
-        [appBarTopView, lblTitle, emptyDiaryView].forEach {
+        [appBarTopView, lblTitle, emptyDiaryView, collectionView].forEach {
             view.addSubview($0)
         }
     }
@@ -83,12 +99,13 @@ extension DiaryListViewController: BaseViewController {
             $0.center.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(200)
         }
-        // emptyDiaryView.isHidden = true
+        emptyDiaryView.isHidden = false
         
-//        collectionView.snp.makeConstraints {
-//            $0.center.equalTo(view.safeAreaLayoutGuide)
-//        }
-//        collectionView.isHidden = true
+        collectionView.snp.makeConstraints {
+            $0.top.equalTo(lblTitle.snp.bottom).offset(20)
+            $0.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+        collectionView.isHidden = true
     }
 }
 
@@ -105,9 +122,42 @@ extension DiaryListViewController {
                 guard let self = self else { return }
                 self.listener?.attachCreateDiary()
             }).disposed(by: emptyDiaryView.bag)
+        
+        appBarTopView.btnCreate.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.listener?.attachCreateDiary()
+            }).disposed(by: bag)
     }
     
     func bindCollectionView() {
+        diaryList
+            .bind(to: collectionView.rx.items(
+                cellIdentifier: DiaryCollectionViewCell.identifier,
+                cellType: DiaryCollectionViewCell.self
+            )) { index, item, cell in
+                cell.setData(date: item.date ?? Date(),
+                             weather: WeatherType(rawValue: item.weather) ?? .sunny,
+                             drawing: item.drawing)
+            }.disposed(by: bag)
         
+        diaryList
+            .subscribe(onNext: { [weak self] items in
+                guard let self = self else { return }
+                if items.count == 0 {
+                    self.collectionView.isHidden = true
+                    self.emptyDiaryView.isHidden = false
+                } else {
+                    self.collectionView.isHidden = false
+                    self.emptyDiaryView.isHidden = true
+                }
+                self.collectionView.reloadData()
+            }).disposed(by: bag)
+        
+        collectionView.rx.modelSelected(PictureDiary.self)
+            .subscribe(onNext: { [weak self] diary in
+                guard let self = self else { return }
+                self.listener?.attachDiaryDetail(diary: diary)
+            }).disposed(by: bag)
     }
 }
