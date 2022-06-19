@@ -11,10 +11,12 @@ import RxRelay
 
 protocol LoggedInRouting: Routing {
     func cleanupViews()
-    func routeToCreateDiary()
+    func attachCreateDiary()
     func detachCreateDiary()
-    func routeToDiaryDetail()
+    func attachDiaryDetail()
     func detachDiaryDetail()
+    func attachVanishingCompletion()
+    func detachVanishingCompletion()
 }
 
 protocol LoggedInListener: AnyObject {
@@ -43,19 +45,21 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
 
     override func willResignActive() {
         super.willResignActive()
-
         router?.cleanupViews()
-        // TODO: Pause any business logic.
     }
     
-    func attachCreateDiary() { router?.routeToCreateDiary() }
+    func routeToCreateDiary() { router?.attachCreateDiary() }
     
     func detachCreateDiary() { router?.detachCreateDiary() }
     
-    func attachDiaryDetail(diary: PictureDiary) {
+    func routeToDiaryDetail(diary: PictureDiary) {
         pictureDiaryBehaviorRelay.accept(diary)
-        router?.routeToDiaryDetail()
+        router?.attachDiaryDetail()
     }
     
     func detachDiaryDetail() { router?.detachDiaryDetail() }
+    
+    func routeToVanishingCompletion() { router?.attachVanishingCompletion() }
+    
+    func detachCompletionView() { router?.detachVanishingCompletion() }
 }

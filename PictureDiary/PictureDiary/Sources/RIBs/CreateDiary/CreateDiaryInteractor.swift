@@ -10,19 +10,21 @@ import RxSwift
 import RxRelay
 
 protocol CreateDiaryRouting: ViewableRouting {
-    func routeToDiaryTextField()
+    func cleanupViews()
+    func attachDiaryTextField()
     func detachDiaryTextField()
-    func routeToDiaryDrawing()
+    func attachDiaryDrawing()
     func detachDiaryDrawing()
 }
 
 protocol CreateDiaryPresentable: Presentable {
     var listener: CreateDiaryPresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
+    func configureScrollView()
 }
 
 protocol CreateDiaryListener: AnyObject {
     func detachCreateDiary()
+    func routeToVanishingCompletion()
 }
 
 final class CreateDiaryInteractor: PresentableInteractor<CreateDiaryPresentable>,
@@ -41,15 +43,26 @@ final class CreateDiaryInteractor: PresentableInteractor<CreateDiaryPresentable>
     
     override func didBecomeActive() { super.didBecomeActive() }
     
-    override func willResignActive() { super.willResignActive() }
+    override func willResignActive() {
+        super.willResignActive()
+        router?.cleanupViews()
+    }
     
-    func detachCreateDiary() { listener?.detachCreateDiary() }
+    func tapDrawingCompleteButton() {
+        listener?.detachCreateDiary()
+        listener?.routeToVanishingCompletion()
+    }
     
-    func attachDiaryTextField() { router?.routeToDiaryTextField() }
+    func tapCancleButton() { listener?.detachCreateDiary() }
     
-    func detachDiaryTextField() { router?.detachDiaryTextField() }
+    func routeToDiaryTextField() { router?.attachDiaryTextField() }
     
-    func attachDiaryDrawing() { router?.routeToDiaryDrawing() }
+    func detachDiaryTextField() {
+        router?.detachDiaryTextField()
+        presenter.configureScrollView()
+    }
+    
+    func routeToDiaryDrawing() { router?.attachDiaryDrawing() }
     
     func detachDiaryDrawing() { router?.detachDiaryDrawing() }
 }

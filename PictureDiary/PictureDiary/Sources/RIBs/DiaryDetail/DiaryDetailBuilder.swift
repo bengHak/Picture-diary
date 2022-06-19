@@ -12,7 +12,6 @@ protocol DiaryDetailDependency: Dependency {
 }
 
 final class DiaryDetailComponent: Component<DiaryDetailDependency> {
-
     fileprivate var pictureDiary: PictureDiary { dependency.pictureDiary }
 }
 

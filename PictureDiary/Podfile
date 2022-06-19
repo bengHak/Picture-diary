@@ -13,7 +13,7 @@ target 'PictureDiary' do
   pod 'RxGesture', '~> 4.0'
 
   # 🦴 RIBs
-  pod 'RIBs', :git => 'https://github.com/bengHak/RIBs.git'
+  pod 'RIBs', :git => 'git@github.com:bengHak/RIBs.git'
 
   # 📸 Images
   pod 'Kingfisher', '~> 7.0'
@@ -29,5 +29,11 @@ target 'PictureDiary' do
   # 🛠 Utils
   pod 'Then'
   pod 'SwiftKeychainWrapper'
+  
+  # OAuth
+  pod 'RxKakaoSDKUser'
+  pod 'GoogleSignIn'
+
+
 
 end

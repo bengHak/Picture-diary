@@ -10,7 +10,7 @@ import RxSwift
 
 protocol LoggedOutRouting: Routing {
     func cleanupViews()
-    func routeToSignUpCompleted()
+    func routeToVanishingCompletion()
 }
 
 protocol LoggedOutListener: AnyObject {
@@ -33,7 +33,6 @@ final class LoggedOutInteractor: Interactor, LoggedOutInteractable {
 
     override func willResignActive() {
         super.willResignActive()
-
         router?.cleanupViews()
         // TODO: Pause any business logic.
     }
@@ -44,6 +43,10 @@ final class LoggedOutInteractor: Interactor, LoggedOutInteractable {
     }
     
     func didSignUp() {
-        router?.routeToSignUpCompleted()
+        router?.routeToVanishingCompletion()
+    }
+    
+    func detachCompletionView() {
+        listener?.routeToLoggedIn()
     }
 }

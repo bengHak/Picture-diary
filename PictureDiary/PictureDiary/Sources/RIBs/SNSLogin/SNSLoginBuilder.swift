@@ -32,7 +32,11 @@ final class SNSLoginBuilder: Builder<SNSLoginDependency>, SNSLoginBuildable {
     func build(withListener listener: SNSLoginListener) -> SNSLoginRouting {
         let _ = SNSLoginComponent(dependency: dependency)
         let viewController = SNSLoginViewController()
-        let interactor = SNSLoginInteractor(presenter: viewController)
+        let authRepository = AuthRepository()
+        let interactor = SNSLoginInteractor(
+            presenter: viewController,
+            authRepository: authRepository
+        )
         interactor.listener = listener
         return SNSLoginRouter(interactor: interactor, viewController: viewController)
     }

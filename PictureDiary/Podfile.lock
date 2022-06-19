@@ -1,7 +1,32 @@
 PODS:
-  - Alamofire (5.5.0)
-  - IQKeyboardManagerSwift (6.5.9)
-  - Kingfisher (7.2.0)
+  - Alamofire (5.6.1)
+  - AppAuth (1.5.0):
+    - AppAuth/Core (= 1.5.0)
+    - AppAuth/ExternalUserAgent (= 1.5.0)
+  - AppAuth/Core (1.5.0)
+  - AppAuth/ExternalUserAgent (1.5.0):
+    - AppAuth/Core
+  - GoogleSignIn (6.2.2):
+    - AppAuth (~> 1.5)
+    - GTMAppAuth (~> 1.3)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - GTMAppAuth (1.3.0):
+    - AppAuth/Core (~> 1.4)
+    - GTMSessionFetcher/Core (~> 1.5)
+  - GTMSessionFetcher/Core (1.7.2)
+  - IQKeyboardManagerSwift (6.5.10)
+  - KakaoSDKAuth (2.10.1):
+    - KakaoSDKCommon (= 2.10.1)
+  - KakaoSDKCommon (2.10.1):
+    - KakaoSDKCommon/Common (= 2.10.1)
+    - KakaoSDKCommon/Network (= 2.10.1)
+  - KakaoSDKCommon/Common (2.10.1)
+  - KakaoSDKCommon/Network (2.10.1):
+    - Alamofire (~> 5.1)
+    - KakaoSDKCommon/Common (= 2.10.1)
+  - KakaoSDKUser (2.10.1):
+    - KakaoSDKAuth (= 2.10.1)
+  - Kingfisher (7.2.4)
   - Moya (15.0.0):
     - Moya/Core (= 15.0.0)
   - Moya/Core (15.0.0):
@@ -10,29 +35,53 @@ PODS:
     - Moya/Core
     - RxSwift (~> 6.0)
   - RIBs (0.9.3):
-    - RxRelay (~> 6.0)
+    - RxRelay (~> 6.0.0)
+    - RxSwift (~> 6.0.0)
+  - RxAlamofire (6.1.1):
+    - RxAlamofire/Core (= 6.1.1)
+  - RxAlamofire/Core (6.1.1):
+    - Alamofire (~> 5.4)
     - RxSwift (~> 6.0)
-  - RxCocoa (6.5.0):
-    - RxRelay (= 6.5.0)
-    - RxSwift (= 6.5.0)
-  - RxGesture (4.0.3):
+  - RxCocoa (6.0.0):
+    - RxRelay (= 6.0.0)
+    - RxSwift (= 6.0.0)
+  - RxGesture (4.0.4):
     - RxCocoa (~> 6.0)
     - RxSwift (~> 6.0)
-  - RxRelay (6.5.0):
-    - RxSwift (= 6.5.0)
-  - RxSwift (6.5.0)
+  - RxKakaoSDKAuth (2.10.1):
+    - KakaoSDKAuth (= 2.10.1)
+    - RxKakaoSDKCommon (= 2.10.1)
+  - RxKakaoSDKCommon (2.10.1):
+    - RxKakaoSDKCommon/Common (= 2.10.1)
+    - RxKakaoSDKCommon/Network (= 2.10.1)
+  - RxKakaoSDKCommon/Common (2.10.1):
+    - KakaoSDKCommon/Common (= 2.10.1)
+    - RxCocoa
+    - RxSwift (~> 6.0)
+  - RxKakaoSDKCommon/Network (2.10.1):
+    - KakaoSDKCommon/Network (= 2.10.1)
+    - RxAlamofire (~> 6.0)
+    - RxKakaoSDKCommon/Common (= 2.10.1)
+  - RxKakaoSDKUser (2.10.1):
+    - KakaoSDKUser (= 2.10.1)
+    - RxKakaoSDKAuth (= 2.10.1)
+  - RxRelay (6.0.0):
+    - RxSwift (= 6.0.0)
+  - RxSwift (6.0.0)
   - SnapKit (5.0.1)
   - SwiftKeychainWrapper (4.0.1)
-  - Then (2.7.0)
+  - Then (3.0.0)
 
 DEPENDENCIES:
+  - GoogleSignIn
   - IQKeyboardManagerSwift
   - Kingfisher (~> 7.0)
   - Moya (~> 15.0)
   - Moya/RxSwift (~> 15.0)
-  - RIBs (from `https://github.com/bengHak/RIBs.git`)
+  - "RIBs (from `git@github.com:bengHak/RIBs.git`)"
   - RxCocoa (~> 6.0)
   - RxGesture (~> 4.0)
+  - RxKakaoSDKUser
   - RxSwift (~> 6.0)
   - SnapKit (~> 5.0.0)
   - SwiftKeychainWrapper
@@ -41,11 +90,22 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - AppAuth
+    - GoogleSignIn
+    - GTMAppAuth
+    - GTMSessionFetcher
     - IQKeyboardManagerSwift
+    - KakaoSDKAuth
+    - KakaoSDKCommon
+    - KakaoSDKUser
     - Kingfisher
     - Moya
+    - RxAlamofire
     - RxCocoa
     - RxGesture
+    - RxKakaoSDKAuth
+    - RxKakaoSDKCommon
+    - RxKakaoSDKUser
     - RxRelay
     - RxSwift
     - SnapKit
@@ -54,27 +114,38 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   RIBs:
-    :git: https://github.com/bengHak/RIBs.git
+    :git: "git@github.com:bengHak/RIBs.git"
 
 CHECKOUT OPTIONS:
   RIBs:
-    :commit: 32288939511d7a823fe59136741d840a589b3107
-    :git: https://github.com/bengHak/RIBs.git
+    :commit: 0b0948a68f4836f504a09529176e8da90909f846
+    :git: "git@github.com:bengHak/RIBs.git"
 
 SPEC CHECKSUMS:
-  Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
-  IQKeyboardManagerSwift: 6e839c575c4aa1078d58a596e41244e77abe918f
-  Kingfisher: 3ac0b75b155cabc0e544877d1a4deea29feece92
+  Alamofire: 87bd8c952f9a4454320fce00d9cc3de57bcadaf5
+  AppAuth: 80317d99ac7ff2801a2f18ff86b48cd315ed465d
+  GoogleSignIn: 3c68388ac221f379676e8f1cb115df3aaf73b93f
+  GTMAppAuth: 4d8f864896f3646f0c33baf38a28362f4c601e15
+  GTMSessionFetcher: 5595ec75acf5be50814f81e9189490412bad82ba
+  IQKeyboardManagerSwift: 52962c76ab33532f15ad9f3ff4e5715eda5335bb
+  KakaoSDKAuth: b4fec62192c2ac8a9375847f666c0932e38afeb5
+  KakaoSDKCommon: 4989e3bae5f4884903bc1df7134e13d0e903d587
+  KakaoSDKUser: 5c5fd4b5864e8b5ac9587fdbb473daf2fa675abf
+  Kingfisher: 2457be2121734e69e54a2312ecc0150eb9ae70b3
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
-  RIBs: e9486b99e81f8c6bfa22eaec9ec568b96f467a48
-  RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
-  RxGesture: abadd243fc36db74df43dfc893829ddde94f1a3d
-  RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
-  RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
+  RIBs: dd8df1129289d51ed4fec6e2127613d9eaba204e
+  RxAlamofire: beb75a1c452d0de225651db4903f5d29d034a620
+  RxCocoa: 3f79328fafa3645b34600f37c31e64c73ae3a80e
+  RxGesture: f3efb47ed2d26a8082f7b660d4a59970e275a7f8
+  RxKakaoSDKAuth: bf06c7cd54754fbac18b57c2550c56a3055cf8d8
+  RxKakaoSDKCommon: 353d3e028d9bf436a0e809180a22a6398bacd545
+  RxKakaoSDKUser: dc2f5a5f4c07753ac6192cb4adde20a3d94f3091
+  RxRelay: 8d593be109c06ea850df027351beba614b012ffb
+  RxSwift: c14e798c59b9f6e9a2df8fd235602e85cc044295
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftKeychainWrapper: 807ba1d63c33a7d0613288512399cd1eda1e470c
-  Then: acfe0be7e98221c6204e12f8161459606d5d822d
+  Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
 
-PODFILE CHECKSUM: d12dc25b384670568be2ff8a76e12198cc62e3fe
+PODFILE CHECKSUM: 88217df576066205b884666e9895f099d0ca9df2
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3

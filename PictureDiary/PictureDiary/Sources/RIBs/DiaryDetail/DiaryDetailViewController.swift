@@ -13,6 +13,7 @@ import SnapKit
 
 protocol DiaryDetailPresentableListener: AnyObject {
     func detachDiaryDetail()
+    func tapShareButton(_ imageData: Data, _ completionHandler: @escaping (Bool) -> Void)
 }
 
 final class DiaryDetailViewController: UIViewController, DiaryDetailPresentable, DiaryDetailViewControllable {
@@ -29,7 +30,7 @@ final class DiaryDetailViewController: UIViewController, DiaryDetailPresentable,
     private let stackView = UIStackView().then {
         $0.alignment = .center
         $0.axis = .vertical
-        $0.spacing = 14
+        $0.spacing = 2
     }
     
     /// 날짜, 날시 스택
@@ -45,7 +46,6 @@ final class DiaryDetailViewController: UIViewController, DiaryDetailPresentable,
             $0.text = dateText
         }
         $0.font = .DefaultFont.body2.font()
-        $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
     /// 날씨 스택
@@ -81,10 +81,7 @@ final class DiaryDetailViewController: UIViewController, DiaryDetailPresentable,
     }
     
     /// 텍스트 일기장
-    private lazy var textview = UITextView().then {
-        if let text = self.diary.content {
-            $0.text = text
-        }
+    private let textview = UITextView().then {
         $0.font = .DefaultFont.body1.font()
         $0.backgroundColor = .clear
         $0.tintColor = .clear
@@ -92,7 +89,16 @@ final class DiaryDetailViewController: UIViewController, DiaryDetailPresentable,
         $0.isScrollEnabled = false
     }
     
+    private let underlineStack = UIStackView().then {
+        $0.axis = .vertical
+    }
+    
+    private lazy var shareInstagramView = ShareInstagramView(diary: self.diary).then {
+        $0.isHidden = true
+    }
+    
     /// 도장 뷰
+    #warning("TODO: 도장뷰")
     
     // MARK: - Properties
     private let bag = DisposeBag()
@@ -102,6 +108,15 @@ final class DiaryDetailViewController: UIViewController, DiaryDetailPresentable,
     
     /// Diary data
     private let diary: PictureDiary
+    
+    private var diaryTextLineHeight: CGFloat?
+    
+    private var pictureWidth: CGFloat {
+        if UITraitCollection.current.horizontalSizeClass == .compact {
+            return view.bounds.width - 40
+        }
+        return 340
+    }
     
     // MARK: - Lifecycles
     init(diary: PictureDiary) {
@@ -115,13 +130,18 @@ final class DiaryDetailViewController: UIViewController, DiaryDetailPresentable,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.isNavigationBarHidden = true
         view.backgroundColor = .white
         
         configureView()
         configureSubviews()
+        
         handleWeather()
         bind()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setUnderLineView()
     }
     
     // MARK: - Helpers
@@ -137,11 +157,36 @@ final class DiaryDetailViewController: UIViewController, DiaryDetailPresentable,
             ivSnow.image = UIImage(named: "ic_weather_snow_selected")
         }
     }
+    
+    private func addUnderLine() {
+        let underline = UIImageView(image: UIImage(named: "img_underline")).then {
+            $0.contentMode = .scaleAspectFill
+        }
+        underlineStack.addArrangedSubview(underline)
+        underline.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(2)
+        }
+    }
+    
+    private func setLineHeight() {
+        let fontLineHeight = (self.textview.font?.lineHeight ?? 20) + 10
+        underlineStack.spacing = fontLineHeight + 2.1
+        diaryTextLineHeight = fontLineHeight
+    }
+    
+    private func setUnderLineView() {
+        let lineCount = textview.numberOfLine()
+        if lineCount > 20 {
+            for _ in 0..<lineCount-20 { addUnderLine() }
+        }
+    }
 }
 
 // MARK: - BaseViewController
 extension DiaryDetailViewController: BaseViewController {
     func configureView() {
+        setLineHeight()
         [ivSunny, ivCloudy, ivRain, ivSnow].forEach { stackWeather.addArrangedSubview($0) }
         
         dateWeatherStack.addArrangedSubview(lblDate)
@@ -152,18 +197,20 @@ extension DiaryDetailViewController: BaseViewController {
             stackView.addArrangedSubview($0)
         }
 
+        scrollView.addSubview(underlineStack)
         scrollView.addSubview(stackView)
         [appBarTop, scrollView].forEach {
             view.addSubview($0)
         }
+        
+        view.addSubview(shareInstagramView)
     }
     
     func configureSubviews() {
-        let w: CGFloat
-        if UITraitCollection.current.horizontalSizeClass == .compact {
-            w = view.bounds.width - 40
-        } else {
-            w = 340
+        shareInstagramView.snp.makeConstraints {
+            $0.center.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(700)
+            $0.width.equalTo(400)
         }
         
         appBarTop.snp.makeConstraints {
@@ -176,23 +223,34 @@ extension DiaryDetailViewController: BaseViewController {
         }
         
         dateWeatherStack.snp.makeConstraints {
-            $0.width.equalTo(w)
+            $0.width.equalTo(pictureWidth)
         }
         
         ivPictureFrame.snp.makeConstraints {
             let ratio = ivPictureFrame.image?.getImageRatio()
-            let h = Float(w) * Float(ratio!)
-            $0.width.equalTo(w)
+            let h = Float(pictureWidth) * Float(ratio!)
+            $0.width.equalTo(pictureWidth)
             $0.height.equalTo(h)
         }
         
         ivPicture.snp.makeConstraints {
             $0.edges.equalTo(ivPictureFrame).inset(10)
         }
-        
+                
         textview.snp.makeConstraints {
-            $0.width.equalTo(w)
+            $0.width.equalTo(pictureWidth)
         }
+        if let text = self.diary.content {
+            let h = (self.diaryTextLineHeight ?? 26) - 18
+            self.textview.setAttributedText(text, lineSpacing: h)
+        }
+        
+        underlineStack.snp.makeConstraints {
+            let h = diaryTextLineHeight ?? 26
+            $0.top.equalTo(textview).offset(h)
+            $0.leading.trailing.equalTo(ivPictureFrame)
+        }
+        for _ in 0..<20 { addUnderLine() }
         
         stackView.snp.makeConstraints {
             $0.edges.equalTo(scrollView)
@@ -217,6 +275,24 @@ extension DiaryDetailViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.listener?.detachDiaryDetail()
+            }).disposed(by: bag)
+        
+        appBarTop.btnShare.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.shareInstagramView.isHidden = false
+                let renderer = UIGraphicsImageRenderer(bounds: self.shareInstagramView.bounds)
+                let renderImage = renderer.image { context in
+                    self.shareInstagramView.layer.render(in: context.cgContext)
+                }
+                guard let imageData = renderImage.pngData() else { return }
+                self.shareInstagramView.isHidden = true
+                self.listener?.tapShareButton(imageData) { isIgInstalled in
+                    #warning("TODO: 인스타그램이 설치되지 않았을 경우")
+                    if !isIgInstalled {
+                        print("Instagram is not installed")
+                    }
+                }
             }).disposed(by: bag)
     }
 }
