@@ -76,7 +76,7 @@ final class DiaryDetailViewController: UIViewController, DiaryDetailPresentable,
         if let drawingData = self.diary.drawing {
             $0.image = UIImage(data: drawingData)
         }
-        $0.contentMode = .scaleAspectFit
+        $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
     }
     
