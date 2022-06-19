@@ -67,7 +67,7 @@ final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable,
     
     /// 그림 이미지
     private let ivPicture = UIImageView().then {
-        $0.contentMode = .scaleAspectFit
+        $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
     }
     

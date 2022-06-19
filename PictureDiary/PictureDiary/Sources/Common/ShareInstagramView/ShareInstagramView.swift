@@ -47,7 +47,7 @@ final class ShareInstagramView: UIView {
     
     /// 그림
     private let ivPicture = UIImageView().then {
-        $0.contentMode = .scaleAspectFit
+        $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
     }
     
@@ -58,11 +58,12 @@ final class ShareInstagramView: UIView {
     
     /// 일기 텍스트
     private let diaryTextView = UITextView().then {
-        $0.font = .defaultFont(size: 4)
         $0.backgroundColor = .clear
         $0.clipsToBounds = true
         $0.isEditable = false
         $0.isScrollEnabled = false
+        $0.textContainer.maximumNumberOfLines = 5
+        $0.textContainer.lineBreakMode = .byTruncatingTail
     }
     
     /// White gradient view
@@ -133,7 +134,7 @@ final class ShareInstagramView: UIView {
             print("invalid diary")
             return
         }
-        diaryTextView.setAttributedText(text, lineSpacing: diaryTextLineHeight ?? 10)
+        diaryTextView.setAttributedText(text, lineSpacing: diaryTextLineHeight ?? 10, font: .body2)
         ivPicture.image = UIImage(data: imageData)
         lblWeather.text = date.formattedString()
         
