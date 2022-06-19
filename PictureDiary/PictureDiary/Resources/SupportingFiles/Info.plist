@@ -2,8 +2,48 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIUserInterfaceStyle</key>
-	<string>Light</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>google login</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>$(GOOGLE_API_URL)</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>kakao</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>$(KAKAO_API_URL)</string>
+			</array>
+		</dict>
+	</array>
+	<key>GOOGLE_API_CLIENT_ID</key>
+	<string>$(GOOGLE_API_CLIENT_ID)</string>
+	<key>GOOGLE_API_URL</key>
+	<string>$(GOOGLE_API_URL)</string>
+	<key>KAKAO_API_URL</key>
+	<string>$(KAKAO_API_URL)</string>
+	<key>KAKAO_APP_KEY</key>
+	<string>$(KAKAO_APP_KEY)</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>instagram-stories</string>
+		<string>kakaolink</string>
+		<string>kakaokompassauth</string>
+	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Pretendard-Bold.otf</string>

@@ -7,8 +7,8 @@
 
 import Foundation
 
-enum SNSType {
-    case kakao
-    case apple
-    case google
+enum ProviderType: String {
+    case kakao = "KAKAO"
+    case apple = "APPLE"
+    case google = "GOOGLE"
 }

@@ -31,6 +31,9 @@ target 'PictureDiary' do
   pod 'SwiftKeychainWrapper'
   
   # OAuth
-  pod 'RxKakaoSDKAuth'  # 카카오 로그인
-  
+  pod 'RxKakaoSDKUser'
+  pod 'GoogleSignIn'
+
+
+
 end

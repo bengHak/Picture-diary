@@ -68,22 +68,9 @@ final class ShareInstagramView: UIView {
     /// White gradient view
     private let gradientView = UIView().then { view in
         view.backgroundColor = .clear
-//
-//        let layer0 = CAGradientLayer()
-//        layer0.colors = [
-//          UIColor(red: 0.957, green: 0.957, blue: 0.957, alpha: 1).cgColor,
-//          UIColor(red: 0.957, green: 0.957, blue: 0.957, alpha: 0).cgColor
-//        ]
-//
-//        layer0.locations = [0.06, 1]
-//        layer0.startPoint = CGPoint(x: 0.25, y: 0.5)
-//        layer0.endPoint = CGPoint(x: 0.75, y: 0.5)
-//        layer0.transform = CATransform3DMakeAffineTransform(CGAffineTransform(a: 0, b: -1, c: 1, d: 0, tx: -0.19, ty: 1))
-//        layer0.bounds = view.bounds.insetBy(dx: -0.5*view.bounds.size.width, dy: -0.5*view.bounds.size.height)
-//        layer0.position = view.center
-//        view.layer.addSublayer(layer0)
     }
     
+    #warning("로고 변경해야됨")
     /// 로고 뷰
     private let logoView = UIView().then {
         $0.backgroundColor = .white

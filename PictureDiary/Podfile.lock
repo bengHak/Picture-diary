@@ -1,16 +1,32 @@
 PODS:
   - Alamofire (5.6.1)
+  - AppAuth (1.5.0):
+    - AppAuth/Core (= 1.5.0)
+    - AppAuth/ExternalUserAgent (= 1.5.0)
+  - AppAuth/Core (1.5.0)
+  - AppAuth/ExternalUserAgent (1.5.0):
+    - AppAuth/Core
+  - GoogleSignIn (6.2.2):
+    - AppAuth (~> 1.5)
+    - GTMAppAuth (~> 1.3)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - GTMAppAuth (1.3.0):
+    - AppAuth/Core (~> 1.4)
+    - GTMSessionFetcher/Core (~> 1.5)
+  - GTMSessionFetcher/Core (1.7.2)
   - IQKeyboardManagerSwift (6.5.10)
-  - KakaoSDKAuth (2.10.0):
-    - KakaoSDKCommon (= 2.10.0)
-  - KakaoSDKCommon (2.10.0):
-    - KakaoSDKCommon/Common (= 2.10.0)
-    - KakaoSDKCommon/Network (= 2.10.0)
-  - KakaoSDKCommon/Common (2.10.0)
-  - KakaoSDKCommon/Network (2.10.0):
+  - KakaoSDKAuth (2.10.1):
+    - KakaoSDKCommon (= 2.10.1)
+  - KakaoSDKCommon (2.10.1):
+    - KakaoSDKCommon/Common (= 2.10.1)
+    - KakaoSDKCommon/Network (= 2.10.1)
+  - KakaoSDKCommon/Common (2.10.1)
+  - KakaoSDKCommon/Network (2.10.1):
     - Alamofire (~> 5.1)
-    - KakaoSDKCommon/Common (= 2.10.0)
-  - Kingfisher (7.2.2)
+    - KakaoSDKCommon/Common (= 2.10.1)
+  - KakaoSDKUser (2.10.1):
+    - KakaoSDKAuth (= 2.10.1)
+  - Kingfisher (7.2.4)
   - Moya (15.0.0):
     - Moya/Core (= 15.0.0)
   - Moya/Core (15.0.0):
@@ -32,20 +48,23 @@ PODS:
   - RxGesture (4.0.4):
     - RxCocoa (~> 6.0)
     - RxSwift (~> 6.0)
-  - RxKakaoSDKAuth (2.10.0):
-    - KakaoSDKAuth (= 2.10.0)
-    - RxKakaoSDKCommon (= 2.10.0)
-  - RxKakaoSDKCommon (2.10.0):
-    - RxKakaoSDKCommon/Common (= 2.10.0)
-    - RxKakaoSDKCommon/Network (= 2.10.0)
-  - RxKakaoSDKCommon/Common (2.10.0):
-    - KakaoSDKCommon/Common (= 2.10.0)
+  - RxKakaoSDKAuth (2.10.1):
+    - KakaoSDKAuth (= 2.10.1)
+    - RxKakaoSDKCommon (= 2.10.1)
+  - RxKakaoSDKCommon (2.10.1):
+    - RxKakaoSDKCommon/Common (= 2.10.1)
+    - RxKakaoSDKCommon/Network (= 2.10.1)
+  - RxKakaoSDKCommon/Common (2.10.1):
+    - KakaoSDKCommon/Common (= 2.10.1)
     - RxCocoa
     - RxSwift (~> 6.0)
-  - RxKakaoSDKCommon/Network (2.10.0):
-    - KakaoSDKCommon/Network (= 2.10.0)
+  - RxKakaoSDKCommon/Network (2.10.1):
+    - KakaoSDKCommon/Network (= 2.10.1)
     - RxAlamofire (~> 6.0)
-    - RxKakaoSDKCommon/Common (= 2.10.0)
+    - RxKakaoSDKCommon/Common (= 2.10.1)
+  - RxKakaoSDKUser (2.10.1):
+    - KakaoSDKUser (= 2.10.1)
+    - RxKakaoSDKAuth (= 2.10.1)
   - RxRelay (6.0.0):
     - RxSwift (= 6.0.0)
   - RxSwift (6.0.0)
@@ -54,6 +73,7 @@ PODS:
   - Then (3.0.0)
 
 DEPENDENCIES:
+  - GoogleSignIn
   - IQKeyboardManagerSwift
   - Kingfisher (~> 7.0)
   - Moya (~> 15.0)
@@ -61,7 +81,7 @@ DEPENDENCIES:
   - "RIBs (from `git@github.com:bengHak/RIBs.git`)"
   - RxCocoa (~> 6.0)
   - RxGesture (~> 4.0)
-  - RxKakaoSDKAuth
+  - RxKakaoSDKUser
   - RxSwift (~> 6.0)
   - SnapKit (~> 5.0.0)
   - SwiftKeychainWrapper
@@ -70,9 +90,14 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - AppAuth
+    - GoogleSignIn
+    - GTMAppAuth
+    - GTMSessionFetcher
     - IQKeyboardManagerSwift
     - KakaoSDKAuth
     - KakaoSDKCommon
+    - KakaoSDKUser
     - Kingfisher
     - Moya
     - RxAlamofire
@@ -80,6 +105,7 @@ SPEC REPOS:
     - RxGesture
     - RxKakaoSDKAuth
     - RxKakaoSDKCommon
+    - RxKakaoSDKUser
     - RxRelay
     - RxSwift
     - SnapKit
@@ -97,23 +123,29 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 87bd8c952f9a4454320fce00d9cc3de57bcadaf5
+  AppAuth: 80317d99ac7ff2801a2f18ff86b48cd315ed465d
+  GoogleSignIn: 3c68388ac221f379676e8f1cb115df3aaf73b93f
+  GTMAppAuth: 4d8f864896f3646f0c33baf38a28362f4c601e15
+  GTMSessionFetcher: 5595ec75acf5be50814f81e9189490412bad82ba
   IQKeyboardManagerSwift: 52962c76ab33532f15ad9f3ff4e5715eda5335bb
-  KakaoSDKAuth: 94cdbd864a6e1b5691c11aba09d769ea91be107a
-  KakaoSDKCommon: 9edbf77ef59c8594412908e023e64ef07f75db08
-  Kingfisher: 184d4d1a8c36666e663caf8e08abe87898595c53
+  KakaoSDKAuth: b4fec62192c2ac8a9375847f666c0932e38afeb5
+  KakaoSDKCommon: 4989e3bae5f4884903bc1df7134e13d0e903d587
+  KakaoSDKUser: 5c5fd4b5864e8b5ac9587fdbb473daf2fa675abf
+  Kingfisher: 2457be2121734e69e54a2312ecc0150eb9ae70b3
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   RIBs: dd8df1129289d51ed4fec6e2127613d9eaba204e
   RxAlamofire: beb75a1c452d0de225651db4903f5d29d034a620
   RxCocoa: 3f79328fafa3645b34600f37c31e64c73ae3a80e
   RxGesture: f3efb47ed2d26a8082f7b660d4a59970e275a7f8
-  RxKakaoSDKAuth: 9af5b70d22e6eeebbd4f06b89509b4cfb86eed40
-  RxKakaoSDKCommon: 4090745c7ddf1b65588fc9f00af0468e384f9082
+  RxKakaoSDKAuth: bf06c7cd54754fbac18b57c2550c56a3055cf8d8
+  RxKakaoSDKCommon: 353d3e028d9bf436a0e809180a22a6398bacd545
+  RxKakaoSDKUser: dc2f5a5f4c07753ac6192cb4adde20a3d94f3091
   RxRelay: 8d593be109c06ea850df027351beba614b012ffb
   RxSwift: c14e798c59b9f6e9a2df8fd235602e85cc044295
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftKeychainWrapper: 807ba1d63c33a7d0613288512399cd1eda1e470c
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
 
-PODFILE CHECKSUM: 8d6eb052f3819a82e603cebcd99933ae6bb21858
+PODFILE CHECKSUM: 88217df576066205b884666e9895f099d0ca9df2
 
 COCOAPODS: 1.11.3

@@ -42,6 +42,7 @@ final class DiaryListViewController: UIViewController, DiaryListPresentable, Dia
     // MARK: - Properties
     private let bag = DisposeBag()
     private var diaryList = BehaviorRelay<[PictureDiary]>(value: [])
+    #warning("interactor로")
     private lazy var dataHelper = CoreDataHelper.shared
     
     // MARK: - Lifecycles

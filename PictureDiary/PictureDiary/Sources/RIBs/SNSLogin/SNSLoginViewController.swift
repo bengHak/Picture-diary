@@ -10,10 +10,10 @@ import RxSwift
 import UIKit
 import SnapKit
 import RxGesture
+import GoogleSignIn
 
 protocol SNSLoginPresentableListener: AnyObject {
-    func login()
-    func signUp()
+    func login(provider: ProviderType)
 }
 
 final class SNSLoginViewController: UIViewController, SNSLoginPresentable, SNSLoginViewControllable {
@@ -93,18 +93,15 @@ extension SNSLoginViewController {
     }
     
     func bindButtons() {
-        btnKakao.rx.tapGesture()
-            .when(.recognized)
-            .subscribe(onNext: { [weak self] _ in
-                guard let self = self else { return }
-                self.listener?.login()
-            }).disposed(by: bag)
-        
-        btnApple.rx.tapGesture()
-            .when(.recognized)
-            .subscribe(onNext: { [weak self] _ in
-                guard let self = self else { return }
-                self.listener?.signUp()
-            }).disposed(by: bag)
+        Observable.merge(
+            btnKakao.rx.tapGesture().when(.recognized).map { _ in return ProviderType.kakao},
+            btnApple.rx.tapGesture().when(.recognized).map { _ in return ProviderType.apple},
+            btnGoogle.rx.tapGesture().when(.recognized).map { _ in return ProviderType.google}
+        )
+        .bind(onNext: { [weak self] provider in
+            guard let self = self else { return }
+            self.listener?.login(provider: provider)
+        })
+        .disposed(by: bag)
     }
 }
