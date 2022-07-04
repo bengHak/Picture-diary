@@ -15,17 +15,22 @@ protocol CreateDiaryDependency: Dependency {
 
 final class CreateDiaryComponent: Component<CreateDiaryDependency>,
                                   DiaryTextFieldDependency,
-                                  DiaryDrawingDependency {
+                                  DiaryDrawingDependency,
+                                  VanishingCompletionDependency {
     var drawingImage: BehaviorRelay<UIImage?>
     var drawingData: BehaviorRelay<Data?>
+    var diaryText: BehaviorRelay<String>
+    var labelText: String { "오늘의 일기가 저장되었어요!" }
     
     init(
         dependency: CreateDiaryDependency,
         drawingImage: BehaviorRelay<UIImage?>,
-        drawingData: BehaviorRelay<Data?>
+        drawingData: BehaviorRelay<Data?>,
+        diaryText: BehaviorRelay<String>
     ) {
         self.drawingImage = drawingImage
         self.drawingData = drawingData
+        self.diaryText = diaryText
         super.init(dependency: dependency)
     }
     
@@ -46,26 +51,36 @@ final class CreateDiaryBuilder: Builder<CreateDiaryDependency>, CreateDiaryBuild
     func build(withListener listener: CreateDiaryListener) -> CreateDiaryRouting {
         let drawingImage = BehaviorRelay<UIImage?>(value: nil)
         let drawingData = BehaviorRelay<Data?>(value: nil)
+        let diaryText = BehaviorRelay<String>(value: "")
         
         let component = CreateDiaryComponent(
             dependency: dependency,
             drawingImage: drawingImage,
-            drawingData: drawingData
+            drawingData: drawingData,
+            diaryText: diaryText
         )
         
         let viewController = CreateDiaryViewController(
             drawingImage: drawingImage,
-            drawingData: drawingData
+            diaryText: diaryText
         )
         
-        let interactor = CreateDiaryInteractor(presenter: viewController)
+        let diaryRepository = DiaryRepository()
+        let interactor = CreateDiaryInteractor(
+            presenter: viewController,
+            diaryRepository: diaryRepository
+        )
         interactor.listener = listener
         
         let diaryTextFieldBuilder = DiaryTextFieldBuilder(dependency: component)
         let diaryDrawingBuilder = DiaryDrawingBuilder(dependency: component)
-        return CreateDiaryRouter(interactor: interactor,
-                                 viewController: viewController,
-                                 diaryTextFieldBuilder: diaryTextFieldBuilder,
-                                 diaryDrawingBuilder: diaryDrawingBuilder)
+        let vanishingCompletionBuilder = VanishingCompletionBuilder(dependency: component)
+        return CreateDiaryRouter(
+            interactor: interactor,
+            viewController: viewController,
+            diaryTextFieldBuilder: diaryTextFieldBuilder,
+            diaryDrawingBuilder: diaryDrawingBuilder,
+            vanishingCompletionBuilder: vanishingCompletionBuilder
+        )
     }
 }

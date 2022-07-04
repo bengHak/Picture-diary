@@ -13,7 +13,7 @@ target 'PictureDiary' do
   pod 'RxGesture', '~> 4.0'
 
   # 🦴 RIBs
-  pod 'RIBs', :git => 'git@github.com:bengHak/RIBs.git'
+  pod 'RIBs', :git => 'git@github.com:uber/RIBs.git'
 
   # 📸 Images
   pod 'Kingfisher', '~> 7.0'

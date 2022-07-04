@@ -15,11 +15,15 @@ class CoreDataHelper {
     
     let modelName = "PictureDiary"
     
+    private var cached: [PictureDiary]
+    
+    init() {
+        self.cached = []
+    }
+    
     func getDiary() -> [PictureDiary] {
         var models: [PictureDiary] = []
-        
         guard let context = context else { return [] }
-        
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: modelName)
         let dateSort = NSSortDescriptor(key: "date", ascending: false)
         fetchRequest.sortDescriptors = [dateSort]
@@ -31,10 +35,31 @@ class CoreDataHelper {
         }
         
         return models
+    }
+    
+    func getDiaryById(_ id: Int) -> PictureDiary? {
+        let filtered = cached.filter { $0.id == id }
+        if filtered.count == 1 {
+            return filtered.first
+        }
         
+        guard let context = context else { return nil }
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: modelName)
+        fetchRequest.fetchLimit = 1
+        fetchRequest.predicate = NSPredicate(format: "id == %@", String(id))
+        
+        if let fetchResult = try? context.fetch(fetchRequest) as? [PictureDiary],
+           fetchResult.count == 1 {
+            cached.append(fetchResult.first!)
+            return fetchResult.first!
+        } else {
+            print("🔴 Could not fetch")
+            return nil
+        }
     }
     
     func saveDiary(
+        id: Int,
         date: Date,
         weather: WeatherType,
         drawing: Data?,
@@ -48,6 +73,7 @@ class CoreDataHelper {
         }
         
         if let diary = NSManagedObject(entity: entity, insertInto: context) as? PictureDiary {
+            diary.id = id
             diary.date = date
             diary.weather = weather.rawValue
             diary.drawing = drawing

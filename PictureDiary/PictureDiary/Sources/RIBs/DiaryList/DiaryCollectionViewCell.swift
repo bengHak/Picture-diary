@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 import Then
 import PencilKit
 
@@ -79,11 +80,41 @@ final class DiaryCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func setData(date: Date, weather: WeatherType, drawing: Data?) {
+    func setData(
+        id: Int,
+        date: Date,
+        weather: WeatherType,
+        drawingImageURL: String?,
+        drawingData: Data?
+    ) {
         lblDate.text = date.formattedString()
         
-        if let drawing = drawing {
-            ivThumbnail.image = UIImage(data: drawing)
+        if let drawingData = drawingData {
+            ivThumbnail.image = UIImage(data: drawingData)
+        } else if let drawingImageURL = drawingImageURL {
+            ivThumbnail.kf.setImage(with: URL(string: drawingImageURL)) { result in
+                switch result {
+                case .success(let imageResult):
+                    let data = imageResult.image.pngData()
+                    CoreDataHelper.shared.saveDiary(
+                        id: id,
+                        date: date,
+                        weather: weather,
+                        drawing: data,
+                        content: ""
+                    ) {
+                        if $0 {
+                            print("diary-\(id) is cached")
+                        } else {
+                            print("diary-\(id) is failed to cached")
+                        }
+                    }
+                    break
+                case .failure(let error):
+                    print(error)
+                }
+                
+            }
         }
         
         switch weather {

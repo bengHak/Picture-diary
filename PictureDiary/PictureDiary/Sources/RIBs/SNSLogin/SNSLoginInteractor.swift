@@ -83,7 +83,7 @@ final class SNSLoginInteractor: PresentableInteractor<SNSLoginPresentable>,
                 self?.signUpWithSsgSsgServer(provider)
                 return Observable.error(error)
             }
-            .bind(onNext: { [weak self] authResponse in
+            .subscribe(onNext: { [weak self] authResponse in
                 guard let self = self,
                       let accessToken = authResponse.accessToken else {
                     self?.isSignInSuccess.onNext(false)
@@ -96,12 +96,14 @@ final class SNSLoginInteractor: PresentableInteractor<SNSLoginPresentable>,
     }
     
     private func signUpWithSsgSsgServer(_ provider: ProviderType) {
+        print(#function)
+        print(self.providerToken.value)
         authRepository.signup(token: self.providerToken.value, provider: provider)
             .catch { [weak self] error in
                 self?.isSignUpSuccess.onNext(false)
                 return Observable.error(error)
             }
-            .bind(onNext: { [weak self] authResponse in
+            .subscribe(onNext: { [weak self] authResponse in
                 guard let self = self,
                       let accessToken = authResponse.accessToken else {
                     self?.isSignUpSuccess.onNext(false)

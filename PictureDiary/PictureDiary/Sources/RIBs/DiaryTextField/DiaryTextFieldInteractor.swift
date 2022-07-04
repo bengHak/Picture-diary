@@ -17,7 +17,6 @@ protocol DiaryTextFieldPresentable: Presentable {
 
 protocol DiaryTextFieldListener: AnyObject {
     func detachDiaryTextField()
-    var diaryText: BehaviorRelay<String> { get }
 }
 
 final class DiaryTextFieldInteractor: PresentableInteractor<DiaryTextFieldPresentable>, DiaryTextFieldInteractable, DiaryTextFieldPresentableListener {
@@ -28,8 +27,11 @@ final class DiaryTextFieldInteractor: PresentableInteractor<DiaryTextFieldPresen
     var initialDiaryText: String!
     private let bag: DisposeBag
 
-    override init(presenter: DiaryTextFieldPresentable) {
-        self.diaryText = BehaviorRelay<String>(value: "")
+    init(
+        presenter: DiaryTextFieldPresentable,
+        diaryText: BehaviorRelay<String>
+    ) {
+        self.diaryText = diaryText
         self.bag = DisposeBag()
         super.init(presenter: presenter)
         presenter.listener = self
@@ -37,9 +39,7 @@ final class DiaryTextFieldInteractor: PresentableInteractor<DiaryTextFieldPresen
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        diaryText.accept(listener?.diaryText.value ?? "")
         initialDiaryText = diaryText.value
-        bindText()
     }
 
     override func willResignActive() {
@@ -47,20 +47,11 @@ final class DiaryTextFieldInteractor: PresentableInteractor<DiaryTextFieldPresen
     }
     
     func cancelTyping() {
-        listener?.diaryText.accept(initialDiaryText)
+        diaryText.accept(initialDiaryText)
         listener?.detachDiaryTextField()
     }
     
     func completeTyping() {
         listener?.detachDiaryTextField()
-    }
-    
-    // MARK: - Bind
-    #warning("RIBs에 맞지 않는 로직 구현이어서 수정이 필요함")
-    func bindText() {
-        diaryText.subscribe(onNext: { [weak self] text in
-            guard let self = self else { return }
-            self.listener?.diaryText.accept(text)
-        }).disposed(by: bag)
     }
 }

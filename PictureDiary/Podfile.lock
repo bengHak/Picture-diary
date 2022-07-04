@@ -78,7 +78,7 @@ DEPENDENCIES:
   - Kingfisher (~> 7.0)
   - Moya (~> 15.0)
   - Moya/RxSwift (~> 15.0)
-  - "RIBs (from `git@github.com:bengHak/RIBs.git`)"
+  - "RIBs (from `git@github.com:uber/RIBs.git`)"
   - RxCocoa (~> 6.0)
   - RxGesture (~> 4.0)
   - RxKakaoSDKUser
@@ -114,12 +114,12 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   RIBs:
-    :git: "git@github.com:bengHak/RIBs.git"
+    :git: "git@github.com:uber/RIBs.git"
 
 CHECKOUT OPTIONS:
   RIBs:
     :commit: 0b0948a68f4836f504a09529176e8da90909f846
-    :git: "git@github.com:bengHak/RIBs.git"
+    :git: "git@github.com:uber/RIBs.git"
 
 SPEC CHECKSUMS:
   Alamofire: 87bd8c952f9a4454320fce00d9cc3de57bcadaf5
@@ -146,6 +146,6 @@ SPEC CHECKSUMS:
   SwiftKeychainWrapper: 807ba1d63c33a7d0613288512399cd1eda1e470c
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
 
-PODFILE CHECKSUM: 88217df576066205b884666e9895f099d0ca9df2
+PODFILE CHECKSUM: 5e92f61d5ff965c4b2543047918d7d5385ccf8b9
 
 COCOAPODS: 1.11.3

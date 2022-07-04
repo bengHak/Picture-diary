@@ -42,19 +42,24 @@ final class AuthRepository: AuthRepositoryProtocol {
             .map { $0.data }
             .map { try JSONDecoder().decode(ModelAuthResponse.self, from: $0) }
             .asObservable()
-            .catch { _ in
-                return Observable.error(AuthError.serverError)
+            .catch { error in
+                print(error)
+                return Observable.error(AuthError.serverSignInError)
             }
     }
     
     func signup(token: String, provider: ProviderType) -> Observable<ModelAuthResponse> {
+        print(#function)
         return self.provider.rx.request(.signup(token: token, provider: provider))
             .filterSuccessfulStatusCodes()
+            .debug("서버 회원가입 요청 성공")
             .map { $0.data }
             .map { try JSONDecoder().decode(ModelAuthResponse.self, from: $0) }
             .asObservable()
-            .catch { _ in
-                return Observable.error(AuthError.serverError)
+            .catch { error in
+                print("서버 회원가입 요청 실패")
+                print(error)
+                return Observable.error(AuthError.serverSignUpError)
             }
     }
 }

@@ -15,10 +15,13 @@ import Then
 
 protocol DiaryListPresentableListener: AnyObject {
     func attachCreateDiary()
-    func attachDiaryDetail(diary: PictureDiary)
+    func attachDiaryDetail(diaryId: Int)
+    func fetchDiaryList()
 }
 
-final class DiaryListViewController: UIViewController, DiaryListPresentable, DiaryListViewControllable {
+final class DiaryListViewController: UIViewController,
+                                     DiaryListPresentable,
+                                     DiaryListViewControllable {
     
     weak var listener: DiaryListPresentableListener?
     
@@ -41,11 +44,23 @@ final class DiaryListViewController: UIViewController, DiaryListPresentable, Dia
     
     // MARK: - Properties
     private let bag = DisposeBag()
-    private var diaryList = BehaviorRelay<[PictureDiary]>(value: [])
-    #warning("interactor로")
-    private lazy var dataHelper = CoreDataHelper.shared
+    private let diaryList: BehaviorRelay<[ModelDiaryResponse]>
+    private let isRefreshNeed: BehaviorRelay<Bool>
     
     // MARK: - Lifecycles
+    init(
+        diaryList: BehaviorRelay<[ModelDiaryResponse]>,
+        isRefreshNeed: BehaviorRelay<Bool>
+    ) {
+        self.diaryList = diaryList
+        self.isRefreshNeed = isRefreshNeed
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -53,14 +68,9 @@ final class DiaryListViewController: UIViewController, DiaryListPresentable, Dia
         configureView()
         configureSubviews()
         bind()
-        fetchDiaryList()
     }
     
     // MARK: - Helpers
-    func fetchDiaryList() {
-        diaryList.accept(dataHelper.getDiary())
-        collectionView.reloadData()
-    }
 }
 
 // MARK: BaseViewController
@@ -114,6 +124,7 @@ extension DiaryListViewController {
     func bind() {
         bindButtons()
         bindCollectionView()
+        bindRefreshFlag()
     }
     
     func bindButtons() {
@@ -136,10 +147,23 @@ extension DiaryListViewController {
                 cellIdentifier: DiaryCollectionViewCell.identifier,
                 cellType: DiaryCollectionViewCell.self
             )) { index, item, cell in
-                cell.setData(date: item.date ?? Date(),
-                             weather: WeatherType(rawValue: item.weather) ?? .sunny,
-                             drawing: item.drawing)
+                cell.setData(
+                    id: item.diaryId ?? -1,
+                    date: item.getDate(),
+                    weather: item.getWeather(),
+                    drawingImageURL: item.imageUrl,
+                    drawingData: item.imageData
+                )
             }.disposed(by: bag)
+        
+        collectionView.rx.modelSelected(ModelDiaryResponse.self)
+            .subscribe(onNext: { [weak self] diary in
+                guard let self = self,
+                      let id = diary.diaryId  else {
+                    return
+                }
+                self.listener?.attachDiaryDetail(diaryId: id)
+            }).disposed(by: bag)
         
         diaryList
             .subscribe(onNext: { [weak self] items in
@@ -153,11 +177,15 @@ extension DiaryListViewController {
                 }
                 self.collectionView.reloadData()
             }).disposed(by: bag)
-        
-        collectionView.rx.modelSelected(PictureDiary.self)
-            .subscribe(onNext: { [weak self] diary in
-                guard let self = self else { return }
-                self.listener?.attachDiaryDetail(diary: diary)
+    }
+    
+    private func bindRefreshFlag() {
+        self.isRefreshNeed
+            .bind(onNext: { [weak self] isNeed in
+                guard let self = self, isNeed else {
+                    return
+                }
+                self.listener?.fetchDiaryList()
             }).disposed(by: bag)
     }
 }

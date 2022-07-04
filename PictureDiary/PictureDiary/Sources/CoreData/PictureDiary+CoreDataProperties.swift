@@ -18,7 +18,16 @@ extension PictureDiary {
     
     @NSManaged public var content: String?
     @NSManaged public var date: Date?
+    
+    /// 그림 이미지 데이터
     @NSManaged public var drawing: Data?
+    @NSManaged public var imageUrl: String?
     @NSManaged public var weather: Int16
+    @NSManaged public var id: Int
+}
 
+extension PictureDiary {
+    func getWeather() -> WeatherType {
+        return WeatherType.init(rawValue: self.weather)!
+    }
 }

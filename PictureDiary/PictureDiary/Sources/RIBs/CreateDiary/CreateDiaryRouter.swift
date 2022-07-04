@@ -10,7 +10,8 @@ import PencilKit
 
 protocol CreateDiaryInteractable: Interactable,
                                   DiaryTextFieldListener,
-                                  DiaryDrawingListener {
+                                  DiaryDrawingListener,
+                                  VanishingCompletionListener {
     var router: CreateDiaryRouting? { get set }
     var listener: CreateDiaryListener? { get set }
 }
@@ -23,10 +24,12 @@ final class CreateDiaryRouter: ViewableRouter<CreateDiaryInteractable, CreateDia
         interactor: CreateDiaryInteractable,
         viewController: CreateDiaryViewControllable,
         diaryTextFieldBuilder: DiaryTextFieldBuildable,
-        diaryDrawingBuilder: DiaryDrawingBuildable
+        diaryDrawingBuilder: DiaryDrawingBuildable,
+        vanishingCompletionBuilder: VanishingCompletionBuildable
     ) {
         self.diaryTextFieldBuilder = diaryTextFieldBuilder
         self.diaryDrawingBuilder = diaryDrawingBuilder
+        self.vanishingCompletionBuilder = vanishingCompletionBuilder
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
     }
@@ -34,6 +37,7 @@ final class CreateDiaryRouter: ViewableRouter<CreateDiaryInteractable, CreateDia
     func cleanupViews() {
         detachDiaryDrawing()
         detachDiaryTextField()
+        detachVanishingCompletion()
     }
     
     // MARK: - DiaryTextField
@@ -47,8 +51,8 @@ final class CreateDiaryRouter: ViewableRouter<CreateDiaryInteractable, CreateDia
     
     func detachDiaryTextField() {
         if let router = diaryTextFieldRouter {
-            detachChild(router)
             self.viewControllable.uiviewController.dismiss(animated: true)
+            detachChild(router)
         }
     }
     
@@ -64,10 +68,27 @@ final class CreateDiaryRouter: ViewableRouter<CreateDiaryInteractable, CreateDia
     
     func detachDiaryDrawing() {
         if let router = diaryDrawingRouter {
-            detachChild(router)
             self.viewControllable.uiviewController.dismiss(animated: true)
+            detachChild(router)
         }
     }
+    
+    // MARK: - VanishingCompletion
+    func attachVanishingCompletion() {
+        let router = vanishingCompletionBuilder.build(withListener: interactor)
+        vanishingCompletionRouter = router
+        attachChild(router)
+        let vc = router.viewControllable.getFullScreenModalVC()
+        self.viewControllable.uiviewController.present(vc, animated: true)
+    }
+    
+    func detachVanishingCompletion() {
+        if let router = vanishingCompletionRouter {
+            self.viewControllable.uiviewController.dismiss(animated: true)
+            detachChild(router)
+        }
+    }
+    
     
     // MARK: - Private
     private let diaryTextFieldBuilder: DiaryTextFieldBuildable
@@ -75,4 +96,7 @@ final class CreateDiaryRouter: ViewableRouter<CreateDiaryInteractable, CreateDia
     
     private let diaryDrawingBuilder: DiaryDrawingBuildable
     private var diaryDrawingRouter: DiaryDrawingRouting?
+    
+    private let vanishingCompletionBuilder: VanishingCompletionBuildable
+    private var vanishingCompletionRouter: VanishingCompletionRouting?
 }
