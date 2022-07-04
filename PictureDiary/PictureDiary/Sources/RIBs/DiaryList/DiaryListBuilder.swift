@@ -6,15 +6,23 @@
 //
 
 import RIBs
+import RxRelay
 
 protocol DiaryListDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var isRefreshNeed: BehaviorRelay<Bool> { get }
 }
 
-final class DiaryListComponent: Component<DiaryListDependency> {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+final class DiaryListComponent: Component<DiaryListDependency>,
+                                DiaryListInteractorDependency {
+    var diaryRepository: DiaryRepositoryProtocol
+    var diaryList: BehaviorRelay<[ModelDiaryResponse]>
+    var isRefreshNeed: BehaviorRelay<Bool> { dependency.isRefreshNeed }
+    
+    override init(dependency: DiaryListDependency) {
+        self.diaryRepository = DiaryRepository()
+        self.diaryList = BehaviorRelay<[ModelDiaryResponse]>(value: [])
+        super.init(dependency: dependency)
+    }
 }
 
 // MARK: - Builder
@@ -24,15 +32,21 @@ protocol DiaryListBuildable: Buildable {
 }
 
 final class DiaryListBuilder: Builder<DiaryListDependency>, DiaryListBuildable {
-
+    
     override init(dependency: DiaryListDependency) {
         super.init(dependency: dependency)
     }
-
+    
     func build(withListener listener: DiaryListListener) -> DiaryListRouting {
         let component = DiaryListComponent(dependency: dependency)
-        let viewController = DiaryListViewController()
-        let interactor = DiaryListInteractor(presenter: viewController)
+        let viewController = DiaryListViewController(
+            diaryList: component.diaryList,
+            isRefreshNeed: component.isRefreshNeed
+        )
+        let interactor = DiaryListInteractor(
+            presenter: viewController,
+            dependency: component
+        )
         interactor.listener = listener
         return DiaryListRouter(interactor: interactor, viewController: viewController)
     }

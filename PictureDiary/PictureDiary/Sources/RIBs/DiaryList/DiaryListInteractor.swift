@@ -7,6 +7,7 @@
 
 import RIBs
 import RxSwift
+import RxRelay
 
 protocol DiaryListRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -14,12 +15,16 @@ protocol DiaryListRouting: ViewableRouting {
 
 protocol DiaryListPresentable: Presentable {
     var listener: DiaryListPresentableListener? { get set }
-    func fetchDiaryList()
 }
 
 protocol DiaryListListener: AnyObject {
     func routeToCreateDiary()
-    func routeToDiaryDetail(diary: PictureDiary)
+    func routeToDiaryDetail(diaryId: Int)
+}
+
+protocol DiaryListInteractorDependency {
+    var diaryList: BehaviorRelay<[ModelDiaryResponse]> { get }
+    var diaryRepository: DiaryRepositoryProtocol { get }
 }
 
 final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>,
@@ -28,17 +33,26 @@ final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>,
 
     weak var router: DiaryListRouting?
     weak var listener: DiaryListListener?
+    private let diaryList: BehaviorRelay<[ModelDiaryResponse]>
+    private let diaryRepository: DiaryRepositoryProtocol
+    private let bag: DisposeBag
     private let dataHelper: CoreDataHelper
 
-    override init(presenter: DiaryListPresentable) {
-        dataHelper = CoreDataHelper.shared
+    init(
+        presenter: DiaryListPresentable,
+        dependency: DiaryListInteractorDependency
+    ) {
+        self.diaryList = dependency.diaryList
+        self.diaryRepository = dependency.diaryRepository
+        self.bag = DisposeBag()
+        self.dataHelper = CoreDataHelper.shared
         super.init(presenter: presenter)
         presenter.listener = self
     }
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
+        fetchDiaryList()
     }
 
     override func willResignActive() {
@@ -50,11 +64,25 @@ final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>,
         listener?.routeToCreateDiary()
     }
     
-    func reloadDiaryList() {
-        presenter.fetchDiaryList()
+    func fetchDiaryList() {
+        diaryRepository.fetchDiaryList()
+            .subscribe(onNext: { [weak self] diaryList in
+                guard let self = self else { return }
+                var modified = diaryList
+                modified = modified.map { response -> ModelDiaryResponse in
+                    guard let id = response.diaryId,
+                          let diary = CoreDataHelper.shared.getDiaryById(id) else {
+                        return response
+                    }
+                    var modifiedDiary = response
+                    modifiedDiary.imageData = diary.drawing
+                    return modifiedDiary
+                }
+                self.diaryList.accept(modified)
+            }).disposed(by: bag)
     }
     
-    func attachDiaryDetail(diary: PictureDiary) {
-        listener?.routeToDiaryDetail(diary: diary)
+    func attachDiaryDetail(diaryId: Int) {
+        listener?.routeToDiaryDetail(diaryId: diaryId)
     }
 }

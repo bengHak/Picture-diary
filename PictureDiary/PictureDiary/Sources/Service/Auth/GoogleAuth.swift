@@ -28,7 +28,7 @@ struct GoogleAuth: OAuthProtocol {
                         observer.onError(AuthError.googleLoginError)
                         return
                     }
-                    observer.onNext(ModelTokenResponse(success: true, token: authentication.accessToken))
+                    observer.onNext(ModelTokenResponse(success: true, token: authentication.idToken))
                     observer.onCompleted()
                 }
             }

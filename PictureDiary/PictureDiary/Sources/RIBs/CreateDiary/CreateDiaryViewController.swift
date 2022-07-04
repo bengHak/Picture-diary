@@ -15,11 +15,10 @@ import Then
 import PencilKit
 
 protocol CreateDiaryPresentableListener: AnyObject {
-    func tapDrawingCompleteButton()
+    func tapDrawingCompleteButton(date: Date, weather: WeatherType, drawing: Data, content: String)
     func tapCancleButton()
     func routeToDiaryTextField()
     func routeToDiaryDrawing()
-    var diaryText: BehaviorRelay<String> { get }
 }
 
 final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable, CreateDiaryViewControllable {
@@ -92,22 +91,25 @@ final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable,
         $0.axis = .vertical
     }
     
+    /// 업로드 로딩 뷰
+    private let uploadLoadingView = LoadingView()
+    
     // MARK: - Properties
     private let bag = DisposeBag()
     private var currentNumberOfLines = 0
     private var diaryTextLineHeight: CGFloat?
     private var currentWeather = WeatherType.sunny
     private var currentDate = Date()
-    private var drawingData: BehaviorRelay<Data?>
     private var drawingImage: BehaviorRelay<UIImage?>
+    private let diaryText: BehaviorRelay<String>
     
     // MARK: - Lifecycles
     init(
         drawingImage: BehaviorRelay<UIImage?>,
-        drawingData: BehaviorRelay<Data?>
+        diaryText: BehaviorRelay<String>
     ) {
         self.drawingImage = drawingImage
-        self.drawingData = drawingData
+        self.diaryText = diaryText
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -196,6 +198,7 @@ extension CreateDiaryViewController: BaseViewController {
         view.addSubview(appBarTop)
         view.addSubview(underlineStack)
         view.addSubview(scrollView)
+        view.addSubview(uploadLoadingView)
     }
     
     func configureSubviews() {
@@ -262,6 +265,11 @@ extension CreateDiaryViewController: BaseViewController {
             $0.top.equalTo(appBarTop.snp.bottom)
             $0.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
         }
+        
+        uploadLoadingView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        uploadLoadingView.isHidden = true
     }
 }
 
@@ -341,20 +349,18 @@ extension CreateDiaryViewController {
                     print("🔴 일기가 입력되지 않았습니다.")
                     return
                 }
-                
-                let dataHelper = CoreDataHelper.shared
-                dataHelper.saveDiary(date: self.currentDate,
-                                     weather: self.currentWeather,
-                                     drawing: self.drawingImage.value!.pngData(),
-                                     content: self.textview.text) { success in
-                    print(success)
-                }
-                self.listener?.tapDrawingCompleteButton()
+                self.uploadLoadingView.isHidden = false
+                self.listener?.tapDrawingCompleteButton(
+                    date: self.currentDate,
+                    weather: self.currentWeather,
+                    drawing: self.drawingImage.value!.pngData() ?? Data(),
+                    content: self.textview.text
+                )
             }).disposed(by: bag)
     }
     
     private func bindText() {
-        listener?.diaryText
+        diaryText
             .subscribe(onNext: { [weak self] text in
                 guard let self = self else { return }
                 let h = (self.diaryTextLineHeight ?? 26) - 18

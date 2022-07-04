@@ -18,8 +18,7 @@ final class LoggedInComponent: Component<LoggedInDependency>,
                                DiaryListDependency,
                                DiaryDetailDependency,
                                CreateDiaryDependency,
-                               LoggedInInteractorDependency,
-                               VanishingCompletionDependency {
+                               LoggedInInteractorDependency {
     fileprivate var splitViewController: UISplitViewController {
         return dependency.splitViewController
     }
@@ -32,11 +31,13 @@ final class LoggedInComponent: Component<LoggedInDependency>,
         return dependency.secondaryViewController
     }
     
+    var isRefreshNeed = BehaviorRelay<Bool>(value: false)
+    
+    var diaryRepository: DiaryRepositoryProtocol = DiaryRepository()
+    
     var pictureDiaryBehaviorRelay = BehaviorRelay<PictureDiary?>(value: nil)
 
     var pictureDiary: PictureDiary { pictureDiaryBehaviorRelay.value! }
-    
-    var labelText: String { "오늘의 일기가 저장되었어요!" }
 }
 
 // MARK: - Builder
@@ -59,14 +60,12 @@ final class LoggedInBuilder: Builder<LoggedInDependency>, LoggedInBuildable {
         let diaryList = DiaryListBuilder(dependency: component)
         let diaryDetail = DiaryDetailBuilder(dependency: component)
         let createDiary = CreateDiaryBuilder(dependency: component)
-        let vanishingCompletion = VanishingCompletionBuilder(dependency: component)
         return LoggedInRouter(interactor: interactor,
                               splitViewController: component.splitViewController,
                               primaryViewController: component.primaryVieController,
                               secondaryViewController: component.secondaryViewController,
                               diaryListBuilder: diaryList,
                               diaryDetailBuilder: diaryDetail,
-                              createDiaryBuilder: createDiary,
-                              vanishingCompletionBuilder: vanishingCompletion)
+                              createDiaryBuilder: createDiary)
     }
 }

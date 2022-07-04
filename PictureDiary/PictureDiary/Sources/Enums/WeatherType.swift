@@ -16,13 +16,28 @@ enum WeatherType: Int16 {
     func getString() -> String {
         switch self {
         case .sunny:
-            return "sunny"
+            return "SUN"
         case .cloudy:
-            return "cloudy"
+            return "CLOUD"
         case .rain:
-            return "rain"
+            return "RAIN"
         case .snow:
-            return "snow"
+            return "SNOW"
+        }
+    }
+    
+    static func initWithString(_ keyword: String) -> WeatherType {
+        switch keyword {
+        case WeatherType.cloudy.getString():
+            return .cloudy
+        case WeatherType.rain.getString():
+            return .rain
+        case WeatherType.snow.getString():
+            return .snow
+        case WeatherType.sunny.getString():
+            fallthrough
+        default:
+            return .sunny
         }
     }
 }

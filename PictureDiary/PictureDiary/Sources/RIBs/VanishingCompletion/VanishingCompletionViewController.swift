@@ -78,8 +78,8 @@ final class VanishingCompletionViewController: UIViewController,
     
     @objc
     private func endTimer() {
-        guard let timer = timer else { return }
-        timer.invalidate()
+        timer?.invalidate()
+        timer = nil
         listener?.disappearAtExpiration()
     }
 }

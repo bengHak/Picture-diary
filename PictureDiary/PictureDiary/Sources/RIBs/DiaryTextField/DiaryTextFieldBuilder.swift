@@ -6,15 +6,14 @@
 //
 
 import RIBs
+import RxRelay
 
 protocol DiaryTextFieldDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var diaryText: BehaviorRelay<String> { get }
 }
 
 final class DiaryTextFieldComponent: Component<DiaryTextFieldDependency> {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+    fileprivate var diaryText: BehaviorRelay<String> { dependency.diaryText }
 }
 
 // MARK: - Builder
@@ -32,7 +31,10 @@ final class DiaryTextFieldBuilder: Builder<DiaryTextFieldDependency>, DiaryTextF
     func build(withListener listener: DiaryTextFieldListener) -> DiaryTextFieldRouting {
         let component = DiaryTextFieldComponent(dependency: dependency)
         let viewController = DiaryTextFieldViewController()
-        let interactor = DiaryTextFieldInteractor(presenter: viewController)
+        let interactor = DiaryTextFieldInteractor(
+            presenter: viewController,
+            diaryText: component.diaryText
+        )
         interactor.listener = listener
         return DiaryTextFieldRouter(interactor: interactor, viewController: viewController)
     }

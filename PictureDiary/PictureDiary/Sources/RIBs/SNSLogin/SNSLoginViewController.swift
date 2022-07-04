@@ -41,6 +41,8 @@ final class SNSLoginViewController: UIViewController, SNSLoginPresentable, SNSLo
     /// 구글 로그인 버튼
     private let btnGoogle = SNSLoginButton(snsType: .google)
     
+    private let loadingView = LoadingView()
+    
     // MARK: - Properties
     let bag = DisposeBag()
     
@@ -62,6 +64,7 @@ extension SNSLoginViewController: BaseViewController {
         }
         view.addSubview(stackView)
         view.addSubview(ivLogo)
+        view.addSubview(loadingView)
     }
     
     func configureSubviews() {
@@ -83,6 +86,11 @@ extension SNSLoginViewController: BaseViewController {
                 $0.height.equalTo(56)
             }
         }
+        
+        loadingView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        loadingView.isHidden = true
     }
     
 }
@@ -94,12 +102,19 @@ extension SNSLoginViewController {
     
     func bindButtons() {
         Observable.merge(
-            btnKakao.rx.tapGesture().when(.recognized).map { _ in return ProviderType.kakao},
-            btnApple.rx.tapGesture().when(.recognized).map { _ in return ProviderType.apple},
-            btnGoogle.rx.tapGesture().when(.recognized).map { _ in return ProviderType.google}
+            btnKakao.rx.tapGesture().when(.recognized)
+                .throttle(.milliseconds(500), latest: false, scheduler: MainScheduler.instance)
+                .map { _ in return ProviderType.kakao},
+            btnApple.rx.tapGesture().when(.recognized)
+                .throttle(.milliseconds(500), latest: false, scheduler: MainScheduler.instance)
+                .map { _ in return ProviderType.apple},
+            btnGoogle.rx.tapGesture().when(.recognized)
+                .throttle(.milliseconds(500), latest: false, scheduler: MainScheduler.instance)
+                .map { _ in return ProviderType.google}
         )
         .bind(onNext: { [weak self] provider in
             guard let self = self else { return }
+            self.loadingView.isHidden = false
             self.listener?.login(provider: provider)
         })
         .disposed(by: bag)
