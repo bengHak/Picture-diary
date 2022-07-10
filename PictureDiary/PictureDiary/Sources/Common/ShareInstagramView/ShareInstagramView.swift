@@ -71,19 +71,8 @@ final class ShareInstagramView: UIView {
         view.backgroundColor = .clear
     }
     
-    #warning("로고 변경해야됨")
     /// 로고 뷰
-    private let logoView = UIView().then {
-        $0.backgroundColor = .white
-        $0.clipsToBounds = true
-        $0.layer.cornerRadius = 8
-    }
-    
-    /// 로고 라벨
-    private let lblLogo = UILabel().then {
-        $0.text = "logo"
-        $0.textColor = UIColor(red: 74/255, green: 74/255, blue: 74/255, alpha: 1)
-    }
+    private let logoView = UIImageView(image: UIImage(named: "small_logo_no_bg"))
     
     // MARK: - Properties
     private var diaryTextLineHeight: CGFloat?
@@ -163,8 +152,6 @@ final class ShareInstagramView: UIView {
             diaryView.addSubview($0)
         }
         
-        logoView.addSubview(lblLogo)
-        
         addSubview(weatherStack)
         addSubview(diaryView)
         addSubview(logoView)
@@ -212,15 +199,11 @@ final class ShareInstagramView: UIView {
             $0.bottom.equalTo(diaryView.snp.top).offset(-8)
         }
         
-        lblLogo.snp.makeConstraints {
-            $0.center.equalToSuperview()
-        }
-        
         logoView.snp.makeConstraints {
             $0.trailing.equalTo(diaryView)
             $0.top.equalTo(diaryView.snp.bottom).offset(10)
-            $0.width.equalTo(88)
-            $0.height.equalTo(32)
+            $0.width.equalTo(43)
+            $0.height.equalTo(27)
         }
     }
 }

@@ -22,7 +22,7 @@ final class SNSLoginViewController: UIViewController, SNSLoginPresentable, SNSLo
     
     // MARK: - UI properties
     /// 로고
-    private let ivLogo = UIImageView(image: UIImage(named: "temp_logo")).then {
+    private let ivLogo = UIImageView(image: UIImage(named: "logo_no_bg")).then {
         $0.contentMode = .scaleAspectFit
     }
     

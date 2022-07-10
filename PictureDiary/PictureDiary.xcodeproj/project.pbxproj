@@ -76,6 +76,10 @@
 		EABF181B27DC500A002740C0 /* KyoboHandwriting2020pdy.otf in Resources */ = {isa = PBXBuildFile; fileRef = EABF181227DC500A002740C0 /* KyoboHandwriting2020pdy.otf */; };
 		EABF181C27DC500A002740C0 /* UhBee-QUEEN-J.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EABF181327DC500A002740C0 /* UhBee-QUEEN-J.ttf */; };
 		EADF7FAF2872C94000F35EF3 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADF7FAE2872C94000F35EF3 /* LoadingView.swift */; };
+		EADF7FB5287572E400F35EF3 /* StampRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADF7FB1287572E400F35EF3 /* StampRouter.swift */; };
+		EADF7FB6287572E400F35EF3 /* StampViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADF7FB2287572E400F35EF3 /* StampViewController.swift */; };
+		EADF7FB7287572E400F35EF3 /* StampBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADF7FB3287572E400F35EF3 /* StampBuilder.swift */; };
+		EADF7FB8287572E400F35EF3 /* StampInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADF7FB4287572E400F35EF3 /* StampInteractor.swift */; };
 		EAF0C59528082F9800E0640B /* ToolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF0C59428082F9800E0640B /* ToolType.swift */; };
 		EAF0C5982808339500E0640B /* ModalDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF0C5972808339500E0640B /* ModalDialog.swift */; };
 		EAF530332819C921001CE8FE /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF530322819C921001CE8FE /* CoreDataHelper.swift */; };
@@ -196,6 +200,10 @@
 		EABF181227DC500A002740C0 /* KyoboHandwriting2020pdy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KyoboHandwriting2020pdy.otf; sourceTree = "<group>"; };
 		EABF181327DC500A002740C0 /* UhBee-QUEEN-J.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee-QUEEN-J.ttf"; sourceTree = "<group>"; };
 		EADF7FAE2872C94000F35EF3 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		EADF7FB1287572E400F35EF3 /* StampRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampRouter.swift; sourceTree = "<group>"; };
+		EADF7FB2287572E400F35EF3 /* StampViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampViewController.swift; sourceTree = "<group>"; };
+		EADF7FB3287572E400F35EF3 /* StampBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampBuilder.swift; sourceTree = "<group>"; };
+		EADF7FB4287572E400F35EF3 /* StampInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampInteractor.swift; sourceTree = "<group>"; };
 		EAECC9A128544C4400C02191 /* PictureDiary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PictureDiary.entitlements; sourceTree = "<group>"; };
 		EAF0C59428082F9800E0640B /* ToolType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolType.swift; sourceTree = "<group>"; };
 		EAF0C5972808339500E0640B /* ModalDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalDialog.swift; sourceTree = "<group>"; };
@@ -412,6 +420,17 @@
 			path = LoadingView;
 			sourceTree = "<group>";
 		};
+		EADF7FB028744AF100F35EF3 /* Stamp */ = {
+			isa = PBXGroup;
+			children = (
+				EADF7FB1287572E400F35EF3 /* StampRouter.swift */,
+				EADF7FB2287572E400F35EF3 /* StampViewController.swift */,
+				EADF7FB3287572E400F35EF3 /* StampBuilder.swift */,
+				EADF7FB4287572E400F35EF3 /* StampInteractor.swift */,
+			);
+			path = Stamp;
+			sourceTree = "<group>";
+		};
 		EAF0C5962808336900E0640B /* ModalDialog */ = {
 			isa = PBXGroup;
 			children = (
@@ -506,6 +525,7 @@
 		EAFE864727D0E1DF00519243 /* RIBs */ = {
 			isa = PBXGroup;
 			children = (
+				EADF7FB028744AF100F35EF3 /* Stamp */,
 				EAFE864127D0DE6900519243 /* AppStart */,
 				EA98C4B027DEBF360045055D /* CreateDiary */,
 				EA625C3C282B2B04002BCABD /* DiaryDetail */,
@@ -856,6 +876,7 @@
 				EAFE869227D372FA00519243 /* LoggedInBuilder.swift in Sources */,
 				EAFE868B27D372EB00519243 /* LoggedOutRouter.swift in Sources */,
 				EA2840252806CB6D00D8DCB1 /* PaletteColorCell.swift in Sources */,
+				EADF7FB6287572E400F35EF3 /* StampViewController.swift in Sources */,
 				EA98C4B627DEBF4B0045055D /* CreateDiaryViewController.swift in Sources */,
 				EAFE865527D22EAE00519243 /* AppComponent.swift in Sources */,
 				EA01F9DF282A680900A6E450 /* PictureDiary+CoreDataClass.swift in Sources */,
@@ -916,8 +937,10 @@
 				EAF0C59528082F9800E0640B /* ToolType.swift in Sources */,
 				EAFE86A827D489E100519243 /* SplashBuilder.swift in Sources */,
 				EA2840292807EAC000D8DCB1 /* PaletteColorType.swift in Sources */,
+				EADF7FB5287572E400F35EF3 /* StampRouter.swift in Sources */,
 				EA625C43282B2B23002BCABD /* DiaryDetailBuilder.swift in Sources */,
 				EA0A3C152865C7FE00BD779B /* ModelDiaryImageUploadResponse.swift in Sources */,
+				EADF7FB8287572E400F35EF3 /* StampInteractor.swift in Sources */,
 				EAB4543427FC3DFC0002A3B1 /* DiaryDrawingViewController.swift in Sources */,
 				EAF530332819C921001CE8FE /* CoreDataHelper.swift in Sources */,
 				EA98C4BE27DF137E0045055D /* UIImage+Ext.swift in Sources */,
@@ -939,6 +962,7 @@
 				EABF17F427DBB86F002740C0 /* DiaryCollectionViewCell.swift in Sources */,
 				EA01F9DB282A67C600A6E450 /* PictureDiary.xcdatamodeld in Sources */,
 				EAFE86C927D5C8F500519243 /* DiaryListInteractor.swift in Sources */,
+				EADF7FB7287572E400F35EF3 /* StampBuilder.swift in Sources */,
 				EAFE867727D23BF700519243 /* RootBuilder.swift in Sources */,
 				EAB1E22027FC120600EEDFDF /* UserDefaults+Ext.swift in Sources */,
 				EA625C41282B2B23002BCABD /* DiaryDetailRouter.swift in Sources */,
@@ -1093,6 +1117,7 @@
 				DEVELOPMENT_TEAM = 92NGUT4BRA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PictureDiary/Resources/SupportingFiles/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "쓱쓱";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
@@ -1126,11 +1151,13 @@
 				DEVELOPMENT_TEAM = 92NGUT4BRA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PictureDiary/Resources/SupportingFiles/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "쓱쓱";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
