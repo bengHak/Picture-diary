@@ -22,9 +22,9 @@ extension AuthAPI: ServiceAPI {
             return "/auth/sign-up"
         }
     }
-    
+
     var method: Moya.Method { .post }
-    
+
     var task: Task {
         switch self {
         case .signin(let token, let provider), .signup(let token, let provider):
@@ -32,6 +32,6 @@ extension AuthAPI: ServiceAPI {
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
         }
     }
-    
+
     var headers: [String: String]? { [:] }
 }

@@ -18,12 +18,12 @@ final class RootComponent: Component<RootDependency>,
     var splitViewController: UISplitViewController { rootSplitViewController }
     var primaryViewController: UINavigationController { rootPrimaryViewController }
     var secondaryViewController: UINavigationController { rootSecondaryViewController }
-    
+
     private let rootViewController: RootViewController
     private let rootSplitViewController: UISplitViewController
     private let rootPrimaryViewController: UINavigationController
     private let rootSecondaryViewController: UINavigationController
-    
+
     init(dependency: RootDependency,
          rootViewController: RootViewController,
          rootSplitViewController: UISplitViewController,
@@ -44,11 +44,11 @@ protocol RootBuildable: Buildable {
 }
 
 final class RootBuilder: Builder<RootDependency>, RootBuildable {
-    
+
     override init(dependency: RootDependency) {
         super.init(dependency: dependency)
     }
-    
+
     func build() -> LaunchRouting {
         let viewController = RootViewController()
         let splitVC: RootSplitViewController
@@ -65,7 +65,7 @@ final class RootBuilder: Builder<RootDependency>, RootBuildable {
                                       rootPrimaryViewController: primaryVC,
                                       rootSecondaryViewController: secondaryVC)
         let interactor = RootInteractor(presenter: viewController)
-        
+
         let loggedOutBuilder = LoggedOutBuilder(dependency: component)
         let loggedInBuilder = LoggedInBuilder(dependency: component)
         let splashBuilder = SplashBuilder(dependency: component)

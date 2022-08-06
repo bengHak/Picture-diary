@@ -24,9 +24,9 @@ protocol DiaryListPresentableListener: AnyObject {
 final class DiaryListViewController: UIViewController,
                                      DiaryListPresentable,
                                      DiaryListViewControllable {
-    
+
     weak var listener: DiaryListPresentableListener?
-    
+
     // MARK: - UI Properties
     /// 상단 앱바
     private let appBarTopView = AppBarTopView(appBarTopType: .main)
@@ -43,7 +43,7 @@ final class DiaryListViewController: UIViewController,
 
     /// 아직 작성된 일기장이 없어요 뷰
     private let emptyDiaryView = EmptyDiaryListView()
-    
+
     // MARK: - Properties
     private let bag = DisposeBag()
     private let diaryList: BehaviorRelay<[ModelDiaryResponse]>
@@ -58,7 +58,7 @@ final class DiaryListViewController: UIViewController,
         self.isRefreshNeed = isRefreshNeed
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -71,7 +71,7 @@ final class DiaryListViewController: UIViewController,
         configureSubviews()
         bind()
     }
-    
+
     // MARK: - Helpers
 }
 
@@ -97,7 +97,7 @@ extension DiaryListViewController: BaseViewController {
             view.addSubview($0)
         }
     }
-    
+
     func configureSubviews() {
         appBarTopView.snp.makeConstraints {
             $0.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)

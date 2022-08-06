@@ -20,7 +20,7 @@ protocol RootViewControllable: ViewControllable {
 }
 
 final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, RootRouting {
-    
+
     init(interactor: RootInteractable,
          viewController: RootViewControllable,
          splitVC: RootSplitViewController,
@@ -35,7 +35,7 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
         self.loggedOutBuilder = loggedOutBuilder
         self.loggedInBuilder = loggedInBuilder
         self.splashBuilder = splashBuilder
-        
+
         // initialize splitVC
         primaryVC.isNavigationBarHidden = true
         secondaryVC.isNavigationBarHidden = true
@@ -45,16 +45,16 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
         } else {
             splitVC.viewControllers = [primaryVC, secondaryVC]
         }
-        
+
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
     }
-    
+
     override func didLoad() {
         super.didLoad()
         routeToLoggedOut()
     }
-    
+
     func routeToLoggedIn() {
         if let loggedOutRouter = loggedOutRouter {
             loggedOutRouter.cleanupViews()
@@ -66,7 +66,7 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
         self.loggedInRouter = router
         attachChild(router)
     }
-    
+
     func routeToLoggedOut() {
         if let loggedInRouter = loggedInRouter {
             loggedInRouter.cleanupViews()
@@ -78,29 +78,29 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
         self.loggedOutRouter = router
         attachChild(router)
     }
-    
+
     private func switchToSplitVC() {
         viewController.uiviewController.view.window?.rootViewController = splitVC
         viewController.uiviewController.view.window?.makeKeyAndVisible()
     }
-    
+
     private func switchToLoggedOutVC() {
         splitVC.uiviewController.view.window?.rootViewController = viewController.uiviewController
         splitVC.uiviewController.view.window?.makeKeyAndVisible()
     }
-    
+
     // MARK: - Private
     private let splitVC: RootSplitViewController
-    
+
     private let primaryViewController: UINavigationController
     private let secondaryViewController: UINavigationController
-    
+
     private let loggedOutBuilder: LoggedOutBuildable
     private var loggedOutRouter: LoggedOutRouting?
-    
+
     private let loggedInBuilder: LoggedInBuildable
     private var loggedInRouter: LoggedInRouting?
-    
+
     private let splashBuilder: SplashBuildable
     private var splashRouter: SplashRouting?
 }

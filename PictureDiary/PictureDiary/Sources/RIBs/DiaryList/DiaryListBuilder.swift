@@ -17,7 +17,7 @@ final class DiaryListComponent: Component<DiaryListDependency>,
     var diaryRepository: DiaryRepositoryProtocol
     var diaryList: BehaviorRelay<[ModelDiaryResponse]>
     var isRefreshNeed: BehaviorRelay<Bool> { dependency.isRefreshNeed }
-    
+
     override init(dependency: DiaryListDependency) {
         self.diaryRepository = DiaryRepository()
         self.diaryList = BehaviorRelay<[ModelDiaryResponse]>(value: [])
@@ -32,11 +32,11 @@ protocol DiaryListBuildable: Buildable {
 }
 
 final class DiaryListBuilder: Builder<DiaryListDependency>, DiaryListBuildable {
-    
+
     override init(dependency: DiaryListDependency) {
         super.init(dependency: dependency)
     }
-    
+
     func build(withListener listener: DiaryListListener) -> DiaryListRouting {
         let component = DiaryListComponent(dependency: dependency)
         let viewController = DiaryListViewController(

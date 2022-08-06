@@ -22,54 +22,54 @@ protocol CreateDiaryPresentableListener: AnyObject {
 }
 
 final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable, CreateDiaryViewControllable {
-    
+
     weak var listener: CreateDiaryPresentableListener?
-    
+
     // MARK: - UI Properties
     /// Scroll view
     private let scrollView = UIScrollView()
-    
+
     /// Scroll content view
     private let scrollContentView = UIView()
-    
+
     /// App bar top
     private let appBarTop = AppBarTopView(appBarTopType: .completion)
-    
+
     /// 날짜 라벨
     private let lblDate = UILabel().then {
         $0.text = Date().formattedString()
         $0.font = .DefaultFont.body2.font()
     }
-    
+
     /// 날씨 스택
     private let stackWeather = UIStackView().then {
         $0.axis = .horizontal
         $0.spacing = 8
     }
-    
+
     /// 맑음 이미지
     private let ivSunny = UIImageView(image: UIImage(named: "ic_weather_sunny_selected"))
-    
+
     /// 흐림 이미지
     private let ivCloudy = UIImageView(image: UIImage(named: "ic_weather_cloudy"))
-    
+
     /// 비 이미지
     private let ivRain = UIImageView(image: UIImage(named: "ic_weather_rain"))
-    
+
     /// 눈 이미지
     private let ivSnow = UIImageView(image: UIImage(named: "ic_weather_snow"))
-    
+
     /// 그림 프레임 이미지
     private let ivPictureFrame = UIImageView(image: UIImage(named: "img_picture_frame")).then {
         $0.contentMode = .scaleAspectFit
     }
-    
+
     /// 그림 이미지
     private let ivPicture = UIImageView().then {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
     }
-    
+
     /// 텍스트 일기장
     private let textview = UITextView().then {
         $0.font = .DefaultFont.body1.font()
@@ -78,7 +78,7 @@ final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable,
         $0.isEditable = false
         $0.isScrollEnabled = false
     }
-    
+
     /// 텍스트 뷰 placeholder
     private let lblPlaceholder = UILabel().then {
         $0.text = "여기에 일기를 입력해주세요."
@@ -86,14 +86,14 @@ final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable,
         $0.textColor = .secondaryLabel
         $0.isUserInteractionEnabled = false
     }
-    
+
     private let underlineStack = UIStackView().then {
         $0.axis = .vertical
     }
-    
+
     /// 업로드 로딩 뷰
     private let uploadLoadingView = LoadingView()
-    
+
     // MARK: - Properties
     private let bag = DisposeBag()
     private var currentNumberOfLines = 0
@@ -102,7 +102,7 @@ final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable,
     private var currentDate = Date()
     private var drawingImage: BehaviorRelay<UIImage?>
     private let diaryText: BehaviorRelay<String>
-    
+
     // MARK: - Lifecycles
     init(
         drawingImage: BehaviorRelay<UIImage?>,
@@ -112,21 +112,20 @@ final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable,
         self.diaryText = diaryText
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
+
         configureView()
         configureSubviews()
         bind()
     }
-    
-    
+
     // MARK: - Helpers
     #warning("날씨 관련 기능 extension으로 추출하기")
     private func handleWeather(weather: WeatherType) {
@@ -140,7 +139,7 @@ final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable,
         case .snow:
             ivSnow.image = UIImage(named: "ic_weather_snow")
         }
-        
+
         currentWeather = weather
         switch weather {
         case .sunny:
@@ -153,7 +152,7 @@ final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable,
             ivSnow.image = UIImage(named: "ic_weather_snow_selected")
         }
     }
-    
+
     private func addUnderLine() {
         let underline = UIImageView(image: UIImage(named: "img_underline")).then {
             $0.contentMode = .scaleAspectFill
@@ -164,13 +163,13 @@ final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable,
             $0.height.equalTo(2)
         }
     }
-    
+
     private func setLineHeight() {
         let fontLineHeight = (self.textview.font?.lineHeight ?? 20) + 10
         underlineStack.spacing = fontLineHeight + 2.1
         diaryTextLineHeight = fontLineHeight
     }
-    
+
     private func setUnderLineView() {
         let lineCount = textview.numberOfLine()
         if lineCount > 20 {
@@ -256,7 +255,7 @@ extension CreateDiaryViewController: BaseViewController {
             $0.leading.trailing.equalTo(ivPictureFrame)
             $0.height.greaterThanOrEqualTo(150)
         }
-        
+
         lblPlaceholder.snp.makeConstraints {
             $0.top.leading.equalTo(textview).offset(10)
         }

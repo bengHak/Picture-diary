@@ -30,7 +30,7 @@ protocol LoggedInInteractorDependency {
 }
 
 final class LoggedInInteractor: Interactor, LoggedInInteractable {
-    
+
     weak var router: LoggedInRouting?
     weak var listener: LoggedInListener?
     private let diaryRepository: DiaryRepositoryProtocol
@@ -45,7 +45,7 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
         self.bag = DisposeBag()
         super.init()
     }
-    
+
     override func didBecomeActive() {
         super.didBecomeActive()
     }
@@ -59,7 +59,7 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
     func detachCreateDiary() { router?.detachCreateDiary() }
 
     func setRefreshNeed() { self.isRefreshNeed.accept(true) }
-    
+
     // MARK: - DiaryDetail
     func detachDiaryDetail() { router?.detachDiaryDetail() }
 

@@ -9,9 +9,7 @@ import RIBs
 import RxSwift
 import RxRelay
 
-protocol DiaryListRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
-}
+protocol DiaryListRouting: ViewableRouting { }
 
 protocol DiaryListPresentable: Presentable {
     var listener: DiaryListPresentableListener? { get set }
@@ -91,6 +89,6 @@ final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>,
     }
 
     func attachSettings() {
-        
+
     }
 }

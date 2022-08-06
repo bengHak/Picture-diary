@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		24EB20180727972942353397 /* Pods_PictureDiary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BD7439747D5C95598B0B8C8 /* Pods_PictureDiary.framework */; };
+		607E8033289EE6560097FD8A /* ModelDiaryImageUploadResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607E8032289EE6560097FD8A /* ModelDiaryImageUploadResponse.swift */; };
 		92EAA4EB9351DECAA3FD6804 /* PaletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EAA71955F25FB0FBCEFCAE /* PaletteView.swift */; };
 		EA01F9DB282A67C600A6E450 /* PictureDiary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EA01F9D9282A67C600A6E450 /* PictureDiary.xcdatamodeld */; };
 		EA01F9DF282A680900A6E450 /* PictureDiary+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA01F9DC282A680900A6E450 /* PictureDiary+CoreDataClass.swift */; };
@@ -18,7 +19,6 @@
 		EA08CF8A2858B99500A0A029 /* AppleAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA08CF892858B99500A0A029 /* AppleAuth.swift */; };
 		EA08CF8C2858B99F00A0A029 /* GoogleAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA08CF8B2858B99F00A0A029 /* GoogleAuth.swift */; };
 		EA0A3C132865B41700BD779B /* DiaryAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0A3C122865B41700BD779B /* DiaryAPI.swift */; };
-		EA0A3C152865C7FE00BD779B /* ModelDiaryImageUploadResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0A3C142865C7FE00BD779B /* ModelDiaryImageUploadResponse.swift */; };
 		EA0A3C172865C94000BD779B /* ModelCommonResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0A3C162865C94000BD779B /* ModelCommonResponse.swift */; };
 		EA108F85285B0B4D00F23226 /* OAuthProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA108F84285B0B4D00F23226 /* OAuthProtocol.swift */; };
 		EA108F89285B2E8A00F23226 /* ASAuthorizationControllerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA108F88285B2E8A00F23226 /* ASAuthorizationControllerDelegateProxy.swift */; };
@@ -136,6 +136,7 @@
 /* Begin PBXFileReference section */
 		0E1E6D44D6FF25BF23E8C1BC /* Pods-PictureDiary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PictureDiary.release.xcconfig"; path = "Target Support Files/Pods-PictureDiary/Pods-PictureDiary.release.xcconfig"; sourceTree = "<group>"; };
 		45B77415E2E9170140664D7F /* Pods-PictureDiary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PictureDiary.debug.xcconfig"; path = "Target Support Files/Pods-PictureDiary/Pods-PictureDiary.debug.xcconfig"; sourceTree = "<group>"; };
+		607E8032289EE6560097FD8A /* ModelDiaryImageUploadResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelDiaryImageUploadResponse.swift; sourceTree = "<group>"; };
 		92EAA71955F25FB0FBCEFCAE /* PaletteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteView.swift; sourceTree = "<group>"; };
 		9BD7439747D5C95598B0B8C8 /* Pods_PictureDiary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PictureDiary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA01F9DA282A67C600A6E450 /* PictureDiary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PictureDiary.xcdatamodel; sourceTree = "<group>"; };
@@ -147,7 +148,6 @@
 		EA08CF892858B99500A0A029 /* AppleAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuth.swift; sourceTree = "<group>"; };
 		EA08CF8B2858B99F00A0A029 /* GoogleAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAuth.swift; sourceTree = "<group>"; };
 		EA0A3C122865B41700BD779B /* DiaryAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryAPI.swift; sourceTree = "<group>"; };
-		EA0A3C142865C7FE00BD779B /* ModelDiaryImageUploadResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDiaryImageUploadResponse.swift; sourceTree = "<group>"; };
 		EA0A3C162865C94000BD779B /* ModelCommonResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCommonResponse.swift; sourceTree = "<group>"; };
 		EA108F84285B0B4D00F23226 /* OAuthProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthProtocol.swift; sourceTree = "<group>"; };
 		EA108F88285B2E8A00F23226 /* ASAuthorizationControllerDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASAuthorizationControllerDelegateProxy.swift; sourceTree = "<group>"; };
@@ -571,9 +571,9 @@
 			isa = PBXGroup;
 			children = (
 				EA108F8A285B34D100F23226 /* ModelTokenResponse.swift */,
+				607E8032289EE6560097FD8A /* ModelDiaryImageUploadResponse.swift */,
 				EA108F90285C673900F23226 /* ModelAuthResponse.swift */,
 				EA9E04EE28605809005845E4 /* ModelDiaryResponse.swift */,
-				EA0A3C142865C7FE00BD779B /* ModelDiaryImageUploadResponse.swift */,
 				EA0A3C162865C94000BD779B /* ModelCommonResponse.swift */,
 			);
 			path = Models;
@@ -869,7 +869,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#export PATH=\"$PATH:/opt/homebrew/bin\"\n#if which swiftlint > /dev/null; then\n#  swiftlint\n#else\n#  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n#fi\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		68921512FBE6F431D8E0D3B7 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1005,7 +1005,6 @@
 				EA2840292807EAC000D8DCB1 /* PaletteColorType.swift in Sources */,
 				EA625C43282B2B23002BCABD /* DiaryDetailBuilder.swift in Sources */,
 				EA8E1B49287BB4E4003ECD7B /* RandomDiaryBuilder.swift in Sources */,
-				EA0A3C152865C7FE00BD779B /* ModelDiaryImageUploadResponse.swift in Sources */,
 				EAB4543427FC3DFC0002A3B1 /* DiaryDrawingViewController.swift in Sources */,
 				EAF530332819C921001CE8FE /* CoreDataHelper.swift in Sources */,
 				EA98C4BE27DF137E0045055D /* UIImage+Ext.swift in Sources */,
@@ -1015,6 +1014,7 @@
 				EA98C4B827DEBF4B0045055D /* CreateDiaryInteractor.swift in Sources */,
 				EAFE86B327D499C300519243 /* VanishingCompletionBuilder.swift in Sources */,
 				EAFE867827D23BF700519243 /* RootInteractor.swift in Sources */,
+				607E8033289EE6560097FD8A /* ModelDiaryImageUploadResponse.swift in Sources */,
 				EAFE86FF27D8658D00519243 /* RootSecondaryViewController.swift in Sources */,
 				EA9E04EF28605809005845E4 /* ModelDiaryResponse.swift in Sources */,
 				EAFE869A27D47FD100519243 /* SNSLoginViewController.swift in Sources */,

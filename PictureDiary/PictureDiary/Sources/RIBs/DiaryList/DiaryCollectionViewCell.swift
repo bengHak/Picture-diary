@@ -20,7 +20,7 @@ final class DiaryCollectionViewCell: UICollectionViewCell {
     private let lblDate = UILabel().then {
         $0.font = .DefaultFont.body2.font()
     }
-    
+
     /// 날씨
     private let ivWeather = UIImageView()
 
@@ -32,10 +32,10 @@ final class DiaryCollectionViewCell: UICollectionViewCell {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
     }
-    
+
     // MARK: - Properties
     static let identifier = "DiaryCollectionViewCell"
-    
+
     // MARK: - Lifecycles
     override init(frame: CGRect) {
         super.init(frame: .zero)

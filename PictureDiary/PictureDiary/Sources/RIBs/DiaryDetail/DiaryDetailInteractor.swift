@@ -37,7 +37,7 @@ final class DiaryDetailInteractor: PresentableInteractor<DiaryDetailPresentable>
     override func willResignActive() {
         super.willResignActive()
     }
-    
+
     func detachDiaryDetail() {
         listener?.detachDiaryDetail()
     }

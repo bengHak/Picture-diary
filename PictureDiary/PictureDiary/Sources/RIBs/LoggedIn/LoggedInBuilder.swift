@@ -42,7 +42,6 @@ final class LoggedInComponent: Component<LoggedInDependency>,
 }
 
 // MARK: - Builder
-
 protocol LoggedInBuildable: Buildable {
     func build(withListener listener: LoggedInListener) -> LoggedInRouting
 }
@@ -57,12 +56,12 @@ final class LoggedInBuilder: Builder<LoggedInDependency>, LoggedInBuildable {
         let component = LoggedInComponent(dependency: dependency)
         let interactor = LoggedInInteractor(dependency: component)
         interactor.listener = listener
-        
+
         let diaryList = DiaryListBuilder(dependency: component)
         let diaryDetail = DiaryDetailBuilder(dependency: component)
         let createDiary = CreateDiaryBuilder(dependency: component)
         let randomDiary = RandomDiaryBuilder(dependency: component)
-        
+
         return LoggedInRouter(
             interactor: interactor,
             splitViewController: component.splitViewController,

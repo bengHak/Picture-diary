@@ -19,7 +19,7 @@ protocol RandomDiaryRouting: ViewableRouting {
 
 protocol RandomDiaryPresentable: Presentable {
     var listener: RandomDiaryPresentableListener? { get set }
-    
+
     func detachDetailView()
     func detachStampDrawer()
 }
@@ -41,7 +41,7 @@ final class RandomDiaryInteractor: PresentableInteractor<RandomDiaryPresentable>
 
     weak var router: RandomDiaryRouting?
     weak var listener: RandomDiaryListener?
-    
+
     private let diary: PictureDiary
     private let stampPosition: BehaviorRelay<StampPosition>
     private let selectedStamp: BehaviorRelay<StampType?>
@@ -92,9 +92,9 @@ final class RandomDiaryInteractor: PresentableInteractor<RandomDiaryPresentable>
         }
         let posX = stampPosition.value.x
         let posY = stampPosition.value.y
-        
+
 //        print("🚧 stamp position: \(x), \(y)")
-         
+
 //        diaryRepository.postStamp(diaryId: diary.id, stampType: stamp, posX: x, posY: y)
     }
 }
