@@ -11,7 +11,6 @@ import Then
 
 final class ShareInstagramView: UIView {
  
-    
     // MARK: - UI Properties
     
     /// 날씨 스택
@@ -37,6 +36,7 @@ final class ShareInstagramView: UIView {
         $0.layer.shadowOpacity = 0.05
         $0.layer.shadowRadius = 20
         $0.layer.masksToBounds = false
+        $0.clipsToBounds = true
     }
     
     /// 그림 프레임
@@ -67,9 +67,7 @@ final class ShareInstagramView: UIView {
     }
     
     /// White gradient view
-    private let gradientView = UIView().then { view in
-        view.backgroundColor = .clear
-    }
+    private let gradientView = UIView()
     
     /// 로고 뷰
     private let logoView = UIImageView(image: UIImage(named: "small_logo_no_bg"))
@@ -97,8 +95,27 @@ final class ShareInstagramView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Helpers
+    func setGradient() {
+        if let subLayers = gradientView.layer.sublayers {
+            for layer in subLayers {
+                layer.removeFromSuperlayer()
+            }
+        }
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [
+            UIColor(red: 0, green: 0, blue: 0, alpha: 0).cgColor,
+            UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).cgColor
+        ]
+        gradientLayer.locations = [0, 1]
+        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
+        gradientLayer.frame = gradientView.bounds
+        gradientView.layer.addSublayer(gradientLayer)
+    }
+    
     private func addUnderLine() {
         let underline = UIImageView(image: UIImage(named: "img_underline")).then {
             $0.contentMode = .scaleAspectFill
@@ -119,7 +136,7 @@ final class ShareInstagramView: UIView {
     private func setData() {
         guard let imageData = diary.drawing,
               let text = diary.content,
-              let date = diary.date else  {
+              let date = diary.date else {
             print("invalid diary")
             return
         }
@@ -183,8 +200,8 @@ final class ShareInstagramView: UIView {
         }
         
         gradientView.snp.makeConstraints {
-            $0.leading.trailing.bottom.equalToSuperview()
-            $0.height.equalTo(20)
+            $0.leading.trailing.bottom.equalTo(diaryView)
+            $0.height.equalTo(30)
         }
         
         diaryView.snp.makeConstraints {
