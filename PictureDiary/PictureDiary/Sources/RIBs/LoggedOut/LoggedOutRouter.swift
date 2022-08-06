@@ -38,17 +38,17 @@ final class LoggedOutRouter: Router<LoggedOutInteractable>, LoggedOutRouting {
         detachSNSLogin()
         detachVanishingCompletion()
     }
-    
+
     func routeToSNSLogin() {
         detachVanishingCompletion()
         let router = snsLoginBuilder.build(withListener: interactor)
         snsLoginRouter = router
         attachChild(router)
-        
+
         let vc = router.viewControllable.getFullScreenModalVC()
         viewController.uiviewController.present(vc, animated: true)
     }
-    
+
     func detachSNSLogin() {
         if let router = snsLoginRouter {
             detachChild(router)
@@ -56,7 +56,7 @@ final class LoggedOutRouter: Router<LoggedOutInteractable>, LoggedOutRouting {
             self.snsLoginRouter = nil
         }
     }
-    
+
     func routeToVanishingCompletion() {
         detachSNSLogin()
         let router = vanishingCompletionBuilder.build(withListener: interactor)
@@ -66,7 +66,7 @@ final class LoggedOutRouter: Router<LoggedOutInteractable>, LoggedOutRouting {
         let vc = router.viewControllable.getFullScreenModalVC()
         viewController.uiviewController.present(vc, animated: true)
     }
-    
+
     func detachVanishingCompletion() {
         if let router = vanishingCompletionRouter {
             detachChild(router)
@@ -77,10 +77,10 @@ final class LoggedOutRouter: Router<LoggedOutInteractable>, LoggedOutRouting {
 
     // MARK: - Private
     private let viewController: LoggedOutViewControllable
-    
+
     private let snsLoginBuilder: SNSLoginBuildable
     private var snsLoginRouter: SNSLoginRouting?
-    
+
     private let vanishingCompletionBuilder: VanishingCompletionBuildable
     private var vanishingCompletionRouter: VanishingCompletionRouting?
 }

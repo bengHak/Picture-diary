@@ -13,7 +13,7 @@ import SnapKit
 
 protocol DiaryDetailPresentableListener: AnyObject {
     func detachDiaryDetail()
-    func tapShareButton(_ imageData: Data, _ completionHandler: @escaping (Bool) -> Void)
+    func tapShareButton(_ imageData: Data)
 }
 
 final class DiaryDetailViewController: UIViewController, DiaryDetailPresentable, DiaryDetailViewControllable {
@@ -27,7 +27,7 @@ final class DiaryDetailViewController: UIViewController, DiaryDetailPresentable,
     private let scrollView = UIScrollView()
     
     /// 컨텐츠 스택 뷰
-    private let stackView = UIStackView().then {
+    let stackView = UIStackView().then {
         $0.alignment = .center
         $0.axis = .vertical
         $0.spacing = 2
@@ -39,7 +39,7 @@ final class DiaryDetailViewController: UIViewController, DiaryDetailPresentable,
         $0.distribution = .equalSpacing
         $0.alignment = .center
     }
-    
+
     /// 날짜 라벨
     private lazy var lblDate = UILabel().then {
         if let dateText = self.diary.date?.formattedString() {
@@ -47,7 +47,7 @@ final class DiaryDetailViewController: UIViewController, DiaryDetailPresentable,
         }
         $0.font = .DefaultFont.body2.font()
     }
-    
+
     /// 날씨 스택
     private let stackWeather = UIStackView().then {
         $0.axis = .horizontal
@@ -67,7 +67,7 @@ final class DiaryDetailViewController: UIViewController, DiaryDetailPresentable,
     private let ivSnow = UIImageView(image: UIImage(named: "ic_weather_snow"))
     
     /// 그림 프레임 이미지
-    private let ivPictureFrame = UIImageView(image: UIImage(named: "img_picture_frame")).then {
+    let ivPictureFrame = UIImageView(image: UIImage(named: "img_picture_frame")).then {
         $0.contentMode = .scaleAspectFit
     }
     
@@ -104,7 +104,7 @@ final class DiaryDetailViewController: UIViewController, DiaryDetailPresentable,
     private let bag = DisposeBag()
     
     /// 도장 좌표 목록
-    private let stampCoordinateList: [String:Int] = [:]
+    private let stampCoordinateList: [String: Int] = [:]
     
     /// Diary data
     private let diary: PictureDiary
@@ -281,18 +281,15 @@ extension DiaryDetailViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.shareInstagramView.isHidden = false
+                #warning("그림자 렌더링 타이밍 수정 필요")
+                self.shareInstagramView.setGradient()
                 let renderer = UIGraphicsImageRenderer(bounds: self.shareInstagramView.bounds)
                 let renderImage = renderer.image { context in
                     self.shareInstagramView.layer.render(in: context.cgContext)
                 }
                 guard let imageData = renderImage.pngData() else { return }
                 self.shareInstagramView.isHidden = true
-                self.listener?.tapShareButton(imageData) { isIgInstalled in
-                    #warning("TODO: 인스타그램이 설치되지 않았을 경우")
-                    if !isIgInstalled {
-                        print("Instagram is not installed")
-                    }
-                }
+                self.listener?.tapShareButton(imageData)
             }).disposed(by: bag)
     }
 }

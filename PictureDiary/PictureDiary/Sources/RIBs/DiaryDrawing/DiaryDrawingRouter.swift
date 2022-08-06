@@ -16,7 +16,8 @@ protocol DiaryDrawingViewControllable: ViewControllable {
     // TODO: Declare methods the router invokes to manipulate the view hierarchy.
 }
 
-final class DiaryDrawingRouter: ViewableRouter<DiaryDrawingInteractable, DiaryDrawingViewControllable>, DiaryDrawingRouting {
+final class DiaryDrawingRouter: ViewableRouter<DiaryDrawingInteractable, DiaryDrawingViewControllable>,
+                                DiaryDrawingRouting {
 
     // TODO: Constructor inject child builder protocols to allow building children.
     override init(interactor: DiaryDrawingInteractable, viewController: DiaryDrawingViewControllable) {

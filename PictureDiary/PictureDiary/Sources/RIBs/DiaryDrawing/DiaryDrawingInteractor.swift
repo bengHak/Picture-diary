@@ -18,13 +18,13 @@ protocol DiaryDrawingListener: AnyObject {
     func detachDiaryDrawing()
 }
 
-final class DiaryDrawingInteractor: PresentableInteractor<DiaryDrawingPresentable>, DiaryDrawingInteractable, DiaryDrawingPresentableListener {
+final class DiaryDrawingInteractor: PresentableInteractor<DiaryDrawingPresentable>,
+                                    DiaryDrawingInteractable,
+                                    DiaryDrawingPresentableListener {
 
     weak var router: DiaryDrawingRouting?
     weak var listener: DiaryDrawingListener?
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
-    // in constructor.
     override init(presenter: DiaryDrawingPresentable) {
         super.init(presenter: presenter)
         presenter.listener = self
@@ -32,14 +32,12 @@ final class DiaryDrawingInteractor: PresentableInteractor<DiaryDrawingPresentabl
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
     }
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
-    
+
     func detachDiaryDrawing() {
         listener?.detachDiaryDrawing()
     }

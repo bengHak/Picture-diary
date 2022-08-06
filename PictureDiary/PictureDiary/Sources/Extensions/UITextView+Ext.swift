@@ -18,12 +18,12 @@ extension UITextView {
         let style = NSMutableParagraphStyle()
         style.lineSpacing = lineSpacing
         let attributes = [
-            NSAttributedString.Key.paragraphStyle : style,
+            NSAttributedString.Key.paragraphStyle: style,
             .font: UIFont.DefaultFont.body1.font()
         ]
         self.attributedText = NSAttributedString(
             string: text,
-            attributes: attributes as [NSAttributedString.Key : Any]
+            attributes: attributes as [NSAttributedString.Key: Any]
         )
     }
 }

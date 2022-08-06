@@ -177,9 +177,13 @@ final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable,
             for _ in 0..<lineCount-20 { addUnderLine() }
         }
     }
-    
+
     func configureScrollView() {
-        let h = self.textview.frame.origin.y + self.textview.frame.height - self.appBarTop.frame.origin.y + self.appBarTop.frame.height
+        let h = self.textview.frame.origin.y
+        + self.textview.frame.height
+        - self.appBarTop.frame.origin.y
+        + self.appBarTop.frame.height
+
         let w = self.scrollContentView.frame.width
         let contentSize = CGSize(width: w, height: h)
         self.scrollContentView.frame.size = contentSize
@@ -193,31 +197,34 @@ extension CreateDiaryViewController: BaseViewController {
         setLineHeight()
         for _ in 0..<5 { addUnderLine() }
         [ivSunny, ivCloudy, ivRain, ivSnow].forEach { stackWeather.addArrangedSubview($0) }
-        [lblDate, stackWeather, ivPictureFrame, ivPicture, textview, lblPlaceholder].forEach { scrollContentView.addSubview($0) }
+        [lblDate, stackWeather, ivPictureFrame, ivPicture, textview, lblPlaceholder]
+            .forEach {
+                scrollContentView.addSubview($0)
+            }
         scrollView.addSubview(scrollContentView)
         view.addSubview(appBarTop)
         view.addSubview(underlineStack)
         view.addSubview(scrollView)
         view.addSubview(uploadLoadingView)
     }
-    
+
     func configureSubviews() {
         appBarTop.snp.makeConstraints {
             $0.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(44)
         }
-        
+
         lblDate.snp.makeConstraints {
             $0.top.equalToSuperview().offset(16)
             $0.leading.equalToSuperview().offset(20)
             $0.height.equalTo(20)
         }
-        
+
         stackWeather.snp.makeConstraints {
             $0.centerY.equalTo(lblDate)
             $0.trailing.equalToSuperview().inset(25)
         }
-        
+
         ivPictureFrame.snp.makeConstraints {
             let w: CGFloat
             let ratio = ivPictureFrame.image?.getImageRatio()
@@ -232,18 +239,18 @@ extension CreateDiaryViewController: BaseViewController {
             $0.top.equalTo(lblDate.snp.bottom).offset(24)
             $0.centerX.equalToSuperview()
         }
-        
+
         ivPicture.snp.makeConstraints {
             $0.edges.equalTo(ivPictureFrame).inset(10)
         }
-        
+
         underlineStack.snp.makeConstraints {
             let h = (diaryTextLineHeight ?? 26) + 8
             $0.top.equalTo(ivPictureFrame.snp.bottom).offset(h)
             $0.leading.trailing.equalTo(ivPictureFrame)
         }
         for _ in 0..<20 { addUnderLine() }
-        
+
         textview.snp.remakeConstraints {
             $0.top.equalTo(ivPictureFrame.snp.bottom).offset(12)
             $0.leading.trailing.equalTo(ivPictureFrame)
@@ -260,12 +267,12 @@ extension CreateDiaryViewController: BaseViewController {
             $0.width.equalToSuperview()
             $0.height.greaterThanOrEqualToSuperview()
         }
-        
+
         scrollView.snp.makeConstraints {
             $0.top.equalTo(appBarTop.snp.bottom)
             $0.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
         }
-        
+
         uploadLoadingView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
@@ -283,7 +290,7 @@ extension CreateDiaryViewController {
         bindText()
         bindDrawingData()
     }
-    
+
     private func bindWeather() {
         ivSunny.rx.tapGesture()
             .when(.recognized)
@@ -291,21 +298,21 @@ extension CreateDiaryViewController {
                 guard let self = self else { return }
                 self.handleWeather(weather: .sunny)
             }).disposed(by: bag)
-        
+
         ivRain.rx.tapGesture()
             .when(.recognized)
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.handleWeather(weather: .rain)
             }).disposed(by: bag)
-        
+
         ivCloudy.rx.tapGesture()
             .when(.recognized)
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.handleWeather(weather: .cloudy)
             }).disposed(by: bag)
-        
+
         ivSnow.rx.tapGesture()
             .when(.recognized)
             .subscribe(onNext: { [weak self] _ in
@@ -313,7 +320,7 @@ extension CreateDiaryViewController {
                 self.handleWeather(weather: .snow)
             }).disposed(by: bag)
     }
-    
+
     private func bindPicture() {
         ivPicture.rx.tapGesture()
             .when(.recognized)
@@ -322,7 +329,7 @@ extension CreateDiaryViewController {
                 self.listener?.routeToDiaryDrawing()
             }).disposed(by: bag)
     }
-    
+
     private func bindTextView() {
         textview.rx.tapGesture()
             .when(.recognized)
@@ -331,7 +338,7 @@ extension CreateDiaryViewController {
                 self.listener?.routeToDiaryTextField()
             }).disposed(by: bag)
     }
-    
+
     private func bindButtons() {
         appBarTop.btnBack.rx.tap
             .subscribe(onNext: { [weak self] _ in
@@ -339,11 +346,11 @@ extension CreateDiaryViewController {
 #warning("저장하지 않고 뒤로가시겠습니까? 알려줘야되지 않을까")
                 self.listener?.tapCancleButton()
             }).disposed(by: bag)
-        
+
         appBarTop.btnCompleted.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                
+
                 if self.textview.text.isEmpty {
                     #warning("텍스트 없는 일기는 저장하지 않게하는 로직 추가하기")
                     print("🔴 일기가 입력되지 않았습니다.")
@@ -358,7 +365,7 @@ extension CreateDiaryViewController {
                 )
             }).disposed(by: bag)
     }
-    
+
     private func bindText() {
         diaryText
             .subscribe(onNext: { [weak self] text in
@@ -368,7 +375,7 @@ extension CreateDiaryViewController {
                 self.lblPlaceholder.isHidden = !text.isEmpty
             }).disposed(by: bag)
     }
-    
+
     private func bindDrawingData() {
         drawingImage
             .subscribe(onNext: { [weak self] image in

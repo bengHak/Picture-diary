@@ -18,23 +18,24 @@ final class LoggedInComponent: Component<LoggedInDependency>,
                                DiaryListDependency,
                                DiaryDetailDependency,
                                CreateDiaryDependency,
-                               LoggedInInteractorDependency {
+                               LoggedInInteractorDependency,
+                               RandomDiaryDependency {
     fileprivate var splitViewController: UISplitViewController {
         return dependency.splitViewController
     }
-    
+
     fileprivate var primaryVieController: UINavigationController {
         return dependency.primaryViewController
     }
-    
+
     fileprivate var secondaryViewController: UINavigationController {
         return dependency.secondaryViewController
     }
-    
+
     var isRefreshNeed = BehaviorRelay<Bool>(value: false)
-    
+
     var diaryRepository: DiaryRepositoryProtocol = DiaryRepository()
-    
+
     var pictureDiaryBehaviorRelay = BehaviorRelay<PictureDiary?>(value: nil)
 
     var pictureDiary: PictureDiary { pictureDiaryBehaviorRelay.value! }
@@ -60,12 +61,17 @@ final class LoggedInBuilder: Builder<LoggedInDependency>, LoggedInBuildable {
         let diaryList = DiaryListBuilder(dependency: component)
         let diaryDetail = DiaryDetailBuilder(dependency: component)
         let createDiary = CreateDiaryBuilder(dependency: component)
-        return LoggedInRouter(interactor: interactor,
-                              splitViewController: component.splitViewController,
-                              primaryViewController: component.primaryVieController,
-                              secondaryViewController: component.secondaryViewController,
-                              diaryListBuilder: diaryList,
-                              diaryDetailBuilder: diaryDetail,
-                              createDiaryBuilder: createDiary)
+        let randomDiary = RandomDiaryBuilder(dependency: component)
+        
+        return LoggedInRouter(
+            interactor: interactor,
+            splitViewController: component.splitViewController,
+            primaryViewController: component.primaryVieController,
+            secondaryViewController: component.secondaryViewController,
+            diaryListBuilder: diaryList,
+            diaryDetailBuilder: diaryDetail,
+            createDiaryBuilder: createDiary,
+            randomDiaryBuilder: randomDiary
+        )
     }
 }

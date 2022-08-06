@@ -139,7 +139,7 @@ final class CreateDiaryInteractor: PresentableInteractor<CreateDiaryPresentable>
             weather: self.weather!,
             drawing: self.drawingImageData!,
             content: self.content!
-        ) { [weak self] success in
+        ) { [weak self] _, success in
             guard let self = self else { return }
             if success {
                 print("🟢 일기 저장 성공")

@@ -27,24 +27,20 @@ final class VanishingCompletionInteractor: PresentableInteractor<VanishingComple
     
     weak var router: VanishingCompletionRouting?
     weak var listener: VanishingCompletionListener?
-    
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
-    // in constructor.
+
     override init(presenter: VanishingCompletionPresentable) {
         super.init(presenter: presenter)
         presenter.listener = self
     }
-    
+
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
     }
     
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
-    
+
     func disappearAtExpiration() {
         listener?.detachCompletionView()
     }

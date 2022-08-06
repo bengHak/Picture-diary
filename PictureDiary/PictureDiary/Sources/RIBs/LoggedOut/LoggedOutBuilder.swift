@@ -28,7 +28,6 @@ protocol LoggedOutBuildable: Buildable {
 }
 
 final class LoggedOutBuilder: Builder<LoggedOutDependency>, LoggedOutBuildable {
-    
     override init(dependency: LoggedOutDependency) {
         super.init(dependency: dependency)
     }
@@ -37,7 +36,7 @@ final class LoggedOutBuilder: Builder<LoggedOutDependency>, LoggedOutBuildable {
         let component = LoggedOutComponent(dependency: dependency)
         let interactor = LoggedOutInteractor()
         interactor.listener = listener
-        
+
         let snsLogin = SNSLoginBuilder(dependency: component)
         let vanishingCompletion = VanishingCompletionBuilder(dependency: component)
         return LoggedOutRouter(interactor: interactor,

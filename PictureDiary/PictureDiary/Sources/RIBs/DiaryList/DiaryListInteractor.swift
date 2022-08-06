@@ -20,6 +20,7 @@ protocol DiaryListPresentable: Presentable {
 protocol DiaryListListener: AnyObject {
     func routeToCreateDiary()
     func routeToDiaryDetail(diaryId: Int)
+    func attachRandomDiary()
 }
 
 protocol DiaryListInteractorDependency {
@@ -57,13 +58,12 @@ final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>,
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
-    
+
     func attachCreateDiary() {
         listener?.routeToCreateDiary()
     }
-    
+
     func fetchDiaryList() {
         diaryRepository.fetchDiaryList()
             .subscribe(onNext: { [weak self] diaryList in
@@ -81,8 +81,16 @@ final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>,
                 self.diaryList.accept(modified)
             }).disposed(by: bag)
     }
-    
+
     func attachDiaryDetail(diaryId: Int) {
         listener?.routeToDiaryDetail(diaryId: diaryId)
+    }
+
+    func attachRandomDiary() {
+        listener?.attachRandomDiary()
+    }
+
+    func attachSettings() {
+        
     }
 }

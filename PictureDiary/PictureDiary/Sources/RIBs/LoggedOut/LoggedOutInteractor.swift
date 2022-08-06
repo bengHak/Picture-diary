@@ -22,19 +22,15 @@ final class LoggedOutInteractor: Interactor, LoggedOutInteractable {
     weak var router: LoggedOutRouting?
     weak var listener: LoggedOutListener?
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
-    // in constructor.
     override init() {}
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
     }
 
     override func willResignActive() {
         super.willResignActive()
         router?.cleanupViews()
-        // TODO: Pause any business logic.
     }
     
     func didLogin() {
@@ -45,7 +41,7 @@ final class LoggedOutInteractor: Interactor, LoggedOutInteractable {
     func didSignUp() {
         router?.routeToVanishingCompletion()
     }
-    
+
     func detachCompletionView() {
         listener?.routeToLoggedIn()
     }

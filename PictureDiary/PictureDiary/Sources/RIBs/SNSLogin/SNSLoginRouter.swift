@@ -12,12 +12,9 @@ protocol SNSLoginInteractable: Interactable {
     var listener: SNSLoginListener? { get set }
 }
 
-protocol SNSLoginViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
-}
+protocol SNSLoginViewControllable: ViewControllable { }
 
 final class SNSLoginRouter: ViewableRouter<SNSLoginInteractable, SNSLoginViewControllable>, SNSLoginRouting {
-    // TODO: Constructor inject child builder protocols to allow building children.
     override init(interactor: SNSLoginInteractable, viewController: SNSLoginViewControllable) {
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self

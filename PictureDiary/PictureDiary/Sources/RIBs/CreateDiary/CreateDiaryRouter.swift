@@ -18,7 +18,8 @@ protocol CreateDiaryInteractable: Interactable,
 
 protocol CreateDiaryViewControllable: ViewControllable { }
 
-final class CreateDiaryRouter: ViewableRouter<CreateDiaryInteractable, CreateDiaryViewControllable>, CreateDiaryRouting {
+final class CreateDiaryRouter: ViewableRouter<CreateDiaryInteractable, CreateDiaryViewControllable>,
+                               CreateDiaryRouting {
 
     init(
         interactor: CreateDiaryInteractable,
@@ -39,23 +40,24 @@ final class CreateDiaryRouter: ViewableRouter<CreateDiaryInteractable, CreateDia
         detachDiaryTextField()
         detachVanishingCompletion()
     }
-    
+
     // MARK: - DiaryTextField
     func attachDiaryTextField() {
         let router = diaryTextFieldBuilder.build(withListener: interactor)
         diaryTextFieldRouter = router
         attachChild(router)
         let vc = router.viewControllable.uiviewController
+        vc.modalPresentationStyle = .fullScreen
         self.viewControllable.uiviewController.present(vc, animated: true)
     }
-    
+
     func detachDiaryTextField() {
         if let router = diaryTextFieldRouter {
             self.viewControllable.uiviewController.dismiss(animated: true)
             detachChild(router)
         }
     }
-    
+
     // MARK: - DiaryDrawing
     func attachDiaryDrawing() {
         let router = diaryDrawingBuilder.build(withListener: interactor)
@@ -65,14 +67,14 @@ final class CreateDiaryRouter: ViewableRouter<CreateDiaryInteractable, CreateDia
         vc.modalPresentationStyle = .overFullScreen
         self.viewControllable.uiviewController.present(vc, animated: true)
     }
-    
+
     func detachDiaryDrawing() {
         if let router = diaryDrawingRouter {
             self.viewControllable.uiviewController.dismiss(animated: true)
             detachChild(router)
         }
     }
-    
+
     // MARK: - VanishingCompletion
     func attachVanishingCompletion() {
         let router = vanishingCompletionBuilder.build(withListener: interactor)
@@ -88,8 +90,7 @@ final class CreateDiaryRouter: ViewableRouter<CreateDiaryInteractable, CreateDia
             detachChild(router)
         }
     }
-    
-    
+
     // MARK: - Private
     private let diaryTextFieldBuilder: DiaryTextFieldBuildable
     private var diaryTextFieldRouter: DiaryTextFieldRouting?
