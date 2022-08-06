@@ -54,6 +54,13 @@ final class SNSLoginViewController: UIViewController, SNSLoginPresentable, SNSLo
         configureSubviews()
         bind()
     }
+    
+    // MARK: - Helper
+    func cancelAuth() {
+        DispatchQueue.main.async { [weak self] in
+            self?.loadingView.isHidden = true
+        }
+    }
 }
 
 // MARK: - BaseViewController

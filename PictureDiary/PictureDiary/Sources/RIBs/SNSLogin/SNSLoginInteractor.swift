@@ -14,6 +14,7 @@ protocol SNSLoginRouting: ViewableRouting { }
 
 protocol SNSLoginPresentable: Presentable {
     var listener: SNSLoginPresentableListener? { get set }
+    func cancelAuth()
 }
 
 protocol SNSLoginListener: AnyObject {
@@ -50,7 +51,7 @@ final class SNSLoginInteractor: PresentableInteractor<SNSLoginPresentable>,
         super.didBecomeActive()
         bindSuccessValue()
     }
-    
+
     override func willResignActive() {
         super.willResignActive()
     }
@@ -67,11 +68,11 @@ final class SNSLoginInteractor: PresentableInteractor<SNSLoginPresentable>,
         signInWithSsgSsgServer(provider)
     }
     
-    private func signInWithSsgSsgServer(_ provider: ProviderType) {
+    private func signInWithSsgSsgServer(_ provider: ProviderType) {        
         authRepository.authorize(with: provider)
-            .filter { $0.success }
             .flatMapLatest { [weak self] (response) -> Observable<ModelAuthResponse> in
                 guard let self = self,
+                      response.success,
                       let token = response.token else {
                     throw AuthError.invalidProviderToken
                 }
@@ -83,35 +84,45 @@ final class SNSLoginInteractor: PresentableInteractor<SNSLoginPresentable>,
                 self?.signUpWithSsgSsgServer(provider)
                 return Observable.error(error)
             }
-            .subscribe(onNext: { [weak self] authResponse in
-                guard let self = self,
-                      let accessToken = authResponse.accessToken else {
-                    self?.isSignInSuccess.onNext(false)
-                    return
+            .subscribe(
+                onNext: { [weak self] authResponse in
+                    guard let self = self,
+                          let accessToken = authResponse.accessToken else {
+                        self?.isSignInSuccess.onNext(false)
+                        return
+                    }
+                    KeychainWrapper.setValue(accessToken, forKey: .accessToken)
+                    self.isSignInSuccess.onNext(true)
+                },
+                onError: { [weak self] error in
+                    print("Signin error: \(error)")
+                    self?.presenter.cancelAuth()
+                },
+                onCompleted: { [weak self] in
+                    self?.presenter.cancelAuth()
                 }
-                KeychainWrapper.setValue(accessToken, forKey: .accessToken)
-                self.isSignInSuccess.onNext(true)
-            })
-            .disposed(by: bag)
+            ).disposed(by: bag)
     }
     
     private func signUpWithSsgSsgServer(_ provider: ProviderType) {
-        print(#function)
-        print(self.providerToken.value)
         authRepository.signup(token: self.providerToken.value, provider: provider)
             .catch { [weak self] error in
                 self?.isSignUpSuccess.onNext(false)
                 return Observable.error(error)
             }
-            .subscribe(onNext: { [weak self] authResponse in
-                guard let self = self,
-                      let accessToken = authResponse.accessToken else {
-                    self?.isSignUpSuccess.onNext(false)
-                    return
-                }
-                KeychainWrapper.setValue(accessToken, forKey: .accessToken)
-                self.isSignUpSuccess.onNext(true)
-            })
+            .subscribe(
+                onNext: { [weak self] authResponse in
+                    guard let self = self,
+                          let accessToken = authResponse.accessToken else {
+                        self?.isSignUpSuccess.onNext(false)
+                        return
+                    }
+                    KeychainWrapper.setValue(accessToken, forKey: .accessToken)
+                    self.isSignUpSuccess.onNext(true)
+                },
+                onError: { error in
+                    print(error)
+                })
             .disposed(by: bag)
     }
     
@@ -134,8 +145,7 @@ final class SNSLoginInteractor: PresentableInteractor<SNSLoginPresentable>,
                 if success {
                     self.signUpCompleted()
                 } else {
-#warning("회원가입 실패 로직 실행")
-                    print("🔴 회원가입 실패")
+                    self.presenter.cancelAuth()
                 }
             })
             .disposed(by: bag)

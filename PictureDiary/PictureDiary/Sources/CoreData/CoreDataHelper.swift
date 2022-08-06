@@ -11,11 +11,12 @@ import UIKit
 class CoreDataHelper {
     static let shared = CoreDataHelper()
     let appDelegate = UIApplication.shared.delegate as? AppDelegate
-    lazy var context = appDelegate?.persistentContainer.viewContext
+    private lazy var context = appDelegate?.persistentContainer.viewContext
     
     let modelName = "PictureDiary"
-    
+
     private var cached: [PictureDiary]
+    private var cachedRandomDiary: PictureDiary?
     
     init() {
         self.cached = []
@@ -37,6 +38,9 @@ class CoreDataHelper {
         return models
     }
     
+    /// 코어데이터에 id를 키로 캐싱된 일기 호출
+    ///
+    /// 랜덤 일기는 id가 '-1' 로 캐싱됨
     func getDiaryById(_ id: Int) -> PictureDiary? {
         let filtered = cached.filter { $0.id == id }
         if filtered.count == 1 {
@@ -58,17 +62,50 @@ class CoreDataHelper {
         }
     }
     
+    /// Update cached random diary
+    func updateCachedRandomDiary(_ diary: ModelDiaryResponse) {
+        guard let context = context else { return }
+        
+        if let update = getDiaryById(-1) {
+            update.imageUrl = diary.imageUrl
+            update.weather = diary.getWeather().rawValue
+            update.content = diary.content
+            do {
+                try context.save()
+            } catch let error {
+                print("update error: \(error)")
+            }
+        } else {
+            saveDiary(
+                id: -1,
+                date: diary.getDate(),
+                weather: diary.getWeather(),
+                drawing: nil,
+                content: diary.content ?? "",
+                completionHandler: nil
+            )
+        }
+    }
+    
+    /// Remove cached diary
+    func removeCachedDiary(_ diary: PictureDiary) {
+        guard let context = context else { return }
+        context.delete(diary)
+        try? context.save()
+    }
+    
     func saveDiary(
         id: Int,
         date: Date,
         weather: WeatherType,
         drawing: Data?,
         content: String,
-        completionHandler: @escaping ((Bool) -> Void)
+        imageUrl: String = "",
+        completionHandler: ((PictureDiary?, Bool) -> Void)?
     ) {
         guard let context = context,
               let entity = NSEntityDescription.entity(forEntityName: modelName, in: context)  else {
-            completionHandler(false)
+            completionHandler?(nil, false)
             return
         }
         
@@ -78,13 +115,14 @@ class CoreDataHelper {
             diary.weather = weather.rawValue
             diary.drawing = drawing
             diary.content = content
+            diary.imageUrl = imageUrl
             
             do {
                 try context.save()
-                completionHandler(true)
+                completionHandler?(diary, true)
             } catch let error as NSError {
                 print("🔴 Could not save: \(error)")
-                completionHandler(false)
+                completionHandler?(nil, false)
             }
         }
         

@@ -10,7 +10,7 @@ import Foundation
 enum AuthError: Error {
     case serverSignInError
     case serverSignUpError
-    
+
     case invalidProviderToken
     case invalidAccessToken
     
@@ -19,10 +19,10 @@ enum AuthError: Error {
     case appleLoginError
 }
 
-
 enum DiaryError: Error {
     case uploadImageError
     case uploadDiaryError
     case fetchDiaryError
     case fetchDiaryListError
+    case postStampError
 }

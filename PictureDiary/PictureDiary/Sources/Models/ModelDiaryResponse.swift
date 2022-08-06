@@ -19,7 +19,7 @@ struct ModelDiaryResponse: Decodable {
     func getDate() -> Date {
         guard let createdDate = createdDate else { return Date() }
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"
         return dateFormatter.date(from: createdDate) ?? Date()
     }
     

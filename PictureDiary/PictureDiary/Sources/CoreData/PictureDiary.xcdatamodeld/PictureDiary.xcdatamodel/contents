@@ -3,11 +3,13 @@
     <entity name="PictureDiary" representedClassName=".PictureDiary" syncable="YES">
         <attribute name="content" optional="YES" attributeType="String"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="didStamp" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="drawing" optional="YES" attributeType="Binary"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="imageUrl" optional="YES" attributeType="String"/>
         <attribute name="weather" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="PictureDiary" positionX="-36" positionY="9" width="128" height="104"/>
+        <element name="PictureDiary" positionX="-36" positionY="9" width="128" height="134"/>
     </elements>
 </model>

@@ -65,7 +65,12 @@ final class AppBarTopView: UIView {
     }
     
     // MARK: - Helpers
+    func setTitle(_ title: String) {
+        lblTitle.text = title
+    }
+    
     private func configureView() {
+        backgroundColor = .white
         switch appBarTopType {
         case .main:
             buildMain()
