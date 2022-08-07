@@ -16,7 +16,7 @@ protocol StampDrawerPresentable: Presentable {
 
 protocol StampDrawerListener: AnyObject {
     func detachStampDrawer()
-    func tapCompleteButton()
+    func didTapCompleteButton()
 }
 
 final class StampDrawerInteractor: PresentableInteractor<StampDrawerPresentable>,
@@ -40,6 +40,6 @@ final class StampDrawerInteractor: PresentableInteractor<StampDrawerPresentable>
     }
 
     func didTapCompleteButton() {
-        listener?.tapCompleteButton()
+        listener?.didTapCompleteButton()
     }
 }

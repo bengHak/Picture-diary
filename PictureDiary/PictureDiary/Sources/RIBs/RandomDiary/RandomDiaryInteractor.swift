@@ -86,14 +86,15 @@ final class RandomDiaryInteractor: PresentableInteractor<RandomDiaryPresentable>
         listener?.detachRandomDiary()
     }
 
-    func tapCompleteButton() {
+    func didTapCompleteButton() {
         guard let stamp = selectedStamp.value else {
             return
         }
+
         let posX = stampPosition.value.x
         let posY = stampPosition.value.y
 
-//        print("🚧 stamp position: \(x), \(y)")
+        print("🚧 stamp position: \(posX), \(posY), \(stamp.imageName)")
 
 //        diaryRepository.postStamp(diaryId: diary.id, stampType: stamp, posX: x, posY: y)
     }

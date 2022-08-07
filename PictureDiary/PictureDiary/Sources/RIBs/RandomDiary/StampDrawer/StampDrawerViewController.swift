@@ -57,6 +57,7 @@ final class StampDrawerViewController: UIViewController, StampDrawerPresentable,
 
     // MARK: - Properties
     private let selectedStamp: BehaviorRelay<StampType?>
+    private let stampPosition: BehaviorRelay<StampPosition>
     private let bag = DisposeBag()
 
     // MARK: - Lifecycles
@@ -65,6 +66,7 @@ final class StampDrawerViewController: UIViewController, StampDrawerPresentable,
         stampPosition: BehaviorRelay<StampPosition>
     ) {
         self.selectedStamp = selectedStamp
+        self.stampPosition = stampPosition
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -172,6 +174,7 @@ extension StampDrawerViewController {
             .bind(onNext: { [weak self] stamp in
                 guard let self = self else { return }
                 self.selectedStamp.accept(stamp)
+                self.stampPosition.accept(StampPosition(x: 0.4, y: 0.4))
                 self.completionView.isHidden = false
                 self.collectionView.isHidden = true
             }).disposed(by: bag)
