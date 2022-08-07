@@ -7,11 +7,6 @@
 
 import Foundation
 
-struct ModelDiaryImageUploadResponseWithProgress {
-    var progress: Double
-    var response: ModelDiaryImageUploadResponse?
-}
-
 struct ModelDiaryImageUploadResponse: Decodable {
     var imageUrl: String?
 }

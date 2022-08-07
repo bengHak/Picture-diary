@@ -21,6 +21,6 @@ enum StampType: String, CaseIterable, Decodable {
     case INTERESTING
     case LOL
     case ZZANG
-    
+
     var imageName: String { "stamp_\(self.rawValue)" }
 }

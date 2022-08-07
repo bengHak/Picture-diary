@@ -8,10 +8,7 @@
 import RIBs
 import RxRelay
 
-protocol CreateDiaryDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
-}
+protocol CreateDiaryDependency: Dependency { }
 
 final class CreateDiaryComponent: Component<CreateDiaryDependency>,
                                   DiaryTextFieldDependency,
@@ -21,7 +18,7 @@ final class CreateDiaryComponent: Component<CreateDiaryDependency>,
     var drawingData: BehaviorRelay<Data?>
     var diaryText: BehaviorRelay<String>
     var labelText: String { "오늘의 일기가 저장되었어요!" }
-    
+
     init(
         dependency: CreateDiaryDependency,
         drawingImage: BehaviorRelay<UIImage?>,
@@ -33,7 +30,7 @@ final class CreateDiaryComponent: Component<CreateDiaryDependency>,
         self.diaryText = diaryText
         super.init(dependency: dependency)
     }
-    
+
 }
 
 // MARK: - Builder
@@ -52,26 +49,26 @@ final class CreateDiaryBuilder: Builder<CreateDiaryDependency>, CreateDiaryBuild
         let drawingImage = BehaviorRelay<UIImage?>(value: nil)
         let drawingData = BehaviorRelay<Data?>(value: nil)
         let diaryText = BehaviorRelay<String>(value: "")
-        
+
         let component = CreateDiaryComponent(
             dependency: dependency,
             drawingImage: drawingImage,
             drawingData: drawingData,
             diaryText: diaryText
         )
-        
+
         let viewController = CreateDiaryViewController(
             drawingImage: drawingImage,
             diaryText: diaryText
         )
-        
+
         let diaryRepository = DiaryRepository()
         let interactor = CreateDiaryInteractor(
             presenter: viewController,
             diaryRepository: diaryRepository
         )
         interactor.listener = listener
-        
+
         let diaryTextFieldBuilder = DiaryTextFieldBuilder(dependency: component)
         let diaryDrawingBuilder = DiaryDrawingBuilder(dependency: component)
         let vanishingCompletionBuilder = VanishingCompletionBuilder(dependency: component)

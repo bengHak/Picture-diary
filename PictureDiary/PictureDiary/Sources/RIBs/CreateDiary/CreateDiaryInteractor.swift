@@ -41,7 +41,7 @@ final class CreateDiaryInteractor: PresentableInteractor<CreateDiaryPresentable>
     private let diaryRepository: DiaryRepositoryProtocol
     private let uploadedImageURL: BehaviorRelay<String>
     private let bag: DisposeBag
-    
+
     init(
         presenter: CreateDiaryPresentable,
         diaryRepository: DiaryRepositoryProtocol
@@ -52,14 +52,14 @@ final class CreateDiaryInteractor: PresentableInteractor<CreateDiaryPresentable>
         super.init(presenter: presenter)
         presenter.listener = self
     }
-    
+
     override func didBecomeActive() { super.didBecomeActive() }
-    
+
     override func willResignActive() {
         super.willResignActive()
         router?.cleanupViews()
     }
-    
+
     func tapDrawingCompleteButton(
         date: Date,
         weather: WeatherType,
@@ -82,28 +82,28 @@ final class CreateDiaryInteractor: PresentableInteractor<CreateDiaryPresentable>
                 self.uploadedImageURL.accept(imageUrl)
             }).disposed(by: self.bag)
     }
-    
+
     func tapCancleButton() { listener?.detachCreateDiary() }
-    
+
     func routeToDiaryTextField() { router?.attachDiaryTextField() }
-    
+
     func detachDiaryTextField() {
         router?.detachDiaryTextField()
         presenter.configureScrollView()
     }
-    
+
     func routeToDiaryDrawing() { router?.attachDiaryDrawing() }
-    
+
     func detachDiaryDrawing() { router?.detachDiaryDrawing() }
-    
+
     func routeToVanishingCompletion() { router?.attachVanishingCompletion() }
-    
+
     func detachCompletionView() {
         router?.detachVanishingCompletion()
         listener?.setRefreshNeed()
         listener?.detachCreateDiary()
     }
-    
+
     // MARK: - Bind
     private func bindUploadedImageURL() {
         uploadedImageURL
@@ -112,12 +112,12 @@ final class CreateDiaryInteractor: PresentableInteractor<CreateDiaryPresentable>
                 self.uploadDiary(urlString: imageUrl)
             }).disposed(by: bag)
     }
-    
+
     private func uploadDiary(urlString: String) {
         guard !urlString.isEmpty else {
             return
         }
-        
+
         self.diaryRepository.uploadDiary(
             content: self.content!,
             weather: self.weather!,
@@ -131,7 +131,7 @@ final class CreateDiaryInteractor: PresentableInteractor<CreateDiaryPresentable>
             self.cacheDiary(diaryId: diaryId)
         }).disposed(by: bag)
     }
-    
+
     private func cacheDiary(diaryId: Int) {
         CoreDataHelper.shared.saveDiary(
             id: diaryId,
@@ -149,5 +149,5 @@ final class CreateDiaryInteractor: PresentableInteractor<CreateDiaryPresentable>
             }
         }
     }
-    
+
 }

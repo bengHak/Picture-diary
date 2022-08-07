@@ -10,7 +10,7 @@ import UIKit
 
 extension UserDefaults {
     static let defaultFontStringKey = "defaultFont"
-    
+
     class func getDefaultFont() -> UIFont.DefaultFontType {
         let fontString = UserDefaults.standard.string(forKey: Self.defaultFontStringKey) ?? ""
         return UIFont.DefaultFontType(rawValue: fontString) ?? UIFont.DefaultFontType.ubiSulGi

@@ -21,11 +21,11 @@ extension UIFont {
         }
         return font
     }
-    
+
     public enum DefaultFont {
         case body1
         case body2
-        
+
         func font() -> UIFont {
             switch self {
             case .body1:
@@ -35,7 +35,7 @@ extension UIFont {
             }
         }
     }
-    
+
     public enum DefaultFontType: String {
         case kyobo      = "KyoboHandwriting2020"
         case dulGiMayo  = "Dovemayo-Medium"
@@ -47,9 +47,9 @@ extension UIFont {
         case ubiHam     = "UhBeeHamBold"
         case ubiPudding = "UhBeepuding"
     }
-    
+
     // MARK: - Pretendard Font
-    class func Pretendard(type: PretendardType, size: CGFloat) -> UIFont! {
+    class func getPretendardFont(type: PretendardType, size: CGFloat) -> UIFont! {
         guard let font = UIFont(name: type.rawValue, size: size) else {
             fatalError(
                     """
@@ -60,7 +60,7 @@ extension UIFont {
         }
         return font
     }
-    
+
     public enum PretendardFont {
         case h1
         case h2
@@ -69,27 +69,27 @@ extension UIFont {
         case subtitle3
         case body
         case button
-        
+
         func font() -> UIFont {
             switch self {
             case .h1:
-                return Pretendard(type: .semiBold, size: 24)
+                return getPretendardFont(type: .semiBold, size: 24)
             case .h2:
-                return Pretendard(type: .semiBold, size: 16)
+                return getPretendardFont(type: .semiBold, size: 16)
             case .subtitle1:
-                return Pretendard(type: .medium, size: 18)
+                return getPretendardFont(type: .medium, size: 18)
             case .subtitle2:
-                return Pretendard(type: .semiBold, size: 16)
+                return getPretendardFont(type: .semiBold, size: 16)
             case .subtitle3:
-                return Pretendard(type: .medium, size: 16)
+                return getPretendardFont(type: .medium, size: 16)
             case .body:
-                return Pretendard(type: .regular, size: 16)
+                return getPretendardFont(type: .regular, size: 16)
             case .button:
-                return Pretendard(type: .semiBold, size: 14)
+                return getPretendardFont(type: .semiBold, size: 14)
             }
         }
     }
-    
+
     public enum PretendardType: String {
         case bold     = "Pretendard-Bold"
         case semiBold = "Pretendard-SemiBold"

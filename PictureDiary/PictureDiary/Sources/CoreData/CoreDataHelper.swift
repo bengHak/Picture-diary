@@ -12,32 +12,32 @@ class CoreDataHelper {
     static let shared = CoreDataHelper()
     let appDelegate = UIApplication.shared.delegate as? AppDelegate
     private lazy var context = appDelegate?.persistentContainer.viewContext
-    
+
     let modelName = "PictureDiary"
 
     private var cached: [PictureDiary]
     private var cachedRandomDiary: PictureDiary?
-    
+
     init() {
         self.cached = []
     }
-    
+
     func getDiary() -> [PictureDiary] {
         var models: [PictureDiary] = []
         guard let context = context else { return [] }
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: modelName)
         let dateSort = NSSortDescriptor(key: "date", ascending: false)
         fetchRequest.sortDescriptors = [dateSort]
-        
+
         if let fetchResult = try? context.fetch(fetchRequest) as? [PictureDiary] {
             models = fetchResult
         } else {
             print("🔴 Could not fetch")
         }
-        
+
         return models
     }
-    
+
     /// 코어데이터에 id를 키로 캐싱된 일기 호출
     ///
     /// 랜덤 일기는 id가 '-1' 로 캐싱됨
@@ -46,12 +46,12 @@ class CoreDataHelper {
         if filtered.count == 1 {
             return filtered.first
         }
-        
+
         guard let context = context else { return nil }
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: modelName)
         fetchRequest.fetchLimit = 1
         fetchRequest.predicate = NSPredicate(format: "id == %@", String(id))
-        
+
         if let fetchResult = try? context.fetch(fetchRequest) as? [PictureDiary],
            fetchResult.count == 1 {
             cached.append(fetchResult.first!)
@@ -61,11 +61,11 @@ class CoreDataHelper {
             return nil
         }
     }
-    
+
     /// Update cached random diary
     func updateCachedRandomDiary(_ diary: ModelDiaryResponse) {
         guard let context = context else { return }
-        
+
         if let update = getDiaryById(-1) {
             update.imageUrl = diary.imageUrl
             update.weather = diary.getWeather().rawValue
@@ -86,14 +86,14 @@ class CoreDataHelper {
             )
         }
     }
-    
+
     /// Remove cached diary
     func removeCachedDiary(_ diary: PictureDiary) {
         guard let context = context else { return }
         context.delete(diary)
         try? context.save()
     }
-    
+
     func saveDiary(
         id: Int,
         date: Date,
@@ -108,7 +108,7 @@ class CoreDataHelper {
             completionHandler?(nil, false)
             return
         }
-        
+
         if let diary = NSManagedObject(entity: entity, insertInto: context) as? PictureDiary {
             diary.id = id
             diary.date = date
@@ -116,7 +116,7 @@ class CoreDataHelper {
             diary.drawing = drawing
             diary.content = content
             diary.imageUrl = imageUrl
-            
+
             do {
                 try context.save()
                 completionHandler?(diary, true)
@@ -125,6 +125,6 @@ class CoreDataHelper {
                 completionHandler?(nil, false)
             }
         }
-        
+
     }
 }

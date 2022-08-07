@@ -20,7 +20,7 @@ final class VanishingCompletionViewController: UIViewController,
                                                VanishingCompletionViewControllable {
 
     weak var listener: VanishingCompletionPresentableListener?
-    
+
     // MARK: - UI Properties
     /// 스택
     private let stackView = UIStackView().then {
@@ -34,7 +34,7 @@ final class VanishingCompletionViewController: UIViewController,
         $0.image = UIImage(named: "ic_complete")
         $0.contentMode = .scaleAspectFit
     }
-    
+
     private lazy var lbl = UILabel().then {
         $0.text = self.labelText
     }
@@ -52,7 +52,7 @@ final class VanishingCompletionViewController: UIViewController,
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white

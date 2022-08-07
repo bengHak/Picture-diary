@@ -14,24 +14,24 @@ class LoadingView: UIView {
     private let indicator = UIActivityIndicatorView().then {
         $0.style = .large
     }
-    
+
     // MARK: - Properties
-    
+
     // MARK: - Lifecycles
     init() {
         super.init(frame: .zero)
         backgroundColor = UIColor(white: 0, alpha: 0.2)
         setUI()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     deinit {
         indicator.stopAnimating()
     }
-    
+
     // MARK: - Helpers
     private func setUI() {
         addSubview(indicator)

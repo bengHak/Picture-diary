@@ -20,7 +20,7 @@ protocol DiaryDrawingPresentableListener: AnyObject {
 final class DiaryDrawingViewController: UIViewController, DiaryDrawingPresentable, DiaryDrawingViewControllable {
 
     weak var listener: DiaryDrawingPresentableListener?
-    
+
     // MARK: - UI Properties
     /// 앱바
     private let appBarTop = AppBarTopView(appBarTopType: .completion)
@@ -32,7 +32,7 @@ final class DiaryDrawingViewController: UIViewController, DiaryDrawingPresentabl
     /// 그림 그리기 영역
     /// Picture frame 영역 그리는 로직이랑 동일하게
     private var canvasView = PKCanvasView()
-    
+
     /// undo 버튼
     private let btnUndo = UIButton().then {
         $0.setImage(UIImage(named: "ic_undo_disabled"), for: .normal)
@@ -88,11 +88,11 @@ final class DiaryDrawingViewController: UIViewController, DiaryDrawingPresentabl
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
+
         if #available(iOS 14.0, *) {
             canvasView.drawingPolicy = .anyInput
         } else {
@@ -116,7 +116,7 @@ final class DiaryDrawingViewController: UIViewController, DiaryDrawingPresentabl
             } else {
                 btnUndo.setImage(UIImage(named: "ic_undo_disabled"), for: .normal)
             }
-            
+
             if manager.canRedo {
                 btnRedo.setImage(UIImage(named: "ic_redo_enabled"), for: .normal)
             } else {

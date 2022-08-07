@@ -9,7 +9,6 @@ import Foundation
 import Moya
 import SwiftKeychainWrapper
 
-
 enum DiaryAPI {
     case fetchDiaryList(lastDiaryId: Int, querySize: Int)
     case fetchDiary(id: Int)
@@ -36,7 +35,7 @@ extension DiaryAPI: ServiceAPI {
             return "/diary/stamp"
         }
     }
-    
+
     var method: Moya.Method {
         switch self {
         case .fetchDiaryList:
@@ -53,7 +52,7 @@ extension DiaryAPI: ServiceAPI {
             return .post
         }
     }
-    
+
     var task: Task {
         switch self {
         case .fetchDiaryList(let lastDiaryId, let querySize):

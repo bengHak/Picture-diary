@@ -20,7 +20,7 @@ protocol StampDrawerPresentableListener: AnyObject {
 final class StampDrawerViewController: UIViewController, StampDrawerPresentable, StampDrawerViewControllable {
 
     weak var listener: StampDrawerPresentableListener?
-    
+
     // MARK: - UI Properties
     /// Collection view
     private var collectionView: UICollectionView!
@@ -92,7 +92,7 @@ final class StampDrawerViewController: UIViewController, StampDrawerPresentable,
                 layer.removeFromSuperlayer()
             }
         }
-        
+
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [
             UIColor(red: 0, green: 0, blue: 0, alpha: 0).cgColor,

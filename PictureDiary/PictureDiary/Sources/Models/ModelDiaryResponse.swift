@@ -15,14 +15,14 @@ struct ModelDiaryResponse: Decodable {
     var weather: String?
     var content: String?
     var stampList: [ModelStamp]?
-    
+
     func getDate() -> Date {
         guard let createdDate = createdDate else { return Date() }
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"
         return dateFormatter.date(from: createdDate) ?? Date()
     }
-    
+
     func getWeather() -> WeatherType {
         guard let weather = weather else { return .sunny }
         return WeatherType.initWithString(weather)
@@ -35,4 +35,3 @@ struct ModelStamp: Decodable {
     var x: Double?
     var y: Double?
 }
-

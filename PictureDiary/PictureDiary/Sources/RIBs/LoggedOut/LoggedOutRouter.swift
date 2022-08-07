@@ -17,7 +17,7 @@ protocol LoggedOutInteractable: Interactable,
 protocol LoggedOutViewControllable: ViewControllable { }
 
 final class LoggedOutRouter: Router<LoggedOutInteractable>, LoggedOutRouting {
-    
+
     init(interactor: LoggedOutInteractable,
          viewController: LoggedOutViewControllable,
          snsLoginBuilder: SNSLoginBuildable,
@@ -28,7 +28,7 @@ final class LoggedOutRouter: Router<LoggedOutInteractable>, LoggedOutRouting {
         super.init(interactor: interactor)
         interactor.router = self
     }
-    
+
     override func didLoad() {
         super.didLoad()
         routeToSNSLogin()
@@ -62,7 +62,7 @@ final class LoggedOutRouter: Router<LoggedOutInteractable>, LoggedOutRouting {
         let router = vanishingCompletionBuilder.build(withListener: interactor)
         vanishingCompletionRouter = router
         attachChild(router)
-        
+
         let vc = router.viewControllable.getFullScreenModalVC()
         viewController.uiviewController.present(vc, animated: true)
     }

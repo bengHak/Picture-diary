@@ -37,8 +37,6 @@ final class AuthRepository: AuthRepositoryProtocol {
     }
 
     func signin(token: String, provider: ProviderType) -> Observable<ModelAuthResponse> {
-        #warning("remove")
-        print(token)
         return self.provider.rx.request(.signin(token: token, provider: provider))
             .filterSuccessfulStatusCodes()
             .map { $0.data }

@@ -20,7 +20,7 @@ enum PaletteColorType: String, CaseIterable {
     case purple = "color-drawing-purple"
     case beige = "color-drawing-beige"
     case brown = "color-drawing-brown"
-    
+
     static func getByHashValue(_ num: Int) -> PaletteColorType {
         switch num {
         case 0:

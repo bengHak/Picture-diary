@@ -32,12 +32,12 @@ final class LoggedOutInteractor: Interactor, LoggedOutInteractable {
         super.willResignActive()
         router?.cleanupViews()
     }
-    
+
     func didLogin() {
         router?.cleanupViews()
         listener?.routeToLoggedIn()
     }
-    
+
     func didSignUp() {
         router?.routeToVanishingCompletion()
     }

@@ -8,13 +8,10 @@
 import RIBs
 import RxSwift
 
-protocol VanishingCompletionRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
-}
+protocol VanishingCompletionRouting: ViewableRouting { }
 
 protocol VanishingCompletionPresentable: Presentable {
     var listener: VanishingCompletionPresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
 protocol VanishingCompletionListener: AnyObject {
@@ -24,7 +21,7 @@ protocol VanishingCompletionListener: AnyObject {
 final class VanishingCompletionInteractor: PresentableInteractor<VanishingCompletionPresentable>,
                                            VanishingCompletionInteractable,
                                            VanishingCompletionPresentableListener {
-    
+
     weak var router: VanishingCompletionRouting?
     weak var listener: VanishingCompletionListener?
 
@@ -36,7 +33,7 @@ final class VanishingCompletionInteractor: PresentableInteractor<VanishingComple
     override func didBecomeActive() {
         super.didBecomeActive()
     }
-    
+
     override func willResignActive() {
         super.willResignActive()
     }

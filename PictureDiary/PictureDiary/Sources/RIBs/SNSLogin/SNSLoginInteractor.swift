@@ -32,7 +32,7 @@ final class SNSLoginInteractor: PresentableInteractor<SNSLoginPresentable>,
     private let isSignUpSuccess: PublishSubject<Bool>
     private let providerToken: BehaviorRelay<String>
     private let bag: DisposeBag
-    
+
     init(
         presenter: SNSLoginPresentable,
         authRepository: AuthRepositoryProtocol
@@ -44,9 +44,9 @@ final class SNSLoginInteractor: PresentableInteractor<SNSLoginPresentable>,
         self.bag = DisposeBag()
         super.init(presenter: presenter)
         presenter.listener = self
-        
+
     }
-    
+
     override func didBecomeActive() {
         super.didBecomeActive()
         bindSuccessValue()
@@ -55,20 +55,20 @@ final class SNSLoginInteractor: PresentableInteractor<SNSLoginPresentable>,
     override func willResignActive() {
         super.willResignActive()
     }
-    
+
     func loginCompleted() {
         listener?.didLogin()
     }
-    
+
     func signUpCompleted() {
         listener?.didSignUp()
     }
-    
+
     func login(provider: ProviderType) {
         signInWithSsgSsgServer(provider)
     }
-    
-    private func signInWithSsgSsgServer(_ provider: ProviderType) {        
+
+    private func signInWithSsgSsgServer(_ provider: ProviderType) {
         authRepository.authorize(with: provider)
             .flatMapLatest { [weak self] (response) -> Observable<ModelAuthResponse> in
                 guard let self = self,
@@ -103,7 +103,7 @@ final class SNSLoginInteractor: PresentableInteractor<SNSLoginPresentable>,
                 }
             ).disposed(by: bag)
     }
-    
+
     private func signUpWithSsgSsgServer(_ provider: ProviderType) {
         authRepository.signup(token: self.providerToken.value, provider: provider)
             .catch { [weak self] error in
@@ -125,7 +125,7 @@ final class SNSLoginInteractor: PresentableInteractor<SNSLoginPresentable>,
                 })
             .disposed(by: bag)
     }
-    
+
     private func bindSuccessValue() {
         self.isSignInSuccess
             .bind(onNext: { [weak self] success in
@@ -138,7 +138,7 @@ final class SNSLoginInteractor: PresentableInteractor<SNSLoginPresentable>,
                 }
             })
             .disposed(by: bag)
-        
+
         self.isSignUpSuccess
             .bind(onNext: { [weak self] success in
                 guard let self = self else { return }

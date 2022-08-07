@@ -17,7 +17,7 @@ protocol LoggedInInteractable: Interactable,
 }
 
 final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
-    
+
     init(
         interactor: LoggedInInteractable,
         splitViewController: UISplitViewController,
@@ -38,17 +38,17 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
         super.init(interactor: interactor)
         interactor.router = self
     }
-    
+
     override func didLoad() {
         super.didLoad()
         attachDirayListAtPrimary()
     }
-    
+
     func cleanupViews() {
         cleanupPrimaryViews()
         cleanupSecondaryViews()
     }
-    
+
     // MARK: - DiaryList
     func attachDirayListAtPrimary() {
         let router = diaryListBuilder.build(withListener: interactor)
@@ -58,7 +58,7 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
         vc.navigationItem.hidesBackButton = true
         primaryViewController.pushViewController(vc, animated: false)
     }
-    
+
     func detachDiaryList() {
         if let router = diaryListRouter {
             popViewController(router.viewControllable.uiviewController)
@@ -82,7 +82,7 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
             detachChild(router)
         }
     }
-    
+
     // MARK: - CreateDiary
     func attachCreateDiary() {
         cleanupSecondaryViews()
@@ -92,7 +92,7 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
         let vc = router.viewControllable.uiviewController
         pushViewController(vc, animated: true)
     }
-    
+
     func detachCreateDiary() {
         if let router = createDiaryRouter {
             popViewController(router.viewControllable.uiviewController)
@@ -109,14 +109,14 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
         let vc = router.viewControllable.uiviewController
         pushViewController(vc, animated: true)
     }
-   
+
     func detachRandomDiary() {
         if let router = randomDiaryRouter {
             popViewController(router.viewControllable.uiviewController)
             detachChild(router)
         }
     }
-    
+
     // MARK: - Private
     private let diaryListBuilder: DiaryListBuildable
     private var diaryListRouter: DiaryListRouting?

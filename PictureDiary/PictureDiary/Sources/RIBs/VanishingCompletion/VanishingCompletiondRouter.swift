@@ -12,13 +12,11 @@ protocol VanishingCompletionInteractable: Interactable {
     var listener: VanishingCompletionListener? { get set }
 }
 
-protocol VanishingCompletionViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
-}
+protocol VanishingCompletionViewControllable: ViewControllable { }
 
-final class VanishingCompletiondRouter: ViewableRouter<                                       VanishingCompletionInteractable,                                                VanishingCompletionViewControllable>, VanishingCompletionRouting {
-    
-    // TODO: Constructor inject child builder protocols to allow building children.
+// swiftlint:disable line_length
+final class VanishingCompletiondRouter: ViewableRouter<VanishingCompletionInteractable, VanishingCompletionViewControllable>,
+                                        VanishingCompletionRouting {
     override init(
         interactor: VanishingCompletionInteractable,
         viewController: VanishingCompletionViewControllable

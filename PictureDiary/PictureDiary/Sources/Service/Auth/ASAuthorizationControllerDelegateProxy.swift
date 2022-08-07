@@ -10,7 +10,8 @@ import RxSwift
 import RxCocoa
 import AuthenticationServices
 
-class ASAuthorizationControllerDelegateProxy: DelegateProxy<ASAuthorizationController,ASAuthorizationControllerDelegate>,
+// swiftlint: disable line_length
+class ASAuthorizationControllerDelegateProxy: DelegateProxy<ASAuthorizationController, ASAuthorizationControllerDelegate>,
                                               DelegateProxyType,
                                               ASAuthorizationControllerDelegate {
     static func registerKnownImplementations() {
@@ -18,25 +19,25 @@ class ASAuthorizationControllerDelegateProxy: DelegateProxy<ASAuthorizationContr
             ASAuthorizationControllerDelegateProxy(parentObject: controller, delegateProxy: self)
         }
     }
-    
+
     static func currentDelegate(for object: ASAuthorizationController) -> ASAuthorizationControllerDelegate? {
         return object.delegate
     }
-    
+
     static func setCurrentDelegate(
         _ delegate: ASAuthorizationControllerDelegate?,
         to object: ASAuthorizationController
     ) {
         object.delegate = delegate
     }
-    
+
 }
 
 extension Reactive where Base: ASAuthorizationController {
     var delegate: DelegateProxy<ASAuthorizationController, ASAuthorizationControllerDelegate> {
         return ASAuthorizationControllerDelegateProxy.proxy(for: self.base)
     }
-    
+
     var didCompleteWithAuthorization: Observable<ModelTokenResponse> {
         delegate.methodInvoked(
             #selector(

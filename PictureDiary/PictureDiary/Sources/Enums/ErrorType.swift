@@ -13,7 +13,7 @@ enum AuthError: Error {
 
     case invalidProviderToken
     case invalidAccessToken
-    
+
     case kakaoLoginError
     case googleLoginError
     case appleLoginError
