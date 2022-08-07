@@ -62,11 +62,17 @@ class CoreDataHelper {
         }
     }
 
+    func getCachedRandomDiary() -> PictureDiary? {
+        return cached
+            .filter { $0.isRandomDiary }
+            .first
+    }
+
     /// Update cached random diary
     func updateCachedRandomDiary(_ diary: ModelDiaryResponse) {
         guard let context = context else { return }
 
-        if let update = getDiaryById(-1) {
+        if let update = getCachedRandomDiary() {
             update.imageUrl = diary.imageUrl
             update.weather = diary.getWeather().rawValue
             update.content = diary.content
@@ -77,11 +83,12 @@ class CoreDataHelper {
             }
         } else {
             saveDiary(
-                id: -1,
+                id: diary.diaryId ?? -1,
                 date: diary.getDate(),
                 weather: diary.getWeather(),
                 drawing: nil,
                 content: diary.content ?? "",
+                didStamp: diary.stamped ?? false,
                 completionHandler: nil
             )
         }
@@ -101,6 +108,7 @@ class CoreDataHelper {
         drawing: Data?,
         content: String,
         imageUrl: String = "",
+        didStamp: Bool,
         completionHandler: ((PictureDiary?, Bool) -> Void)?
     ) {
         guard let context = context,
@@ -116,6 +124,7 @@ class CoreDataHelper {
             diary.drawing = drawing
             diary.content = content
             diary.imageUrl = imageUrl
+            diary.didStamp = didStamp
 
             do {
                 try context.save()

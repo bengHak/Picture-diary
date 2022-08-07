@@ -63,7 +63,7 @@ final class DiaryRepository: DiaryRepositoryProtocol {
     }
 
     func postStamp(diaryId: Int, stampType: StampType, posX: Double, posY: Double) -> Observable<CommonResponse> {
-        provider.rx.request(.stamp(diaryId: diaryId, stampType: stampType.rawValue, x: posX, y: posY))
+        provider.rx.request(.stamp(diaryId: diaryId, stampString: stampType.rawValue, x: posX, y: posY))
             .filterSuccessfulStatusCodes()
             .map { $0.data }
             .map { try JSONDecoder().decode(CommonResponse.self, from: $0) }

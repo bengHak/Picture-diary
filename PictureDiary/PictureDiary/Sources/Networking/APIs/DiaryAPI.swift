@@ -13,7 +13,7 @@ enum DiaryAPI {
     case fetchDiaryList(lastDiaryId: Int, querySize: Int)
     case fetchDiary(id: Int)
     case fetchRandomDiary
-    case stamp(diaryId: Int, stampType: String, x: Double, y: Double)
+    case stamp(diaryId: Int, stampString: String, x: Double, y: Double)
     case uploadDiary(content: String, weather: WeatherType, imageURL: String)
     case uploadDiaryImage(data: Data)
 }
@@ -80,12 +80,12 @@ extension DiaryAPI: ServiceAPI {
             return .uploadMultipart(multipartFormData)
         case .fetchRandomDiary:
             return .requestPlain
-        case .stamp:
+        case .stamp(let diaryId, let stampString, let x, let y):
             let parameters = [
-                "diaryId": "1",
-                "stampType": "",
-                "x": "1.0",
-                "y": "1.0"
+                "diaryId": "\(diaryId)",
+                "stampType": stampString,
+                "x": "\(String(format: "%.2f", x))",
+                "y": "\(String(format: "%.2f", y))"
             ]
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
         }

@@ -222,7 +222,6 @@ extension RandomDiaryViewController {
     func bindStampPosition() {
         // Pangesture
         /*
-         //swiftlint:disable line_length
          https://github.com/irons163/IRSticker-swift/blob/69ee0293d232e3aaa1443d9c1198a884afc1e0dc/IRSticker-swift/Class/IRStickerView.swift#L321
          */
     }

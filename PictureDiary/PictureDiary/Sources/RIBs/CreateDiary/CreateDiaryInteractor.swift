@@ -138,7 +138,8 @@ final class CreateDiaryInteractor: PresentableInteractor<CreateDiaryPresentable>
             date: self.date!,
             weather: self.weather!,
             drawing: self.drawingImageData!,
-            content: self.content!
+            content: self.content!,
+            didStamp: false
         ) { [weak self] _, success in
             guard let self = self else { return }
             if success {

@@ -19,12 +19,12 @@ protocol DiaryListListener: AnyObject {
     func routeToCreateDiary()
     func routeToDiaryDetail(diaryId: Int)
     func attachRandomDiary()
+    func fetchRandomDiary()
 }
 
 protocol DiaryListInteractorDependency {
     var diaryList: BehaviorRelay<[ModelDiaryResponse]> { get }
     var diaryRepository: DiaryRepositoryProtocol { get }
-    var randomPictureDiaryBehaviorRelay: BehaviorRelay<PictureDiary?> { get }
 }
 
 final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>,
@@ -37,7 +37,6 @@ final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>,
     private let diaryRepository: DiaryRepositoryProtocol
     private let bag: DisposeBag
     private let dataHelper: CoreDataHelper
-    private let randomPictureDiaryBehaviorRelay: BehaviorRelay<PictureDiary?>
 
     init(
         presenter: DiaryListPresentable,
@@ -47,7 +46,6 @@ final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>,
         self.diaryRepository = dependency.diaryRepository
         self.bag = DisposeBag()
         self.dataHelper = CoreDataHelper.shared
-        self.randomPictureDiaryBehaviorRelay = dependency.randomPictureDiaryBehaviorRelay
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -55,7 +53,7 @@ final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>,
     override func didBecomeActive() {
         super.didBecomeActive()
         fetchDiaryList()
-        fetchRandomDiary()
+        listener?.fetchRandomDiary()
     }
 
     override func willResignActive() {
@@ -89,54 +87,7 @@ final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>,
     }
 
     func attachRandomDiary() {
-        if randomPictureDiaryBehaviorRelay.value != nil {
-            self.listener?.attachRandomDiary()
-            return
-        }
-
-        randomPictureDiaryBehaviorRelay
-            .bind(onNext: { [weak self] pictureDiary in
-                guard let self = self,
-                    pictureDiary != nil else {
-                    return
-                }
-                self.attachRandomDiary()
-            }).disposed(by: bag)
-        fetchRandomDiary()
-    }
-
-    func fetchRandomDiary() {
-        diaryRepository.fetchRandomDiary()
-            .subscribe(onNext: { [weak self] diaryResponse in
-                guard let self = self,
-                      let imageData = try? Data(contentsOf: URL(string: diaryResponse.imageUrl!)!)  else {
-                          return
-                      }
-                if let diary = CoreDataHelper.shared.getDiaryById(-1) {
-                    if diary.imageUrl == diaryResponse.imageUrl {
-                        diary.drawing = imageData
-                        self.randomPictureDiaryBehaviorRelay.accept(diary)
-                        return
-                    } else {
-                        CoreDataHelper.shared.removeCachedDiary(diary)
-                    }
-                }
-
-                CoreDataHelper.shared.saveDiary(
-                    id: -1,
-                    date: diaryResponse.getDate(),
-                    weather: diaryResponse.getWeather(),
-                    drawing: imageData,
-                    content: diaryResponse.content!,
-                    imageUrl: diaryResponse.imageUrl!
-                ) { diary, success in
-                    if success {
-                        self.randomPictureDiaryBehaviorRelay.accept(diary)
-                    } else {
-                        print("🔴 랜덤 일기 캐싱 실패")
-                    }
-                }
-            }).disposed(by: self.bag)
+        listener?.attachRandomDiary()
     }
 
     func attachSettings() {

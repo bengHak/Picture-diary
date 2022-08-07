@@ -25,6 +25,7 @@ protocol LoggedInListener: AnyObject { }
 
 protocol LoggedInInteractorDependency {
     var pictureDiaryBehaviorRelay: BehaviorRelay<PictureDiary?> { get }
+    var randomPictureDiaryBehaviorRelay: BehaviorRelay<PictureDiary?> { get }
     var diaryRepository: DiaryRepositoryProtocol { get }
     var isRefreshNeed: BehaviorRelay<Bool> { get }
 }
@@ -35,12 +36,14 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
     weak var listener: LoggedInListener?
     private let diaryRepository: DiaryRepositoryProtocol
     private let pictureDiaryBehaviorRelay: BehaviorRelay<PictureDiary?>
+    private let randomPictureDiaryBehaviorRelay: BehaviorRelay<PictureDiary?>
     private let isRefreshNeed: BehaviorRelay<Bool>
     private let bag: DisposeBag
 
     init(dependency: LoggedInInteractorDependency) {
         self.diaryRepository = dependency.diaryRepository
         self.pictureDiaryBehaviorRelay = dependency.pictureDiaryBehaviorRelay
+        self.randomPictureDiaryBehaviorRelay = dependency.randomPictureDiaryBehaviorRelay
         self.isRefreshNeed = dependency.isRefreshNeed
         self.bag = DisposeBag()
         super.init()
@@ -81,13 +84,61 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
             .disposed(by: self.bag)
     }
 
+    // MARK: - RandomDiary
     func attachRandomDiary() {
-        router?.attachRandomDiary()
+        if randomPictureDiaryBehaviorRelay.value != nil {
+            router?.attachRandomDiary()
+            return
+        }
+
+        randomPictureDiaryBehaviorRelay
+            .bind(onNext: { [weak self] pictureDiary in
+                guard let self = self,
+                    pictureDiary != nil else {
+                    return
+                }
+                self.attachRandomDiary()
+            }).disposed(by: self.bag)
+        fetchRandomDiary()
     }
 
-    // MARK: - RandomDiary
     func detachRandomDiary() {
         router?.detachRandomDiary()
     }
 
+    func fetchRandomDiary() {
+        diaryRepository.fetchRandomDiary()
+            .subscribe(onNext: { [weak self] diaryResponse in
+                guard let self = self,
+                      let imageData = try? Data(contentsOf: URL(string: diaryResponse.imageUrl!)!)  else {
+                          return
+                      }
+                if let diary = CoreDataHelper.shared.getCachedRandomDiary() {
+                    if diary.imageUrl == diaryResponse.imageUrl,
+                       diary.didStamp == diaryResponse.stamped ?? false {
+                        diary.drawing = imageData
+                        self.randomPictureDiaryBehaviorRelay.accept(diary)
+                        return
+                    } else {
+                        CoreDataHelper.shared.removeCachedDiary(diary)
+                    }
+                }
+
+                CoreDataHelper.shared.saveDiary(
+                    id: diaryResponse.diaryId ?? -1,
+                    date: diaryResponse.getDate(),
+                    weather: diaryResponse.getWeather(),
+                    drawing: imageData,
+                    content: diaryResponse.content!,
+                    imageUrl: diaryResponse.imageUrl!,
+                    didStamp: diaryResponse.stamped ?? false
+                ) { diary, success in
+                    if success {
+                        self.randomPictureDiaryBehaviorRelay.accept(diary)
+                    } else {
+                        print("🔴 랜덤 일기 캐싱 실패")
+                    }
+                }
+            }).disposed(by: self.bag)
+    }
 }

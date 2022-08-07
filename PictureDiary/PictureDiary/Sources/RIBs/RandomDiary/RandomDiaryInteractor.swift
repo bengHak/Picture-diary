@@ -26,6 +26,7 @@ protocol RandomDiaryPresentable: Presentable {
 
 protocol RandomDiaryListener: AnyObject {
     func detachRandomDiary()
+    func fetchRandomDiary()
 }
 
 protocol RandomDiaryInteractorDependency {
@@ -45,7 +46,9 @@ final class RandomDiaryInteractor: PresentableInteractor<RandomDiaryPresentable>
     private let diary: PictureDiary
     private let stampPosition: BehaviorRelay<StampPosition>
     private let selectedStamp: BehaviorRelay<StampType?>
+    private let postResult: BehaviorRelay<CommonResponse?>
     private let diaryRepository: DiaryRepositoryProtocol
+    private let bag: DisposeBag
 
     init(
         presenter: RandomDiaryPresentable,
@@ -54,7 +57,9 @@ final class RandomDiaryInteractor: PresentableInteractor<RandomDiaryPresentable>
         self.diary = dependency.pictureDiary
         self.selectedStamp = dependency.selectedStamp
         self.stampPosition = dependency.stampPosition
+        self.postResult = BehaviorRelay<CommonResponse?>(value: nil)
         self.diaryRepository = dependency.diaryRepository
+        self.bag = DisposeBag()
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -64,6 +69,7 @@ final class RandomDiaryInteractor: PresentableInteractor<RandomDiaryPresentable>
         router?.attachDiaryDetail()
         if !diary.didStamp {
             router?.attachStampDrawer()
+            bindPostStampResult()
         }
     }
 
@@ -94,8 +100,32 @@ final class RandomDiaryInteractor: PresentableInteractor<RandomDiaryPresentable>
         let posX = stampPosition.value.x
         let posY = stampPosition.value.y
 
-        print("🚧 stamp position: \(posX), \(posY), \(stamp.imageName)")
+        print("🚧 stamp position: \(posX), \(posY), \(stamp.rawValue)")
 
-//        diaryRepository.postStamp(diaryId: diary.id, stampType: stamp, posX: x, posY: y)
+        diaryRepository.postStamp(
+            diaryId: diary.id,
+            stampType: stamp,
+            posX: posX,
+            posY: posY
+        ).subscribe(onNext: { [weak self] response in
+            guard let self = self else { return }
+            self.postResult.accept(response)
+        }).disposed(by: bag)
+    }
+
+    func bindPostStampResult() {
+        postResult
+            .subscribe(onNext: { [weak self] response in
+                guard let self = self,
+                      let msg = response?.responseMessage else {
+                    return
+                }
+                if msg == ResponseMessage.postStampSuccess.rawValue {
+                    // 도장 찍기에 성공했을 때
+                    // 내가 도장찍은 Diary 데이터를 다시 가져와서 randomDiary 값과 치환한다.
+                    self.listener?.fetchRandomDiary()
+                    self.router?.detachStampDrawer()
+                }
+            }).disposed(by: bag)
     }
 }

@@ -15,6 +15,7 @@ struct ModelDiaryResponse: Decodable {
     var weather: String?
     var content: String?
     var stampList: [ModelStamp]?
+    var stamped: Bool?
 
     func getDate() -> Date {
         guard let createdDate = createdDate else { return Date() }

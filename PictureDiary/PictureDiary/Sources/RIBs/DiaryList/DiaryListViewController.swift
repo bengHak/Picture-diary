@@ -163,7 +163,8 @@ extension DiaryListViewController {
                     date: item.getDate(),
                     weather: item.getWeather(),
                     drawingImageURL: item.imageUrl,
-                    drawingData: item.imageData
+                    drawingData: item.imageData,
+                    didStamp: item.stamped ?? false
                 )
             }.disposed(by: bag)
 

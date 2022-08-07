@@ -84,7 +84,8 @@ final class DiaryCollectionViewCell: UICollectionViewCell {
         date: Date,
         weather: WeatherType,
         drawingImageURL: String?,
-        drawingData: Data?
+        drawingData: Data?,
+        didStamp: Bool
     ) {
         lblDate.text = date.formattedString()
 
@@ -100,7 +101,8 @@ final class DiaryCollectionViewCell: UICollectionViewCell {
                         date: date,
                         weather: weather,
                         drawing: data,
-                        content: ""
+                        content: "",
+                        didStamp: didStamp
                     ) {
                         if $1 {
                             print("diary-\(id) is cached")
