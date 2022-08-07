@@ -38,7 +38,11 @@ final class LoggedInComponent: Component<LoggedInDependency>,
 
     var pictureDiaryBehaviorRelay = BehaviorRelay<PictureDiary?>(value: nil)
 
+    var randomPictureDiaryBehaviorRelay = BehaviorRelay<PictureDiary?>(value: nil)
+
     var pictureDiary: PictureDiary { pictureDiaryBehaviorRelay.value! }
+
+    var randomPictureDiary: PictureDiary { randomPictureDiaryBehaviorRelay.value! }
 }
 
 // MARK: - Builder

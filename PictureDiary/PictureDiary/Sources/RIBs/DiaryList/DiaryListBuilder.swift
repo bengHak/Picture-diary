@@ -10,6 +10,7 @@ import RxRelay
 
 protocol DiaryListDependency: Dependency {
     var isRefreshNeed: BehaviorRelay<Bool> { get }
+    var randomPictureDiaryBehaviorRelay: BehaviorRelay<PictureDiary?> { get }
 }
 
 final class DiaryListComponent: Component<DiaryListDependency>,
@@ -17,6 +18,7 @@ final class DiaryListComponent: Component<DiaryListDependency>,
     var diaryRepository: DiaryRepositoryProtocol
     var diaryList: BehaviorRelay<[ModelDiaryResponse]>
     var isRefreshNeed: BehaviorRelay<Bool> { dependency.isRefreshNeed }
+    var randomPictureDiaryBehaviorRelay: BehaviorRelay<PictureDiary?> { dependency.randomPictureDiaryBehaviorRelay }
 
     override init(dependency: DiaryListDependency) {
         self.diaryRepository = DiaryRepository()

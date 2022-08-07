@@ -9,14 +9,14 @@ import RIBs
 import RxRelay
 
 protocol RandomDiaryDependency: Dependency {
-    var pictureDiary: PictureDiary { get }
+    var randomPictureDiary: PictureDiary { get }
 }
 
 final class RandomDiaryComponent: Component<RandomDiaryDependency>,
                                   DiaryDetailDependency,
                                   StampDrawerDependency,
                                   RandomDiaryInteractorDependency {
-    var pictureDiary: PictureDiary { dependency.pictureDiary }
+    var pictureDiary: PictureDiary { dependency.randomPictureDiary }
     let diaryRepository: DiaryRepositoryProtocol
     let selectedStamp: BehaviorRelay<StampType?>
     let stampPosition: BehaviorRelay<StampPosition>

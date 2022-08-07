@@ -82,39 +82,7 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
     }
 
     func attachRandomDiary() {
-        self.diaryRepository.fetchRandomDiary()
-            .subscribe(onNext: { [weak self] diaryResponse in
-                guard let self = self,
-                      let imageData = try? Data(contentsOf: URL(string: diaryResponse.imageUrl!)!)  else {
-                          return
-                      }
-                if let diary = CoreDataHelper.shared.getDiaryById(-1) {
-                    if diary.imageUrl == diaryResponse.imageUrl {
-                        diary.drawing = imageData
-                        self.pictureDiaryBehaviorRelay.accept(diary)
-                        self.router?.attachRandomDiary()
-                        return
-                    } else {
-                        CoreDataHelper.shared.removeCachedDiary(diary)
-                    }
-                }
-
-                CoreDataHelper.shared.saveDiary(
-                    id: -1,
-                    date: diaryResponse.getDate(),
-                    weather: diaryResponse.getWeather(),
-                    drawing: imageData,
-                    content: diaryResponse.content!,
-                    imageUrl: diaryResponse.imageUrl!
-                ) { diary, success in
-                    if success {
-                        self.pictureDiaryBehaviorRelay.accept(diary)
-                        self.router?.attachRandomDiary()
-                    } else {
-                        print("🔴 랜덤 일기 캐싱 실패")
-                    }
-                }
-            }).disposed(by: self.bag)
+        router?.attachRandomDiary()
     }
 
     // MARK: - RandomDiary
