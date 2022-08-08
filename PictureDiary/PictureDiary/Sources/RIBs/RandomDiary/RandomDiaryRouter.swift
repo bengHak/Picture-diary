@@ -17,6 +17,7 @@ protocol RandomDiaryInteractable: Interactable,
 protocol RandomDiaryViewControllable: ViewControllable {
     func addDiaryDetail(_ viewController: UIViewController)
     func addStampDrawerView(_ viewController: UIViewController)
+    func detachStampDrawer()
 }
 
 final class RandomDiaryRouter: ViewableRouter<RandomDiaryInteractable,
@@ -67,6 +68,7 @@ final class RandomDiaryRouter: ViewableRouter<RandomDiaryInteractable,
 
     func detachStampDrawer() {
         guard let router = stampDrawerRouter else { return }
+        viewController.detachStampDrawer()
         detachChild(router)
         stampDrawerRouter = nil
     }

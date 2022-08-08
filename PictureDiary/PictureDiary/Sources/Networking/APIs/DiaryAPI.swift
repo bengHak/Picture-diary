@@ -32,7 +32,7 @@ extension DiaryAPI: ServiceAPI {
         case .fetchRandomDiary:
             return "/diary/random"
         case .stamp:
-            return "/diary/stamp"
+            return "/stamp"
         }
     }
 
