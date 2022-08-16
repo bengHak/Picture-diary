@@ -93,12 +93,11 @@ final class RandomDiaryInteractor: PresentableInteractor<RandomDiaryPresentable>
     }
 
     func didTapCompleteButton() {
-        guard let stamp = selectedStamp.value else {
+        guard let stamp = selectedStamp.value,
+              let posX = stampPosition.value.proportionalX,
+              let posY = stampPosition.value.proportionalY else {
             return
         }
-
-        let posX = stampPosition.value.x
-        let posY = stampPosition.value.y
 
         print("🚧 stamp position: \(posX), \(posY), \(stamp.rawValue)")
 

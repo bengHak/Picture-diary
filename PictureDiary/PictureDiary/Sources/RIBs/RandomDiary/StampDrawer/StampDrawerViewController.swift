@@ -174,7 +174,6 @@ extension StampDrawerViewController {
             .bind(onNext: { [weak self] stamp in
                 guard let self = self else { return }
                 self.selectedStamp.accept(stamp)
-                self.stampPosition.accept(StampPosition(x: 0.4, y: 0.4))
                 self.completionView.isHidden = false
                 self.collectionView.isHidden = true
             }).disposed(by: bag)

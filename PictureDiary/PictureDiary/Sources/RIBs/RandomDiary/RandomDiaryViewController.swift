@@ -159,20 +159,32 @@ final class RandomDiaryViewController: UIViewController, RandomDiaryPresentable,
             y: movable.center.y + translation.y
         )
 
-        targetPoint.x = max(poX+40, targetPoint.x)
-        targetPoint.y = max(poY+40, targetPoint.y)
-        targetPoint.x = min(poX+pictureFrame.bounds.width-40, targetPoint.x)
-        targetPoint.y = min(poY+pictureFrame.bounds.height-40, targetPoint.y)
+        targetPoint.x = min(
+            poX+pictureFrame.bounds.width-40,
+            max(poX+40, targetPoint.x)
+        )
+
+        targetPoint.y = min(
+            poY+pictureFrame.bounds.height-40,
+            max(poY+40, targetPoint.y)
+        )
 
         let w = pictureFrame.bounds.width
         let h = pictureFrame.bounds.height
         let proportionalX: Double = (targetPoint.x - 40 - poX)/w
         let proportionalY: Double = (targetPoint.y - 40 - poY)/h
 
-        stampPosition.accept(StampPosition(x: proportionalX, y: proportionalY))
-
         movable.center = targetPoint
+        stampPosition.accept(
+            StampPosition(
+                x: targetPoint.x,
+                y: targetPoint.y,
+                proportionalX: proportionalX,
+                proportionalY: proportionalY
+            )
+        )
         gesture.setTranslation(CGPoint.zero, in: pictureFrame)
+        print("Movable frame(not throttle): \(movable.frame)")
     }
 }
 
@@ -232,14 +244,32 @@ extension RandomDiaryViewController {
     }
 
     func bindStampPosition() {
-        // Pangesture
-        /*
-         https://github.com/irons163/IRSticker-swift/blob/69ee0293d232e3aaa1443d9c1198a884afc1e0dc/IRSticker-swift/Class/IRStickerView.swift#L321
-         */
+        stampPosition
+            .throttle(.milliseconds(500), latest: true, scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] pos in
+                guard let self = self,
+                      let movable = self.movableStampView,
+                      let diaryDetailViewController = self.diaryDetailViewController as? DiaryDetailViewController,
+                      let proportionalX = pos.proportionalX,
+                      let proportionalY = pos.proportionalY else {
+                    return
+                }
+                let pictureFrame = diaryDetailViewController.ivPictureFrame
+                let w = pictureFrame.frame.width
+                let h = pictureFrame.frame.height
+                movable.snp.remakeConstraints {
+                    $0.leading.equalTo(pictureFrame).offset(proportionalX * w)
+                    $0.top.equalTo(pictureFrame).offset(proportionalY * h)
+                    $0.width.height.equalTo(80)
+                }
+                print("Movable frame: \(movable.frame)")
+            }).disposed(by: bag)
     }
 }
 
 struct StampPosition {
     var x: Double
     var y: Double
+    var proportionalX: Double?
+    var proportionalY: Double?
 }
