@@ -21,6 +21,9 @@ final class RandomDiaryViewController: UIViewController, RandomDiaryPresentable,
     weak var listener: RandomDiaryPresentableListener?
 
     // MARK: - UI Properties
+    private let appBarTopBackgroundView = UIView().then {
+        $0.backgroundColor = .white
+    }
     private let appBarTop = AppBarTopView(appBarTopType: .simpleTitle)
 
     private var movableStampView: UIView?
@@ -176,6 +179,7 @@ final class RandomDiaryViewController: UIViewController, RandomDiaryPresentable,
 // MARK: - BaseViewController
 extension RandomDiaryViewController: BaseViewController {
     func configureView() {
+        view.addSubview(appBarTopBackgroundView)
         appBarTop.setTitle("다른사람의 일기")
         view.addSubview(appBarTop)
     }
@@ -184,6 +188,13 @@ extension RandomDiaryViewController: BaseViewController {
         appBarTop.snp.makeConstraints {
             $0.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(44)
+        }
+        appBarTop.layer.zPosition = 25
+
+        appBarTopBackgroundView.snp.makeConstraints {
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.top.equalToSuperview()
+            $0.bottom.equalTo(appBarTop)
         }
     }
 }
