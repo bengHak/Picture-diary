@@ -196,6 +196,7 @@ extension RandomDiaryViewController: BaseViewController {
             $0.top.equalToSuperview()
             $0.bottom.equalTo(appBarTop)
         }
+        appBarTopBackgroundView.layer.zPosition = 20
     }
 }
 
