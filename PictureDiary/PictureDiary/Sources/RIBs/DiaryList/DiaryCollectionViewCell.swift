@@ -79,35 +79,24 @@ final class DiaryCollectionViewCell: UICollectionViewCell {
         }
     }
 
-    func setData(
-        id: Int,
-        date: Date,
-        weather: WeatherType,
-        drawingImageURL: String?,
-        drawingData: Data?,
-        didStamp: Bool
-    ) {
-        lblDate.text = date.formattedString()
+    func setData(diary: ModelDiaryResponse) {
+        lblDate.text = diary.getDate().formattedString()
 
-        if let drawingData = drawingData {
+        if let drawingData = diary.imageData {
             ivThumbnail.image = UIImage(data: drawingData)
-        } else if let drawingImageURL = drawingImageURL {
+        } else if let drawingImageURL = diary.imageUrl {
             ivThumbnail.kf.setImage(with: URL(string: drawingImageURL)) { result in
                 switch result {
                 case .success(let imageResult):
                     let data = imageResult.image.pngData()
-                    CoreDataHelper.shared.saveDiary(
-                        id: id,
-                        date: date,
-                        weather: weather,
-                        drawing: data,
-                        content: "",
-                        didStamp: didStamp
+                    CDPictureDiaryHandler.shared.saveDiary(
+                        diaryResponse: diary,
+                        drawing: data
                     ) {
                         if $1 {
-                            print("diary-\(id) is cached")
+                            print("diary-\(diary.diaryId ?? -1) is cached")
                         } else {
-                            print("diary-\(id) is failed to cached")
+                            print("diary-\(diary.diaryId ?? -1) is failed to cached")
                         }
                     }
                 case .failure(let error):
@@ -116,7 +105,7 @@ final class DiaryCollectionViewCell: UICollectionViewCell {
             }
         }
 
-        switch weather {
+        switch diary.getWeather() {
         case .sunny:
             ivWeather.image = UIImage(named: "ic_weather_sunny_selected")
         case .cloudy:

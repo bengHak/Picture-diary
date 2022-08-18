@@ -8,6 +8,7 @@
 import RIBs
 import RxSwift
 import RxRelay
+import Darwin
 
 protocol CreateDiaryRouting: ViewableRouting {
     func cleanupViews()
@@ -128,21 +129,47 @@ final class CreateDiaryInteractor: PresentableInteractor<CreateDiaryPresentable>
                 print("🔴 일기 저장 실패")
                 return
             }
-            self.cacheDiary(diaryId: diaryId)
+            self.cacheDiary(diaryId: diaryId, imageUrl: urlString)
         }).disposed(by: bag)
     }
 
-    private func cacheDiary(diaryId: Int) {
-        CoreDataHelper.shared.saveDiary(
-            id: diaryId,
-            date: self.date!,
-            weather: self.weather!,
-            drawing: self.drawingImageData!,
-            content: self.content!,
-            didStamp: false
+    private func cacheDiary(diaryId: Int, imageUrl: String) {
+        let diary: ModelDiaryResponse?
+        if #available(iOS 15.0, *) {
+            diary = ModelDiaryResponse(
+                createdDate: self.date?.ISO8601Format(
+                    .iso8601
+                        .year()
+                        .year()
+                        .month()
+                        .day()
+                        .dateSeparator(.dash)
+                        .time(includingFractionalSeconds: true)
+                        .timeSeparator(.colon)
+                ),
+                diaryId: diaryId,
+                imageUrl: imageUrl,
+                imageData: nil,
+                weather: self.weather?.getString(),
+                content: self.content,
+                stampList: nil,
+                stamped: false
+            )
+        } else {
+            diary = nil
+        }
+
+        guard let diary = diary else {
+            print("⚠️ iOS 15 이상만 지원합니다.")
+            return
+        }
+
+        CDPictureDiaryHandler.shared.saveDiary(
+            diaryResponse: diary,
+            drawing: self.drawingImageData
         ) { [weak self] _, success in
-            guard let self = self else { return }
             if success {
+                guard let self = self else { return }
                 print("🟢 일기 저장 성공")
                 self.routeToVanishingCompletion()
             } else {

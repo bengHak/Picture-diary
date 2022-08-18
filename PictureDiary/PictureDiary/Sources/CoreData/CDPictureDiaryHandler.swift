@@ -8,8 +8,8 @@
 import CoreData
 import UIKit
 
-class CoreDataHelper {
-    static let shared = CoreDataHelper()
+class CDPictureDiaryHandler {
+    static let shared = CDPictureDiaryHandler()
     let appDelegate = UIApplication.shared.delegate as? AppDelegate
     private lazy var context = appDelegate?.persistentContainer.viewContext
 
@@ -83,12 +83,8 @@ class CoreDataHelper {
             }
         } else {
             saveDiary(
-                id: diary.diaryId ?? -1,
-                date: diary.getDate(),
-                weather: diary.getWeather(),
+                diaryResponse: diary,
                 drawing: nil,
-                content: diary.content ?? "",
-                didStamp: diary.stamped ?? false,
                 completionHandler: nil
             )
         }
@@ -102,27 +98,25 @@ class CoreDataHelper {
     }
 
     func saveDiary(
-        id: Int,
-        date: Date,
-        weather: WeatherType,
+        diaryResponse: ModelDiaryResponse,
         drawing: Data?,
-        content: String,
-        imageUrl: String = "",
-        didStamp: Bool,
         completionHandler: ((PictureDiary?, Bool) -> Void)?
     ) {
         guard let context = context,
-              let entity = NSEntityDescription.entity(forEntityName: modelName, in: context)  else {
+              let entity = NSEntityDescription.entity(forEntityName: modelName, in: context),
+              let id = diaryResponse.diaryId,
+              let imageUrl = diaryResponse.imageUrl,
+              let didStamp = diaryResponse.stamped else {
             completionHandler?(nil, false)
             return
         }
 
         if let diary = NSManagedObject(entity: entity, insertInto: context) as? PictureDiary {
             diary.id = id
-            diary.date = date
-            diary.weather = weather.rawValue
+            diary.date = diaryResponse.getDate()
+            diary.weather = diaryResponse.getWeather().rawValue
             diary.drawing = drawing
-            diary.content = content
+            diary.content = diaryResponse.content ?? ""
             diary.imageUrl = imageUrl
             diary.didStamp = didStamp
 

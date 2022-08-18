@@ -158,14 +158,7 @@ extension DiaryListViewController {
                 cellIdentifier: DiaryCollectionViewCell.identifier,
                 cellType: DiaryCollectionViewCell.self
             )) { _, item, cell in
-                cell.setData(
-                    id: item.diaryId ?? -1,
-                    date: item.getDate(),
-                    weather: item.getWeather(),
-                    drawingImageURL: item.imageUrl,
-                    drawingData: item.imageData,
-                    didStamp: item.stamped ?? false
-                )
+                cell.setData(diary: item)
             }.disposed(by: bag)
 
         collectionView.rx.modelSelected(ModelDiaryResponse.self)

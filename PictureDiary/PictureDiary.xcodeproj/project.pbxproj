@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		24EB20180727972942353397 /* Pods_PictureDiary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BD7439747D5C95598B0B8C8 /* Pods_PictureDiary.framework */; };
+		6036210F28AB736E00819515 /* CDStampHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6036210E28AB736E00819515 /* CDStampHandler.swift */; };
 		607E8033289EE6560097FD8A /* ModelDiaryImageUploadResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607E8032289EE6560097FD8A /* ModelDiaryImageUploadResponse.swift */; };
 		92EAA4EB9351DECAA3FD6804 /* PaletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EAA71955F25FB0FBCEFCAE /* PaletteView.swift */; };
 		EA01F9DB282A67C600A6E450 /* PictureDiary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EA01F9D9282A67C600A6E450 /* PictureDiary.xcdatamodeld */; };
@@ -88,7 +89,7 @@
 		EADF7FAF2872C94000F35EF3 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADF7FAE2872C94000F35EF3 /* LoadingView.swift */; };
 		EAF0C59528082F9800E0640B /* ToolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF0C59428082F9800E0640B /* ToolType.swift */; };
 		EAF0C5982808339500E0640B /* ModalDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF0C5972808339500E0640B /* ModalDialog.swift */; };
-		EAF530332819C921001CE8FE /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF530322819C921001CE8FE /* CoreDataHelper.swift */; };
+		EAF530332819C921001CE8FE /* CDPictureDiaryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF530322819C921001CE8FE /* CDPictureDiaryHandler.swift */; };
 		EAFC1D61281D04B40072B995 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFC1D60281D04B40072B995 /* Date+Ext.swift */; };
 		EAFE862927D0CD8C00519243 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE862827D0CD8C00519243 /* AppDelegate.swift */; };
 		EAFE862B27D0CD8C00519243 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE862A27D0CD8C00519243 /* SceneDelegate.swift */; };
@@ -136,6 +137,7 @@
 /* Begin PBXFileReference section */
 		0E1E6D44D6FF25BF23E8C1BC /* Pods-PictureDiary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PictureDiary.release.xcconfig"; path = "Target Support Files/Pods-PictureDiary/Pods-PictureDiary.release.xcconfig"; sourceTree = "<group>"; };
 		45B77415E2E9170140664D7F /* Pods-PictureDiary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PictureDiary.debug.xcconfig"; path = "Target Support Files/Pods-PictureDiary/Pods-PictureDiary.debug.xcconfig"; sourceTree = "<group>"; };
+		6036210E28AB736E00819515 /* CDStampHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDStampHandler.swift; sourceTree = "<group>"; };
 		607E8032289EE6560097FD8A /* ModelDiaryImageUploadResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelDiaryImageUploadResponse.swift; sourceTree = "<group>"; };
 		92EAA71955F25FB0FBCEFCAE /* PaletteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteView.swift; sourceTree = "<group>"; };
 		9BD7439747D5C95598B0B8C8 /* Pods_PictureDiary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PictureDiary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -219,7 +221,7 @@
 		EAECC9A128544C4400C02191 /* PictureDiary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PictureDiary.entitlements; sourceTree = "<group>"; };
 		EAF0C59428082F9800E0640B /* ToolType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolType.swift; sourceTree = "<group>"; };
 		EAF0C5972808339500E0640B /* ModalDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalDialog.swift; sourceTree = "<group>"; };
-		EAF530322819C921001CE8FE /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
+		EAF530322819C921001CE8FE /* CDPictureDiaryHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDPictureDiaryHandler.swift; sourceTree = "<group>"; };
 		EAFC1D60281D04B40072B995 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		EAFE862527D0CD8C00519243 /* PictureDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PictureDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAFE862827D0CD8C00519243 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -657,7 +659,8 @@
 			children = (
 				EA01F9E4282A685E00A6E450 /* PictureDiary+CoreDataProperties.swift */,
 				EA01F9DC282A680900A6E450 /* PictureDiary+CoreDataClass.swift */,
-				EAF530322819C921001CE8FE /* CoreDataHelper.swift */,
+				EAF530322819C921001CE8FE /* CDPictureDiaryHandler.swift */,
+				6036210E28AB736E00819515 /* CDStampHandler.swift */,
 				EA01F9D9282A67C600A6E450 /* PictureDiary.xcdatamodeld */,
 			);
 			path = CoreData;
@@ -983,6 +986,7 @@
 				EAFE869927D47FD100519243 /* SNSLoginRouter.swift in Sources */,
 				EAFE867A27D3507100519243 /* BaseViewController.swift in Sources */,
 				EA98C4BA27DF04310045055D /* UITextView+Ext.swift in Sources */,
+				6036210F28AB736E00819515 /* CDStampHandler.swift in Sources */,
 				EA625C42282B2B23002BCABD /* DiaryDetailViewController.swift in Sources */,
 				EA0A3C172865C94000BD779B /* ModelCommonResponse.swift in Sources */,
 				EA08CF822858553E00A0A029 /* ShareInstagramView.swift in Sources */,
@@ -1006,7 +1010,7 @@
 				EA625C43282B2B23002BCABD /* DiaryDetailBuilder.swift in Sources */,
 				EA8E1B49287BB4E4003ECD7B /* RandomDiaryBuilder.swift in Sources */,
 				EAB4543427FC3DFC0002A3B1 /* DiaryDrawingViewController.swift in Sources */,
-				EAF530332819C921001CE8FE /* CoreDataHelper.swift in Sources */,
+				EAF530332819C921001CE8FE /* CDPictureDiaryHandler.swift in Sources */,
 				EA98C4BE27DF137E0045055D /* UIImage+Ext.swift in Sources */,
 				EA9E04ED286056BE005845E4 /* DiaryRepository.swift in Sources */,
 				EA8E1B4C287BC8C4003ECD7B /* StampType.swift in Sources */,
@@ -1106,7 +1110,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1162,7 +1166,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = NO;

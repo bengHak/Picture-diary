@@ -73,7 +73,7 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
         self.diaryRepository.fetchDiary(id: diaryId)
             .subscribe(onNext: { [weak self] diaryResponse in
                 guard let self = self else { return }
-                if let diary = CoreDataHelper.shared.getDiaryById(diaryId) {
+                if let diary = CDPictureDiaryHandler.shared.getDiaryById(diaryId) {
                     diary.content = diaryResponse.content
                     self.pictureDiaryBehaviorRelay.accept(diary)
                     self.router?.attachDiaryDetail()
@@ -113,25 +113,20 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
                       let imageData = try? Data(contentsOf: URL(string: diaryResponse.imageUrl!)!)  else {
                           return
                       }
-                if let diary = CoreDataHelper.shared.getCachedRandomDiary() {
+                if let diary = CDPictureDiaryHandler.shared.getCachedRandomDiary() {
                     if diary.imageUrl == diaryResponse.imageUrl,
                        diary.didStamp == diaryResponse.stamped ?? false {
                         diary.drawing = imageData
                         self.randomPictureDiaryBehaviorRelay.accept(diary)
                         return
                     } else {
-                        CoreDataHelper.shared.removeCachedDiary(diary)
+                        CDPictureDiaryHandler.shared.removeCachedDiary(diary)
                     }
                 }
 
-                CoreDataHelper.shared.saveDiary(
-                    id: diaryResponse.diaryId ?? -1,
-                    date: diaryResponse.getDate(),
-                    weather: diaryResponse.getWeather(),
-                    drawing: imageData,
-                    content: diaryResponse.content!,
-                    imageUrl: diaryResponse.imageUrl!,
-                    didStamp: diaryResponse.stamped ?? false
+                CDPictureDiaryHandler.shared.saveDiary(
+                    diaryResponse: diaryResponse,
+                    drawing: imageData
                 ) { diary, success in
                     if success {
                         self.randomPictureDiaryBehaviorRelay.accept(diary)

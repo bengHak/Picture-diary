@@ -36,7 +36,7 @@ final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>,
     private let diaryList: BehaviorRelay<[ModelDiaryResponse]>
     private let diaryRepository: DiaryRepositoryProtocol
     private let bag: DisposeBag
-    private let dataHelper: CoreDataHelper
+    private let dataHelper: CDPictureDiaryHandler
 
     init(
         presenter: DiaryListPresentable,
@@ -45,7 +45,7 @@ final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>,
         self.diaryList = dependency.diaryList
         self.diaryRepository = dependency.diaryRepository
         self.bag = DisposeBag()
-        self.dataHelper = CoreDataHelper.shared
+        self.dataHelper = CDPictureDiaryHandler.shared
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -68,10 +68,9 @@ final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>,
         diaryRepository.fetchDiaryList()
             .subscribe(onNext: { [weak self] diaryList in
                 guard let self = self else { return }
-                var modified = diaryList
-                modified = modified.map { response -> ModelDiaryResponse in
+                let modified = diaryList.map { response -> ModelDiaryResponse in
                     guard let id = response.diaryId,
-                          let diary = CoreDataHelper.shared.getDiaryById(id) else {
+                          let diary = CDPictureDiaryHandler.shared.getDiaryById(id) else {
                         return response
                     }
                     var modifiedDiary = response
