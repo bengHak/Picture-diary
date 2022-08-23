@@ -52,6 +52,11 @@ final class DiaryTextFieldViewController: UIViewController, DiaryTextFieldPresen
         bind()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        textview.becomeFirstResponder()
+    }
+
     // MARK: - Helpers
     func setLineHeight() {
         let fontLineHeight = (self.textview.font?.lineHeight ?? 20) + 10
@@ -76,7 +81,8 @@ extension DiaryTextFieldViewController: BaseViewController {
 
         textview.snp.makeConstraints {
             $0.top.equalTo(appBarTop.snp.bottom)
-            $0.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide).inset(40)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(40)
+            $0.height.equalTo(400)
         }
         textview.text = listener?.diaryText.value ?? ""
 
