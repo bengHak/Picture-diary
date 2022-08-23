@@ -75,6 +75,7 @@ final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>,
                     }
                     var modifiedDiary = response
                     modifiedDiary.imageData = diary.drawing
+                    CDPictureDiaryHandler.shared.updateCachedRandomDiary(response)
                     return modifiedDiary
                 }
                 self.diaryList.accept(modified)

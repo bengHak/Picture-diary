@@ -105,24 +105,25 @@ class CDPictureDiaryHandler {
         guard let context = context,
               let entity = NSEntityDescription.entity(forEntityName: modelName, in: context),
               let id = diaryResponse.diaryId,
-              let imageUrl = diaryResponse.imageUrl,
-              let didStamp = diaryResponse.stamped else {
+              let imageUrl = diaryResponse.imageUrl else {
+            print("🔴 diary-\(String(describing: diaryResponse.diaryId)) is not cached")
             completionHandler?(nil, false)
             return
         }
 
         if let diary = NSManagedObject(entity: entity, insertInto: context) as? PictureDiary {
-            diary.id = id
+            diary.id = Int64(id)
             diary.date = diaryResponse.getDate()
             diary.weather = diaryResponse.getWeather().rawValue
             diary.drawing = drawing
             diary.content = diaryResponse.content ?? ""
             diary.imageUrl = imageUrl
-            diary.didStamp = didStamp
+            diary.didStamp = diaryResponse.stamped ?? false
 
             do {
                 try context.save()
                 completionHandler?(diary, true)
+                print("🟢 diary-\(diary.id) is cached")
             } catch let error as NSError {
                 print("🔴 Could not save: \(error)")
                 completionHandler?(nil, false)

@@ -102,7 +102,7 @@ final class RandomDiaryInteractor: PresentableInteractor<RandomDiaryPresentable>
         print("🚧 stamp position: \(posX), \(posY), \(stamp.rawValue)")
 
         diaryRepository.postStamp(
-            diaryId: diary.id,
+            diaryId: Int(diary.id),
             stampType: stamp,
             posX: posX,
             posY: posY

@@ -184,7 +184,6 @@ final class RandomDiaryViewController: UIViewController, RandomDiaryPresentable,
             )
         )
         gesture.setTranslation(CGPoint.zero, in: pictureFrame)
-        print("Movable frame(not throttle): \(movable.frame)")
     }
 }
 
@@ -262,7 +261,6 @@ extension RandomDiaryViewController {
                     $0.top.equalTo(pictureFrame).offset(proportionalY * h)
                     $0.width.height.equalTo(80)
                 }
-                print("Movable frame: \(movable.frame)")
             }).disposed(by: bag)
     }
 }

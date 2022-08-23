@@ -2,7 +2,7 @@
 //  PictureDiary+CoreDataProperties.swift
 //  
 //
-//  Created by byunghak on 2022/05/10.
+//  Created by 고병학 on 2022/08/18.
 //
 //
 
@@ -17,20 +17,11 @@ extension PictureDiary {
 
     @NSManaged public var content: String?
     @NSManaged public var date: Date?
-
-    /// 그림 이미지 데이터
-    @NSManaged public var drawing: Data?
-
-    /// 이미지 URL을 키 기준으로 캐싱
-    @NSManaged public var imageUrl: String?
-    @NSManaged public var weather: Int16
-    @NSManaged public var id: Int
     @NSManaged public var didStamp: Bool
+    @NSManaged public var drawing: Data?
+    @NSManaged public var id: Int64
+    @NSManaged public var imageUrl: String?
     @NSManaged public var isRandomDiary: Bool
-}
+    @NSManaged public var weather: Int16
 
-extension PictureDiary {
-    func getWeather() -> WeatherType {
-        return WeatherType.init(rawValue: self.weather)!
-    }
 }
