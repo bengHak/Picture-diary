@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Then
+import Kingfisher
 
 final class ShareInstagramView: UIView {
 
@@ -134,14 +135,15 @@ final class ShareInstagramView: UIView {
     }
 
     private func setData() {
-        guard let imageData = diary.drawing,
+        guard let imageUrl = diary.imageUrl,
               let text = diary.content,
               let date = diary.date else {
-            print("invalid diary")
+            print("ShareInstagramView - invalid diary")
             return
         }
         diaryTextView.setAttributedText(text, lineSpacing: diaryTextLineHeight ?? 10, font: .body2)
-        ivPicture.image = UIImage(data: imageData)
+        let url = URL(string: imageUrl)
+        ivPicture.kf.setImage(with: url)
         lblWeather.text = date.formattedString()
 
         switch WeatherType.init(rawValue: diary.weather) ?? .sunny {

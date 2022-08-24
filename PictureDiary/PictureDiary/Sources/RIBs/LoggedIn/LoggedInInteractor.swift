@@ -75,6 +75,7 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
                 guard let self = self else { return }
                 if let diary = CDPictureDiaryHandler.shared.getDiaryById(diaryId) {
                     diary.content = diaryResponse.content
+                    diary.stampList = diaryResponse.stampList ?? []
                     self.pictureDiaryBehaviorRelay.accept(diary)
                     self.router?.attachDiaryDetail()
                 } else {
@@ -123,7 +124,6 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
                           return
                       }
 
-                #warning("다이어리 새로 불러올 때")
                 if let diary = CDPictureDiaryHandler.shared.getCachedRandomDiary() {
                     if diary.imageUrl == diaryResponse.imageUrl,
                        diary.didStamp == diaryResponse.stamped ?? false {

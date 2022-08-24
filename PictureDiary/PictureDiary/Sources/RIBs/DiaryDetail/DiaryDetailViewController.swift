@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 import UIKit
 import SnapKit
+import Kingfisher
 
 protocol DiaryDetailPresentableListener: AnyObject {
     func detachDiaryDetail()
@@ -75,6 +76,8 @@ final class DiaryDetailViewController: UIViewController, DiaryDetailPresentable,
     private lazy var ivPicture = UIImageView().then {
         if let drawingData = self.diary.drawing {
             $0.image = UIImage(data: drawingData)
+        } else if let url = self.diary.imageUrl {
+            $0.kf.setImage(with: URL(string: url))
         }
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
@@ -97,8 +100,6 @@ final class DiaryDetailViewController: UIViewController, DiaryDetailPresentable,
         $0.isHidden = true
     }
 
-    /// 도장 뷰
-    #warning("TODO: 도장뷰")
     // MARK: - Properties
     private let bag = DisposeBag()
 
@@ -135,6 +136,7 @@ final class DiaryDetailViewController: UIViewController, DiaryDetailPresentable,
         configureSubviews()
 
         handleWeather()
+        handleStamps()
         bind()
     }
 
@@ -144,6 +146,27 @@ final class DiaryDetailViewController: UIViewController, DiaryDetailPresentable,
     }
 
     // MARK: - Helpers
+    private func handleStamps() {
+        diary.stampList.forEach {
+            guard let stampString = $0.stampType,
+                  let stamp = StampType.init(rawValue: stampString),
+                  let proportionalX = $0.x,
+                  let proportionalY = $0.y else {
+                return
+            }
+            let stampView = UIImageView(image: UIImage(named: stamp.imageName))
+            let w = ivPictureFrame.frame.width
+            let h = ivPictureFrame.frame.height
+
+            view.addSubview(stampView)
+            stampView.snp.makeConstraints {
+                $0.leading.equalTo(ivPictureFrame).offset(proportionalX * w)
+                $0.top.equalTo(ivPictureFrame).offset(proportionalY * h)
+                $0.width.height.equalTo(80)
+            }
+        }
+    }
+
     private func handleWeather() {
         switch WeatherType.init(rawValue: diary.weather) ?? .sunny {
         case .sunny:
