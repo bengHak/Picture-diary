@@ -12,7 +12,9 @@ import UIKit
 
 struct GoogleAuth: OAuthProtocol {
     func authorize() -> Observable<ModelTokenResponse> {
-        let signInConfig = GIDConfiguration(clientID: (Bundle.main.infoDictionary?["GOOGLE_API_CLIENT_ID"] as? String) ?? "")
+        let signInConfig = GIDConfiguration(
+            clientID: (Bundle.main.infoDictionary?["GOOGLE_API_CLIENT_ID"] as? String) ?? ""
+        )
         return Observable.create { observer in
             GIDSignIn.sharedInstance.signIn(
                 with: signInConfig,

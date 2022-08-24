@@ -19,8 +19,10 @@ protocol DiaryTextFieldListener: AnyObject {
     func detachDiaryTextField()
 }
 
-final class DiaryTextFieldInteractor: PresentableInteractor<DiaryTextFieldPresentable>, DiaryTextFieldInteractable, DiaryTextFieldPresentableListener {
-    
+final class DiaryTextFieldInteractor: PresentableInteractor<DiaryTextFieldPresentable>,
+                                      DiaryTextFieldInteractable,
+                                      DiaryTextFieldPresentableListener {
+
     weak var router: DiaryTextFieldRouting?
     weak var listener: DiaryTextFieldListener?
     let diaryText: BehaviorRelay<String>
@@ -45,12 +47,12 @@ final class DiaryTextFieldInteractor: PresentableInteractor<DiaryTextFieldPresen
     override func willResignActive() {
         super.willResignActive()
     }
-    
+
     func cancelTyping() {
         diaryText.accept(initialDiaryText)
         listener?.detachDiaryTextField()
     }
-    
+
     func completeTyping() {
         listener?.detachDiaryTextField()
     }

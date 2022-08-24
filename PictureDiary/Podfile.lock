@@ -15,18 +15,18 @@ PODS:
     - GTMSessionFetcher/Core (~> 1.5)
   - GTMSessionFetcher/Core (1.7.2)
   - IQKeyboardManagerSwift (6.5.10)
-  - KakaoSDKAuth (2.10.1):
-    - KakaoSDKCommon (= 2.10.1)
-  - KakaoSDKCommon (2.10.1):
-    - KakaoSDKCommon/Common (= 2.10.1)
-    - KakaoSDKCommon/Network (= 2.10.1)
-  - KakaoSDKCommon/Common (2.10.1)
-  - KakaoSDKCommon/Network (2.10.1):
+  - KakaoSDKAuth (2.11.0):
+    - KakaoSDKCommon (= 2.11.0)
+  - KakaoSDKCommon (2.11.0):
+    - KakaoSDKCommon/Common (= 2.11.0)
+    - KakaoSDKCommon/Network (= 2.11.0)
+  - KakaoSDKCommon/Common (2.11.0)
+  - KakaoSDKCommon/Network (2.11.0):
     - Alamofire (~> 5.1)
-    - KakaoSDKCommon/Common (= 2.10.1)
-  - KakaoSDKUser (2.10.1):
-    - KakaoSDKAuth (= 2.10.1)
-  - Kingfisher (7.2.4)
+    - KakaoSDKCommon/Common (= 2.11.0)
+  - KakaoSDKUser (2.11.0):
+    - KakaoSDKAuth (= 2.11.0)
+  - Kingfisher (7.3.0)
   - Moya (15.0.0):
     - Moya/Core (= 15.0.0)
   - Moya/Core (15.0.0):
@@ -48,27 +48,27 @@ PODS:
   - RxGesture (4.0.4):
     - RxCocoa (~> 6.0)
     - RxSwift (~> 6.0)
-  - RxKakaoSDKAuth (2.10.1):
-    - KakaoSDKAuth (= 2.10.1)
-    - RxKakaoSDKCommon (= 2.10.1)
-  - RxKakaoSDKCommon (2.10.1):
-    - RxKakaoSDKCommon/Common (= 2.10.1)
-    - RxKakaoSDKCommon/Network (= 2.10.1)
-  - RxKakaoSDKCommon/Common (2.10.1):
-    - KakaoSDKCommon/Common (= 2.10.1)
+  - RxKakaoSDKAuth (2.11.0):
+    - KakaoSDKAuth (= 2.11.0)
+    - RxKakaoSDKCommon (= 2.11.0)
+  - RxKakaoSDKCommon (2.11.0):
+    - RxKakaoSDKCommon/Common (= 2.11.0)
+    - RxKakaoSDKCommon/Network (= 2.11.0)
+  - RxKakaoSDKCommon/Common (2.11.0):
+    - KakaoSDKCommon/Common (= 2.11.0)
     - RxCocoa
     - RxSwift (~> 6.0)
-  - RxKakaoSDKCommon/Network (2.10.1):
-    - KakaoSDKCommon/Network (= 2.10.1)
+  - RxKakaoSDKCommon/Network (2.11.0):
+    - KakaoSDKCommon/Network (= 2.11.0)
     - RxAlamofire (~> 6.0)
-    - RxKakaoSDKCommon/Common (= 2.10.1)
-  - RxKakaoSDKUser (2.10.1):
-    - KakaoSDKUser (= 2.10.1)
-    - RxKakaoSDKAuth (= 2.10.1)
+    - RxKakaoSDKCommon/Common (= 2.11.0)
+  - RxKakaoSDKUser (2.11.0):
+    - KakaoSDKUser (= 2.11.0)
+    - RxKakaoSDKAuth (= 2.11.0)
   - RxRelay (6.0.0):
     - RxSwift (= 6.0.0)
   - RxSwift (6.0.0)
-  - SnapKit (5.0.1)
+  - SnapKit (5.6.0)
   - SwiftKeychainWrapper (4.0.1)
   - Then (3.0.0)
 
@@ -83,7 +83,7 @@ DEPENDENCIES:
   - RxGesture (~> 4.0)
   - RxKakaoSDKUser
   - RxSwift (~> 6.0)
-  - SnapKit (~> 5.0.0)
+  - SnapKit (~> 5.6.0)
   - SwiftKeychainWrapper
   - Then
 
@@ -128,24 +128,24 @@ SPEC CHECKSUMS:
   GTMAppAuth: 4d8f864896f3646f0c33baf38a28362f4c601e15
   GTMSessionFetcher: 5595ec75acf5be50814f81e9189490412bad82ba
   IQKeyboardManagerSwift: 52962c76ab33532f15ad9f3ff4e5715eda5335bb
-  KakaoSDKAuth: b4fec62192c2ac8a9375847f666c0932e38afeb5
-  KakaoSDKCommon: 4989e3bae5f4884903bc1df7134e13d0e903d587
-  KakaoSDKUser: 5c5fd4b5864e8b5ac9587fdbb473daf2fa675abf
-  Kingfisher: 2457be2121734e69e54a2312ecc0150eb9ae70b3
+  KakaoSDKAuth: b9470887e42b869725b391f4af34c4aaec42ea46
+  KakaoSDKCommon: 0f59f2c1aead6012d92758e8ca46b63ea11c408b
+  KakaoSDKUser: 5dbefe494c50dfdc87e4072710e503d39b41a609
+  Kingfisher: cdb1189a9223b1bc028816bd47c8b8101a58831c
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   RIBs: dd8df1129289d51ed4fec6e2127613d9eaba204e
   RxAlamofire: beb75a1c452d0de225651db4903f5d29d034a620
   RxCocoa: 3f79328fafa3645b34600f37c31e64c73ae3a80e
   RxGesture: f3efb47ed2d26a8082f7b660d4a59970e275a7f8
-  RxKakaoSDKAuth: bf06c7cd54754fbac18b57c2550c56a3055cf8d8
-  RxKakaoSDKCommon: 353d3e028d9bf436a0e809180a22a6398bacd545
-  RxKakaoSDKUser: dc2f5a5f4c07753ac6192cb4adde20a3d94f3091
+  RxKakaoSDKAuth: 00f307b1b976e22938bcee49dba346ddf6c5fadf
+  RxKakaoSDKCommon: 2ff962e0420f32dec6e5deefec0f35ca6b0a104e
+  RxKakaoSDKUser: b04ef02748f9498340f4c8deb8c3d1100b8109cf
   RxRelay: 8d593be109c06ea850df027351beba614b012ffb
   RxSwift: c14e798c59b9f6e9a2df8fd235602e85cc044295
-  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftKeychainWrapper: 807ba1d63c33a7d0613288512399cd1eda1e470c
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
 
-PODFILE CHECKSUM: 5e92f61d5ff965c4b2543047918d7d5385ccf8b9
+PODFILE CHECKSUM: 963e2587fdad7e9eea86063fdebfbc61b403dab0
 
 COCOAPODS: 1.11.3

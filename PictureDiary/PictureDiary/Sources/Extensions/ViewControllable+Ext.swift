@@ -14,11 +14,11 @@ extension ViewControllable {
         self.uiviewController.modalPresentationStyle = .overFullScreen
         return self.uiviewController
     }
-    
+
     func pushViewController(_ vc: UIViewController, animated: Bool) {
         self.uiviewController.navigationController?.pushViewController(vc, animated: animated)
     }
-    
+
     func popViewController(animated: Bool) {
         self.uiviewController.navigationController?.popViewController(animated: animated)
     }

@@ -16,22 +16,22 @@ enum AuthAPI {
 extension AuthAPI: ServiceAPI {
     var path: String {
         switch self {
-        case .signin(_, _):
+        case .signin:
             return "/auth/sign-in"
-        case .signup(_, _):
+        case .signup:
             return "/auth/sign-up"
         }
     }
-    
+
     var method: Moya.Method { .post }
-    
+
     var task: Task {
         switch self {
         case .signin(let token, let provider), .signup(let token, let provider):
-            let parameters = ["socialToken" : token, "socialType" : provider.rawValue]
+            let parameters = ["socialToken": token, "socialType": provider.rawValue]
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
         }
     }
-    
-    var headers: [String : String]? { [:] }
+
+    var headers: [String: String]? { [:] }
 }

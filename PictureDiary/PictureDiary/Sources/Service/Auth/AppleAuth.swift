@@ -18,4 +18,3 @@ struct AppleAuth: OAuthProtocol {
         return controller.rx.didCompleteWithAuthorization
     }
 }
-

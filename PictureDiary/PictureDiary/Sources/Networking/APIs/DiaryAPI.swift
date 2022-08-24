@@ -9,10 +9,11 @@ import Foundation
 import Moya
 import SwiftKeychainWrapper
 
-
 enum DiaryAPI {
     case fetchDiaryList(lastDiaryId: Int, querySize: Int)
     case fetchDiary(id: Int)
+    case fetchRandomDiary
+    case stamp(diaryId: Int, stampString: String, x: Double, y: Double)
     case uploadDiary(content: String, weather: WeatherType, imageURL: String)
     case uploadDiaryImage(data: Data)
 }
@@ -20,30 +21,38 @@ enum DiaryAPI {
 extension DiaryAPI: ServiceAPI {
     var path: String {
         switch self {
-        case .fetchDiaryList(_,_):
+        case .fetchDiaryList:
             return "/diary/list/me"
         case .fetchDiary(let id):
             return "/diary/\(id)"
-        case .uploadDiary(_,_,_):
+        case .uploadDiary:
             return "/diary"
-        case .uploadDiaryImage(_):
+        case .uploadDiaryImage:
             return "/diary/image"
+        case .fetchRandomDiary:
+            return "/diary/random"
+        case .stamp:
+            return "/stamp"
         }
     }
-    
+
     var method: Moya.Method {
         switch self {
-        case .fetchDiaryList(_,_):
+        case .fetchDiaryList:
             return .get
-        case .fetchDiary(_):
+        case .fetchDiary:
             return .get
-        case .uploadDiary(_,_,_):
+        case .uploadDiary:
             return .post
-        case .uploadDiaryImage(_):
+        case .uploadDiaryImage:
+            return .post
+        case .fetchRandomDiary:
+            return .get
+        case .stamp:
             return .post
         }
     }
-    
+
     var task: Task {
         switch self {
         case .fetchDiaryList(let lastDiaryId, let querySize):
@@ -52,7 +61,7 @@ extension DiaryAPI: ServiceAPI {
                 "size": querySize
             ]
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
-        case .fetchDiary(_):
+        case .fetchDiary:
             return .requestPlain
         case .uploadDiary(let content, let weather, let imageURL):
             let parameters = [
@@ -69,6 +78,16 @@ extension DiaryAPI: ServiceAPI {
                 mimeType: "image/png"
             )]
             return .uploadMultipart(multipartFormData)
+        case .fetchRandomDiary:
+            return .requestPlain
+        case .stamp(let diaryId, let stampString, let x, let y):
+            let parameters = [
+                "diaryId": "\(diaryId)",
+                "stampType": stampString,
+                "x": "\(String(format: "%.2f", x))",
+                "y": "\(String(format: "%.2f", y))"
+            ]
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
         }
     }
 }

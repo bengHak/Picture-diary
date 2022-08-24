@@ -18,30 +18,34 @@ final class LoggedInComponent: Component<LoggedInDependency>,
                                DiaryListDependency,
                                DiaryDetailDependency,
                                CreateDiaryDependency,
-                               LoggedInInteractorDependency {
+                               LoggedInInteractorDependency,
+                               RandomDiaryDependency {
     fileprivate var splitViewController: UISplitViewController {
         return dependency.splitViewController
     }
-    
+
     fileprivate var primaryVieController: UINavigationController {
         return dependency.primaryViewController
     }
-    
+
     fileprivate var secondaryViewController: UINavigationController {
         return dependency.secondaryViewController
     }
-    
+
     var isRefreshNeed = BehaviorRelay<Bool>(value: false)
-    
+
     var diaryRepository: DiaryRepositoryProtocol = DiaryRepository()
-    
+
     var pictureDiaryBehaviorRelay = BehaviorRelay<PictureDiary?>(value: nil)
 
+    var randomPictureDiaryBehaviorRelay = BehaviorRelay<PictureDiary?>(value: nil)
+
     var pictureDiary: PictureDiary { pictureDiaryBehaviorRelay.value! }
+
+    var randomPictureDiary: PictureDiary { randomPictureDiaryBehaviorRelay.value! }
 }
 
 // MARK: - Builder
-
 protocol LoggedInBuildable: Buildable {
     func build(withListener listener: LoggedInListener) -> LoggedInRouting
 }
@@ -56,16 +60,21 @@ final class LoggedInBuilder: Builder<LoggedInDependency>, LoggedInBuildable {
         let component = LoggedInComponent(dependency: dependency)
         let interactor = LoggedInInteractor(dependency: component)
         interactor.listener = listener
-        
+
         let diaryList = DiaryListBuilder(dependency: component)
         let diaryDetail = DiaryDetailBuilder(dependency: component)
         let createDiary = CreateDiaryBuilder(dependency: component)
-        return LoggedInRouter(interactor: interactor,
-                              splitViewController: component.splitViewController,
-                              primaryViewController: component.primaryVieController,
-                              secondaryViewController: component.secondaryViewController,
-                              diaryListBuilder: diaryList,
-                              diaryDetailBuilder: diaryDetail,
-                              createDiaryBuilder: createDiary)
+        let randomDiary = RandomDiaryBuilder(dependency: component)
+
+        return LoggedInRouter(
+            interactor: interactor,
+            splitViewController: component.splitViewController,
+            primaryViewController: component.primaryVieController,
+            secondaryViewController: component.secondaryViewController,
+            diaryListBuilder: diaryList,
+            diaryDetailBuilder: diaryDetail,
+            createDiaryBuilder: createDiary,
+            randomDiaryBuilder: randomDiary
+        )
     }
 }

@@ -12,7 +12,7 @@ enum WeatherType: Int16 {
     case cloudy = 1
     case rain = 2
     case snow = 3
-    
+
     func getString() -> String {
         switch self {
         case .sunny:
@@ -25,7 +25,7 @@ enum WeatherType: Int16 {
             return "SNOW"
         }
     }
-    
+
     static func initWithString(_ keyword: String) -> WeatherType {
         switch keyword {
         case WeatherType.cloudy.getString():
@@ -35,6 +35,7 @@ enum WeatherType: Int16 {
         case WeatherType.snow.getString():
             return .snow
         case WeatherType.sunny.getString():
+            // swiftlint:disable no_fallthrough_only
             fallthrough
         default:
             return .sunny

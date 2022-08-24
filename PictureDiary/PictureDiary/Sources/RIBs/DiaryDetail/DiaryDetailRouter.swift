@@ -12,13 +12,10 @@ protocol DiaryDetailInteractable: Interactable {
     var listener: DiaryDetailListener? { get set }
 }
 
-protocol DiaryDetailViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
-}
+protocol DiaryDetailViewControllable: ViewControllable { }
 
-final class DiaryDetailRouter: ViewableRouter<DiaryDetailInteractable, DiaryDetailViewControllable>, DiaryDetailRouting {
-
-    // TODO: Constructor inject child builder protocols to allow building children.
+final class DiaryDetailRouter: ViewableRouter<DiaryDetailInteractable, DiaryDetailViewControllable>,
+                               DiaryDetailRouting {
     override init(interactor: DiaryDetailInteractable, viewController: DiaryDetailViewControllable) {
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self

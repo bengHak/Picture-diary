@@ -13,7 +13,7 @@ final class RootSplitViewController: UISplitViewController,
                                      RootPresentable,
                                      RootViewControllable {
     var listener: RootPresentableListener?
-    
+
     override func viewDidLoad() {
         presentsWithGesture = false
         preferredDisplayMode = .oneBesideSecondary
@@ -23,24 +23,27 @@ final class RootSplitViewController: UISplitViewController,
         splitViewController?.minimumPrimaryColumnWidth = minimumPrimaryColumnWidth
         delegate = self
     }
-    
+
     func present(viewController: ViewControllable) {
         present(viewController.uiviewController, animated: true)
     }
-    
+
     func dismiss(viewController: ViewControllable) {
         if presentedViewController === viewController.uiviewController {
             dismiss(animated: true)
         }
     }
-    
+
 }
 
 // MARK: - UISplitViewControllerDelegate
 extension RootSplitViewController: UISplitViewControllerDelegate {
-    
+
     @available(iOS 14.0, *)
-    func splitViewController(_ svc: UISplitViewController, topColumnForCollapsingToProposedTopColumn proposedTopColumn: UISplitViewController.Column) -> UISplitViewController.Column {
+    func splitViewController(
+        _ svc: UISplitViewController,
+        topColumnForCollapsingToProposedTopColumn proposedTopColumn: UISplitViewController.Column
+    ) -> UISplitViewController.Column {
         return .primary
     }
 }

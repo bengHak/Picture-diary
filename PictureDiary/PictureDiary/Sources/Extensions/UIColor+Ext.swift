@@ -8,11 +8,11 @@
 import UIKit
 
 extension UIColor {
-    
+
     static func paletteColor(_ type: PaletteColorType) -> UIColor {
         return UIColor(named: type.rawValue)!
     }
-    
+
     static func appColor(_ type: AppColorType) -> UIColor {
         return UIColor(named: type.rawValue)!
     }

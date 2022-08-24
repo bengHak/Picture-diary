@@ -17,7 +17,7 @@ final class LoggedOutComponent: Component<LoggedOutDependency>,
     fileprivate var loggedOutViewController: LoggedOutViewControllable {
         return dependency.loggedOutViewController
     }
-    
+
     var labelText: String { "회원가입이 완료되었어요!" }
 }
 
@@ -28,16 +28,15 @@ protocol LoggedOutBuildable: Buildable {
 }
 
 final class LoggedOutBuilder: Builder<LoggedOutDependency>, LoggedOutBuildable {
-    
     override init(dependency: LoggedOutDependency) {
         super.init(dependency: dependency)
     }
-    
+
     func build(withListener listener: LoggedOutListener) -> LoggedOutRouting {
         let component = LoggedOutComponent(dependency: dependency)
         let interactor = LoggedOutInteractor()
         interactor.listener = listener
-        
+
         let snsLogin = SNSLoginBuilder(dependency: component)
         let vanishingCompletion = VanishingCompletionBuilder(dependency: component)
         return LoggedOutRouter(interactor: interactor,

@@ -14,6 +14,7 @@ protocol SNSLoginRouting: ViewableRouting { }
 
 protocol SNSLoginPresentable: Presentable {
     var listener: SNSLoginPresentableListener? { get set }
+    func cancelAuth()
 }
 
 protocol SNSLoginListener: AnyObject {
@@ -31,7 +32,7 @@ final class SNSLoginInteractor: PresentableInteractor<SNSLoginPresentable>,
     private let isSignUpSuccess: PublishSubject<Bool>
     private let providerToken: BehaviorRelay<String>
     private let bag: DisposeBag
-    
+
     init(
         presenter: SNSLoginPresentable,
         authRepository: AuthRepositoryProtocol
@@ -43,35 +44,35 @@ final class SNSLoginInteractor: PresentableInteractor<SNSLoginPresentable>,
         self.bag = DisposeBag()
         super.init(presenter: presenter)
         presenter.listener = self
-        
+
     }
-    
+
     override func didBecomeActive() {
         super.didBecomeActive()
         bindSuccessValue()
     }
-    
+
     override func willResignActive() {
         super.willResignActive()
     }
-    
+
     func loginCompleted() {
         listener?.didLogin()
     }
-    
+
     func signUpCompleted() {
         listener?.didSignUp()
     }
-    
+
     func login(provider: ProviderType) {
         signInWithSsgSsgServer(provider)
     }
-    
+
     private func signInWithSsgSsgServer(_ provider: ProviderType) {
         authRepository.authorize(with: provider)
-            .filter { $0.success }
             .flatMapLatest { [weak self] (response) -> Observable<ModelAuthResponse> in
                 guard let self = self,
+                      response.success,
                       let token = response.token else {
                     throw AuthError.invalidProviderToken
                 }
@@ -83,38 +84,48 @@ final class SNSLoginInteractor: PresentableInteractor<SNSLoginPresentable>,
                 self?.signUpWithSsgSsgServer(provider)
                 return Observable.error(error)
             }
-            .subscribe(onNext: { [weak self] authResponse in
-                guard let self = self,
-                      let accessToken = authResponse.accessToken else {
-                    self?.isSignInSuccess.onNext(false)
-                    return
+            .subscribe(
+                onNext: { [weak self] authResponse in
+                    guard let self = self,
+                          let accessToken = authResponse.accessToken else {
+                        self?.isSignInSuccess.onNext(false)
+                        return
+                    }
+                    KeychainWrapper.setValue(accessToken, forKey: .accessToken)
+                    self.isSignInSuccess.onNext(true)
+                },
+                onError: { [weak self] error in
+                    print("Signin error: \(error)")
+                    self?.presenter.cancelAuth()
+                },
+                onCompleted: { [weak self] in
+                    self?.presenter.cancelAuth()
                 }
-                KeychainWrapper.setValue(accessToken, forKey: .accessToken)
-                self.isSignInSuccess.onNext(true)
-            })
-            .disposed(by: bag)
+            ).disposed(by: bag)
     }
-    
+
     private func signUpWithSsgSsgServer(_ provider: ProviderType) {
-        print(#function)
-        print(self.providerToken.value)
         authRepository.signup(token: self.providerToken.value, provider: provider)
             .catch { [weak self] error in
                 self?.isSignUpSuccess.onNext(false)
                 return Observable.error(error)
             }
-            .subscribe(onNext: { [weak self] authResponse in
-                guard let self = self,
-                      let accessToken = authResponse.accessToken else {
-                    self?.isSignUpSuccess.onNext(false)
-                    return
-                }
-                KeychainWrapper.setValue(accessToken, forKey: .accessToken)
-                self.isSignUpSuccess.onNext(true)
-            })
+            .subscribe(
+                onNext: { [weak self] authResponse in
+                    guard let self = self,
+                          let accessToken = authResponse.accessToken else {
+                        self?.isSignUpSuccess.onNext(false)
+                        return
+                    }
+                    KeychainWrapper.setValue(accessToken, forKey: .accessToken)
+                    self.isSignUpSuccess.onNext(true)
+                },
+                onError: { error in
+                    print(error)
+                })
             .disposed(by: bag)
     }
-    
+
     private func bindSuccessValue() {
         self.isSignInSuccess
             .bind(onNext: { [weak self] success in
@@ -127,15 +138,14 @@ final class SNSLoginInteractor: PresentableInteractor<SNSLoginPresentable>,
                 }
             })
             .disposed(by: bag)
-        
+
         self.isSignUpSuccess
             .bind(onNext: { [weak self] success in
                 guard let self = self else { return }
                 if success {
                     self.signUpCompleted()
                 } else {
-#warning("회원가입 실패 로직 실행")
-                    print("🔴 회원가입 실패")
+                    self.presenter.cancelAuth()
                 }
             })
             .disposed(by: bag)

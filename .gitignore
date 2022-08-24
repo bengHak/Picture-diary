@@ -56,3 +56,6 @@ DerivedData/
 
 # env
 *.xcconfig
+
+# Prebuilds
+**/_Prebuild

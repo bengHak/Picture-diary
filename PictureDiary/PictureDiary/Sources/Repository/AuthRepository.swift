@@ -16,13 +16,13 @@ protocol AuthRepositoryProtocol {
 }
 
 final class AuthRepository: AuthRepositoryProtocol {
-    
+
     private let provider: MoyaProvider<AuthAPI>
-    
+
     init() {
         provider = MoyaProvider<AuthAPI>()
     }
-    
+
     func authorize(with provider: ProviderType) -> Observable<ModelTokenResponse> {
         let oAuthService: OAuthProtocol
         switch provider {
@@ -35,7 +35,7 @@ final class AuthRepository: AuthRepositoryProtocol {
         }
         return oAuthService.authorize()
     }
-    
+
     func signin(token: String, provider: ProviderType) -> Observable<ModelAuthResponse> {
         return self.provider.rx.request(.signin(token: token, provider: provider))
             .filterSuccessfulStatusCodes()
@@ -47,12 +47,10 @@ final class AuthRepository: AuthRepositoryProtocol {
                 return Observable.error(AuthError.serverSignInError)
             }
     }
-    
+
     func signup(token: String, provider: ProviderType) -> Observable<ModelAuthResponse> {
-        print(#function)
         return self.provider.rx.request(.signup(token: token, provider: provider))
             .filterSuccessfulStatusCodes()
-            .debug("서버 회원가입 요청 성공")
             .map { $0.data }
             .map { try JSONDecoder().decode(ModelAuthResponse.self, from: $0) }
             .asObservable()

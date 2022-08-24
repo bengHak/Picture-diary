@@ -19,40 +19,47 @@ protocol SNSLoginPresentableListener: AnyObject {
 final class SNSLoginViewController: UIViewController, SNSLoginPresentable, SNSLoginViewControllable {
 
     weak var listener: SNSLoginPresentableListener?
-    
+
     // MARK: - UI properties
     /// 로고
-    private let ivLogo = UIImageView(image: UIImage(named: "temp_logo")).then {
+    private let ivLogo = UIImageView(image: UIImage(named: "logo_no_bg")).then {
         $0.contentMode = .scaleAspectFit
     }
-    
+
     /// 로그인 버튼 스택
     private let stackView = UIStackView().then {
         $0.axis = .vertical
         $0.spacing = 12
     }
-    
+
     /// 카카오 로그인 버트
     private let btnKakao = SNSLoginButton(snsType: .kakao)
-    
+
     /// 애플 로그인 버튼
     private let btnApple = SNSLoginButton(snsType: .apple)
-    
+
     /// 구글 로그인 버튼
     private let btnGoogle = SNSLoginButton(snsType: .google)
-    
+
     private let loadingView = LoadingView()
-    
+
     // MARK: - Properties
     let bag = DisposeBag()
-    
+
     // MARK: - Lifecycles
     override func viewDidLoad() {
         view.backgroundColor = .white
-        
+
         configureView()
         configureSubviews()
         bind()
+    }
+
+    // MARK: - Helper
+    func cancelAuth() {
+        DispatchQueue.main.async { [weak self] in
+            self?.loadingView.isHidden = true
+        }
     }
 }
 
@@ -66,40 +73,40 @@ extension SNSLoginViewController: BaseViewController {
         view.addSubview(ivLogo)
         view.addSubview(loadingView)
     }
-    
+
     func configureSubviews() {
         ivLogo.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalToSuperview().offset(200)
             $0.width.equalTo(140)
         }
-        
+
         stackView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(64)
         }
-        
+
         [btnKakao, btnApple, btnGoogle].forEach { btn in
             btn.snp.makeConstraints {
                 $0.leading.trailing.equalToSuperview()
                 $0.height.equalTo(56)
             }
         }
-        
+
         loadingView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         loadingView.isHidden = true
     }
-    
+
 }
 
 extension SNSLoginViewController {
     func bind() {
         bindButtons()
     }
-    
+
     func bindButtons() {
         Observable.merge(
             btnKakao.rx.tapGesture().when(.recognized)

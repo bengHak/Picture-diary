@@ -13,17 +13,17 @@ extension UITextView {
         let estimatedSize = sizeThatFits(size)
         return Int(estimatedSize.height / (self.font!.lineHeight))
     }
-    
+
     func setAttributedText(_ text: String, lineSpacing: CGFloat, font: UIFont.DefaultFont = .body1) {
         let style = NSMutableParagraphStyle()
         style.lineSpacing = lineSpacing
         let attributes = [
-            NSAttributedString.Key.paragraphStyle : style,
+            NSAttributedString.Key.paragraphStyle: style,
             .font: UIFont.DefaultFont.body1.font()
         ]
         self.attributedText = NSAttributedString(
             string: text,
-            attributes: attributes as [NSAttributedString.Key : Any]
+            attributes: attributes as [NSAttributedString.Key: Any]
         )
     }
 }

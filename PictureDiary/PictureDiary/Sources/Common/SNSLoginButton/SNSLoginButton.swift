@@ -11,62 +11,61 @@ import Then
 import RxSwift
 
 final class SNSLoginButton: UIView {
-    
+
     // MARK: - UI properties
-    
+
     /// 버튼 UIView
     private let uiview = UIView().then {
         $0.layer.cornerRadius = 6
     }
-    
+
     /// 스택뷰
     private let stackView = UIStackView().then {
         $0.axis = .horizontal
     }
-    
+
     /// SNS 로고
     private let ivLogo = UIImageView()
-    
+
     /// 라벨
     public let lbl = UILabel().then {
-        $0.font = .Pretendard(type: .bold, size: 14)
+        $0.font = .getPretendardFont(type: .bold, size: 14)
         $0.baselineAdjustment = .alignCenters
     }
-    
+
     // MARK: - Properties
     var snsType: ProviderType
-    
+
     init(snsType: ProviderType) {
         self.snsType = snsType
-        
         super.init(frame: .zero)
-        
+
         configureView()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Helpers
     private func configureView() {
         stackView.addArrangedSubview(ivLogo)
         stackView.addArrangedSubview(lbl)
         uiview.addSubview(stackView)
         addSubview(uiview)
-        
+
         uiview.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(56)
         }
-        
+
         stackView.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
-        
+
         configureContent()
     }
-    
+
     private func configureContent() {
         switch snsType {
         case .kakao:
@@ -80,7 +79,7 @@ final class SNSLoginButton: UIView {
             return
         }
     }
-    
+
     private func buildKakaoButton() {
         stackView.spacing = 0
         uiview.backgroundColor = UIColor(red: 254/255, green: 229/255, blue: 0.0, alpha: 1.0)
@@ -91,7 +90,7 @@ final class SNSLoginButton: UIView {
             $0.width.height.equalTo(28)
         }
     }
-    
+
     private func buildAppleButton() {
         stackView.spacing = 10
         uiview.backgroundColor = .black
@@ -103,7 +102,7 @@ final class SNSLoginButton: UIView {
             $0.height.equalTo(15)
         }
     }
-    
+
     private func buildGoogleButton() {
         stackView.spacing = 9
         uiview.layer.borderColor = UIColor(red: 189/255, green: 189/255, blue: 189/255, alpha: 1.0).cgColor

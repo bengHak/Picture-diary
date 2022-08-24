@@ -12,13 +12,11 @@ protocol DiaryTextFieldInteractable: Interactable {
     var listener: DiaryTextFieldListener? { get set }
 }
 
-protocol DiaryTextFieldViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
-}
+protocol DiaryTextFieldViewControllable: ViewControllable { }
 
-final class DiaryTextFieldRouter: ViewableRouter<DiaryTextFieldInteractable, DiaryTextFieldViewControllable>, DiaryTextFieldRouting {
+final class DiaryTextFieldRouter: ViewableRouter<DiaryTextFieldInteractable, DiaryTextFieldViewControllable>,
+                                  DiaryTextFieldRouting {
 
-    // TODO: Constructor inject child builder protocols to allow building children.
     override init(interactor: DiaryTextFieldInteractable, viewController: DiaryTextFieldViewControllable) {
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self

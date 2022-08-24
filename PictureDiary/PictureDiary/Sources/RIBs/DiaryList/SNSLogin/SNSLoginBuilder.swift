@@ -7,15 +7,9 @@
 
 import RIBs
 
-protocol SNSLoginDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
-}
+protocol SNSLoginDependency: Dependency { }
 
-final class SNSLoginComponent: Component<SNSLoginDependency> {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
-}
+final class SNSLoginComponent: Component<SNSLoginDependency> { }
 
 // MARK: - Builder
 
@@ -30,7 +24,7 @@ final class SNSLoginBuilder: Builder<SNSLoginDependency>, SNSLoginBuildable {
     }
 
     func build(withListener listener: SNSLoginListener) -> SNSLoginRouting {
-        let _ = SNSLoginComponent(dependency: dependency)
+        _ = SNSLoginComponent(dependency: dependency)
         let viewController = SNSLoginViewController()
         let authRepository = AuthRepository()
         let interactor = SNSLoginInteractor(

@@ -11,12 +11,12 @@ enum AppColorType: String {
     case dim = "color-dim"
     case white = "color-white"
     case grayBorder = "color-gray-border"
-    
+
     case stampGreen = "color-stamp-green"
     case stampPurple = "color-stamp-purple"
     case stampOrange = "color-stamp-orange"
     case stampRed = "color-stamp-red"
-    
+
     case grayscale900 = "color-grayscale-g900"
     case grayscale800 = "color-grayscale-g800"
     case grayscale700 = "color-grayscale-g700"

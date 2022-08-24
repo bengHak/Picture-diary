@@ -9,9 +9,7 @@ import RIBs
 import RxSwift
 import RxRelay
 
-protocol DiaryListRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
-}
+protocol DiaryListRouting: ViewableRouting { }
 
 protocol DiaryListPresentable: Presentable {
     var listener: DiaryListPresentableListener? { get set }
@@ -20,6 +18,8 @@ protocol DiaryListPresentable: Presentable {
 protocol DiaryListListener: AnyObject {
     func routeToCreateDiary()
     func routeToDiaryDetail(diaryId: Int)
+    func attachRandomDiary()
+    func fetchRandomDiary()
 }
 
 protocol DiaryListInteractorDependency {
@@ -36,7 +36,7 @@ final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>,
     private let diaryList: BehaviorRelay<[ModelDiaryResponse]>
     private let diaryRepository: DiaryRepositoryProtocol
     private let bag: DisposeBag
-    private let dataHelper: CoreDataHelper
+    private let dataHelper: CDPictureDiaryHandler
 
     init(
         presenter: DiaryListPresentable,
@@ -45,7 +45,7 @@ final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>,
         self.diaryList = dependency.diaryList
         self.diaryRepository = dependency.diaryRepository
         self.bag = DisposeBag()
-        self.dataHelper = CoreDataHelper.shared
+        self.dataHelper = CDPictureDiaryHandler.shared
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -53,36 +53,44 @@ final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>,
     override func didBecomeActive() {
         super.didBecomeActive()
         fetchDiaryList()
+        listener?.fetchRandomDiary()
     }
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
-    
+
     func attachCreateDiary() {
         listener?.routeToCreateDiary()
     }
-    
+
     func fetchDiaryList() {
         diaryRepository.fetchDiaryList()
             .subscribe(onNext: { [weak self] diaryList in
                 guard let self = self else { return }
-                var modified = diaryList
-                modified = modified.map { response -> ModelDiaryResponse in
+                let modified = diaryList.map { response -> ModelDiaryResponse in
                     guard let id = response.diaryId,
-                          let diary = CoreDataHelper.shared.getDiaryById(id) else {
+                          let diary = CDPictureDiaryHandler.shared.getDiaryById(id) else {
                         return response
                     }
                     var modifiedDiary = response
                     modifiedDiary.imageData = diary.drawing
+                    CDPictureDiaryHandler.shared.updateCachedRandomDiary(response)
                     return modifiedDiary
                 }
                 self.diaryList.accept(modified)
             }).disposed(by: bag)
     }
-    
+
     func attachDiaryDetail(diaryId: Int) {
         listener?.routeToDiaryDetail(diaryId: diaryId)
+    }
+
+    func attachRandomDiary() {
+        listener?.attachRandomDiary()
+    }
+
+    func attachSettings() {
+
     }
 }

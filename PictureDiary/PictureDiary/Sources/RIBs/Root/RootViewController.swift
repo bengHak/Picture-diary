@@ -16,21 +16,21 @@ final class RootViewController: UIViewController,
                                 RootViewControllable,
                                 LoggedOutViewControllable,
                                 SplashViewControllable {
-    
+
     weak var listener: RootPresentableListener?
-    
+
     override func viewDidLoad() {
         view.backgroundColor = .white
     }
-    
+
     func present(viewController: ViewControllable) {
         present(viewController.uiviewController, animated: true)
     }
-    
+
     func dismiss(viewController: ViewControllable) {
         if presentedViewController === viewController.uiviewController {
             dismiss(animated: true)
         }
     }
-    
+
 }
