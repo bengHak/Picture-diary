@@ -26,7 +26,7 @@ protocol RandomDiaryPresentable: Presentable {
 
 protocol RandomDiaryListener: AnyObject {
     func detachRandomDiary()
-    func fetchRandomDiary()
+    func refreshRandomDiary()
 }
 
 protocol RandomDiaryInteractorDependency {
@@ -119,10 +119,29 @@ final class RandomDiaryInteractor: PresentableInteractor<RandomDiaryPresentable>
                       let msg = response?.responseMessage else {
                     return
                 }
-                if msg == ResponseMessage.postStampSuccess.rawValue {
+
+                if msg == ResponseMessage.postStampSuccess.rawValue,
+                   let stamp = self.selectedStamp.value,
+                   let posX = self.stampPosition.value.proportionalX,
+                   let posY = self.stampPosition.value.proportionalY {
                     // 도장 찍기에 성공했을 때
                     // 내가 도장찍은 Diary 데이터를 다시 가져와서 randomDiary 값과 치환한다.
-                    self.listener?.fetchRandomDiary()
+                    let diary = self.diary
+                    let update = ModelDiaryResponse(
+                        createdDate: diary.date?.formattedString(),
+                        diaryId: Int(diary.id),
+                        imageUrl: diary.imageUrl,
+                        imageData: diary.drawing,
+                        weather: WeatherType.init(rawValue: diary.weather)?.getString(),
+                        content: diary.content,
+                        stampList: diary.stampList + [
+                            ModelStamp(stampId: -1, stampType: stamp.rawValue, x: posX, y: posY)
+                        ],
+                        stamped: true
+                    )
+                    CDPictureDiaryHandler.shared.updateCachedRandomDiary(update)
+
+                    self.listener?.refreshRandomDiary()
                     self.router?.detachStampDrawer()
                 }
             }).disposed(by: bag)

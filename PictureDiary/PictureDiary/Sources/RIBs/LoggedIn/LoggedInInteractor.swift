@@ -106,6 +106,15 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
         router?.detachRandomDiary()
     }
 
+    func refreshRandomDiary() {
+        if let cachedDiary = CDPictureDiaryHandler.shared.getCachedRandomDiary(),
+           let diary = self.randomPictureDiaryBehaviorRelay.value,
+           cachedDiary.imageUrl == diary.imageUrl {
+            self.randomPictureDiaryBehaviorRelay.accept(cachedDiary)
+            return
+        }
+    }
+
     func fetchRandomDiary() {
         diaryRepository.fetchRandomDiary()
             .subscribe(onNext: { [weak self] diaryResponse in
@@ -113,6 +122,8 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
                       let imageData = try? Data(contentsOf: URL(string: diaryResponse.imageUrl!)!)  else {
                           return
                       }
+
+                #warning("다이어리 새로 불러올 때")
                 if let diary = CDPictureDiaryHandler.shared.getCachedRandomDiary() {
                     if diary.imageUrl == diaryResponse.imageUrl,
                        diary.didStamp == diaryResponse.stamped ?? false {
@@ -126,7 +137,8 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
 
                 CDPictureDiaryHandler.shared.saveDiary(
                     diaryResponse: diaryResponse,
-                    drawing: imageData
+                    drawing: imageData,
+                    isRandomDiary: true
                 ) { diary, success in
                     if success {
                         self.randomPictureDiaryBehaviorRelay.accept(diary)

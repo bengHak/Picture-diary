@@ -99,6 +99,9 @@ final class RandomDiaryViewController: UIViewController, RandomDiaryPresentable,
         stampDrawerViewController?.removeFromParent()
         stampDrawerViewController?.view.removeFromSuperview()
         stampDrawerViewController = nil
+        diaryDetailViewController?.view.snp.remakeConstraints {
+            $0.top.leading.trailing.bottom.equalTo(view)
+        }
     }
 
     private func addMovableStampView(_ stamp: StampType) {

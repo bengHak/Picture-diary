@@ -76,8 +76,12 @@ class CDPictureDiaryHandler {
             update.imageUrl = diary.imageUrl
             update.weather = diary.getWeather().rawValue
             update.content = diary.content
+            update.stampList = diary.stampList ?? []
+            update.didStamp = diary.stamped ?? false
             do {
                 try context.save()
+                cached = cached.filter { update.id != $0.id }
+                cached.append(update)
             } catch let error {
                 print("update error: \(error)")
             }
@@ -100,6 +104,7 @@ class CDPictureDiaryHandler {
     func saveDiary(
         diaryResponse: ModelDiaryResponse,
         drawing: Data?,
+        isRandomDiary: Bool = false,
         completionHandler: ((PictureDiary?, Bool) -> Void)?
     ) {
         guard let context = context,
@@ -119,9 +124,12 @@ class CDPictureDiaryHandler {
             diary.content = diaryResponse.content ?? ""
             diary.imageUrl = imageUrl
             diary.didStamp = diaryResponse.stamped ?? false
+            diary.stampList = diaryResponse.stampList ?? []
+            diary.isRandomDiary = isRandomDiary
 
             do {
                 try context.save()
+                cached.append(diary)
                 completionHandler?(diary, true)
                 print("🟢 diary-\(diary.id) is cached")
             } catch let error as NSError {

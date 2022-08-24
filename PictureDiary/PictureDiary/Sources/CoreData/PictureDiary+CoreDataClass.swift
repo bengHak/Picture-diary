@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 public class PictureDiary: NSManagedObject {
-
+    var stampList: [ModelStamp] = []
 }

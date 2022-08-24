@@ -23,5 +23,4 @@ extension PictureDiary {
     @NSManaged public var imageUrl: String?
     @NSManaged public var isRandomDiary: Bool
     @NSManaged public var weather: Int16
-
 }
