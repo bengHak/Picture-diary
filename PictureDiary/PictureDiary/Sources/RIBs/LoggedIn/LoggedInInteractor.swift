@@ -104,7 +104,7 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
                 }
                 self.attachRandomDiary()
             }).disposed(by: self.bag)
-        fetchRandomDiary()
+        fetchRandomDiary { print($0) }
     }
 
     func detachRandomDiary() {
@@ -120,9 +120,9 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
         }
     }
 
-    func fetchRandomDiary() {
+    func fetchRandomDiary(_ completion: @escaping (Bool) -> Void) {
         diaryRepository.fetchRandomDiary()
-            .subscribe(onNext: { [weak self] diaryResponse in
+            .subscribe(onNext: { [weak self, completion] diaryResponse in
                 guard let self = self,
                       let imageData = try? Data(contentsOf: URL(string: diaryResponse.imageUrl!)!)  else {
                           return
@@ -133,6 +133,7 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
                        diary.didStamp == diaryResponse.stamped ?? false {
                         diary.drawing = imageData
                         self.randomPictureDiaryBehaviorRelay.accept(diary)
+                        completion(true)
                         return
                     } else {
                         CDPictureDiaryHandler.shared.removeCachedDiary(diary)
@@ -146,6 +147,7 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
                 ) { diary, success in
                     if success {
                         self.randomPictureDiaryBehaviorRelay.accept(diary)
+                        completion(true)
                     } else {
                         print("🔴 랜덤 일기 캐싱 실패")
                     }
