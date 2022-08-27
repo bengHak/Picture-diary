@@ -9,7 +9,8 @@ import RIBs
 
 protocol RootInteractable: Interactable,
                            LoggedOutListener,
-                           LoggedInListener {
+                           LoggedInListener,
+                           SplashListener {
     var router: RootRouting? { get set }
     var listener: RootListener? { get set }
 }
@@ -52,27 +53,37 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
         interactor.router = self
     }
 
+    // MARK: - Logged in
     func routeToLoggedIn() {
-        if let loggedOutRouter = loggedOutRouter {
-            loggedOutRouter.cleanupViews()
-            detachChild(loggedOutRouter)
-            self.loggedOutRouter = nil
-        }
+        detachLoggedOut()
         switchToSplitVC()
         let router = loggedInBuilder.build(withListener: interactor)
         self.loggedInRouter = router
         attachChild(router)
     }
 
-    func routeToLoggedOut() {
+    func detachLoggedIn() {
         if let loggedInRouter = loggedInRouter {
             loggedInRouter.cleanupViews()
             detachChild(loggedInRouter)
         }
+    }
+
+    // MARK: - Logged out
+    func routeToLoggedOut() {
+        detachLoggedIn()
         switchToLoggedOutVC()
         let router = loggedOutBuilder.build(withListener: interactor)
         self.loggedOutRouter = router
         attachChild(router)
+    }
+
+    func detachLoggedOut() {
+        if let loggedOutRouter = loggedOutRouter {
+            loggedOutRouter.cleanupViews()
+            detachChild(loggedOutRouter)
+            self.loggedOutRouter = nil
+        }
     }
 
     private func switchToSplitVC() {
@@ -86,6 +97,23 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
     private func switchToLoggedOutVC() {
         splitVC.uiviewController.view.window?.rootViewController = viewController.uiviewController
         splitVC.uiviewController.view.window?.makeKeyAndVisible()
+    }
+
+    // MARK: - Splash
+    func routeToSplash() {
+        let router = splashBuilder.build(withListener: interactor)
+        self.splashRouter = router
+        attachChild(router)
+        let vc = router.viewControllable.getFullScreenModalVC()
+        viewController.uiviewController.present(vc, animated: false)
+    }
+
+    func detachSplash() {
+        if let router = splashRouter {
+            router.viewControllable.uiviewController.dismiss(animated: false)
+            detachChild(router)
+            splashRouter = nil
+        }
     }
 
     // MARK: - Private

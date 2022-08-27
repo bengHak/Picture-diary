@@ -342,7 +342,6 @@ extension CreateDiaryViewController {
         appBarTop.btnBack.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
-#warning("저장하지 않고 뒤로가시겠습니까? 알려줘야되지 않을까")
                 self.listener?.tapCancleButton()
             }).disposed(by: bag)
 

@@ -12,6 +12,8 @@ import SwiftKeychainWrapper
 protocol RootRouting: ViewableRouting {
     func routeToLoggedIn()
     func routeToLoggedOut()
+    func routeToSplash()
+    func detachSplash()
 }
 
 protocol RootPresentable: Presentable {
@@ -34,11 +36,7 @@ final class RootInteractor: PresentableInteractor<RootPresentable>,
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        if KeychainWrapper.getValue(forKey: .accessToken) != nil {
-            routeToLoggedIn()
-        } else {
-            routeToLoggedOut()
-        }
+        router?.routeToSplash()
     }
 
     override func willResignActive() {
@@ -55,5 +53,14 @@ final class RootInteractor: PresentableInteractor<RootPresentable>,
 
     func detachToLoggedOut() {
         routeToLoggedOut()
+    }
+
+    func checkToken() {
+        router?.detachSplash()
+        if KeychainWrapper.getValue(forKey: .accessToken) != nil {
+            routeToLoggedIn()
+        } else {
+            routeToLoggedOut()
+        }
     }
 }
