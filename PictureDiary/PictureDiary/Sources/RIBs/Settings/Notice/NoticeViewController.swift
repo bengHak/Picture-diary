@@ -94,7 +94,6 @@ extension NoticeViewController {
 
         collectionView.rx.modelSelected(String.self)
             .subscribe(onNext: { [weak self] notice in
-                guard let self = self else { return }
                 print(notice)
             }).disposed(by: bag)
     }

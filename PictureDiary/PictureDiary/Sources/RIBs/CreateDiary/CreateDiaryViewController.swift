@@ -348,18 +348,17 @@ extension CreateDiaryViewController {
 
         appBarTop.btnCompleted.rx.tap
             .subscribe(onNext: { [weak self] _ in
-                guard let self = self else { return }
-
-                if self.textview.text.isEmpty {
-                    #warning("텍스트 없는 일기는 저장하지 않게하는 로직 추가하기")
-                    print("🔴 일기가 입력되지 않았습니다.")
-                    return
-                }
+                guard let self = self,
+                      let image = self.drawingImage.value,
+                      !image.imageIsEmpty() else {
+                          print("⚠️ 비어있는 그림입니다.")
+                          return
+                      }
                 self.uploadLoadingView.isHidden = false
                 self.listener?.tapDrawingCompleteButton(
                     date: self.currentDate,
                     weather: self.currentWeather,
-                    drawing: self.drawingImage.value!.pngData() ?? Data(),
+                    drawing: image.pngData() ?? Data(),
                     content: self.textview.text
                 )
             }).disposed(by: bag)

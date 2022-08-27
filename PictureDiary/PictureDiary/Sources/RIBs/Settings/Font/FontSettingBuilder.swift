@@ -24,7 +24,7 @@ final class FontSettingBuilder: Builder<FontSettingDependency>, FontSettingBuild
     }
 
     func build(withListener listener: FontSettingListener) -> FontSettingRouting {
-        let component = FontSettingComponent(dependency: dependency)
+        _ = FontSettingComponent(dependency: dependency)
         let viewController = FontSettingViewController()
         let interactor = FontSettingInteractor(presenter: viewController)
         interactor.listener = listener

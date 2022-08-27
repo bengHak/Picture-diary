@@ -24,7 +24,7 @@ final class NoticeBuilder: Builder<NoticeDependency>, NoticeBuildable {
     }
 
     func build(withListener listener: NoticeListener) -> NoticeRouting {
-        let component = NoticeComponent(dependency: dependency)
+        _ = NoticeComponent(dependency: dependency)
         let viewController = NoticeViewController()
         let interactor = NoticeInteractor(presenter: viewController)
         interactor.listener = listener
