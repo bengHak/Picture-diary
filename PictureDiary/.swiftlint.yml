@@ -1,2 +1,5 @@
 identifier_name:
   min_length: 1 # min_length에서
+
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Pods
