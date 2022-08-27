@@ -40,7 +40,6 @@ extension UIFont {
         case kyobo      = "KyoboHandwriting2020"
         case dulGiMayo  = "Dovemayo-Medium"
         case ubiQueen   = "UhBeeQUEENJ"
-#warning("ubiSulGi 글씨체로 '팦' 쓰면 에러납니다")
         case ubiSulGi   = "UhBeeSeulvely"
         case ubiNamSo   = "UhBeeNamsoyoung"
         case ubiTokyo   = "UhBeeDongKyung"

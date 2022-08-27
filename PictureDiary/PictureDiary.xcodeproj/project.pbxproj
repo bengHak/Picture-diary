@@ -8,10 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		24EB20180727972942353397 /* Pods_PictureDiary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BD7439747D5C95598B0B8C8 /* Pods_PictureDiary.framework */; };
+		602A74F128B9DAB000EEB554 /* complete.json in Resources */ = {isa = PBXBuildFile; fileRef = 602A74F028B9DAB000EEB554 /* complete.json */; };
+		602A74F728B9DE9B00EEB554 /* nothing.json in Resources */ = {isa = PBXBuildFile; fileRef = 602A74F528B9DE9B00EEB554 /* nothing.json */; };
+		602A74F828B9DE9B00EEB554 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 602A74F628B9DE9B00EEB554 /* loading.json */; };
 		603DA7CA28AE15D1007DF755 /* PictureDiary.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = EA01F9D9282A67C600A6E450 /* PictureDiary.xcdatamodeld */; };
 		607E30D728AE148A00BEA4DF /* PictureDiary+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607E30D428AE148A00BEA4DF /* PictureDiary+CoreDataClass.swift */; };
 		607E30D828AE148A00BEA4DF /* PictureDiary+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607E30D628AE148A00BEA4DF /* PictureDiary+CoreDataProperties.swift */; };
 		607E8033289EE6560097FD8A /* ModelDiaryImageUploadResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607E8032289EE6560097FD8A /* ModelDiaryImageUploadResponse.swift */; };
+		608A379328B9D3EE00F189C3 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 608A379228B9D3EE00F189C3 /* splash.json */; };
 		60D307B028B5F286006E7514 /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D307AC28B5F286006E7514 /* SettingsRouter.swift */; };
 		60D307B128B5F286006E7514 /* SettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D307AD28B5F286006E7514 /* SettingsInteractor.swift */; };
 		60D307B228B5F286006E7514 /* SettingsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D307AE28B5F286006E7514 /* SettingsBuilder.swift */; };
@@ -152,9 +156,13 @@
 /* Begin PBXFileReference section */
 		0E1E6D44D6FF25BF23E8C1BC /* Pods-PictureDiary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PictureDiary.release.xcconfig"; path = "Target Support Files/Pods-PictureDiary/Pods-PictureDiary.release.xcconfig"; sourceTree = "<group>"; };
 		45B77415E2E9170140664D7F /* Pods-PictureDiary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PictureDiary.debug.xcconfig"; path = "Target Support Files/Pods-PictureDiary/Pods-PictureDiary.debug.xcconfig"; sourceTree = "<group>"; };
+		602A74F028B9DAB000EEB554 /* complete.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = complete.json; sourceTree = "<group>"; };
+		602A74F528B9DE9B00EEB554 /* nothing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = nothing.json; sourceTree = "<group>"; };
+		602A74F628B9DE9B00EEB554 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		607E30D428AE148A00BEA4DF /* PictureDiary+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PictureDiary+CoreDataClass.swift"; path = "/Users/kobyunghak/Documents/xcode_workspace/PictureDiary-iOS/PictureDiary/PictureDiary/Sources/CoreData/PictureDiary+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		607E30D628AE148A00BEA4DF /* PictureDiary+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PictureDiary+CoreDataProperties.swift"; path = "/Users/kobyunghak/Documents/xcode_workspace/PictureDiary-iOS/PictureDiary/PictureDiary/Sources/CoreData/PictureDiary+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		607E8032289EE6560097FD8A /* ModelDiaryImageUploadResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelDiaryImageUploadResponse.swift; sourceTree = "<group>"; };
+		608A379228B9D3EE00F189C3 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		60D307AC28B5F286006E7514 /* SettingsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
 		60D307AD28B5F286006E7514 /* SettingsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsInteractor.swift; sourceTree = "<group>"; };
 		60D307AE28B5F286006E7514 /* SettingsBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsBuilder.swift; sourceTree = "<group>"; };
@@ -325,6 +333,17 @@
 				9BD7439747D5C95598B0B8C8 /* Pods_PictureDiary.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		602A74F428B9DE8600EEB554 /* Lotties */ = {
+			isa = PBXGroup;
+			children = (
+				602A74F028B9DAB000EEB554 /* complete.json */,
+				602A74F628B9DE9B00EEB554 /* loading.json */,
+				602A74F528B9DE9B00EEB554 /* nothing.json */,
+				608A379228B9D3EE00F189C3 /* splash.json */,
+			);
+			path = Lotties;
 			sourceTree = "<group>";
 		};
 		60D307AB28B5F286006E7514 /* Settings */ = {
@@ -591,6 +610,7 @@
 		EAFE864227D0DE8100519243 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				602A74F428B9DE8600EEB554 /* Lotties */,
 				EAFE863627D0CD8D00519243 /* LaunchScreen.storyboard */,
 				EAFE863427D0CD8D00519243 /* Assets.xcassets */,
 				EAFE864627D0DFC600519243 /* Fonts */,
@@ -903,10 +923,13 @@
 				603DA7CA28AE15D1007DF755 /* PictureDiary.xcdatamodeld in Resources */,
 				EABF180127DBBABF002740C0 /* Pretendard-ExtraLight.otf in Resources */,
 				EABF180527DBBABF002740C0 /* Pretendard-Thin.otf in Resources */,
+				602A74F128B9DAB000EEB554 /* complete.json in Resources */,
 				EAFE863827D0CD8D00519243 /* LaunchScreen.storyboard in Resources */,
+				608A379328B9D3EE00F189C3 /* splash.json in Resources */,
 				EABF181A27DC500A002740C0 /* UhBee-puding.ttf in Resources */,
 				EABF181927DC500A002740C0 /* BMYEONSUNG.ttf in Resources */,
 				EABF180027DBBABF002740C0 /* Pretendard-Bold.otf in Resources */,
+				602A74F828B9DE9B00EEB554 /* loading.json in Resources */,
 				EABF181B27DC500A002740C0 /* KyoboHandwriting2020pdy.otf in Resources */,
 				EAFE863527D0CD8D00519243 /* Assets.xcassets in Resources */,
 				EABF180227DBBABF002740C0 /* Pretendard-Light.otf in Resources */,
@@ -917,6 +940,7 @@
 				EABF17FF27DBBABF002740C0 /* Pretendard-ExtraBold.otf in Resources */,
 				EABF181827DC500A002740C0 /* UhBee-DongKyung.ttf in Resources */,
 				EABF181427DC500A002740C0 /* UhBee-Seulvely-2.ttf in Resources */,
+				602A74F728B9DE9B00EEB554 /* nothing.json in Resources */,
 				EABF181C27DC500A002740C0 /* UhBee-QUEEN-J.ttf in Resources */,
 				EABF181527DC500A002740C0 /* dovemayo.otf in Resources */,
 				EABF181627DC500A002740C0 /* UhBee-namsoyoung.ttf in Resources */,

@@ -44,6 +44,8 @@ final class DiaryListViewController: UIViewController,
     /// 아직 작성된 일기장이 없어요 뷰
     private let emptyDiaryView = EmptyDiaryListView()
 
+    private var loadingView: LoadingView!
+
     // MARK: - Properties
     private let bag = DisposeBag()
     private let diaryList: BehaviorRelay<[ModelDiaryResponse]>
@@ -73,6 +75,19 @@ final class DiaryListViewController: UIViewController,
     }
 
     // MARK: - Helpers
+    func showLoadingView() {
+        loadingView = LoadingView()
+        view.addSubview(loadingView)
+        loadingView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        loadingView.isHidden = false
+    }
+
+    func hideLoadingView() {
+        loadingView.isHidden = true
+        loadingView = nil
+    }
 }
 
 // MARK: BaseViewController

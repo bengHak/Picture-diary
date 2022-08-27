@@ -41,6 +41,7 @@ target 'PictureDiary' do
   # 🎨 UI
   binary_pod 'SnapKit', '~> 5.6.0'
   binary_pod 'IQKeyboardManagerSwift'
+  pod 'lottie-ios', :git => 'git@github.com:airbnb/lottie-ios.git', :binary => true
 
   # 🛠 Utils
   binary_pod 'Then'

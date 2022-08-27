@@ -14,7 +14,9 @@ protocol SplashPresentable: Presentable {
     var listener: SplashPresentableListener? { get set }
 }
 
-protocol SplashListener: AnyObject { }
+protocol SplashListener: AnyObject {
+    func checkToken()
+}
 
 final class SplashInteractor: PresentableInteractor<SplashPresentable>, SplashInteractable, SplashPresentableListener {
 
@@ -32,5 +34,9 @@ final class SplashInteractor: PresentableInteractor<SplashPresentable>, SplashIn
 
     override func willResignActive() {
         super.willResignActive()
+    }
+
+    func checkToken() {
+        listener?.checkToken()
     }
 }

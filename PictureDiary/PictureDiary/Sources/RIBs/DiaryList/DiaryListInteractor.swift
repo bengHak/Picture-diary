@@ -13,13 +13,15 @@ protocol DiaryListRouting: ViewableRouting { }
 
 protocol DiaryListPresentable: Presentable {
     var listener: DiaryListPresentableListener? { get set }
+    func showLoadingView()
+    func hideLoadingView()
 }
 
 protocol DiaryListListener: AnyObject {
     func routeToCreateDiary()
     func routeToDiaryDetail(diaryId: Int)
     func attachRandomDiary()
-    func fetchRandomDiary()
+    func fetchRandomDiary(_ completion: @escaping (Bool)->Void)
     func attachSettings()
 }
 
@@ -36,6 +38,8 @@ final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>,
     weak var listener: DiaryListListener?
     private let diaryList: BehaviorRelay<[ModelDiaryResponse]>
     private let diaryRepository: DiaryRepositoryProtocol
+    private let initialListFetchFinished: BehaviorRelay<Bool>
+    private let initialRandomDiaryFetchFinished: BehaviorRelay<Bool>
     private let bag: DisposeBag
     private let dataHelper: CDPictureDiaryHandler
 
@@ -45,6 +49,8 @@ final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>,
     ) {
         self.diaryList = dependency.diaryList
         self.diaryRepository = dependency.diaryRepository
+        self.initialListFetchFinished = BehaviorRelay<Bool>(value: false)
+        self.initialRandomDiaryFetchFinished = BehaviorRelay<Bool>(value: false)
         self.bag = DisposeBag()
         self.dataHelper = CDPictureDiaryHandler.shared
         super.init(presenter: presenter)
@@ -53,8 +59,13 @@ final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>,
 
     override func didBecomeActive() {
         super.didBecomeActive()
+        presenter.showLoadingView()
         fetchDiaryList()
-        listener?.fetchRandomDiary()
+        listener?.fetchRandomDiary { [weak self] finished in
+            guard let self = self else { return }
+            self.initialRandomDiaryFetchFinished.accept(finished)
+        }
+        bindInitialFetch()
     }
 
     override func willResignActive() {
@@ -80,6 +91,7 @@ final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>,
                     return modifiedDiary
                 }
                 self.diaryList.accept(modified)
+                self.initialListFetchFinished.accept(true)
             }).disposed(by: bag)
     }
 
@@ -93,5 +105,23 @@ final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>,
 
     func attachSettings() {
         listener?.attachSettings()
+    }
+
+    func bindInitialFetch() {
+        initialListFetchFinished
+            .bind(onNext: { [weak self] finished in
+                guard let self = self else { return }
+                if self.initialRandomDiaryFetchFinished.value && finished {
+                    self.presenter.hideLoadingView()
+                }
+            }).disposed(by: bag)
+
+        initialRandomDiaryFetchFinished
+            .bind(onNext: { [weak self] finished in
+                guard let self = self else { return }
+                if self.initialListFetchFinished.value && finished {
+                    self.presenter.hideLoadingView()
+                }
+            }).disposed(by: bag)
     }
 }
