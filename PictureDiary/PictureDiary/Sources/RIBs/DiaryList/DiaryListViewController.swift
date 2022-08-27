@@ -44,7 +44,7 @@ final class DiaryListViewController: UIViewController,
     /// 아직 작성된 일기장이 없어요 뷰
     private let emptyDiaryView = EmptyDiaryListView()
 
-    private var loadingView: LoadingView!
+    private var loadingView: LoadingView?
 
     // MARK: - Properties
     private let bag = DisposeBag()
@@ -77,16 +77,18 @@ final class DiaryListViewController: UIViewController,
     // MARK: - Helpers
     func showLoadingView() {
         loadingView = LoadingView()
-        view.addSubview(loadingView)
-        loadingView.snp.makeConstraints {
+        if loadingView == nil { return }
+        view.addSubview(loadingView!)
+        loadingView!.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        loadingView.isHidden = false
+        loadingView!.isHidden = false
     }
 
     func hideLoadingView() {
+        guard let loadingView = loadingView else { return }
         loadingView.isHidden = true
-        loadingView = nil
+        self.loadingView = nil
     }
 }
 
