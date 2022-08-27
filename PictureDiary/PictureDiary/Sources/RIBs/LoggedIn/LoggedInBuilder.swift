@@ -19,12 +19,14 @@ final class LoggedInComponent: Component<LoggedInDependency>,
                                DiaryDetailDependency,
                                CreateDiaryDependency,
                                LoggedInInteractorDependency,
-                               RandomDiaryDependency {
+                               RandomDiaryDependency,
+                               SettingsDependency {
+
     fileprivate var splitViewController: UISplitViewController {
         return dependency.splitViewController
     }
 
-    fileprivate var primaryVieController: UINavigationController {
+    var primaryViewController: UINavigationController {
         return dependency.primaryViewController
     }
 
@@ -65,16 +67,18 @@ final class LoggedInBuilder: Builder<LoggedInDependency>, LoggedInBuildable {
         let diaryDetail = DiaryDetailBuilder(dependency: component)
         let createDiary = CreateDiaryBuilder(dependency: component)
         let randomDiary = RandomDiaryBuilder(dependency: component)
+        let settings = SettingsBuilder(dependency: component)
 
         return LoggedInRouter(
             interactor: interactor,
             splitViewController: component.splitViewController,
-            primaryViewController: component.primaryVieController,
+            primaryViewController: component.primaryViewController,
             secondaryViewController: component.secondaryViewController,
             diaryListBuilder: diaryList,
             diaryDetailBuilder: diaryDetail,
             createDiaryBuilder: createDiary,
-            randomDiaryBuilder: randomDiary
+            randomDiaryBuilder: randomDiary,
+            settingsBuilder: settings
         )
     }
 }

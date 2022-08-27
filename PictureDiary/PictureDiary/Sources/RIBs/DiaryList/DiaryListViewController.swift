@@ -150,6 +150,12 @@ extension DiaryListViewController {
                 guard let self = self else { return }
                 self.listener?.attachRandomDiary()
             }).disposed(by: bag)
+
+        appBarTopView.btnSetting.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.listener?.attachSettings()
+            }).disposed(by: bag)
     }
 
     func bindCollectionView() {
@@ -191,6 +197,7 @@ extension DiaryListViewController {
                     return
                 }
                 self.listener?.fetchDiaryList()
+                self.collectionView.reloadData()
             }).disposed(by: bag)
     }
 }

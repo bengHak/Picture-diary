@@ -39,9 +39,11 @@ final class LoggedOutBuilder: Builder<LoggedOutDependency>, LoggedOutBuildable {
 
         let snsLogin = SNSLoginBuilder(dependency: component)
         let vanishingCompletion = VanishingCompletionBuilder(dependency: component)
-        return LoggedOutRouter(interactor: interactor,
-                               viewController: component.loggedOutViewController,
-                               snsLoginBuilder: snsLogin,
-                               vanishingCompletionBuilder: vanishingCompletion)
+        return LoggedOutRouter(
+            interactor: interactor,
+            viewController: component.loggedOutViewController,
+            snsLoginBuilder: snsLogin,
+            vanishingCompletionBuilder: vanishingCompletion
+        )
     }
 }

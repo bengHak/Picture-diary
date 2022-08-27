@@ -17,9 +17,7 @@ final class DiaryCollectionViewCell: UICollectionViewCell {
     private let uiview = UIView()
 
     /// 날짜
-    private let lblDate = UILabel().then {
-        $0.font = .DefaultFont.body2.font()
-    }
+    private let lblDate = UILabel()
 
     /// 날씨
     private let ivWeather = UIImageView()
@@ -81,6 +79,7 @@ final class DiaryCollectionViewCell: UICollectionViewCell {
 
     func setData(diary: ModelDiaryResponse) {
         lblDate.text = diary.getDate().formattedString()
+        lblDate.font = .DefaultFont.body2.font()
 
         if let drawingData = diary.imageData {
             ivThumbnail.image = UIImage(data: drawingData)
