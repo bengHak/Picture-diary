@@ -11,7 +11,8 @@ protocol LoggedInInteractable: Interactable,
                                DiaryListListener,
                                DiaryDetailListener,
                                CreateDiaryListener,
-                               RandomDiaryListener {
+                               RandomDiaryListener,
+                               SettingsListener {
     var router: LoggedInRouting? { get set }
     var listener: LoggedInListener? { get set }
 }
@@ -26,7 +27,8 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
         diaryListBuilder: DiaryListBuildable,
         diaryDetailBuilder: DiaryDetailBuildable,
         createDiaryBuilder: CreateDiaryBuildable,
-        randomDiaryBuilder: RandomDiaryBuildable
+        randomDiaryBuilder: RandomDiaryBuildable,
+        settingsBuilder: SettingsBuildable
     ) {
         self.splitViewController = splitViewController
         self.primaryViewController = primaryViewController
@@ -35,6 +37,7 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
         self.diaryDetailBuilder = diaryDetailBuilder
         self.createDiaryBuilder = createDiaryBuilder
         self.randomDiaryBuilder = randomDiaryBuilder
+        self.settingsBuilder = settingsBuilder
         super.init(interactor: interactor)
         interactor.router = self
     }
@@ -117,6 +120,23 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
         }
     }
 
+    // MARK: - Settings
+    func attachSettings() {
+        let router = settingsBuilder.build(withListener: interactor)
+        settingsRouter = router
+        attachChild(router)
+        let vc = router.viewControllable.uiviewController
+        vc.navigationItem.hidesBackButton = true
+        primaryViewController.pushViewController(vc, animated: false)
+    }
+
+    func detachSettings() {
+        if let router = settingsRouter {
+            popViewController(router.viewControllable.uiviewController)
+            detachChild(router)
+        }
+    }
+
     // MARK: - Private
     private let diaryListBuilder: DiaryListBuildable
     private var diaryListRouter: DiaryListRouting?
@@ -130,6 +150,9 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
     private let randomDiaryBuilder: RandomDiaryBuildable
     private var randomDiaryRouter: RandomDiaryRouting?
 
+    private let settingsBuilder: SettingsBuildable
+    private var settingsRouter: SettingsRouting?
+
     private let splitViewController: UISplitViewController
     private let primaryViewController: UINavigationController
     private let secondaryViewController: UINavigationController
@@ -137,22 +160,23 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
     // MARK: - Helpers
     private func cleanupPrimaryViews() {
         detachDiaryList()
+        detachSettings()
     }
 
     private func cleanupSecondaryViews() {
         if diaryDetailRouter != nil {
             detachDiaryDetail()
-            diaryDetailRouter = nil
+//            diaryDetailRouter = nil
         }
 
         if createDiaryRouter != nil {
             detachCreateDiary()
-            createDiaryRouter = nil
+//            createDiaryRouter = nil
         }
 
         if randomDiaryRouter != nil {
             detachRandomDiary()
-            randomDiaryRouter = nil
+//            randomDiaryRouter = nil
         }
     }
 

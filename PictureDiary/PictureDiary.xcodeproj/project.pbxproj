@@ -12,6 +12,22 @@
 		607E30D728AE148A00BEA4DF /* PictureDiary+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607E30D428AE148A00BEA4DF /* PictureDiary+CoreDataClass.swift */; };
 		607E30D828AE148A00BEA4DF /* PictureDiary+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607E30D628AE148A00BEA4DF /* PictureDiary+CoreDataProperties.swift */; };
 		607E8033289EE6560097FD8A /* ModelDiaryImageUploadResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607E8032289EE6560097FD8A /* ModelDiaryImageUploadResponse.swift */; };
+		60D307B028B5F286006E7514 /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D307AC28B5F286006E7514 /* SettingsRouter.swift */; };
+		60D307B128B5F286006E7514 /* SettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D307AD28B5F286006E7514 /* SettingsInteractor.swift */; };
+		60D307B228B5F286006E7514 /* SettingsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D307AE28B5F286006E7514 /* SettingsBuilder.swift */; };
+		60D307B328B5F286006E7514 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D307AF28B5F286006E7514 /* SettingsViewController.swift */; };
+		60D307B528B60740006E7514 /* SettingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D307B428B60740006E7514 /* SettingType.swift */; };
+		60D307B728B79405006E7514 /* SettingsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D307B628B79405006E7514 /* SettingsCollectionViewCell.swift */; };
+		60D307CC28B889EA006E7514 /* FontSettingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D307C828B889EA006E7514 /* FontSettingRouter.swift */; };
+		60D307CD28B889EA006E7514 /* FontSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D307C928B889EA006E7514 /* FontSettingViewController.swift */; };
+		60D307CE28B889EA006E7514 /* FontSettingBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D307CA28B889EA006E7514 /* FontSettingBuilder.swift */; };
+		60D307CF28B889EA006E7514 /* FontSettingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D307CB28B889EA006E7514 /* FontSettingInteractor.swift */; };
+		60D307D228B88A67006E7514 /* FontSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D307D128B88A67006E7514 /* FontSettingCell.swift */; };
+		60D307D728B8EB91006E7514 /* NoticeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D307D328B8EB91006E7514 /* NoticeRouter.swift */; };
+		60D307D828B8EB91006E7514 /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D307D428B8EB91006E7514 /* NoticeViewController.swift */; };
+		60D307D928B8EB91006E7514 /* NoticeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D307D528B8EB91006E7514 /* NoticeBuilder.swift */; };
+		60D307DA28B8EB91006E7514 /* NoticeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D307D628B8EB91006E7514 /* NoticeInteractor.swift */; };
+		60D307DD28B907D4006E7514 /* NoticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D307DC28B907D4006E7514 /* NoticeCell.swift */; };
 		92EAA4EB9351DECAA3FD6804 /* PaletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EAA71955F25FB0FBCEFCAE /* PaletteView.swift */; };
 		EA08CF822858553E00A0A029 /* ShareInstagramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA08CF812858553E00A0A029 /* ShareInstagramView.swift */; };
 		EA08CF842858B84E00A0A029 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA08CF832858B84E00A0A029 /* AuthRepository.swift */; };
@@ -139,6 +155,22 @@
 		607E30D428AE148A00BEA4DF /* PictureDiary+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PictureDiary+CoreDataClass.swift"; path = "/Users/kobyunghak/Documents/xcode_workspace/PictureDiary-iOS/PictureDiary/PictureDiary/Sources/CoreData/PictureDiary+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		607E30D628AE148A00BEA4DF /* PictureDiary+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PictureDiary+CoreDataProperties.swift"; path = "/Users/kobyunghak/Documents/xcode_workspace/PictureDiary-iOS/PictureDiary/PictureDiary/Sources/CoreData/PictureDiary+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		607E8032289EE6560097FD8A /* ModelDiaryImageUploadResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelDiaryImageUploadResponse.swift; sourceTree = "<group>"; };
+		60D307AC28B5F286006E7514 /* SettingsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
+		60D307AD28B5F286006E7514 /* SettingsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsInteractor.swift; sourceTree = "<group>"; };
+		60D307AE28B5F286006E7514 /* SettingsBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsBuilder.swift; sourceTree = "<group>"; };
+		60D307AF28B5F286006E7514 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		60D307B428B60740006E7514 /* SettingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingType.swift; sourceTree = "<group>"; };
+		60D307B628B79405006E7514 /* SettingsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCollectionViewCell.swift; sourceTree = "<group>"; };
+		60D307C828B889EA006E7514 /* FontSettingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSettingRouter.swift; sourceTree = "<group>"; };
+		60D307C928B889EA006E7514 /* FontSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSettingViewController.swift; sourceTree = "<group>"; };
+		60D307CA28B889EA006E7514 /* FontSettingBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSettingBuilder.swift; sourceTree = "<group>"; };
+		60D307CB28B889EA006E7514 /* FontSettingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSettingInteractor.swift; sourceTree = "<group>"; };
+		60D307D128B88A67006E7514 /* FontSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSettingCell.swift; sourceTree = "<group>"; };
+		60D307D328B8EB91006E7514 /* NoticeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeRouter.swift; sourceTree = "<group>"; };
+		60D307D428B8EB91006E7514 /* NoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
+		60D307D528B8EB91006E7514 /* NoticeBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeBuilder.swift; sourceTree = "<group>"; };
+		60D307D628B8EB91006E7514 /* NoticeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeInteractor.swift; sourceTree = "<group>"; };
+		60D307DC28B907D4006E7514 /* NoticeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeCell.swift; sourceTree = "<group>"; };
 		92EAA71955F25FB0FBCEFCAE /* PaletteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteView.swift; sourceTree = "<group>"; };
 		9BD7439747D5C95598B0B8C8 /* Pods_PictureDiary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PictureDiary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA01F9DA282A67C600A6E450 /* PictureDiary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PictureDiary.xcdatamodel; sourceTree = "<group>"; };
@@ -293,6 +325,44 @@
 				9BD7439747D5C95598B0B8C8 /* Pods_PictureDiary.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		60D307AB28B5F286006E7514 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				60D307AC28B5F286006E7514 /* SettingsRouter.swift */,
+				60D307AD28B5F286006E7514 /* SettingsInteractor.swift */,
+				60D307AE28B5F286006E7514 /* SettingsBuilder.swift */,
+				60D307AF28B5F286006E7514 /* SettingsViewController.swift */,
+				60D307B628B79405006E7514 /* SettingsCollectionViewCell.swift */,
+				60D307D028B889F6006E7514 /* Font */,
+				60D307DB28B8EB96006E7514 /* Notice */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		60D307D028B889F6006E7514 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				60D307C828B889EA006E7514 /* FontSettingRouter.swift */,
+				60D307C928B889EA006E7514 /* FontSettingViewController.swift */,
+				60D307CA28B889EA006E7514 /* FontSettingBuilder.swift */,
+				60D307CB28B889EA006E7514 /* FontSettingInteractor.swift */,
+				60D307D128B88A67006E7514 /* FontSettingCell.swift */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		60D307DB28B8EB96006E7514 /* Notice */ = {
+			isa = PBXGroup;
+			children = (
+				60D307D328B8EB91006E7514 /* NoticeRouter.swift */,
+				60D307D428B8EB91006E7514 /* NoticeViewController.swift */,
+				60D307D528B8EB91006E7514 /* NoticeBuilder.swift */,
+				60D307D628B8EB91006E7514 /* NoticeInteractor.swift */,
+				60D307DC28B907D4006E7514 /* NoticeCell.swift */,
+			);
+			path = Notice;
 			sourceTree = "<group>";
 		};
 		92EAAA92A22244A144185FF5 /* Palette */ = {
@@ -550,10 +620,12 @@
 		EAFE864727D0E1DF00519243 /* RIBs */ = {
 			isa = PBXGroup;
 			children = (
+				60D307AB28B5F286006E7514 /* Settings */,
 				EAFE864127D0DE6900519243 /* AppStart */,
 				EA98C4B027DEBF360045055D /* CreateDiary */,
 				EA625C3C282B2B04002BCABD /* DiaryDetail */,
 				EAB4542E27FC3DD00002A3B1 /* DiaryDrawing */,
+				EAFE869427D47F9900519243 /* SNSLogin */,
 				EAFE86C127D5A1DD00519243 /* DiaryList */,
 				EAB1E21027FADA9E00EEDFDF /* DiaryTextField */,
 				EAFE868627D368DF00519243 /* LoggedIn */,
@@ -629,6 +701,7 @@
 				EA2CDCB128153D0700E6C18F /* WeatherType.swift */,
 				EA51AB8A285D836100D9B294 /* ErrorType.swift */,
 				EA8E1B4B287BC8C4003ECD7B /* StampType.swift */,
+				60D307B428B60740006E7514 /* SettingType.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -748,7 +821,6 @@
 		EAFE86C127D5A1DD00519243 /* DiaryList */ = {
 			isa = PBXGroup;
 			children = (
-				EAFE869427D47F9900519243 /* SNSLogin */,
 				EAFE86C227D5C8F500519243 /* DiaryListRouter.swift */,
 				EAFE86C327D5C8F500519243 /* DiaryListViewController.swift */,
 				EAFE86C427D5C8F500519243 /* DiaryListBuilder.swift */,
@@ -937,11 +1009,13 @@
 			files = (
 				EABF17F127DB5786002740C0 /* EmptyDiaryListView.swift in Sources */,
 				EAFE869227D372FA00519243 /* LoggedInBuilder.swift in Sources */,
+				60D307B728B79405006E7514 /* SettingsCollectionViewCell.swift in Sources */,
 				EAFE868B27D372EB00519243 /* LoggedOutRouter.swift in Sources */,
 				EA2840252806CB6D00D8DCB1 /* PaletteColorCell.swift in Sources */,
 				EA98C4B627DEBF4B0045055D /* CreateDiaryViewController.swift in Sources */,
 				EAFE865527D22EAE00519243 /* AppComponent.swift in Sources */,
 				EA98C4B527DEBF4B0045055D /* CreateDiaryRouter.swift in Sources */,
+				60D307B028B5F286006E7514 /* SettingsRouter.swift in Sources */,
 				EAFE868D27D372EB00519243 /* LoggedOutInteractor.swift in Sources */,
 				EAFE86B427D499C300519243 /* VanishingCompletionInteractor.swift in Sources */,
 				EA8E1B53287C0817003ECD7B /* StampDrawerBuilder.swift in Sources */,
@@ -953,9 +1027,12 @@
 				EAFE862927D0CD8C00519243 /* AppDelegate.swift in Sources */,
 				EAFE867627D23BF700519243 /* RootViewController.swift in Sources */,
 				EAFE869B27D47FD100519243 /* SNSLoginBuilder.swift in Sources */,
+				60D307D728B8EB91006E7514 /* NoticeRouter.swift in Sources */,
+				60D307CC28B889EA006E7514 /* FontSettingRouter.swift in Sources */,
 				EA2840272807E7B300D8DCB1 /* UIColor+Ext.swift in Sources */,
 				EAF0C5982808339500E0640B /* ModalDialog.swift in Sources */,
 				EAFE869327D372FA00519243 /* LoggedInInteractor.swift in Sources */,
+				60D307D228B88A67006E7514 /* FontSettingCell.swift in Sources */,
 				EAFC1D61281D04B40072B995 /* Date+Ext.swift in Sources */,
 				EA08CF8C2858B99F00A0A029 /* GoogleAuth.swift in Sources */,
 				EAB1E21727FADB0000EEDFDF /* DiaryTextFieldBuilder.swift in Sources */,
@@ -966,22 +1043,27 @@
 				EAFE869C27D47FD100519243 /* SNSLoginInteractor.swift in Sources */,
 				EAFE867527D23BF700519243 /* RootRouter.swift in Sources */,
 				EADF7FAF2872C94000F35EF3 /* LoadingView.swift in Sources */,
+				60D307CD28B889EA006E7514 /* FontSettingViewController.swift in Sources */,
 				EAFE86B627D49B1400519243 /* ViewControllable+Ext.swift in Sources */,
 				EAFE86D627D5D23A00519243 /* AppBarTopType.swift in Sources */,
 				EAFE86FD27D8657D00519243 /* RootPrimaryViewController.swift in Sources */,
+				60D307CF28B889EA006E7514 /* FontSettingInteractor.swift in Sources */,
 				EA8E1B51287C0817003ECD7B /* StampDrawerRouter.swift in Sources */,
 				EAB4543527FC3DFC0002A3B1 /* DiaryDrawingBuilder.swift in Sources */,
 				EA08CF8A2858B99500A0A029 /* AppleAuth.swift in Sources */,
 				EA2CDCB228153D0700E6C18F /* WeatherType.swift in Sources */,
+				60D307B128B5F286006E7514 /* SettingsInteractor.swift in Sources */,
 				EA0A3C132865B41700BD779B /* DiaryAPI.swift in Sources */,
 				EA8E1B48287BB4E4003ECD7B /* RandomDiaryViewController.swift in Sources */,
 				EAFE869127D372FA00519243 /* LoggedInRouter.swift in Sources */,
+				60D307B328B5F286006E7514 /* SettingsViewController.swift in Sources */,
 				EAFE86A927D489E100519243 /* SplashInteractor.swift in Sources */,
 				EA51AB8B285D836100D9B294 /* ErrorType.swift in Sources */,
 				EAFE86A627D489E100519243 /* SplashRouter.swift in Sources */,
 				EAFE869927D47FD100519243 /* SNSLoginRouter.swift in Sources */,
 				EAFE867A27D3507100519243 /* BaseViewController.swift in Sources */,
 				EA98C4BA27DF04310045055D /* UITextView+Ext.swift in Sources */,
+				60D307DA28B8EB91006E7514 /* NoticeInteractor.swift in Sources */,
 				EA625C42282B2B23002BCABD /* DiaryDetailViewController.swift in Sources */,
 				EA0A3C172865C94000BD779B /* ModelCommonResponse.swift in Sources */,
 				EA08CF822858553E00A0A029 /* ShareInstagramView.swift in Sources */,
@@ -990,6 +1072,7 @@
 				EA8E1B54287C0817003ECD7B /* StampDrawerInteractor.swift in Sources */,
 				EAFE86C827D5C8F500519243 /* DiaryListBuilder.swift in Sources */,
 				EAB1E21527FADB0000EEDFDF /* DiaryTextFieldRouter.swift in Sources */,
+				60D307B528B60740006E7514 /* SettingType.swift in Sources */,
 				607E30D828AE148A00BEA4DF /* PictureDiary+CoreDataProperties.swift in Sources */,
 				EAFE86A727D489E100519243 /* SplashViewController.swift in Sources */,
 				EA108F89285B2E8A00F23226 /* ASAuthorizationControllerDelegateProxy.swift in Sources */,
@@ -1008,23 +1091,28 @@
 				EAB4543427FC3DFC0002A3B1 /* DiaryDrawingViewController.swift in Sources */,
 				EAF530332819C921001CE8FE /* CDPictureDiaryHandler.swift in Sources */,
 				EA98C4BE27DF137E0045055D /* UIImage+Ext.swift in Sources */,
+				60D307D928B8EB91006E7514 /* NoticeBuilder.swift in Sources */,
+				60D307DD28B907D4006E7514 /* NoticeCell.swift in Sources */,
 				EA9E04ED286056BE005845E4 /* DiaryRepository.swift in Sources */,
 				EA8E1B4C287BC8C4003ECD7B /* StampType.swift in Sources */,
 				EAFE86C627D5C8F500519243 /* DiaryListRouter.swift in Sources */,
 				EA98C4B827DEBF4B0045055D /* CreateDiaryInteractor.swift in Sources */,
 				EAFE86B327D499C300519243 /* VanishingCompletionBuilder.swift in Sources */,
 				EAFE867827D23BF700519243 /* RootInteractor.swift in Sources */,
+				60D307D828B8EB91006E7514 /* NoticeViewController.swift in Sources */,
 				607E8033289EE6560097FD8A /* ModelDiaryImageUploadResponse.swift in Sources */,
 				EAFE86FF27D8658D00519243 /* RootSecondaryViewController.swift in Sources */,
 				EA9E04EF28605809005845E4 /* ModelDiaryResponse.swift in Sources */,
 				607E30D728AE148A00BEA4DF /* PictureDiary+CoreDataClass.swift in Sources */,
 				EAFE869A27D47FD100519243 /* SNSLoginViewController.swift in Sources */,
+				60D307B228B5F286006E7514 /* SettingsBuilder.swift in Sources */,
 				EAFE868C27D372EB00519243 /* LoggedOutBuilder.swift in Sources */,
 				EA108F8F285C5C0200F23226 /* ServiceAPI.swift in Sources */,
 				EAB4543327FC3DFC0002A3B1 /* DiaryDrawingRouter.swift in Sources */,
 				EAFE862B27D0CD8C00519243 /* SceneDelegate.swift in Sources */,
 				EAFE868427D362EB00519243 /* UILabel+Ext.swift in Sources */,
 				EA28402B2807F01900D8DCB1 /* AppColorType.swift in Sources */,
+				60D307CE28B889EA006E7514 /* FontSettingBuilder.swift in Sources */,
 				EAFE86D827D5F14800519243 /* RootSplitViewController.swift in Sources */,
 				EABF17F427DBB86F002740C0 /* DiaryCollectionViewCell.swift in Sources */,
 				EAFE86C927D5C8F500519243 /* DiaryListInteractor.swift in Sources */,
@@ -1181,7 +1269,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = PictureDiary/PictureDiary.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 92NGUT4BRA;
 				ENABLE_BITCODE = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1199,7 +1287,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.byunghak.PictureDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1217,7 +1305,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = PictureDiary/PictureDiary.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 92NGUT4BRA;
 				ENABLE_BITCODE = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1235,7 +1323,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.byunghak.PictureDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";

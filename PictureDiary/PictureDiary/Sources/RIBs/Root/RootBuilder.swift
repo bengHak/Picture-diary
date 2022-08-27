@@ -24,11 +24,13 @@ final class RootComponent: Component<RootDependency>,
     private let rootPrimaryViewController: UINavigationController
     private let rootSecondaryViewController: UINavigationController
 
-    init(dependency: RootDependency,
-         rootViewController: RootViewController,
-         rootSplitViewController: UISplitViewController,
-         rootPrimaryViewController: UINavigationController,
-         rootSecondaryViewController: UINavigationController) {
+    init(
+        dependency: RootDependency,
+        rootViewController: RootViewController,
+        rootSplitViewController: UISplitViewController,
+        rootPrimaryViewController: UINavigationController,
+        rootSecondaryViewController: UINavigationController
+    ) {
         self.rootViewController = rootViewController
         self.rootSplitViewController = rootSplitViewController
         self.rootPrimaryViewController = rootPrimaryViewController
@@ -59,23 +61,28 @@ final class RootBuilder: Builder<RootDependency>, RootBuildable {
         }
         let primaryVC = UINavigationController(rootViewController: RootPrimaryViewController())
         let secondaryVC = UINavigationController(rootViewController: RootSecondaryViewController())
-        let component = RootComponent(dependency: dependency,
-                                      rootViewController: viewController,
-                                      rootSplitViewController: splitVC,
-                                      rootPrimaryViewController: primaryVC,
-                                      rootSecondaryViewController: secondaryVC)
+        let component = RootComponent(
+            dependency: dependency,
+            rootViewController: viewController,
+            rootSplitViewController: splitVC,
+            rootPrimaryViewController: primaryVC,
+            rootSecondaryViewController: secondaryVC
+        )
         let interactor = RootInteractor(presenter: viewController)
 
         let loggedOutBuilder = LoggedOutBuilder(dependency: component)
         let loggedInBuilder = LoggedInBuilder(dependency: component)
         let splashBuilder = SplashBuilder(dependency: component)
-        return RootRouter(interactor: interactor,
-                          viewController: viewController,
-                          splitVC: splitVC,
-                          primaryVC: primaryVC,
-                          secondaryVC: secondaryVC,
-                          loggedInBuilder: loggedInBuilder,
-                          loggedOutBuilder: loggedOutBuilder,
-                          splashBuilder: splashBuilder)
+
+        return RootRouter(
+            interactor: interactor,
+            viewController: viewController,
+            splitVC: splitVC,
+            primaryVC: primaryVC,
+            secondaryVC: secondaryVC,
+            loggedInBuilder: loggedInBuilder,
+            loggedOutBuilder: loggedOutBuilder,
+            splashBuilder: splashBuilder
+        )
     }
 }

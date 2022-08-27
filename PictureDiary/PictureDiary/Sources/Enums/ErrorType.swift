@@ -10,6 +10,7 @@ import Foundation
 enum AuthError: Error {
     case serverSignInError
     case serverSignUpError
+    case serverLeaveError
 
     case invalidProviderToken
     case invalidAccessToken

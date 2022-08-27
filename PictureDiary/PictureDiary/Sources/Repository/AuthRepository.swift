@@ -13,6 +13,7 @@ protocol AuthRepositoryProtocol {
     func authorize(with provider: ProviderType) -> Observable<ModelTokenResponse>
     func signin(token: String, provider: ProviderType) -> Observable<ModelAuthResponse>
     func signup(token: String, provider: ProviderType) -> Observable<ModelAuthResponse>
+    func leave() -> Observable<CommonResponse>
 }
 
 final class AuthRepository: AuthRepositoryProtocol {
@@ -58,6 +59,18 @@ final class AuthRepository: AuthRepositoryProtocol {
                 print("서버 회원가입 요청 실패")
                 print(error)
                 return Observable.error(AuthError.serverSignUpError)
+            }
+    }
+
+    func leave() -> Observable<CommonResponse> {
+        return self.provider.rx.request(.leave)
+            .filterSuccessfulStatusCodes()
+            .map { $0.data }
+            .map { try JSONDecoder().decode(CommonResponse.self, from: $0) }
+            .asObservable()
+            .catch { error in
+                print(error)
+                return Observable.error(AuthError.serverLeaveError)
             }
     }
 }

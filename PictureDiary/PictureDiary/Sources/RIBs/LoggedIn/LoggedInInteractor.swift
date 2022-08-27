@@ -19,9 +19,13 @@ protocol LoggedInRouting: Routing {
     func detachDiaryDetail()
     func attachRandomDiary()
     func detachRandomDiary()
+    func attachSettings()
+    func detachSettings()
 }
 
-protocol LoggedInListener: AnyObject { }
+protocol LoggedInListener: AnyObject {
+    func detachToLoggedOut()
+}
 
 protocol LoggedInInteractorDependency {
     var pictureDiaryBehaviorRelay: BehaviorRelay<PictureDiary?> { get }
@@ -147,5 +151,23 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
                     }
                 }
             }).disposed(by: self.bag)
+    }
+
+    func attachSettings() {
+        router?.attachSettings()
+    }
+
+    // MARK: - Settings
+    func detachSettings() {
+        router?.detachSettings()
+    }
+
+    func detachToLoggedOut() {
+        router?.detachSettings()
+        listener?.detachToLoggedOut()
+    }
+
+    func reloadDiaryList() {
+        isRefreshNeed.accept(true)
     }
 }

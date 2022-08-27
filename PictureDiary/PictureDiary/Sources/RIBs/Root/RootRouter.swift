@@ -21,14 +21,16 @@ protocol RootViewControllable: ViewControllable {
 
 final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, RootRouting {
 
-    init(interactor: RootInteractable,
-         viewController: RootViewControllable,
-         splitVC: RootSplitViewController,
-         primaryVC: UINavigationController,
-         secondaryVC: UINavigationController,
-         loggedInBuilder: LoggedInBuildable,
-         loggedOutBuilder: LoggedOutBuildable,
-         splashBuilder: SplashBuildable) {
+    init(
+        interactor: RootInteractable,
+        viewController: RootViewControllable,
+        splitVC: RootSplitViewController,
+        primaryVC: UINavigationController,
+        secondaryVC: UINavigationController,
+        loggedInBuilder: LoggedInBuildable,
+        loggedOutBuilder: LoggedOutBuildable,
+        splashBuilder: SplashBuildable
+    ) {
         self.splitVC = splitVC
         self.primaryViewController = primaryVC
         self.secondaryViewController = secondaryVC
@@ -50,11 +52,6 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
         interactor.router = self
     }
 
-    override func didLoad() {
-        super.didLoad()
-        routeToLoggedOut()
-    }
-
     func routeToLoggedIn() {
         if let loggedOutRouter = loggedOutRouter {
             loggedOutRouter.cleanupViews()
@@ -71,7 +68,6 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
         if let loggedInRouter = loggedInRouter {
             loggedInRouter.cleanupViews()
             detachChild(loggedInRouter)
-            self.loggedInRouter = nil
         }
         switchToLoggedOutVC()
         let router = loggedOutBuilder.build(withListener: interactor)
@@ -80,8 +76,11 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
     }
 
     private func switchToSplitVC() {
-        viewController.uiviewController.view.window?.rootViewController = splitVC
-        viewController.uiviewController.view.window?.makeKeyAndVisible()
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.viewController.uiviewController.view.window?.rootViewController = self.splitVC
+            self.viewController.uiviewController.view.window?.makeKeyAndVisible()
+        }
     }
 
     private func switchToLoggedOutVC() {

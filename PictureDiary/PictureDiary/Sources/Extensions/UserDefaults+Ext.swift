@@ -15,4 +15,8 @@ extension UserDefaults {
         let fontString = UserDefaults.standard.string(forKey: Self.defaultFontStringKey) ?? ""
         return UIFont.DefaultFontType(rawValue: fontString) ?? UIFont.DefaultFontType.ubiSulGi
     }
+
+    class func setDefaultFont(_ font: UIFont.DefaultFontType) {
+        UserDefaults.standard.set(font.rawValue, forKey: Self.defaultFontStringKey)
+    }
 }

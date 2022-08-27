@@ -46,6 +46,27 @@ extension UIFont {
         case ubiTokyo   = "UhBeeDongKyung"
         case ubiHam     = "UhBeeHamBold"
         case ubiPudding = "UhBeepuding"
+
+        var name: String {
+            switch self {
+            case .kyobo:
+                return "교보손글씨 2019"
+            case .dulGiMayo:
+                 return "둘기마요 중간체"
+            case .ubiQueen:
+                return "어비퀸제이"
+            case .ubiSulGi:
+                return "어비 슬기로운 생활체"
+            case .ubiNamSo:
+                return "어비남소영"
+            case .ubiTokyo:
+                return "어비 동경체"
+            case .ubiHam:
+                return "어비 햄체(bold)"
+            case .ubiPudding:
+                return "어비찌풍딩체"
+            }
+        }
     }
 
     // MARK: - Pretendard Font

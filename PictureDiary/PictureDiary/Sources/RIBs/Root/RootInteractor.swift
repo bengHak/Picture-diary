@@ -7,9 +7,11 @@
 
 import RIBs
 import RxSwift
+import SwiftKeychainWrapper
 
 protocol RootRouting: ViewableRouting {
     func routeToLoggedIn()
+    func routeToLoggedOut()
 }
 
 protocol RootPresentable: Presentable {
@@ -32,13 +34,26 @@ final class RootInteractor: PresentableInteractor<RootPresentable>,
 
     override func didBecomeActive() {
         super.didBecomeActive()
+        if KeychainWrapper.getValue(forKey: .accessToken) != nil {
+            routeToLoggedIn()
+        } else {
+            routeToLoggedOut()
+        }
     }
 
     override func willResignActive() {
         super.willResignActive()
     }
 
+    func routeToLoggedOut() {
+        router?.routeToLoggedOut()
+    }
+
     func routeToLoggedIn() {
         router?.routeToLoggedIn()
+    }
+
+    func detachToLoggedOut() {
+        routeToLoggedOut()
     }
 }

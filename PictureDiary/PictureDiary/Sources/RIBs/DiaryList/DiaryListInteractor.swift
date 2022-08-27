@@ -20,6 +20,7 @@ protocol DiaryListListener: AnyObject {
     func routeToDiaryDetail(diaryId: Int)
     func attachRandomDiary()
     func fetchRandomDiary()
+    func attachSettings()
 }
 
 protocol DiaryListInteractorDependency {
@@ -91,6 +92,6 @@ final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>,
     }
 
     func attachSettings() {
-
+        listener?.attachSettings()
     }
 }
