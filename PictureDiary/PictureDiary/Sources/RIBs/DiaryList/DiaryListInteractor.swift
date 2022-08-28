@@ -21,7 +21,7 @@ protocol DiaryListListener: AnyObject {
     func routeToCreateDiary()
     func routeToDiaryDetail(diaryId: Int)
     func attachRandomDiary()
-    func fetchRandomDiary(_ completion: @escaping (Bool)->Void)
+    func fetchRandomDiary(_ completion: @escaping (Bool) -> Void)
     func attachSettings()
 }
 
@@ -60,12 +60,12 @@ final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>,
     override func didBecomeActive() {
         super.didBecomeActive()
         presenter.showLoadingView()
+        bindInitialFetch()
         fetchDiaryList()
         listener?.fetchRandomDiary { [weak self] finished in
             guard let self = self else { return }
             self.initialRandomDiaryFetchFinished.accept(finished)
         }
-        bindInitialFetch()
     }
 
     override func willResignActive() {
