@@ -136,12 +136,15 @@ final class ShareInstagramView: UIView {
 
     private func setData() {
         guard let imageUrl = diary.imageUrl,
-              let text = diary.content,
               let date = diary.date else {
             print("ShareInstagramView - invalid diary")
             return
         }
-        diaryTextView.setAttributedText(text, lineSpacing: diaryTextLineHeight ?? 10, font: .body2)
+
+        if let text = diary.content {
+            diaryTextView.setAttributedText(text, lineSpacing: diaryTextLineHeight ?? 10, font: .body2)
+        }
+
         let url = URL(string: imageUrl)
         ivPicture.kf.setImage(with: url)
         lblWeather.text = date.formattedString()

@@ -80,6 +80,7 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
                 if let diary = CDPictureDiaryHandler.shared.getDiaryById(diaryId) {
                     diary.content = diaryResponse.content
                     diary.stampList = diaryResponse.stampList ?? []
+                    CDPictureDiaryHandler.shared.updateCachedRandomDiary(diaryResponse)
                     self.pictureDiaryBehaviorRelay.accept(diary)
                     self.router?.attachDiaryDetail()
                 } else {

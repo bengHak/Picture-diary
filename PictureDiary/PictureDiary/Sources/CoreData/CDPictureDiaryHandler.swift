@@ -116,6 +116,16 @@ class CDPictureDiaryHandler {
             return
         }
 
+        if let cachedDiary = getDiaryById(id) {
+            cachedDiary.stampList = diaryResponse.stampList ?? []
+            cachedDiary.content = diaryResponse.content
+            cached = cached.filter { $0.id != cachedDiary.id }
+            cached.append(cachedDiary)
+            completionHandler?(cachedDiary, true)
+            print("🟢 diary-\(cachedDiary.id) is cached")
+            return
+        }
+
         if let diary = NSManagedObject(entity: entity, insertInto: context) as? PictureDiary {
             diary.id = Int64(id)
             diary.date = diaryResponse.getDate()
