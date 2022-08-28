@@ -24,7 +24,7 @@ class PaletteView: UIView {
     private var collectionView: UICollectionView!
 
     /// 펜 굵기 슬라이더
-    private let penThicknessSlider = UISlider().then {
+    private let penThicknessSlider = CustomSlider().then {
         $0.setThumbImage(UIImage(named: "ic_slider_button"), for: .normal)
         $0.minimumTrackTintColor = .init(red: 85/255, green: 85/255, blue: 85/255, alpha: 1)
         $0.maximumTrackTintColor = .init(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
@@ -47,6 +47,11 @@ class PaletteView: UIView {
 
         setUI()
         bind()
+        let tapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(sliderTapped(gestureRecognizer:))
+        )
+        penThicknessSlider.addGestureRecognizer(tapGestureRecognizer)
     }
 
     required init?(coder: NSCoder) {
@@ -118,5 +123,14 @@ class PaletteView: UIView {
                 guard let self = self else { return }
                 self.selectedStrokeSize.accept(value)
             }).disposed(by: bag)
+    }
+
+    @objc
+    func sliderTapped(gestureRecognizer: UIGestureRecognizer) {
+        let pointTapped: CGPoint = gestureRecognizer.location(in: self)
+        let positionOfSlider: CGPoint = penThicknessSlider.frame.origin
+        let widthOfSlider: CGFloat = penThicknessSlider.frame.size.width
+        let newValue = ((pointTapped.x - positionOfSlider.x) * CGFloat(penThicknessSlider.maximumValue) / widthOfSlider)
+        penThicknessSlider.setValue(Float(newValue), animated: true)
     }
 }
