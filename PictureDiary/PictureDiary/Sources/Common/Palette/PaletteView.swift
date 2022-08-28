@@ -33,7 +33,7 @@ class PaletteView: UIView {
     // MARK: - Properties
     private let bag = DisposeBag()
     private let colors: [UIColor]
-    var selectedColorIndex = BehaviorRelay<Int>(value: PaletteColorType.white.hashValue)
+    var selectedColorIndex = BehaviorRelay<Int>(value: PaletteColorType.black.numberValue)
     var selectedStrokeSize = BehaviorRelay<Float>(value: 10.0)
 
     // MARK: - Lifecycles

@@ -21,6 +21,35 @@ enum PaletteColorType: String, CaseIterable {
     case beige = "color-drawing-beige"
     case brown = "color-drawing-brown"
 
+    var numberValue: Int {
+        switch self {
+        case .white:
+            return 0
+        case .black:
+            return 1
+        case .red:
+            return 2
+        case .orange:
+            return 3
+        case .yellow:
+            return 4
+        case .green:
+            return 5
+        case .skyblue:
+            return 6
+        case .blue:
+            return 7
+        case .darkblue:
+            return 8
+        case .purple:
+            return 9
+        case .beige:
+            return 10
+        case .brown:
+            return 11
+        }
+    }
+
     static func getByHashValue(_ num: Int) -> PaletteColorType {
         switch num {
         case 0:
