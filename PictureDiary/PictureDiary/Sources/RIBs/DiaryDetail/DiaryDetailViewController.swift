@@ -83,17 +83,9 @@ final class DiaryDetailViewController: UIViewController, DiaryDetailPresentable,
         $0.clipsToBounds = true
     }
 
-    /// 텍스트 일기장
-    private let textview = UITextView().then {
-        $0.font = .DefaultFont.body1.font()
-        $0.backgroundColor = .clear
-        $0.tintColor = .clear
-        $0.isEditable = false
-        $0.isScrollEnabled = false
-    }
-
     private let underlineStack = UIStackView().then {
         $0.axis = .vertical
+        $0.spacing = 1
     }
 
     private lazy var shareInstagramView = ShareInstagramView(diary: self.diary).then {
@@ -140,11 +132,6 @@ final class DiaryDetailViewController: UIViewController, DiaryDetailPresentable,
         bind()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        setUnderLineView()
-    }
-
     // MARK: - Helpers
     private func handleStamps() {
         diary.stampList.forEach {
@@ -180,46 +167,62 @@ final class DiaryDetailViewController: UIViewController, DiaryDetailPresentable,
         }
     }
 
-    private func addUnderLine() {
+    private func addUnderLine(_ text: String) {
+        let uiview = UIView()
+        let uilabel = UILabel().then {
+            $0.font = .DefaultFont.body1.font()
+            $0.text = text
+        }
         let underline = UIImageView(image: UIImage(named: "img_underline")).then {
             $0.contentMode = .scaleAspectFill
         }
+
+        uiview.addSubview(uilabel)
+        underlineStack.addArrangedSubview(uiview)
         underlineStack.addArrangedSubview(underline)
+
+        uiview.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(32)
+        }
+        uilabel.snp.makeConstraints {
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
         underline.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(2)
         }
     }
 
-    private func setLineHeight() {
-        let fontLineHeight = (self.textview.font?.lineHeight ?? 20) + 10
-        underlineStack.spacing = fontLineHeight + 2.1
-        diaryTextLineHeight = fontLineHeight
-    }
-
-    private func setUnderLineView() {
-        let lineCount = textview.numberOfLine()
-        if lineCount > 20 {
-            for _ in 0..<lineCount-20 { addUnderLine() }
+    private func splitString(_ string: String) -> [String] {
+        let inputText: [String] = Array(string).map { String($0) }
+        let labelWidth = pictureWidth - 20
+        var resultArray: [String] = []
+        var readerString = ""
+        for i in 0 ..< inputText.count {
+            readerString += inputText[i]
+            if readerString.widthOfString(usingFont: .DefaultFont.body1.font()) >= labelWidth {
+                resultArray.append(readerString)
+                readerString = ""
+            }
         }
+        return resultArray
     }
 }
 
 // MARK: - BaseViewController
 extension DiaryDetailViewController: BaseViewController {
     func configureView() {
-        setLineHeight()
         [ivSunny, ivCloudy, ivRain, ivSnow].forEach { stackWeather.addArrangedSubview($0) }
 
         dateWeatherStack.addArrangedSubview(lblDate)
         dateWeatherStack.addArrangedSubview(stackWeather)
 
         ivPictureFrame.addSubview(ivPicture)
-        [dateWeatherStack, ivPictureFrame, textview].forEach {
+        [dateWeatherStack, ivPictureFrame, underlineStack].forEach {
             stackView.addArrangedSubview($0)
         }
 
-        scrollView.addSubview(underlineStack)
         scrollView.addSubview(stackView)
         [appBarTop, scrollView].forEach {
             view.addSubview($0)
@@ -259,20 +262,12 @@ extension DiaryDetailViewController: BaseViewController {
             $0.edges.equalTo(ivPictureFrame).inset(10)
         }
 
-        textview.snp.makeConstraints {
-            $0.width.equalTo(pictureWidth)
+        let splitted = splitString(diary.content ?? "")
+        if splitted.count == 0 {
+            for _ in 0..<20 { addUnderLine("") }
+        } else {
+            splitted.forEach { addUnderLine($0) }
         }
-        if let text = self.diary.content {
-            let h = (self.diaryTextLineHeight ?? 26) - 18
-            self.textview.setAttributedText(text, lineSpacing: h)
-        }
-
-        underlineStack.snp.makeConstraints {
-            let h = diaryTextLineHeight ?? 26
-            $0.top.equalTo(textview).offset(h)
-            $0.leading.trailing.equalTo(ivPictureFrame)
-        }
-        for _ in 0..<20 { addUnderLine() }
 
         stackView.snp.makeConstraints {
             $0.edges.equalTo(scrollView)

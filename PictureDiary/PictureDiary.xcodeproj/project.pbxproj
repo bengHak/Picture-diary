@@ -14,6 +14,7 @@
 		602A74FA28BA845C00EEB554 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 602A74F928BA845C00EEB554 /* GoogleService-Info.plist */; };
 		602A74FC28BBA12D00EEB554 /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602A74FB28BBA12D00EEB554 /* CustomSlider.swift */; };
 		603DA7CA28AE15D1007DF755 /* PictureDiary.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = EA01F9D9282A67C600A6E450 /* PictureDiary.xcdatamodeld */; };
+		607B491E28BBA73A00405103 /* UIString+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607B491D28BBA73A00405103 /* UIString+Ext.swift */; };
 		607E30D728AE148A00BEA4DF /* PictureDiary+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607E30D428AE148A00BEA4DF /* PictureDiary+CoreDataClass.swift */; };
 		607E30D828AE148A00BEA4DF /* PictureDiary+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607E30D628AE148A00BEA4DF /* PictureDiary+CoreDataProperties.swift */; };
 		607E8033289EE6560097FD8A /* ModelDiaryImageUploadResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607E8032289EE6560097FD8A /* ModelDiaryImageUploadResponse.swift */; };
@@ -163,6 +164,7 @@
 		602A74F628B9DE9B00EEB554 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		602A74F928BA845C00EEB554 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		602A74FB28BBA12D00EEB554 /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
+		607B491D28BBA73A00405103 /* UIString+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIString+Ext.swift"; sourceTree = "<group>"; };
 		607E30D428AE148A00BEA4DF /* PictureDiary+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PictureDiary+CoreDataClass.swift"; path = "/Users/kobyunghak/Documents/xcode_workspace/PictureDiary-iOS/PictureDiary/PictureDiary/Sources/CoreData/PictureDiary+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		607E30D628AE148A00BEA4DF /* PictureDiary+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PictureDiary+CoreDataProperties.swift"; path = "/Users/kobyunghak/Documents/xcode_workspace/PictureDiary-iOS/PictureDiary/PictureDiary/Sources/CoreData/PictureDiary+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		607E8032289EE6560097FD8A /* ModelDiaryImageUploadResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelDiaryImageUploadResponse.swift; sourceTree = "<group>"; };
@@ -697,6 +699,7 @@
 				EA2840262807E7B300D8DCB1 /* UIColor+Ext.swift */,
 				EAFC1D60281D04B40072B995 /* Date+Ext.swift */,
 				EA9E04EA285E3DD7005845E4 /* KeychainWrapper+Ext.swift */,
+				607B491D28BBA73A00405103 /* UIString+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1044,6 +1047,7 @@
 				60D307B728B79405006E7514 /* SettingsCollectionViewCell.swift in Sources */,
 				EAFE868B27D372EB00519243 /* LoggedOutRouter.swift in Sources */,
 				EA2840252806CB6D00D8DCB1 /* PaletteColorCell.swift in Sources */,
+				607B491E28BBA73A00405103 /* UIString+Ext.swift in Sources */,
 				EA98C4B627DEBF4B0045055D /* CreateDiaryViewController.swift in Sources */,
 				EAFE865527D22EAE00519243 /* AppComponent.swift in Sources */,
 				EA98C4B527DEBF4B0045055D /* CreateDiaryRouter.swift in Sources */,
