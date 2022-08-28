@@ -52,12 +52,14 @@ final class RandomDiaryViewController: UIViewController, RandomDiaryPresentable,
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        addGestureRecognizer()
     }
 
     // MARK: - Helpers
     func addDiaryDetail(_ vc: UIViewController) {
         addChild(vc)
         view.addSubview(vc.view)
+        vc.view.gestureRecognizers = []
         diaryDetailViewController = vc
         vc.view.snp.makeConstraints {
             $0.edges.equalTo(view)
@@ -187,6 +189,20 @@ final class RandomDiaryViewController: UIViewController, RandomDiaryPresentable,
             )
         )
         gesture.setTranslation(CGPoint.zero, in: pictureFrame)
+    }
+
+    private func addGestureRecognizer() {
+        let gesture = UISwipeGestureRecognizer(
+            target: self,
+            action: #selector(swipeGesture(_:))
+        )
+        gesture.direction = .right
+        self.view.addGestureRecognizer(gesture)
+    }
+
+    @objc
+    private func swipeGesture(_ sender: UISwipeGestureRecognizer) {
+        listener?.didTapBackButton()
     }
 }
 

@@ -114,6 +114,7 @@ final class DiaryDetailViewController: UIViewController, DiaryDetailPresentable,
     init(diary: PictureDiary) {
         self.diary = diary
         super.init(nibName: nil, bundle: nil)
+        addGestureRecognizer()
     }
 
     required init?(coder: NSCoder) {
@@ -207,6 +208,20 @@ final class DiaryDetailViewController: UIViewController, DiaryDetailPresentable,
             }
         }
         return resultArray
+    }
+
+    private func addGestureRecognizer() {
+        let gesture = UISwipeGestureRecognizer(
+            target: self,
+            action: #selector(swipeGesture(_:))
+        )
+        gesture.direction = .right
+        self.view.addGestureRecognizer(gesture)
+    }
+
+    @objc
+    private func swipeGesture(_ sender: UISwipeGestureRecognizer) {
+        listener?.detachDiaryDetail()
     }
 }
 

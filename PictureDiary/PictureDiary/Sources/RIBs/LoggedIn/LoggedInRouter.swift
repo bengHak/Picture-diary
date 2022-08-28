@@ -115,7 +115,7 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
 
     func detachRandomDiary() {
         if let router = randomDiaryRouter {
-            popViewController(router.viewControllable.uiviewController)
+            popViewController(router.viewControllable.uiviewController, animated: true)
             detachChild(router)
         }
     }
@@ -191,11 +191,7 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
     private func popViewController(_ viewController: UIViewController, animated: Bool = false) {
         if let vc = viewController.navigationController?.topViewController,
            vc === viewController {
-            if splitViewController.isCollapsed {
-                vc.navigationController?.popViewController(animated: animated)
-            } else {
-                vc.navigationController?.popViewController(animated: false)
-            }
+            vc.navigationController?.popViewController(animated: animated)
         }
     }
 }
