@@ -89,6 +89,7 @@ class CDPictureDiaryHandler {
             saveDiary(
                 diaryResponse: diary,
                 drawing: nil,
+                isRandomDiary: true,
                 completionHandler: nil
             )
         }
