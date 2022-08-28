@@ -11,6 +11,7 @@
 		602A74F128B9DAB000EEB554 /* complete.json in Resources */ = {isa = PBXBuildFile; fileRef = 602A74F028B9DAB000EEB554 /* complete.json */; };
 		602A74F728B9DE9B00EEB554 /* nothing.json in Resources */ = {isa = PBXBuildFile; fileRef = 602A74F528B9DE9B00EEB554 /* nothing.json */; };
 		602A74F828B9DE9B00EEB554 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 602A74F628B9DE9B00EEB554 /* loading.json */; };
+		602A74FA28BA845C00EEB554 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 602A74F928BA845C00EEB554 /* GoogleService-Info.plist */; };
 		603DA7CA28AE15D1007DF755 /* PictureDiary.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = EA01F9D9282A67C600A6E450 /* PictureDiary.xcdatamodeld */; };
 		607E30D728AE148A00BEA4DF /* PictureDiary+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607E30D428AE148A00BEA4DF /* PictureDiary+CoreDataClass.swift */; };
 		607E30D828AE148A00BEA4DF /* PictureDiary+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607E30D628AE148A00BEA4DF /* PictureDiary+CoreDataProperties.swift */; };
@@ -159,6 +160,7 @@
 		602A74F028B9DAB000EEB554 /* complete.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = complete.json; sourceTree = "<group>"; };
 		602A74F528B9DE9B00EEB554 /* nothing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = nothing.json; sourceTree = "<group>"; };
 		602A74F628B9DE9B00EEB554 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
+		602A74F928BA845C00EEB554 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		607E30D428AE148A00BEA4DF /* PictureDiary+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PictureDiary+CoreDataClass.swift"; path = "/Users/kobyunghak/Documents/xcode_workspace/PictureDiary-iOS/PictureDiary/PictureDiary/Sources/CoreData/PictureDiary+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		607E30D628AE148A00BEA4DF /* PictureDiary+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PictureDiary+CoreDataProperties.swift"; path = "/Users/kobyunghak/Documents/xcode_workspace/PictureDiary-iOS/PictureDiary/PictureDiary/Sources/CoreData/PictureDiary+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		607E8032289EE6560097FD8A /* ModelDiaryImageUploadResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelDiaryImageUploadResponse.swift; sourceTree = "<group>"; };
@@ -622,6 +624,7 @@
 		EAFE864427D0DF9000519243 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				602A74F928BA845C00EEB554 /* GoogleService-Info.plist */,
 				EAFE863927D0CD8D00519243 /* Info.plist */,
 				EA51AB8C285DAF7B00D9B294 /* config.xcconfig */,
 			);
@@ -933,6 +936,7 @@
 				EABF181B27DC500A002740C0 /* KyoboHandwriting2020pdy.otf in Resources */,
 				EAFE863527D0CD8D00519243 /* Assets.xcassets in Resources */,
 				EABF180227DBBABF002740C0 /* Pretendard-Light.otf in Resources */,
+				602A74FA28BA845C00EEB554 /* GoogleService-Info.plist in Resources */,
 				EABF180627DBBABF002740C0 /* Pretendard-Black.otf in Resources */,
 				EABF180327DBBABF002740C0 /* Pretendard-Regular.otf in Resources */,
 				EABF181727DC500A002740C0 /* UhBee-Ham-Bold.ttf in Resources */,

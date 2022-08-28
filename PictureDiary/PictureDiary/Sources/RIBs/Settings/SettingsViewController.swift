@@ -107,7 +107,8 @@ extension SettingsViewController: BaseViewController {
         }
 
         modalView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.top.bottom.equalToSuperview()
         }
         modalView.isHidden = true
     }

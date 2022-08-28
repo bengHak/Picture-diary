@@ -80,7 +80,8 @@ final class DiaryListViewController: UIViewController,
         if loadingView == nil { return }
         view.addSubview(loadingView!)
         loadingView!.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.top.bottom.equalToSuperview()
         }
         loadingView!.isHidden = false
     }
