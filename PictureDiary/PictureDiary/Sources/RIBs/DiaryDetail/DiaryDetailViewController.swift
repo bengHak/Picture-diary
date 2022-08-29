@@ -202,7 +202,8 @@ final class DiaryDetailViewController: UIViewController, DiaryDetailPresentable,
         var readerString = ""
         for i in 0 ..< inputText.count {
             readerString += inputText[i]
-            if readerString.widthOfString(usingFont: .DefaultFont.body1.font()) >= labelWidth {
+            if readerString.widthOfString(usingFont: .DefaultFont.body1.font()) >= labelWidth ||
+                inputText.count - 1 == i {
                 resultArray.append(readerString)
                 readerString = ""
             }
@@ -277,12 +278,9 @@ extension DiaryDetailViewController: BaseViewController {
             $0.edges.equalTo(ivPictureFrame).inset(10)
         }
 
-        let splitted = splitString(diary.content ?? "")
-        if splitted.count == 0 {
-            for _ in 0..<20 { addUnderLine("") }
-        } else {
-            splitted.forEach { addUnderLine($0) }
-        }
+        var splitted = splitString(diary.content ?? "")
+        while splitted.count < 8 { splitted.append("") }
+        splitted.forEach { addUnderLine($0) }
 
         stackView.snp.makeConstraints {
             $0.edges.equalTo(scrollView)
