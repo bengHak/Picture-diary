@@ -40,7 +40,7 @@ final class SettingsRouter: ViewableRouter<SettingsInteractable, SettingsViewCon
         attachChild(router)
         let vc = router.viewControllable.uiviewController
         vc.navigationItem.hidesBackButton = true
-        navigationController.pushViewController(vc, animated: false)
+        navigationController.pushViewController(vc, animated: true)
     }
 
     func detachFontSetting() {
@@ -57,7 +57,7 @@ final class SettingsRouter: ViewableRouter<SettingsInteractable, SettingsViewCon
         attachChild(router)
         let vc = router.viewControllable.uiviewController
         vc.navigationItem.hidesBackButton = true
-        navigationController.pushViewController(vc, animated: false)
+        navigationController.pushViewController(vc, animated: true)
     }
 
     func detachNotice() {

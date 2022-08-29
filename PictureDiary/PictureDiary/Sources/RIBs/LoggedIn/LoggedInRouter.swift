@@ -127,7 +127,7 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
         attachChild(router)
         let vc = router.viewControllable.uiviewController
         vc.navigationItem.hidesBackButton = true
-        primaryViewController.pushViewController(vc, animated: false)
+        primaryViewController.pushViewController(vc, animated: true)
     }
 
     func detachSettings() {
@@ -191,7 +191,11 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
     private func popViewController(_ viewController: UIViewController, animated: Bool = false) {
         if let vc = viewController.navigationController?.topViewController,
            vc === viewController {
-            vc.navigationController?.popViewController(animated: animated)
+            if splitViewController.isCollapsed {
+                vc.navigationController?.popViewController(animated: animated)
+            } else {
+                vc.navigationController?.popViewController(animated: false)
+            }
         }
     }
 }
