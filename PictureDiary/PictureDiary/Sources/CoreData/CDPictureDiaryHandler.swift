@@ -82,7 +82,6 @@ class CDPictureDiaryHandler {
             do {
                 try context.save()
                 cached = cached.filter { !$0.isRandomDiary }
-//                cached = cached.filter { update.id != $0.id }
                 cached.append(update)
             } catch let error {
                 print("update error: \(error)")
