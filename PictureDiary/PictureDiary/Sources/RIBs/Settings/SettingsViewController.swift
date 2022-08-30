@@ -36,16 +36,6 @@ final class SettingsViewController: UIViewController,
     private let modalView = ModalDialog()
 
     // MARK: - Properties
-    /// 설정 리스트
-    private var settingList: [SettingType] = [
-        .font,
-        .notice,
-        .question,
-        .signout,
-        .membershipWithdrawal,
-        .version
-    ]
-
     private let bag = DisposeBag()
 
     // MARK: - Lifecycles
@@ -122,7 +112,14 @@ extension SettingsViewController {
     }
 
     func bindCollectionView() {
-        Observable.of(settingList)
+        Observable.of([
+            .font,
+            .notice,
+            .question,
+            .signout,
+            .membershipWithdrawal,
+            .version
+        ])
             .bind(to: collectionView.rx.items(
                 cellIdentifier: SettingsCollectionViewCell.identifier,
                 cellType: SettingsCollectionViewCell.self

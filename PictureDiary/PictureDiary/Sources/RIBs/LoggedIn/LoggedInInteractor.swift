@@ -12,15 +12,16 @@ import RxRelay
 protocol LoggedInRouting: Routing {
     func cleanupViews()
     func attachDirayListAtPrimary()
-    func detachDiaryList()
+    func detachDiaryList(animated: Bool)
+    func attachSettings()
+    func detachSettings(animated: Bool)
+
     func attachCreateDiary()
     func detachCreateDiary()
     func attachDiaryDetail()
     func detachDiaryDetail()
     func attachRandomDiary()
     func detachRandomDiary()
-    func attachSettings()
-    func detachSettings()
 }
 
 protocol LoggedInListener: AnyObject {
@@ -123,6 +124,7 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
     func fetchRandomDiary(_ completion: @escaping (Bool) -> Void) {
         diaryRepository.fetchRandomDiary()
             .subscribe(onNext: { [weak self, completion] diaryResponse in
+                print(diaryResponse)
                 guard let self = self,
                       let imageData = try? Data(contentsOf: URL(string: diaryResponse.imageUrl!)!)  else {
                           return
@@ -163,11 +165,12 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
 
     // MARK: - Settings
     func detachSettings() {
-        router?.detachSettings()
+        router?.detachSettings(animated: true)
     }
 
     func detachToLoggedOut() {
-        router?.detachSettings()
+        router?.detachSettings(animated: false)
+        router?.detachDiaryList(animated: false)
         listener?.detachToLoggedOut()
     }
 

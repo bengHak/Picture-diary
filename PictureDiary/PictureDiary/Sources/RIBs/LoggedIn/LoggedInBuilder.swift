@@ -26,7 +26,7 @@ final class LoggedInComponent: Component<LoggedInDependency>,
         return dependency.splitViewController
     }
 
-    var primaryViewController: UINavigationController {
+    fileprivate var primaryViewController: UINavigationController {
         return dependency.primaryViewController
     }
 

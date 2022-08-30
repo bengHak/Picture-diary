@@ -33,20 +33,18 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
         splashBuilder: SplashBuildable
     ) {
         self.splitVC = splitVC
-        self.primaryViewController = primaryVC
-        self.secondaryViewController = secondaryVC
+        self.primaryNav = primaryVC
+        self.secondaryNav = secondaryVC
         self.loggedOutBuilder = loggedOutBuilder
         self.loggedInBuilder = loggedInBuilder
         self.splashBuilder = splashBuilder
 
         // initialize splitVC
-        primaryVC.isNavigationBarHidden = true
-        secondaryVC.isNavigationBarHidden = true
         if #available(iOS 14.0, *) {
-            splitVC.setViewController(primaryVC, for: .primary)
-            splitVC.setViewController(secondaryVC, for: .secondary)
+            splitVC.setViewController(primaryVC.topViewController!, for: .primary)
+            splitVC.setViewController(secondaryVC.topViewController!, for: .secondary)
         } else {
-            splitVC.viewControllers = [primaryVC, secondaryVC]
+            splitVC.viewControllers = [primaryVC.topViewController!, secondaryVC.topViewController!]
         }
 
         super.init(interactor: interactor, viewController: viewController)
@@ -63,9 +61,10 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
     }
 
     func detachLoggedIn() {
-        if let loggedInRouter = loggedInRouter {
-            loggedInRouter.cleanupViews()
-            detachChild(loggedInRouter)
+        if let router = loggedInRouter {
+            router.cleanupViews()
+            detachChild(router)
+            loggedInRouter = nil
         }
     }
 
@@ -79,10 +78,10 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
     }
 
     func detachLoggedOut() {
-        if let loggedOutRouter = loggedOutRouter {
-            loggedOutRouter.cleanupViews()
-            detachChild(loggedOutRouter)
-            self.loggedOutRouter = nil
+        if let router = loggedOutRouter {
+            router.cleanupViews()
+            detachChild(router)
+            loggedOutRouter = nil
         }
     }
 
@@ -119,8 +118,8 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
     // MARK: - Private
     private let splitVC: RootSplitViewController
 
-    private let primaryViewController: UINavigationController
-    private let secondaryViewController: UINavigationController
+    private let primaryNav: UINavigationController
+    private let secondaryNav: UINavigationController
 
     private let loggedOutBuilder: LoggedOutBuildable
     private var loggedOutRouter: LoggedOutRouting?

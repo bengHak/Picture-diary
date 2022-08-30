@@ -7,14 +7,11 @@
 
 import RIBs
 
-protocol SettingsDependency: Dependency {
-    var primaryViewController: UINavigationController { get }
-}
+protocol SettingsDependency: Dependency { }
 
 final class SettingsComponent: Component<SettingsDependency>,
                                FontSettingDependency,
                                NoticeDependency {
-    fileprivate var primaryViewController: UINavigationController { dependency.primaryViewController }
 }
 
 // MARK: - Builder
@@ -42,8 +39,7 @@ final class SettingsBuilder: Builder<SettingsDependency>, SettingsBuildable {
             interactor: interactor,
             viewController: viewController,
             fontSetting: font,
-            notice: notice,
-            primaryViewController: component.primaryViewController
+            notice: notice
         )
     }
 }

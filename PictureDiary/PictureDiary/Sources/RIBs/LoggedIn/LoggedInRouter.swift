@@ -31,8 +31,8 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
         settingsBuilder: SettingsBuildable
     ) {
         self.splitViewController = splitViewController
-        self.primaryViewController = primaryViewController
-        self.secondaryViewController = secondaryViewController
+        self.primaryNav = primaryViewController
+        self.secondaryNav = secondaryViewController
         self.diaryListBuilder = diaryListBuilder
         self.diaryDetailBuilder = diaryDetailBuilder
         self.createDiaryBuilder = createDiaryBuilder
@@ -58,14 +58,31 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
         diaryListRouter = router
         attachChild(router)
         let vc = router.viewControllable.uiviewController
-        vc.navigationItem.hidesBackButton = true
-        primaryViewController.pushViewController(vc, animated: false)
+        pushViewController(vc, isPrimary: true, animated: false)
     }
 
-    func detachDiaryList() {
+    func detachDiaryList(animated: Bool) {
         if let router = diaryListRouter {
-            popViewController(router.viewControllable.uiviewController)
+            popViewController(router.viewControllable.uiviewController, isPrimary: true, animated: animated)
             detachChild(router)
+            diaryListRouter = nil
+        }
+    }
+
+    // MARK: - Settings
+    func attachSettings() {
+        let router = settingsBuilder.build(withListener: interactor)
+        settingsRouter = router
+        attachChild(router)
+        let vc = router.viewControllable.uiviewController
+        pushViewController(vc, isPrimary: true, animated: true)
+    }
+
+    func detachSettings(animated: Bool) {
+        if let router = settingsRouter {
+            popViewController(router.viewControllable.uiviewController, isPrimary: true, animated: animated)
+            detachChild(router)
+            settingsRouter = nil
         }
     }
 
@@ -76,13 +93,14 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
         diaryDetailRouter = router
         attachChild(router)
         let vc = router.viewControllable.uiviewController
-        pushViewController(vc, animated: true)
+        pushViewController(vc, isPrimary: false, animated: true)
     }
 
     func detachDiaryDetail() {
         if let router = diaryDetailRouter {
-            popViewController(router.viewControllable.uiviewController, animated: true)
+            popViewController(router.viewControllable.uiviewController, isPrimary: false, animated: true)
             detachChild(router)
+            diaryDetailRouter = nil
         }
     }
 
@@ -93,13 +111,14 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
         createDiaryRouter = router
         attachChild(router)
         let vc = router.viewControllable.uiviewController
-        pushViewController(vc, animated: true)
+        pushViewController(vc, isPrimary: false, animated: true)
     }
 
     func detachCreateDiary() {
         if let router = createDiaryRouter {
-            popViewController(router.viewControllable.uiviewController)
+            popViewController(router.viewControllable.uiviewController, isPrimary: false)
             detachChild(router)
+            createDiaryRouter = nil
         }
     }
 
@@ -110,30 +129,14 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
         randomDiaryRouter = router
         attachChild(router)
         let vc = router.viewControllable.uiviewController
-        pushViewController(vc, animated: true)
+        pushViewController(vc, isPrimary: false, animated: true)
     }
 
     func detachRandomDiary() {
         if let router = randomDiaryRouter {
-            popViewController(router.viewControllable.uiviewController, animated: true)
+            popViewController(router.viewControllable.uiviewController, isPrimary: false, animated: true)
             detachChild(router)
-        }
-    }
-
-    // MARK: - Settings
-    func attachSettings() {
-        let router = settingsBuilder.build(withListener: interactor)
-        settingsRouter = router
-        attachChild(router)
-        let vc = router.viewControllable.uiviewController
-        vc.navigationItem.hidesBackButton = true
-        primaryViewController.pushViewController(vc, animated: true)
-    }
-
-    func detachSettings() {
-        if let router = settingsRouter {
-            popViewController(router.viewControllable.uiviewController)
-            detachChild(router)
+            randomDiaryRouter = nil
         }
     }
 
@@ -154,47 +157,61 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
     private var settingsRouter: SettingsRouting?
 
     private let splitViewController: UISplitViewController
-    private let primaryViewController: UINavigationController
-    private let secondaryViewController: UINavigationController
+    private let primaryNav: UINavigationController
+    private let secondaryNav: UINavigationController
 
     // MARK: - Helpers
     private func cleanupPrimaryViews() {
-        detachDiaryList()
-        detachSettings()
+        detachDiaryList(animated: false)
+        detachSettings(animated: false)
     }
 
     private func cleanupSecondaryViews() {
-        if diaryDetailRouter != nil {
-            detachDiaryDetail()
-//            diaryDetailRouter = nil
-        }
-
-        if createDiaryRouter != nil {
-            detachCreateDiary()
-//            createDiaryRouter = nil
-        }
-
-        if randomDiaryRouter != nil {
-            detachRandomDiary()
-//            randomDiaryRouter = nil
-        }
+        detachDiaryDetail()
+        detachCreateDiary()
+        detachRandomDiary()
     }
 
-    private func pushViewController(_ vc: UIViewController, animated: Bool = false) {
-        if splitViewController.isCollapsed {
-            primaryViewController.pushViewController(vc, animated: animated)
-        } else {
-            secondaryViewController.pushViewController(vc, animated: false)
-        }
-    }
-
-    private func popViewController(_ viewController: UIViewController, animated: Bool = false) {
-        if let vc = viewController.navigationController?.topViewController,
-           vc === viewController {
-            if splitViewController.isCollapsed {
-                vc.navigationController?.popViewController(animated: animated)
+    private func pushViewController(
+        _ vc: UIViewController,
+        isPrimary: Bool,
+        animated: Bool = false
+    ) {
+        if #available(iOS 14.0, *) {
+            var animated = animated
+            var column: UISplitViewController.Column!
+            if splitViewController.isCollapsed || isPrimary {
+                column = .primary
             } else {
-                vc.navigationController?.popViewController(animated: false)
+                column = .secondary
+                animated = false
+            }
+            if let nav = splitViewController.viewController(for: column)?.navigationController {
+                nav.setNavigationBarHidden(true, animated: false)
+                nav.pushViewController(vc, animated: animated)
+            }
+        }
+    }
+
+    private func popViewController(
+        _ viewController: UIViewController,
+        isPrimary: Bool,
+        animated: Bool = false
+    ) {
+        if #available(iOS 14.0, *) {
+            let animated = animated && splitViewController.isCollapsed
+            var column: UISplitViewController.Column!
+            if splitViewController.isCollapsed || isPrimary {
+                column = .primary
+            } else {
+                column = .secondary
+            }
+            if let nav = splitViewController.viewController(for: column)?.navigationController,
+               let vc = nav.topViewController,
+               vc === viewController {
+                nav.setNavigationBarHidden(false, animated: false)
+                nav.popViewController(animated: animated)
+                nav.setNavigationBarHidden(true, animated: false)
             }
         }
     }

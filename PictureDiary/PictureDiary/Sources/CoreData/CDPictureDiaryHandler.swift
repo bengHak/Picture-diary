@@ -78,9 +78,10 @@ class CDPictureDiaryHandler {
             update.content = diary.content
             update.stampList = diary.stampList ?? []
             update.didStamp = diary.stamped ?? false
+            update.isRandomDiary = true
             do {
                 try context.save()
-                cached = cached.filter { update.id != $0.id }
+                cached = cached.filter { !$0.isRandomDiary }
                 cached.append(update)
             } catch let error {
                 print("update error: \(error)")

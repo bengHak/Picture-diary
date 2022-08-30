@@ -23,12 +23,10 @@ final class SettingsRouter: ViewableRouter<SettingsInteractable, SettingsViewCon
         interactor: SettingsInteractable,
         viewController: SettingsViewControllable,
         fontSetting: FontSettingBuildable,
-        notice: NoticeBuildable,
-        primaryViewController: UINavigationController
+        notice: NoticeBuildable
     ) {
         self.fontSettingBuilder = fontSetting
         self.noticeBuilder = notice
-        self.navigationController = primaryViewController
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
     }
@@ -40,14 +38,19 @@ final class SettingsRouter: ViewableRouter<SettingsInteractable, SettingsViewCon
         attachChild(router)
         let vc = router.viewControllable.uiviewController
         vc.navigationItem.hidesBackButton = true
-        navigationController.pushViewController(vc, animated: true)
+        viewController.uiviewController.navigationController?.pushViewController(vc, animated: true)
     }
 
     func detachFontSetting() {
-        if let router = fontSettingRouter {
-            navigationController.popViewController(animated: true)
-            detachChild(router)
+        guard let router = fontSettingRouter,
+              let nav = router.viewControllable.uiviewController.navigationController else {
+            return
         }
+        nav.isNavigationBarHidden = false
+        nav.popViewController(animated: true)
+        nav.isNavigationBarHidden = true
+        detachChild(router)
+        fontSettingRouter = nil
     }
 
     // MARK: - Notice
@@ -56,20 +59,23 @@ final class SettingsRouter: ViewableRouter<SettingsInteractable, SettingsViewCon
         noticeRouter = router
         attachChild(router)
         let vc = router.viewControllable.uiviewController
-        vc.navigationItem.hidesBackButton = true
-        navigationController.pushViewController(vc, animated: true)
+        vc.navigationItem.hidesBackButton = false
+        viewController.uiviewController.navigationController?.pushViewController(vc, animated: true)
     }
 
     func detachNotice() {
-        if let router = noticeRouter {
-            navigationController.popViewController(animated: true)
-            detachChild(router)
+        guard let router = noticeRouter,
+        let nav = router.viewControllable.uiviewController.navigationController else {
+            return
         }
+        nav.isNavigationBarHidden = false
+        nav.popViewController(animated: true)
+        nav.isNavigationBarHidden = true
+        detachChild(router)
+        noticeRouter = nil
     }
 
     // MARK: - Private
-    private let navigationController: UINavigationController
-
     private let fontSettingBuilder: FontSettingBuildable
     private var fontSettingRouter: FontSettingRouting?
 
