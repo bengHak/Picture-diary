@@ -100,7 +100,6 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
         if let router = diaryDetailRouter {
             popViewController(router.viewControllable.uiviewController, isPrimary: false, animated: true)
             detachChild(router)
-            diaryDetailRouter = nil
         }
     }
 

@@ -269,7 +269,7 @@ extension DiaryDetailViewController: BaseViewController {
 
         ivPictureFrame.snp.makeConstraints {
             let ratio = ivPictureFrame.image?.getImageRatio()
-            let h = Float(pictureWidth) * Float(ratio!)
+            let h = Float(pictureWidth) * Float(ratio ?? 1.25)
             $0.width.equalTo(pictureWidth)
             $0.height.equalTo(h)
         }

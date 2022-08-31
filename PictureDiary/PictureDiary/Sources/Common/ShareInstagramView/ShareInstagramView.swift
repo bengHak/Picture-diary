@@ -183,7 +183,7 @@ final class ShareInstagramView: UIView {
         ivPictureFrame.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(16)
             let ratio = ivPictureFrame.image?.getImageRatio()
-            let h = Float(pictureWidth) * Float(ratio!)
+            let h = Float(pictureWidth) * Float(ratio ?? 1.25)
             $0.width.equalTo(pictureWidth)
             $0.height.equalTo(h)
         }

@@ -127,8 +127,9 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
                 print(diaryResponse)
                 guard let self = self,
                       let imageData = try? Data(contentsOf: URL(string: diaryResponse.imageUrl!)!)  else {
-                          return
-                      }
+                    completion(false)
+                    return
+                }
 
                 if let diary = CDPictureDiaryHandler.shared.getCachedRandomDiary() {
                     if diary.imageUrl == diaryResponse.imageUrl,

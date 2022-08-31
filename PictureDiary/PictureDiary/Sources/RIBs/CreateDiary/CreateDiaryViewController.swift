@@ -232,7 +232,7 @@ extension CreateDiaryViewController: BaseViewController {
             } else {
                 w = 340
             }
-            let h = Float(w) * Float(ratio!)
+            let h = Float(w) * Float(ratio ?? 1.25)
             $0.width.equalTo(w)
             $0.height.equalTo(h)
             $0.top.equalTo(lblDate.snp.bottom).offset(24)

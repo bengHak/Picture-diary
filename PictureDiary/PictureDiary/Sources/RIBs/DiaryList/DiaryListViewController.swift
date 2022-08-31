@@ -76,14 +76,14 @@ final class DiaryListViewController: UIViewController,
 
     // MARK: - Helpers
     func showLoadingView() {
-        loadingView = LoadingView()
-        if loadingView == nil { return }
-        view.addSubview(loadingView!)
-        loadingView!.snp.makeConstraints {
+        let loadingView = LoadingView()
+        self.loadingView = loadingView
+        view.addSubview(loadingView)
+        loadingView.snp.makeConstraints {
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.top.bottom.equalToSuperview()
         }
-        loadingView!.isHidden = false
+        loadingView.isHidden = false
     }
 
     func hideLoadingView() {
