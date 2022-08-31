@@ -62,10 +62,7 @@ final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>,
         presenter.showLoadingView()
         bindInitialFetch()
         fetchDiaryList()
-        listener?.fetchRandomDiary { [weak self] finished in
-            guard let self = self else { return }
-            self.initialRandomDiaryFetchFinished.accept(finished)
-        }
+        fetchRandomDiary()
     }
 
     override func willResignActive() {
@@ -104,6 +101,17 @@ final class DiaryListInteractor: PresentableInteractor<DiaryListPresentable>,
 
     func attachSettings() {
         listener?.attachSettings()
+    }
+
+    func fetchRandomDiary() {
+        listener?.fetchRandomDiary { [weak self] finished in
+            guard let self = self else { return }
+            if finished {
+                self.initialRandomDiaryFetchFinished.accept(finished)
+            } else {
+                self.fetchRandomDiary()
+            }
+        }
     }
 
     func bindInitialFetch() {
