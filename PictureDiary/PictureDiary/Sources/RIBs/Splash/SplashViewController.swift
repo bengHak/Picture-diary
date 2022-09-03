@@ -32,7 +32,11 @@ final class SplashViewController: UIViewController, SplashPresentable, SplashVie
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        animationView.play { [weak self] isEnd in
+        animationView.play(
+            fromProgress: 0,
+            toProgress: 0.1,
+            loopMode: .playOnce
+        ) { [weak self] isEnd in
             if isEnd {
                 self?.listener?.checkToken()
             }

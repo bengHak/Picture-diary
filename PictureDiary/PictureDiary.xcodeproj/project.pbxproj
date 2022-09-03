@@ -18,7 +18,6 @@
 		607E30D728AE148A00BEA4DF /* PictureDiary+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607E30D428AE148A00BEA4DF /* PictureDiary+CoreDataClass.swift */; };
 		607E30D828AE148A00BEA4DF /* PictureDiary+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607E30D628AE148A00BEA4DF /* PictureDiary+CoreDataProperties.swift */; };
 		607E8033289EE6560097FD8A /* ModelDiaryImageUploadResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607E8032289EE6560097FD8A /* ModelDiaryImageUploadResponse.swift */; };
-		608A379328B9D3EE00F189C3 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 608A379228B9D3EE00F189C3 /* splash.json */; };
 		60D307B028B5F286006E7514 /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D307AC28B5F286006E7514 /* SettingsRouter.swift */; };
 		60D307B128B5F286006E7514 /* SettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D307AD28B5F286006E7514 /* SettingsInteractor.swift */; };
 		60D307B228B5F286006E7514 /* SettingsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D307AE28B5F286006E7514 /* SettingsBuilder.swift */; };
@@ -35,6 +34,7 @@
 		60D307D928B8EB91006E7514 /* NoticeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D307D528B8EB91006E7514 /* NoticeBuilder.swift */; };
 		60D307DA28B8EB91006E7514 /* NoticeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D307D628B8EB91006E7514 /* NoticeInteractor.swift */; };
 		60D307DD28B907D4006E7514 /* NoticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D307DC28B907D4006E7514 /* NoticeCell.swift */; };
+		60D41FAA28C32E3B001BD318 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 60D41FA928C32E3B001BD318 /* splash.json */; };
 		92EAA4EB9351DECAA3FD6804 /* PaletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EAA71955F25FB0FBCEFCAE /* PaletteView.swift */; };
 		EA08CF822858553E00A0A029 /* ShareInstagramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA08CF812858553E00A0A029 /* ShareInstagramView.swift */; };
 		EA08CF842858B84E00A0A029 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA08CF832858B84E00A0A029 /* AuthRepository.swift */; };
@@ -168,7 +168,6 @@
 		607E30D428AE148A00BEA4DF /* PictureDiary+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PictureDiary+CoreDataClass.swift"; path = "/Users/kobyunghak/Documents/xcode_workspace/PictureDiary-iOS/PictureDiary/PictureDiary/Sources/CoreData/PictureDiary+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		607E30D628AE148A00BEA4DF /* PictureDiary+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PictureDiary+CoreDataProperties.swift"; path = "/Users/kobyunghak/Documents/xcode_workspace/PictureDiary-iOS/PictureDiary/PictureDiary/Sources/CoreData/PictureDiary+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		607E8032289EE6560097FD8A /* ModelDiaryImageUploadResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelDiaryImageUploadResponse.swift; sourceTree = "<group>"; };
-		608A379228B9D3EE00F189C3 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		60D307AC28B5F286006E7514 /* SettingsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
 		60D307AD28B5F286006E7514 /* SettingsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsInteractor.swift; sourceTree = "<group>"; };
 		60D307AE28B5F286006E7514 /* SettingsBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsBuilder.swift; sourceTree = "<group>"; };
@@ -185,6 +184,7 @@
 		60D307D528B8EB91006E7514 /* NoticeBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeBuilder.swift; sourceTree = "<group>"; };
 		60D307D628B8EB91006E7514 /* NoticeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeInteractor.swift; sourceTree = "<group>"; };
 		60D307DC28B907D4006E7514 /* NoticeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeCell.swift; sourceTree = "<group>"; };
+		60D41FA928C32E3B001BD318 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		92EAA71955F25FB0FBCEFCAE /* PaletteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteView.swift; sourceTree = "<group>"; };
 		9BD7439747D5C95598B0B8C8 /* Pods_PictureDiary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PictureDiary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA01F9DA282A67C600A6E450 /* PictureDiary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PictureDiary.xcdatamodel; sourceTree = "<group>"; };
@@ -345,9 +345,9 @@
 			isa = PBXGroup;
 			children = (
 				602A74F028B9DAB000EEB554 /* complete.json */,
+				60D41FA928C32E3B001BD318 /* splash.json */,
 				602A74F628B9DE9B00EEB554 /* loading.json */,
 				602A74F528B9DE9B00EEB554 /* nothing.json */,
-				608A379228B9D3EE00F189C3 /* splash.json */,
 			);
 			path = Lotties;
 			sourceTree = "<group>";
@@ -934,7 +934,6 @@
 				EABF180527DBBABF002740C0 /* Pretendard-Thin.otf in Resources */,
 				602A74F128B9DAB000EEB554 /* complete.json in Resources */,
 				EAFE863827D0CD8D00519243 /* LaunchScreen.storyboard in Resources */,
-				608A379328B9D3EE00F189C3 /* splash.json in Resources */,
 				EABF181A27DC500A002740C0 /* UhBee-puding.ttf in Resources */,
 				EABF181927DC500A002740C0 /* BMYEONSUNG.ttf in Resources */,
 				EABF180027DBBABF002740C0 /* Pretendard-Bold.otf in Resources */,
@@ -947,6 +946,7 @@
 				EABF180327DBBABF002740C0 /* Pretendard-Regular.otf in Resources */,
 				EABF181727DC500A002740C0 /* UhBee-Ham-Bold.ttf in Resources */,
 				EABF180427DBBABF002740C0 /* Pretendard-SemiBold.otf in Resources */,
+				60D41FAA28C32E3B001BD318 /* splash.json in Resources */,
 				EABF17FF27DBBABF002740C0 /* Pretendard-ExtraBold.otf in Resources */,
 				EABF181827DC500A002740C0 /* UhBee-DongKyung.ttf in Resources */,
 				EABF181427DC500A002740C0 /* UhBee-Seulvely-2.ttf in Resources */,
