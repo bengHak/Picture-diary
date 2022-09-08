@@ -30,6 +30,12 @@ class PaletteView: UIView {
         $0.maximumTrackTintColor = .init(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
     }
 
+    private let whiteDisabledView = UIView().then {
+        $0.backgroundColor = UIColor(white: 1.0, alpha: 0.7)
+        $0.isHidden = true
+        $0.isUserInteractionEnabled = false
+    }
+
     // MARK: - Properties
     private let bag = DisposeBag()
     private let colors: [UIColor]
@@ -59,7 +65,11 @@ class PaletteView: UIView {
     }
 
     // MARK: - Helpers
-    func setUI() {
+    func setOpacity30(isHidden: Bool) {
+        whiteDisabledView.isHidden = isHidden
+    }
+
+    private func setUI() {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
         flowLayout.estimatedItemSize = CGSize(width: 48, height: 48)
@@ -77,6 +87,7 @@ class PaletteView: UIView {
         addSubview(collectionView)
         addSubview(penThicknessSlider)
         addSubview(upperBorder)
+        addSubview(whiteDisabledView)
 
         collectionView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(24)
@@ -94,6 +105,10 @@ class PaletteView: UIView {
             $0.top.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(1)
+        }
+
+        whiteDisabledView.snp.makeConstraints {
+            $0.edges.equalTo(collectionView)
         }
 
         backgroundColor = .white

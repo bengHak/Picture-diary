@@ -210,9 +210,12 @@ extension DiaryDrawingViewController {
                 self.currentColor = color
                 self.pen.color = color
 
-                if self.currentTool == .pen {
-                    self.canvasView.tool = self.pen
-                }
+                self.currentTool = .pen
+                self.canvasView.tool = self.pen
+
+                self.btnPen.setImage(UIImage(named: "ic_pen_activated"), for: .normal)
+                self.btnEraser.setImage(UIImage(named: "ic_eraser_enabled"), for: .normal)
+                self.uiviewPalette.setOpacity30(isHidden: true)
             }).disposed(by: bag)
     }
 
@@ -239,6 +242,7 @@ extension DiaryDrawingViewController {
                 DispatchQueue.main.async {
                     self.btnPen.setImage(UIImage(named: "ic_pen_activated"), for: .normal)
                     self.btnEraser.setImage(UIImage(named: "ic_eraser_enabled"), for: .normal)
+                    self.uiviewPalette.setOpacity30(isHidden: true)
                 }
             }).disposed(by: bag)
 
@@ -250,6 +254,7 @@ extension DiaryDrawingViewController {
                 DispatchQueue.main.async {
                     self.btnPen.setImage(UIImage(named: "ic_pen_enabled"), for: .normal)
                     self.btnEraser.setImage(UIImage(named: "ic_eraser_activated"), for: .normal)
+                    self.uiviewPalette.setOpacity30(isHidden: false)
                 }
             }).disposed(by: bag)
 
