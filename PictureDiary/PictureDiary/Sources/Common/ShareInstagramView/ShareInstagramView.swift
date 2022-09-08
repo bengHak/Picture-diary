@@ -98,6 +98,22 @@ final class ShareInstagramView: UIView {
     }
 
     // MARK: - Helpers
+    private func splitString(_ string: String) -> [String] {
+        let inputText: [String] = Array(string).map { String($0) }
+        let labelWidth = pictureWidth - 20
+        var resultArray: [String] = []
+        var readerString = ""
+        for i in 0 ..< inputText.count {
+            readerString += inputText[i]
+            if readerString.widthOfString(usingFont: .DefaultFont.body1.font()) >= labelWidth ||
+                inputText.count - 1 == i {
+                resultArray.append(readerString)
+                readerString = ""
+            }
+        }
+        return resultArray
+    }
+
     func setGradient() {
         if let subLayers = gradientView.layer.sublayers {
             for layer in subLayers {
@@ -117,21 +133,31 @@ final class ShareInstagramView: UIView {
         gradientView.layer.addSublayer(gradientLayer)
     }
 
-    private func addUnderLine() {
+    private func addUnderLine(_ text: String) {
+        let uiview = UIView()
+        let uilabel = UILabel().then {
+            $0.font = .DefaultFont.body1.font()
+            $0.text = text
+        }
         let underline = UIImageView(image: UIImage(named: "img_underline")).then {
             $0.contentMode = .scaleAspectFill
         }
+
+        uiview.addSubview(uilabel)
+        underlineStack.addArrangedSubview(uiview)
         underlineStack.addArrangedSubview(underline)
+
+        uiview.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(32)
+        }
+        uilabel.snp.makeConstraints {
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
         underline.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(1)
+            $0.height.equalTo(2)
         }
-    }
-
-    private func setLineHeight() {
-        let fontLineHeight = self.diaryTextView.font?.lineHeight ?? 14
-        underlineStack.spacing = fontLineHeight + 21
-        diaryTextLineHeight = fontLineHeight
     }
 
     private func setData() {
@@ -162,15 +188,11 @@ final class ShareInstagramView: UIView {
     }
 
     private func configureView() {
-        setLineHeight()
-
-        for _ in 0..<5 { addUnderLine() }
-
         [lblWeather, ivWeather].forEach {
             weatherStack.addArrangedSubview($0)
         }
 
-        [ivPictureFrame, ivPicture, underlineStack, diaryTextView, gradientView].forEach {
+        [ivPictureFrame, ivPicture, underlineStack, gradientView].forEach {
             diaryView.addSubview($0)
         }
 
@@ -193,15 +215,14 @@ final class ShareInstagramView: UIView {
         }
 
         underlineStack.snp.makeConstraints {
-            let offset = (diaryTextLineHeight ?? 14) + 21
-            $0.top.equalTo(ivPictureFrame.snp.bottom).offset(offset)
+            $0.top.equalTo(ivPictureFrame.snp.bottom)
             $0.leading.trailing.equalTo(ivPictureFrame)
         }
 
-        diaryTextView.snp.makeConstraints {
-            $0.top.equalTo(ivPictureFrame.snp.bottom)
-            $0.leading.trailing.equalTo(ivPictureFrame)
-            $0.bottom.equalToSuperview()
+        var splitted = splitString(diary.content ?? "")
+        while splitted.count < 5 { splitted.append("") }
+        for i in 0..<5 {
+            addUnderLine(splitted[i])
         }
 
         gradientView.snp.makeConstraints {
