@@ -170,7 +170,7 @@ extension DiaryDrawingViewController: BaseViewController {
 
         uiviewPalette.snp.makeConstraints {
             $0.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(164)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(136)
         }
 
         canvasView.snp.makeConstraints {
