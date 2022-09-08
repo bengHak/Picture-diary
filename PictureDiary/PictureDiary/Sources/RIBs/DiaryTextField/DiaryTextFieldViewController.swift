@@ -28,6 +28,7 @@ final class DiaryTextFieldViewController: UIViewController, DiaryTextFieldPresen
     /// 텍스트 뷰
     private let textview = UITextView().then {
         $0.font = .DefaultFont.body1.font()
+        $0.tintColor = .appColor(.grayscale900)
     }
 
     /// 텍스트 뷰 placeholder
