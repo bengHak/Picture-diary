@@ -31,7 +31,7 @@ class ModalDialog: UIView {
     private let stack = UIStackView().then {
         $0.axis = .horizontal
         $0.alignment = .center
-        $0.distribution = .equalCentering
+        $0.distribution = .fillEqually
     }
 
     /// Divider
@@ -66,9 +66,9 @@ class ModalDialog: UIView {
     // MARK: - Helpers
     private func setUI() {
         stack.addArrangedSubview(btnLeft)
-        stack.addArrangedSubview(divider)
         stack.addArrangedSubview(btnRight)
 
+        uiviewModal.addSubview(divider)
         uiviewModal.addSubview(lblMessage)
         uiviewModal.addSubview(stack)
         addSubview(bgview)
@@ -81,7 +81,7 @@ class ModalDialog: UIView {
         uiviewModal.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(40)
-            $0.height.equalTo(143)
+            $0.height.equalTo(154)
         }
 
         lblMessage.snp.makeConstraints {
@@ -92,6 +92,8 @@ class ModalDialog: UIView {
         divider.snp.makeConstraints {
             $0.width.equalTo(1)
             $0.height.equalTo(24)
+            $0.centerY.equalTo(btnLeft)
+            $0.leading.equalTo(btnLeft.snp.trailing)
         }
 
         btnLeft.snp.makeConstraints {
@@ -106,6 +108,7 @@ class ModalDialog: UIView {
         stack.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(lblMessage.snp.bottom).offset(32)
+            $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(59)
         }
     }
