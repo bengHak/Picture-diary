@@ -39,6 +39,8 @@ final class VanishingCompletionViewController: UIViewController,
         $0.text = self.labelText
     }
 
+    private let notificationFeedbackGenerator = UINotificationFeedbackGenerator()
+
     // MARK: - Properties
     private let labelText: String
     private var timer: Timer?
@@ -63,6 +65,7 @@ final class VanishingCompletionViewController: UIViewController,
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         initializeTimer()
+        notificationFeedbackGenerator.notificationOccurred(.success)
     }
 
     // MARK: - Helpers

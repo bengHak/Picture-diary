@@ -46,6 +46,10 @@ final class DiaryListViewController: UIViewController,
 
     private var loadingView: LoadingView?
 
+    private let selectionFeedbackGenerator = UISelectionFeedbackGenerator()
+
+    private let notificationFeedbackGenerator = UINotificationFeedbackGenerator()
+
     // MARK: - Properties
     private let bag = DisposeBag()
     private let diaryList: BehaviorRelay<[ModelDiaryResponse]>
@@ -90,6 +94,7 @@ final class DiaryListViewController: UIViewController,
         guard let loadingView = loadingView else { return }
         loadingView.isHidden = true
         self.loadingView = nil
+        notificationFeedbackGenerator.notificationOccurred(.success)
     }
 }
 
@@ -155,24 +160,28 @@ extension DiaryListViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.listener?.attachCreateDiary()
+                self.selectionFeedbackGenerator.selectionChanged()
             }).disposed(by: emptyDiaryView.bag)
 
         appBarTopView.btnCreate.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.listener?.attachCreateDiary()
+                self.selectionFeedbackGenerator.selectionChanged()
             }).disposed(by: bag)
 
         appBarTopView.btnPeople.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.listener?.attachRandomDiary()
+                self.selectionFeedbackGenerator.selectionChanged()
             }).disposed(by: bag)
 
         appBarTopView.btnSetting.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.listener?.attachSettings()
+                self.selectionFeedbackGenerator.selectionChanged()
             }).disposed(by: bag)
     }
 
@@ -186,11 +195,13 @@ extension DiaryListViewController {
             }.disposed(by: bag)
 
         collectionView.rx.modelSelected(ModelDiaryResponse.self)
+            .throttle(.milliseconds(500), latest: false, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] diary in
                 guard let self = self,
                       let id = diary.diaryId  else {
                     return
                 }
+                self.selectionFeedbackGenerator.selectionChanged()
                 self.listener?.attachDiaryDetail(diaryId: id)
             }).disposed(by: bag)
 

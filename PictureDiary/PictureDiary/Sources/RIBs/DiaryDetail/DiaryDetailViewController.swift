@@ -92,6 +92,8 @@ final class DiaryDetailViewController: UIViewController, DiaryDetailPresentable,
         $0.isHidden = true
     }
 
+    private let selectionFeedbackGenerator = UISelectionFeedbackGenerator()
+
     // MARK: - Properties
     private let bag = DisposeBag()
 
@@ -304,12 +306,14 @@ extension DiaryDetailViewController {
         appBarTop.btnBack.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
+                self.selectionFeedbackGenerator.selectionChanged()
                 self.listener?.detachDiaryDetail()
             }).disposed(by: bag)
 
         appBarTop.btnShare.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
+                self.selectionFeedbackGenerator.selectionChanged()
                 self.shareInstagramView.isHidden = false
                 #warning("그림자 렌더링 타이밍 수정 필요")
                 self.shareInstagramView.setGradient()

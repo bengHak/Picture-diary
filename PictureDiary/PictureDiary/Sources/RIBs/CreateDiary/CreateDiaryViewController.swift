@@ -94,6 +94,8 @@ final class CreateDiaryViewController: UIViewController, CreateDiaryPresentable,
     /// 업로드 로딩 뷰
     private let uploadLoadingView = LoadingView()
 
+    private let selectionFeedbackGenerator = UISelectionFeedbackGenerator()
+
     // MARK: - Properties
     private let bag = DisposeBag()
     private var currentNumberOfLines = 0
@@ -296,6 +298,7 @@ extension CreateDiaryViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.handleWeather(weather: .sunny)
+                self.selectionFeedbackGenerator.selectionChanged()
             }).disposed(by: bag)
 
         ivRain.rx.tapGesture()
@@ -303,6 +306,7 @@ extension CreateDiaryViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.handleWeather(weather: .rain)
+                self.selectionFeedbackGenerator.selectionChanged()
             }).disposed(by: bag)
 
         ivCloudy.rx.tapGesture()
@@ -310,6 +314,7 @@ extension CreateDiaryViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.handleWeather(weather: .cloudy)
+                self.selectionFeedbackGenerator.selectionChanged()
             }).disposed(by: bag)
 
         ivSnow.rx.tapGesture()
@@ -317,6 +322,7 @@ extension CreateDiaryViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.handleWeather(weather: .snow)
+                self.selectionFeedbackGenerator.selectionChanged()
             }).disposed(by: bag)
     }
 
@@ -326,6 +332,7 @@ extension CreateDiaryViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.listener?.routeToDiaryDrawing()
+                self.selectionFeedbackGenerator.selectionChanged()
             }).disposed(by: bag)
     }
 
@@ -335,6 +342,7 @@ extension CreateDiaryViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.listener?.routeToDiaryTextField()
+                self.selectionFeedbackGenerator.selectionChanged()
             }).disposed(by: bag)
     }
 
@@ -343,6 +351,7 @@ extension CreateDiaryViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.listener?.tapCancleButton()
+                self.selectionFeedbackGenerator.selectionChanged()
             }).disposed(by: bag)
 
         appBarTop.btnCompleted.rx.tap
@@ -353,6 +362,7 @@ extension CreateDiaryViewController {
                           print("⚠️ 비어있는 그림입니다.")
                           return
                       }
+                self.selectionFeedbackGenerator.selectionChanged()
                 self.uploadLoadingView.isHidden = false
                 self.listener?.tapDrawingCompleteButton(
                     date: self.currentDate,

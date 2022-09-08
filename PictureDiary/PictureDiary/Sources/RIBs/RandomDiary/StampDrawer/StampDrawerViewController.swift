@@ -55,6 +55,8 @@ final class StampDrawerViewController: UIViewController, StampDrawerPresentable,
         $0.layer.cornerRadius = 12
     }
 
+    private let notificationFeedbackGenerator = UINotificationFeedbackGenerator()
+
     // MARK: - Properties
     private let selectedStamp: BehaviorRelay<StampType?>
     private let stampPosition: BehaviorRelay<StampPosition>
@@ -192,6 +194,7 @@ extension StampDrawerViewController {
             .bind(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.listener?.didTapCompleteButton()
+                self.notificationFeedbackGenerator.notificationOccurred(.success)
             }).disposed(by: bag)
     }
 
