@@ -210,7 +210,7 @@ final class RandomDiaryViewController: UIViewController, RandomDiaryPresentable,
 extension RandomDiaryViewController: BaseViewController {
     func configureView() {
         view.addSubview(appBarTopBackgroundView)
-        appBarTop.setTitle("다른사람의 일기")
+        appBarTop.setTitle("다른사람의 일기장")
         view.addSubview(appBarTop)
     }
 
