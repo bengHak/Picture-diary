@@ -26,26 +26,14 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
         interactor: RootInteractable,
         viewController: RootViewControllable,
         splitVC: RootSplitViewController,
-        primaryVC: UINavigationController,
-        secondaryVC: UINavigationController,
         loggedInBuilder: LoggedInBuildable,
         loggedOutBuilder: LoggedOutBuildable,
         splashBuilder: SplashBuildable
     ) {
         self.splitVC = splitVC
-        self.primaryNav = primaryVC
-        self.secondaryNav = secondaryVC
         self.loggedOutBuilder = loggedOutBuilder
         self.loggedInBuilder = loggedInBuilder
         self.splashBuilder = splashBuilder
-
-        // initialize splitVC
-        if #available(iOS 14.0, *) {
-            splitVC.setViewController(primaryVC.topViewController!, for: .primary)
-            splitVC.setViewController(secondaryVC.topViewController!, for: .secondary)
-        } else {
-            splitVC.viewControllers = [primaryVC.topViewController!, secondaryVC.topViewController!]
-        }
 
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
@@ -117,9 +105,6 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
 
     // MARK: - Private
     private let splitVC: RootSplitViewController
-
-    private let primaryNav: UINavigationController
-    private let secondaryNav: UINavigationController
 
     private let loggedOutBuilder: LoggedOutBuildable
     private var loggedOutRouter: LoggedOutRouting?

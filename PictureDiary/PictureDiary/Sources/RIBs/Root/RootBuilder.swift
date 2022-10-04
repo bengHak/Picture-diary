@@ -16,25 +16,17 @@ final class RootComponent: Component<RootDependency>,
     var splashViewController: SplashViewControllable { rootViewController }
     var loggedOutViewController: LoggedOutViewControllable { rootViewController }
     var splitViewController: UISplitViewController { rootSplitViewController }
-    var primaryViewController: UINavigationController { rootPrimaryViewController }
-    var secondaryViewController: UINavigationController { rootSecondaryViewController }
 
     private let rootViewController: RootViewController
     private let rootSplitViewController: UISplitViewController
-    private let rootPrimaryViewController: UINavigationController
-    private let rootSecondaryViewController: UINavigationController
 
     init(
         dependency: RootDependency,
         rootViewController: RootViewController,
-        rootSplitViewController: UISplitViewController,
-        rootPrimaryViewController: UINavigationController,
-        rootSecondaryViewController: UINavigationController
+        rootSplitViewController: UISplitViewController
     ) {
         self.rootViewController = rootViewController
         self.rootSplitViewController = rootSplitViewController
-        self.rootPrimaryViewController = rootPrimaryViewController
-        self.rootSecondaryViewController = rootSecondaryViewController
         super.init(dependency: dependency)
     }
 }
@@ -54,19 +46,21 @@ final class RootBuilder: Builder<RootDependency>, RootBuildable {
     func build() -> LaunchRouting {
         let viewController = RootViewController()
         let splitVC: RootSplitViewController
+        let primaryVC = RootPrimaryViewController()
+        let secondaryVC = RootSecondaryViewController()
         if #available(iOS 14.0, *) {
             splitVC = RootSplitViewController(style: .doubleColumn)
+            splitVC.setViewController(primaryVC, for: .primary)
+            splitVC.setViewController(secondaryVC, for: .secondary)
         } else {
             splitVC = RootSplitViewController()
+            splitVC.viewControllers = [primaryVC, secondaryVC]
         }
-        let primaryVC = UINavigationController(rootViewController: RootPrimaryViewController())
-        let secondaryVC = UINavigationController(rootViewController: RootSecondaryViewController())
+
         let component = RootComponent(
             dependency: dependency,
             rootViewController: viewController,
-            rootSplitViewController: splitVC,
-            rootPrimaryViewController: primaryVC,
-            rootSecondaryViewController: secondaryVC
+            rootSplitViewController: splitVC
         )
         let interactor = RootInteractor(presenter: viewController)
 
@@ -78,8 +72,6 @@ final class RootBuilder: Builder<RootDependency>, RootBuildable {
             interactor: interactor,
             viewController: viewController,
             splitVC: splitVC,
-            primaryVC: primaryVC,
-            secondaryVC: secondaryVC,
             loggedInBuilder: loggedInBuilder,
             loggedOutBuilder: loggedOutBuilder,
             splashBuilder: splashBuilder

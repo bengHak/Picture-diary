@@ -22,8 +22,6 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
     init(
         interactor: LoggedInInteractable,
         splitViewController: UISplitViewController,
-        primaryViewController: UINavigationController,
-        secondaryViewController: UINavigationController,
         diaryListBuilder: DiaryListBuildable,
         diaryDetailBuilder: DiaryDetailBuildable,
         createDiaryBuilder: CreateDiaryBuildable,
@@ -31,8 +29,6 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
         settingsBuilder: SettingsBuildable
     ) {
         self.splitViewController = splitViewController
-        self.primaryNav = primaryViewController
-        self.secondaryNav = secondaryViewController
         self.diaryListBuilder = diaryListBuilder
         self.diaryDetailBuilder = diaryDetailBuilder
         self.createDiaryBuilder = createDiaryBuilder
@@ -156,8 +152,6 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
     private var settingsRouter: SettingsRouting?
 
     private let splitViewController: UISplitViewController
-    private let primaryNav: UINavigationController
-    private let secondaryNav: UINavigationController
 
     // MARK: - Helpers
     private func cleanupPrimaryViews() {

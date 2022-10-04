@@ -7,6 +7,7 @@
 
 import RIBs
 import RxSwift
+import SwiftKeychainWrapper
 
 protocol SettingsRouting: ViewableRouting {
     func attachFontSetting()
@@ -86,9 +87,11 @@ final class SettingsInteractor: PresentableInteractor<SettingsPresentable>,
 
     func leave() {
         _ = authRepository.leave()
+        detachToLoggedOut()
     }
 
     func detachToLoggedOut() {
+        KeychainWrapper.removeValue(forKey: .accessToken)
         listener?.detachToLoggedOut()
     }
 

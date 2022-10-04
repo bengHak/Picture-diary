@@ -48,7 +48,7 @@ target 'PictureDiary' do
   binary_pod 'SwiftKeychainWrapper'
   
   # OAuth
-  binary_pod 'RxKakaoSDKUser'
+  binary_pod 'RxKakaoSDKUser', '~> 2.11.1'
   binary_pod 'GoogleSignIn'
 
 end

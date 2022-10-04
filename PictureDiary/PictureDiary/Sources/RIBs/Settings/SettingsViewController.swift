@@ -155,9 +155,11 @@ extension SettingsViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.modalView.isHidden = true
-                if !isSignout { self.listener?.leave() }
-                KeychainWrapper.removeValue(forKey: .accessToken)
-                self.listener?.detachToLoggedOut()
+                if !isSignout {
+                    self.listener?.leave()
+                } else {
+                    self.listener?.detachToLoggedOut()
+                }
             }).disposed(by: bag)
     }
 }

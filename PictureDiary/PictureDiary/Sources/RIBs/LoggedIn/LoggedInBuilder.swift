@@ -10,8 +10,6 @@ import RxRelay
 
 protocol LoggedInDependency: Dependency {
     var splitViewController: UISplitViewController { get }
-    var primaryViewController: UINavigationController { get }
-    var secondaryViewController: UINavigationController { get }
 }
 
 final class LoggedInComponent: Component<LoggedInDependency>,
@@ -24,14 +22,6 @@ final class LoggedInComponent: Component<LoggedInDependency>,
 
     fileprivate var splitViewController: UISplitViewController {
         return dependency.splitViewController
-    }
-
-    fileprivate var primaryViewController: UINavigationController {
-        return dependency.primaryViewController
-    }
-
-    fileprivate var secondaryViewController: UINavigationController {
-        return dependency.secondaryViewController
     }
 
     var isRefreshNeed = BehaviorRelay<Bool>(value: false)
@@ -72,8 +62,6 @@ final class LoggedInBuilder: Builder<LoggedInDependency>, LoggedInBuildable {
         return LoggedInRouter(
             interactor: interactor,
             splitViewController: component.splitViewController,
-            primaryViewController: component.primaryViewController,
-            secondaryViewController: component.secondaryViewController,
             diaryListBuilder: diaryList,
             diaryDetailBuilder: diaryDetail,
             createDiaryBuilder: createDiary,
