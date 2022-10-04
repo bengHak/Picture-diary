@@ -95,7 +95,7 @@ final class SNSLoginButton: UIView {
         stackView.spacing = 10
         uiview.backgroundColor = .black
         lbl.textColor = .white
-        lbl.text = "Apple 계정으로 로그인"
+        lbl.text = "Apple로 로그인"
         ivLogo.image = UIImage(named: "logo_apple")
         ivLogo.snp.makeConstraints {
             $0.width.equalTo(12)
